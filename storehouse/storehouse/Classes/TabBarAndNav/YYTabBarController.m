@@ -29,6 +29,7 @@
     }];
     [self setupMainContents];
     [self setValue:self.tabBarView forKey:@"tabBar"];
+    [self.tabBarView selectTab:0];//选中首页
 }
 
 
@@ -53,11 +54,11 @@
     HomeVC *homeVC = [[HomeVC alloc] init];
     [self addChildViewControllerAtIndex:0 childViewController:homeVC title:@"首页" normalImage:@"home_normal" selectedImage:@"home_select"];
     
-    // 测量
+    // 申请
     ApplyVC *applyVC = [[ApplyVC alloc] init];
     [self addChildViewControllerAtIndex:1 childViewController:applyVC title:@"申请" normalImage:@"measure_normal" selectedImage:@"measure_select"];
     
-    // 咨询
+    // 资产
     AssetsVC *consultVC = [[AssetsVC alloc] init];
     [self addChildViewControllerAtIndex:2 childViewController:consultVC title:@"资产" normalImage:@"consult_normal" selectedImage:@"consult_select"];
     
