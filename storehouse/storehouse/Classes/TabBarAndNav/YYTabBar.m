@@ -13,6 +13,11 @@
 //#import "ScreenUtil.h"
 //#import "ImageUtil.h"
 #import "UIColor+Extension.h"
+//查看手机型号引用
+#import <sys/utsname.h>
+//手机信息
+struct utsname systemInfo;
+
 /** btn的tag值 */
 static NSUInteger kTag = 1000;
 
@@ -32,10 +37,10 @@ static NSUInteger kTag = 1000;
 
 #pragma mark - initmethods
 + (instancetype)initWithTabs:(NSInteger)count systemTabBarHeight:(CGFloat)height selected:(YYTabBarBlock)selectedBlock {
-//    CGFloat tabBarHeight = 49;
-//    YYTabBar *tabBar = [[YYTabBar alloc] initWithFrame:CGRectMake(0, - (tabBarHeight - height), kScreenW, tabBarHeight)];
+    CGFloat tabBarHeight = 55;
+    YYTabBar *tabBar = [[YYTabBar alloc] initWithFrame:CGRectMake(0, - (tabBarHeight - height), kScreenW, tabBarHeight)];
     //改动原因：用系统的tabbar高度
-    YYTabBar *tabBar = [[YYTabBar alloc] initWithFrame:CGRectMake(0,0, kScreenW, height)];
+//    YYTabBar *tabBar = [[YYTabBar alloc] initWithFrame:CGRectMake(0,0, kScreenW, height)];
     tabBar.tabCount = count;
     tabBar.block = selectedBlock;
     
@@ -45,24 +50,25 @@ static NSUInteger kTag = 1000;
     /** 获取button的宽度 */
     CGFloat tabBarItemWidth = kScreenW / count ;
     /** 设置背景颜色 */
-    tabBar.backgroundColor = [UIColor colorWithHexString:@"fbfbfb"];
+    tabBar.backgroundColor = [UIColor colorWithHexString:@"373a41"];
     
     for (NSUInteger idx = 0; idx < count; idx++) {
         /** 获取btn的X坐标 */
         CGFloat pointX = tabBarItemWidth * idx;
         /** 初始化一个btn */
         YYTabBarItem *btn = [YYTabBarItem buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor colorWithHexString:@"373a41"];
         /** 设置frame */
         btn.frame = CGRectMake(pointX, 0, tabBarItemWidth, CGRectGetHeight(tabBar.frame));
         btn.kImageScale = 0.72f;
         btn.titleLabelHigh = 8;
-        
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
         /** 设置文字颜色 */
-        [btn setTitleColor:[UIColor colorWithHexString:@"000000"] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateSelected];
-        //边框宽度和颜色
-        [btn.layer setBorderWidth:0.5];
-        btn.layer.borderColor=[UIColor colorWithHexString:@"bfbfbf"].CGColor;
+        [btn setTitleColor:[UIColor colorWithHexString:@"a5a8af"] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithHexString:@"22b2e7"] forState:UIControlStateSelected];
+//        //边框宽度和颜色
+//        [btn.layer setBorderWidth:0.5];
+//        btn.layer.borderColor=[UIColor colorWithHexString:@"bfbfbf"].CGColor;
         /** 添加事件响应 */
         [btn addTarget:tabBar action:@selector(tabDidSelected:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -101,8 +107,8 @@ static NSUInteger kTag = 1000;
     YYTabBarItem *tabBarItem = self.subviews[index];
     
     [tabBarItem setTitle:title forState:UIControlStateNormal];
-    [tabBarItem setTitleColor:[UIColor colorWithHexString:@"000000"] forState:UIControlStateNormal];
-    [tabBarItem setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateSelected];
+    [tabBarItem setTitleColor:[UIColor colorWithHexString:@"a5a8af"] forState:UIControlStateNormal];
+    [tabBarItem setTitleColor:[UIColor colorWithHexString:@"22b2e7"] forState:UIControlStateSelected];
 
     [tabBarItem setImage:[UIImage imageNamed:normalImage] forState:UIControlStateNormal];
     [tabBarItem setImage:[UIImage imageNamed:selectedImage] forState:UIControlStateSelected];
@@ -110,15 +116,35 @@ static NSUInteger kTag = 1000;
 
 #pragma mark - view methods
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGSize s = [super sizeThatFits:size];
-    if(@available(iOS 11.0, *))
-    {
-        CGFloat bottomInset = self.safeAreaInsets.bottom;
-        if( bottomInset > 0 && s.height < 50) {
-            s.height += bottomInset;
-        }
+    uname(&systemInfo);//📱机型信息
+    NSString*phoneType = [NSString stringWithCString: systemInfo.machine encoding:NSASCIIStringEncoding];
+    if([phoneType  isEqualToString:@"iPhone10,3"] ||[phoneType  isEqualToString:@"iPhone10,6"]) {//是iphoneX,模拟器测不出
+            CGSize s = [super sizeThatFits:size];
+            if(@available(iOS 11.0, *))
+            {
+                CGFloat bottomInset = self.safeAreaInsets.bottom;
+                if( bottomInset > 0 && s.height < 50) {
+                    s.height += bottomInset;
+                }
+            }
+            return s;
+    }else{//不是iphoneX
+        [super sizeThatFits:size];
+        return CGSizeMake(kScreenW, 55);
     }
-    return s;
+    
+    
+//    CGSize s = [super sizeThatFits:size];
+//    if(@available(iOS 11.0, *))
+//    {
+//        CGFloat bottomInset = self.safeAreaInsets.bottom;
+//        if( bottomInset > 0 && s.height < 50) {
+//            s.height += bottomInset;
+//        }
+//    }
+//    return s;
+//    [super sizeThatFits:size];
+//    return CGSizeMake(kScreenW, 55);
 }
 
 - (void)layoutSubviews {
@@ -136,14 +162,11 @@ static NSUInteger kTag = 1000;
     UIButton *btn = [self viewWithTag:kTag +index];
     /** 把以前选中的button设置为不选中 */
     self.selectedBtn.selected = NO;
-    [self.selectedBtn setBackgroundColor:[UIColor colorWithHexString:@"fbfbfb"]];
-    //边框颜色跟着变
-    self.selectedBtn.layer.borderColor=[UIColor colorWithHexString:@"bfbfbf"].CGColor;
     /** 把当前选中的button设置为选中 */
     btn.selected = YES;
-    [btn setBackgroundColor:[UIColor colorWithHexString:@"1c82d4"]];
-    //边框颜色跟着变
-    btn.layer.borderColor=[UIColor colorWithHexString:@"1c82d4"].CGColor;
+
+//    //边框颜色跟着变
+//    btn.layer.borderColor=[UIColor colorWithHexString:@"1c82d4"].CGColor;
     /** 把当前选中的button赋值给全局button */
     self.selectedBtn = btn;
 }

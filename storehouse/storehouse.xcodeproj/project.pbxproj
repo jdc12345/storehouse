@@ -216,7 +216,7 @@
 				16AD804C20BEC7C6005F99BC /* TabBarAndNav */,
 				16AD804D20BEC808005F99BC /* Home */,
 				16AD804E20BEC814005F99BC /* Apply */,
-				16AD804F20BEC81E005F99BC /* Assets */,
+				16AD804F20BEC81E005F99BC /* Approval */,
 				16AD805020BEC8BE005F99BC /* Mine */,
 			);
 			path = Classes;
@@ -273,13 +273,13 @@
 			path = Apply;
 			sourceTree = "<group>";
 		};
-		16AD804F20BEC81E005F99BC /* Assets */ = {
+		16AD804F20BEC81E005F99BC /* Approval */ = {
 			isa = PBXGroup;
 			children = (
 				16AD808620BECB57005F99BC /* AssetsVC.h */,
 				16AD808720BECB57005F99BC /* AssetsVC.m */,
 			);
-			path = Assets;
+			path = Approval;
 			sourceTree = "<group>";
 		};
 		16AD805020BEC8BE005F99BC /* Mine */ = {
