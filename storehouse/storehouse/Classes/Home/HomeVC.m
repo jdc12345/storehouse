@@ -18,6 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"首页";
+    NSLog(@"sta:%f,nav:%f",kStatusBarHeight,kTopHeight);
+    
 }
 
 - (void)didReceiveMemoryWarning {

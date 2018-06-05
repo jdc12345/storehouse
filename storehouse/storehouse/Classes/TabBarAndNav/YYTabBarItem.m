@@ -26,22 +26,22 @@
     return self;
 }
 
-//// 调整文字的frame  contentRect：button的frame
-//- (CGRect)titleRectForContentRect:(CGRect)contentRect {
-//    CGFloat pointX = 0;
-//    CGFloat pointY = contentRect.size.height * _kImageScale - _titleLabelHigh;
-//    CGFloat width = contentRect.size.width;
-//    CGFloat height = contentRect.size.height * (1 - _kImageScale);
-//    return CGRectMake(pointX, pointY, width, height);
-//}
-//
-//// 调整图片的frame  contentRect：button的frame
-//- (CGRect)imageRectForContentRect:(CGRect)contentRect {
-//    CGFloat pointX = 0;
-//    CGFloat pointY = 0;
-//    CGFloat width = contentRect.size.width;
-//    CGFloat height = contentRect.size.height * _kImageScale;
-//    return CGRectMake(pointX, pointY, width, height);
-//}
+// 调整文字的frame  contentRect：button的frame
+- (CGRect)titleRectForContentRect:(CGRect)contentRect {
+    CGFloat pointX = 0;
+    CGFloat pointY = contentRect.size.height * _kImageScale - _titleLabelHigh;
+    CGFloat width = contentRect.size.width;
+    CGFloat height = contentRect.size.height * (1 - _kImageScale);
+    return CGRectMake(pointX, pointY, width, height);
+}
+
+// 调整图片的frame  contentRect：button的frame
+- (CGRect)imageRectForContentRect:(CGRect)contentRect {
+    CGFloat pointX = 0;
+    CGFloat pointY = 0;
+    CGFloat width = contentRect.size.width;
+    CGFloat height = contentRect.size.height * _kImageScale;
+    return CGRectMake(pointX, pointY, width, height);
+}
 
 @end

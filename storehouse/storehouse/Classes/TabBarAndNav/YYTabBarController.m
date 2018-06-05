@@ -56,11 +56,11 @@
     
     // 申请
     ApplyVC *applyVC = [[ApplyVC alloc] init];
-    [self addChildViewControllerAtIndex:1 childViewController:applyVC title:@"申请" normalImage:@"measure_normal" selectedImage:@"measure_select"];
+    [self addChildViewControllerAtIndex:1 childViewController:applyVC title:@"申请" normalImage:@"apply_normal" selectedImage:@"apply_select"];
     
     // 资产
     AssetsVC *consultVC = [[AssetsVC alloc] init];
-    [self addChildViewControllerAtIndex:2 childViewController:consultVC title:@"资产" normalImage:@"consult_normal" selectedImage:@"consult_select"];
+    [self addChildViewControllerAtIndex:2 childViewController:consultVC title:@"资产" normalImage:@"approval_normal" selectedImage:@"approval_select"];
     
     // 我的
     MineVC *personalVC = [[MineVC alloc] init];
