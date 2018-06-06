@@ -10,11 +10,15 @@
 #import "FunctionListFlowLayout.h"
 #import "HomeFunctionCollectionViewCell.h"
 #import "NSArray+Addition.h"
+#import "HomeNoticeNewsTVCell.h"
+#import "UILabel+Addition.h"
+
 
 static NSString* tableCellid = @"table_cell";
 static NSString* collectionCellid = @"collection_cell";
-@interface HomeVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface HomeVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSArray* functionListData;//功能列表
+@property(nonatomic,strong)NSMutableArray *noticeNewsArr;//通知消息数据源
 @end
 
 @implementation HomeVC
@@ -26,6 +30,9 @@ static NSString* collectionCellid = @"collection_cell";
     NSLog(@"sta:%f,nav:%f",kStatusBarHeight,kTopHeight);
     self.view.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:16],
+       NSForegroundColorAttributeName:[UIColor colorWithHexString:@"373a41"]}];
     
     //加载数据
     [self loadData];
@@ -62,6 +69,21 @@ static NSString* collectionCellid = @"collection_cell";
     [collectionView registerClass:[HomeFunctionCollectionViewCell class] forCellWithReuseIdentifier:collectionCellid];
     collectionView.showsHorizontalScrollIndicator = false;
     collectionView.showsVerticalScrollIndicator = false;
+    
+    //添加tableView
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero];
+//    self.recordTableView = tableView;
+    [backView addSubview:tableView];
+    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(collectionView.mas_bottom).offset(5*kiphone6H);
+        make.left.right.bottom.offset(0);
+    }];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [tableView registerClass:[HomeNoticeNewsTVCell class] forCellReuseIdentifier:tableCellid];
+    tableView.delegate =self;
+    tableView.dataSource = self;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    tableView.estimatedRowHeight = 46*kiphone6H;
     
 }
 #pragma mark - UICollectionView
@@ -141,6 +163,58 @@ static NSString* collectionCellid = @"collection_cell";
 - (NSArray*)loadFunctionListData
 {
     return [NSArray objectListWithPlistName:@"HomeFunctionList.plist" clsName:@"HomeFunctionListModel"];
+}
+#pragma mark - UITableView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 1;
+    
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;//根据请求回来的数据定
+//    return self.noticeNewsArr.count;//根据请求回来的数据定
+    
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    HomeNoticeNewsTVCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellid forIndexPath:indexPath];
+//    cell.model = self.recordArr[indexPath.row];
+    return cell;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, 32*kiphone6H)];
+    titleView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+    UILabel *titlelabel = [UILabel labelWithText:@"通知" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:15];
+    [titleView addSubview:titlelabel];
+    [titlelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.offset(0);
+        make.left.offset(15*kiphone6);
+    }];
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
+    [titleView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.offset(0);
+        make.height.offset(0.5*kiphone6H);
+    }];
+    return titleView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 32*kiphone6H;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 46*kiphone6H;
+//    // 2 .给tableview缓存行高属性赋值并计算
+//    YJReportRepairRecordModel *comModel = self.recordArr[indexPath.row];// 2.1 找到这个cell对应的数据模型
+//    NSString *thisId = [NSString stringWithFormat:@"%ld",comModel.info_id];// 2.2 取出模型对应id作为cell缓存行高对应key
+//    CGFloat cacheHeight = [[self.cellHeightCache valueForKey:thisId] doubleValue];// 2.3 根据这个key取这个cell的高度
+//    if (cacheHeight) {// 2.4 如果取得到就说明已经存过了，不需要再计算，直接返回这个高度
+//        return cacheHeight;
+//    }
+//    YJRepairRecordTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:tableCellid];// 2.4 如果没有取到值说明是第一遍，需要取一个cell(作为计算模型)并给cell的数据model赋值，进而计算出这个cell的高度
+//    commentCell.model = comModel;// 2.5 赋值并在cell中计算
+//    [self.cellHeightCache setValue:@(commentCell.cellHeight) forKey:thisId];// 2.6 取cell计算出的高度存入tableview的缓存行高字典里，方便读取
+//    //            NSLog(@"%@",self.cellHeightCache);
+//    return commentCell.cellHeight;
 }
 //
 //-(void)viewWillAppear:(BOOL)animated{

@@ -26,6 +26,12 @@
 		162E473620C6957C00DED9B2 /* NSObject+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473420C6957C00DED9B2 /* NSObject+Addition.m */; };
 		162E473720C6957C00DED9B2 /* NSObject+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473420C6957C00DED9B2 /* NSObject+Addition.m */; };
 		162E473820C6957C00DED9B2 /* NSObject+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473420C6957C00DED9B2 /* NSObject+Addition.m */; };
+		162E473B20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473A20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m */; };
+		162E473C20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473A20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m */; };
+		162E473D20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473A20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m */; };
+		162E474020C7B60C00DED9B2 /* UILabel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473E20C7B60B00DED9B2 /* UILabel+Addition.m */; };
+		162E474120C7B60C00DED9B2 /* UILabel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473E20C7B60B00DED9B2 /* UILabel+Addition.m */; };
+		162E474220C7B60C00DED9B2 /* UILabel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E473E20C7B60B00DED9B2 /* UILabel+Addition.m */; };
 		16AD801F20BEC365005F99BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16AD801E20BEC365005F99BC /* Assets.xcassets */; };
 		16AD802220BEC365005F99BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16AD802020BEC365005F99BC /* LaunchScreen.storyboard */; };
 		16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AD802E20BEC365005F99BC /* storehouseTests.m */; };
@@ -100,6 +106,10 @@
 		162E473020C6954C00DED9B2 /* NSArray+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Addition.m"; sourceTree = "<group>"; };
 		162E473420C6957C00DED9B2 /* NSObject+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Addition.m"; sourceTree = "<group>"; };
 		162E473520C6957C00DED9B2 /* NSObject+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Addition.h"; sourceTree = "<group>"; };
+		162E473920C7B43E00DED9B2 /* HomeNoticeNewsTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeNoticeNewsTVCell.h; sourceTree = "<group>"; };
+		162E473A20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeNoticeNewsTVCell.m; sourceTree = "<group>"; };
+		162E473E20C7B60B00DED9B2 /* UILabel+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Addition.m"; sourceTree = "<group>"; };
+		162E473F20C7B60C00DED9B2 /* UILabel+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Addition.h"; sourceTree = "<group>"; };
 		16AD801220BEC365005F99BC /* storehouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storehouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16AD801E20BEC365005F99BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16AD802120BEC365005F99BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -191,6 +201,8 @@
 				162E471C20C68D5400DED9B2 /* FunctionListFlowLayout.m */,
 				162E472020C68E8900DED9B2 /* HomeFunctionCollectionViewCell.h */,
 				162E472120C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m */,
+				162E473920C7B43E00DED9B2 /* HomeNoticeNewsTVCell.h */,
+				162E473A20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -271,6 +283,8 @@
 		16AD804720BEC74A005F99BC /* Root_Tools */ = {
 			isa = PBXGroup;
 			children = (
+				162E473F20C7B60C00DED9B2 /* UILabel+Addition.h */,
+				162E473E20C7B60B00DED9B2 /* UILabel+Addition.m */,
 				16AD805420BEC9AC005F99BC /* HttpClient.h */,
 				16AD805220BEC9AC005F99BC /* HttpClient.m */,
 				16AD805120BEC9AC005F99BC /* UIColor+Extension.h */,
@@ -573,8 +587,10 @@
 				162E473120C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				162E473620C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
 				16AD807320BECA67005F99BC /* YYTabBarController.m in Sources */,
+				162E474020C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				16AD805520BEC9AC005F99BC /* HttpClient.m in Sources */,
 				16AD807E20BECB2A005F99BC /* HomeVC.m in Sources */,
+				162E473B20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
 				16AD806020BEC9E9005F99BC /* main.m in Sources */,
 				16AD807620BECA67005F99BC /* YYTabBar.m in Sources */,
 				16AD805820BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
@@ -590,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				162E473C20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
 				16AD805620BEC9AC005F99BC /* HttpClient.m in Sources */,
 				162E471E20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E472320C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
@@ -607,6 +624,7 @@
 				16AD807A20BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				16AD807420BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E472820C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
+				162E474120C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				16AD808420BECB40005F99BC /* ApplyVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				162E473D20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
 				16AD805720BEC9AC005F99BC /* HttpClient.m in Sources */,
 				162E471F20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E472420C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
@@ -632,6 +651,7 @@
 				16AD807B20BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				16AD807520BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E472920C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
+				162E474220C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				16AD808520BECB40005F99BC /* ApplyVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
