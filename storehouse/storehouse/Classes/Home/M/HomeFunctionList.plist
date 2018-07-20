@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>扫一扫</string>
+		<key>icon</key>
+		<string>home_scan</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>盘点</string>
+		<key>icon</key>
+		<string>home_Inventory</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>采购订单</string>
+		<key>icon</key>
+		<string>home_purchase_order</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>维修管理</string>
+		<key>icon</key>
+		<string>home_repair</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>发布通知</string>
+		<key>icon</key>
+		<string>home_notice</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>资产管理</string>
+		<key>icon</key>
+		<string>home_asset</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>低值易耗</string>
+		<key>icon</key>
+		<string>home_low_value</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>统计报表</string>
+		<key>icon</key>
+		<string>home_report</string>
+	</dict>
+</array>
+</plist>

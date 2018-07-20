@@ -7,7 +7,6 @@
 //
 
 #import "YYNavigationController.h"
-#import "UIColor+Extension.h"
 
 @interface YYNavigationController ()
 
@@ -18,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,7 +69,11 @@
     return [self.viewControllers.lastObject preferredInterfaceOrientationForPresentation];
     
 }
-
+//改变导航栏颜色
+- (UIViewController *)childViewControllerForStatusBarStyle{
+    
+        return self.topViewController;
+    }
 /*
 #pragma mark - Navigation
 
