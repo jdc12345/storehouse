@@ -28,12 +28,18 @@ static NSString* collectionCellid = @"collection_cell";
     // Do any additional setup after loading the view.
     self.title = @"首页";
     NSLog(@"sta:%f,nav:%f",kStatusBarHeight,kTopHeight);
-    self.view.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
+    //去除黑线
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.navigationController.navigationBar.translucent = false;//关掉模糊
+    // 视图延伸不考虑透明的Bars(这里包含导航栏和状态栏)
+    // 意思就是延伸到边界
+    self.extendedLayoutIncludesOpaqueBars = true;//解决视图下移64
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:16],
        NSForegroundColorAttributeName:[UIColor colorWithHexString:@"373a41"]}];
-    
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
     //加载数据
     [self loadData];
 }

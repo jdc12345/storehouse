@@ -7,7 +7,6 @@
 //
 
 #import "YYNavigationController.h"
-#import "UIColor+Extension.h"
 
 @interface YYNavigationController ()
 

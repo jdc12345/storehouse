@@ -17,6 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //去除黑线
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.navigationController.navigationBar.translucent = false;//关掉模糊
+    // 视图延伸不考虑透明的Bars(这里包含导航栏和状态栏)
+    // 意思就是延伸到边界
+    self.extendedLayoutIncludesOpaqueBars = true;//解决视图下移64
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.title = @"我的";
 }
 

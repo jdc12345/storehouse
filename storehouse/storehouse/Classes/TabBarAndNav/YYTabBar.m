@@ -12,7 +12,6 @@
 //#import "Dimension.h"
 //#import "ScreenUtil.h"
 //#import "ImageUtil.h"
-#import "UIColor+Extension.h"
 //查看手机型号引用
 #import <sys/utsname.h>
 //手机信息
