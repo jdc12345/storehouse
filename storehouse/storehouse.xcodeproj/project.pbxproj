@@ -46,6 +46,18 @@
 		1654F3162105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */; };
 		1654F3172105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */; };
 		1654F3182105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */; };
+		1654F32121070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F31B21070DC5007EF7B0 /* ZWPullMenuCell.m */; };
+		1654F32221070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F31B21070DC5007EF7B0 /* ZWPullMenuCell.m */; };
+		1654F32321070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F31B21070DC5007EF7B0 /* ZWPullMenuCell.m */; };
+		1654F32421070DC5007EF7B0 /* ZWPullMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1654F31C21070DC5007EF7B0 /* ZWPullMenuCell.xib */; };
+		1654F32521070DC5007EF7B0 /* ZWPullMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1654F31C21070DC5007EF7B0 /* ZWPullMenuCell.xib */; };
+		1654F32621070DC5007EF7B0 /* ZWPullMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1654F31C21070DC5007EF7B0 /* ZWPullMenuCell.xib */; };
+		1654F32721070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F31E21070DC5007EF7B0 /* ZWPullMenuModel.m */; };
+		1654F32821070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F31E21070DC5007EF7B0 /* ZWPullMenuModel.m */; };
+		1654F32921070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F31E21070DC5007EF7B0 /* ZWPullMenuModel.m */; };
+		1654F32A21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
+		1654F32B21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
+		1654F32C21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
 		16AD801F20BEC365005F99BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16AD801E20BEC365005F99BC /* Assets.xcassets */; };
 		16AD802220BEC365005F99BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16AD802020BEC365005F99BC /* LaunchScreen.storyboard */; };
 		16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AD802E20BEC365005F99BC /* storehouseTests.m */; };
@@ -136,6 +148,13 @@
 		1654F3122105C81A007EF7B0 /* LaunchPurchaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchPurchaseVC.m; sourceTree = "<group>"; };
 		1654F3142105C916007EF7B0 /* LaunchBaseTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchBaseTVCell.h; sourceTree = "<group>"; };
 		1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchBaseTVCell.m; sourceTree = "<group>"; };
+		1654F31A21070DC5007EF7B0 /* ZWPullMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPullMenuCell.h; sourceTree = "<group>"; };
+		1654F31B21070DC5007EF7B0 /* ZWPullMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPullMenuCell.m; sourceTree = "<group>"; };
+		1654F31C21070DC5007EF7B0 /* ZWPullMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZWPullMenuCell.xib; sourceTree = "<group>"; };
+		1654F31D21070DC5007EF7B0 /* ZWPullMenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPullMenuModel.h; sourceTree = "<group>"; };
+		1654F31E21070DC5007EF7B0 /* ZWPullMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPullMenuModel.m; sourceTree = "<group>"; };
+		1654F31F21070DC5007EF7B0 /* ZWPullMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPullMenuView.h; sourceTree = "<group>"; };
+		1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPullMenuView.m; sourceTree = "<group>"; };
 		16AD801220BEC365005F99BC /* storehouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storehouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16AD801E20BEC365005F99BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16AD802120BEC365005F99BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -286,6 +305,20 @@
 			path = C;
 			sourceTree = "<group>";
 		};
+		1654F31921070DC5007EF7B0 /* ZWPullMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				1654F31A21070DC5007EF7B0 /* ZWPullMenuCell.h */,
+				1654F31B21070DC5007EF7B0 /* ZWPullMenuCell.m */,
+				1654F31C21070DC5007EF7B0 /* ZWPullMenuCell.xib */,
+				1654F31D21070DC5007EF7B0 /* ZWPullMenuModel.h */,
+				1654F31E21070DC5007EF7B0 /* ZWPullMenuModel.m */,
+				1654F31F21070DC5007EF7B0 /* ZWPullMenuView.h */,
+				1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */,
+			);
+			path = ZWPullMenuView;
+			sourceTree = "<group>";
+		};
 		16AD800920BEC365005F99BC = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +390,7 @@
 		16AD804920BEC76D005F99BC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1654F31921070DC5007EF7B0 /* ZWPullMenuView */,
 				16AD804B20BEC7B3005F99BC /* App delegate */,
 				16AD804C20BEC7C6005F99BC /* TabBarAndNav */,
 				16AD804D20BEC808005F99BC /* Home */,
@@ -557,6 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16AD802220BEC365005F99BC /* LaunchScreen.storyboard in Resources */,
+				1654F32421070DC5007EF7B0 /* ZWPullMenuCell.xib in Resources */,
 				16AD801F20BEC365005F99BC /* Assets.xcassets in Resources */,
 				162E472B20C6915200DED9B2 /* HomeFunctionList.plist in Resources */,
 				16AD805D20BEC9E9005F99BC /* Info.plist in Resources */,
@@ -568,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				162E472C20C6915200DED9B2 /* HomeFunctionList.plist in Resources */,
+				1654F32521070DC5007EF7B0 /* ZWPullMenuCell.xib in Resources */,
 				16AD805E20BEC9E9005F99BC /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,6 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				162E472D20C6915200DED9B2 /* HomeFunctionList.plist in Resources */,
+				1654F32621070DC5007EF7B0 /* ZWPullMenuCell.xib in Resources */,
 				16AD805F20BEC9E9005F99BC /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,6 +684,7 @@
 				162E471D20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E474820C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 				161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
+				1654F32A21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				16AD808820BECB57005F99BC /* AssetsVC.m in Sources */,
 				162E473120C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				162E473620C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
@@ -654,6 +692,7 @@
 				16AD807320BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E474020C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				16AD805520BEC9AC005F99BC /* HttpClient.m in Sources */,
+				1654F32121070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD807E20BECB2A005F99BC /* HomeVC.m in Sources */,
 				162E473B20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
 				161E57DE20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
@@ -667,6 +706,7 @@
 				16AD807920BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				1654F3102105BA60007EF7B0 /* LaunchBaseVC.m in Sources */,
 				16AD807020BECA67005F99BC /* YYNavigationController.m in Sources */,
+				1654F32721070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +724,7 @@
 				16AD805920BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				16AD806120BEC9E9005F99BC /* main.m in Sources */,
 				161E57DF20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
+				1654F32221070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD807F20BECB2A005F99BC /* HomeVC.m in Sources */,
 				16AD807720BECA67005F99BC /* YYTabBar.m in Sources */,
 				16AD808E20BECB9D005F99BC /* MineVC.m in Sources */,
@@ -694,9 +735,11 @@
 				16AD807A20BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				16AD807420BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E472820C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
+				1654F32B21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				162E474120C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				1654F3172105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808420BECB40005F99BC /* ApplyVC.m in Sources */,
+				1654F32821070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
 				162E474920C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,6 +758,7 @@
 				16AD805A20BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				16AD806220BEC9E9005F99BC /* main.m in Sources */,
 				161E57E020CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
+				1654F32321070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD808020BECB2A005F99BC /* HomeVC.m in Sources */,
 				16AD807820BECA67005F99BC /* YYTabBar.m in Sources */,
 				16AD808F20BECB9D005F99BC /* MineVC.m in Sources */,
@@ -725,9 +769,11 @@
 				16AD807B20BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				16AD807520BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E472920C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
+				1654F32C21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				162E474220C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				1654F3182105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808520BECB40005F99BC /* ApplyVC.m in Sources */,
+				1654F32921070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
 				162E474A20C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
