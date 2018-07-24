@@ -41,6 +41,11 @@
 		162E474820C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */; };
 		162E474920C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */; };
 		162E474A20C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */; };
+		1654F3102105BA60007EF7B0 /* LaunchBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F30F2105BA60007EF7B0 /* LaunchBaseVC.m */; };
+		1654F3132105C81A007EF7B0 /* LaunchPurchaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F3122105C81A007EF7B0 /* LaunchPurchaseVC.m */; };
+		1654F3162105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */; };
+		1654F3172105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */; };
+		1654F3182105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */; };
 		16AD801F20BEC365005F99BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16AD801E20BEC365005F99BC /* Assets.xcassets */; };
 		16AD802220BEC365005F99BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16AD802020BEC365005F99BC /* LaunchScreen.storyboard */; };
 		16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AD802E20BEC365005F99BC /* storehouseTests.m */; };
@@ -125,6 +130,12 @@
 		162E473F20C7B60C00DED9B2 /* UILabel+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Addition.h"; sourceTree = "<group>"; };
 		162E474620C7DEA500DED9B2 /* LaunchMainHeaderButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchMainHeaderButtonView.h; sourceTree = "<group>"; };
 		162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchMainHeaderButtonView.m; sourceTree = "<group>"; };
+		1654F30E2105BA60007EF7B0 /* LaunchBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchBaseVC.h; sourceTree = "<group>"; };
+		1654F30F2105BA60007EF7B0 /* LaunchBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchBaseVC.m; sourceTree = "<group>"; };
+		1654F3112105C81A007EF7B0 /* LaunchPurchaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchPurchaseVC.h; sourceTree = "<group>"; };
+		1654F3122105C81A007EF7B0 /* LaunchPurchaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchPurchaseVC.m; sourceTree = "<group>"; };
+		1654F3142105C916007EF7B0 /* LaunchBaseTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchBaseTVCell.h; sourceTree = "<group>"; };
+		1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchBaseTVCell.m; sourceTree = "<group>"; };
 		16AD801220BEC365005F99BC /* storehouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storehouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16AD801E20BEC365005F99BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16AD802120BEC365005F99BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -256,6 +267,8 @@
 				161E57DD20CFA278006B57B2 /* LaunchMainHeaderView.m */,
 				162E474620C7DEA500DED9B2 /* LaunchMainHeaderButtonView.h */,
 				162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */,
+				1654F3142105C916007EF7B0 /* LaunchBaseTVCell.h */,
+				1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -265,6 +278,10 @@
 			children = (
 				16AD808120BECB40005F99BC /* ApplyVC.h */,
 				16AD808220BECB40005F99BC /* ApplyVC.m */,
+				1654F30E2105BA60007EF7B0 /* LaunchBaseVC.h */,
+				1654F30F2105BA60007EF7B0 /* LaunchBaseVC.m */,
+				1654F3112105C81A007EF7B0 /* LaunchPurchaseVC.h */,
+				1654F3122105C81A007EF7B0 /* LaunchPurchaseVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -633,6 +650,7 @@
 				16AD808820BECB57005F99BC /* AssetsVC.m in Sources */,
 				162E473120C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				162E473620C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
+				1654F3162105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD807320BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E474020C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				16AD805520BEC9AC005F99BC /* HttpClient.m in Sources */,
@@ -645,7 +663,9 @@
 				162E472720C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
 				162E472220C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				16AD808D20BECB9D005F99BC /* MineVC.m in Sources */,
+				1654F3132105C81A007EF7B0 /* LaunchPurchaseVC.m in Sources */,
 				16AD807920BECA67005F99BC /* YYTabBarItem.m in Sources */,
+				1654F3102105BA60007EF7B0 /* LaunchBaseVC.m in Sources */,
 				16AD807020BECA67005F99BC /* YYNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,6 +695,7 @@
 				16AD807420BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E472820C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
 				162E474120C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
+				1654F3172105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808420BECB40005F99BC /* ApplyVC.m in Sources */,
 				162E474920C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 			);
@@ -705,6 +726,7 @@
 				16AD807520BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E472920C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
 				162E474220C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
+				1654F3182105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808520BECB40005F99BC /* ApplyVC.m in Sources */,
 				162E474A20C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 			);

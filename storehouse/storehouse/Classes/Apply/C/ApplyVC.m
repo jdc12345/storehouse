@@ -8,6 +8,7 @@
 
 #import "ApplyVC.h"
 #import "LaunchMainHeaderView.h"
+#import "LaunchPurchaseVC.h"
 
 @interface ApplyVC ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -169,9 +170,23 @@
     return cell;
 }
 //
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    switch (indexPath.row) {
+        case 0:
+        {
+            LaunchPurchaseVC *launchPurchaseVC = [[LaunchPurchaseVC alloc]init];
+            [self.navigationController pushViewController:launchPurchaseVC animated:true];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+
 //    if (self.launchTypeArray.count > indexPath.row) {
 //        CPXLaunchTypeModel * typeModel = [self.launchTypeArray objectAtIndex:indexPath.row];
 //        [CPXCommonDataModel instanceCommonData].launchTypeModel = typeModel;
@@ -179,7 +194,7 @@
 //        launchVC.hidesBottomBarWhenPushed = YES;
 //        [self.navigationController pushViewController:launchVC animated:YES];
 //    }
-//}
+}
 //
 //#pragma mark - msgAction
 //
