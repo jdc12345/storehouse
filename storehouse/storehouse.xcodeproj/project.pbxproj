@@ -58,6 +58,21 @@
 		1654F32A21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
 		1654F32B21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
 		1654F32C21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
+		16872814210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
+		16872815210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
+		16872816210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
+		1687281E21105E59004E9250 /* LaunchFormTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687281D21105E59004E9250 /* LaunchFormTVCell.m */; };
+		1687281F21105E59004E9250 /* LaunchFormTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687281D21105E59004E9250 /* LaunchFormTVCell.m */; };
+		1687282021105E59004E9250 /* LaunchFormTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687281D21105E59004E9250 /* LaunchFormTVCell.m */; };
+		168728232111933C004E9250 /* LaunchRepairVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168728222111933C004E9250 /* LaunchRepairVC.m */; };
+		168728242111933C004E9250 /* LaunchRepairVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168728222111933C004E9250 /* LaunchRepairVC.m */; };
+		168728252111933C004E9250 /* LaunchRepairVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168728222111933C004E9250 /* LaunchRepairVC.m */; };
+		16872828211196CA004E9250 /* LaunchScrapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872827211196CA004E9250 /* LaunchScrapVC.m */; };
+		16872829211196CA004E9250 /* LaunchScrapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872827211196CA004E9250 /* LaunchScrapVC.m */; };
+		1687282A211196CA004E9250 /* LaunchScrapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872827211196CA004E9250 /* LaunchScrapVC.m */; };
+		1687282D21119FA1004E9250 /* LaunchRetiringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687282C21119FA1004E9250 /* LaunchRetiringVC.m */; };
+		1687282E21119FA1004E9250 /* LaunchRetiringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687282C21119FA1004E9250 /* LaunchRetiringVC.m */; };
+		1687282F21119FA1004E9250 /* LaunchRetiringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687282C21119FA1004E9250 /* LaunchRetiringVC.m */; };
 		16AD801F20BEC365005F99BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16AD801E20BEC365005F99BC /* Assets.xcassets */; };
 		16AD802220BEC365005F99BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16AD802020BEC365005F99BC /* LaunchScreen.storyboard */; };
 		16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AD802E20BEC365005F99BC /* storehouseTests.m */; };
@@ -155,6 +170,16 @@
 		1654F31E21070DC5007EF7B0 /* ZWPullMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPullMenuModel.m; sourceTree = "<group>"; };
 		1654F31F21070DC5007EF7B0 /* ZWPullMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPullMenuView.h; sourceTree = "<group>"; };
 		1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPullMenuView.m; sourceTree = "<group>"; };
+		16872812210EF897004E9250 /* LaunchGetUseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchGetUseVC.h; sourceTree = "<group>"; };
+		16872813210EF897004E9250 /* LaunchGetUseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchGetUseVC.m; sourceTree = "<group>"; };
+		1687281C21105E59004E9250 /* LaunchFormTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchFormTVCell.h; sourceTree = "<group>"; };
+		1687281D21105E59004E9250 /* LaunchFormTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchFormTVCell.m; sourceTree = "<group>"; };
+		168728212111933C004E9250 /* LaunchRepairVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchRepairVC.h; sourceTree = "<group>"; };
+		168728222111933C004E9250 /* LaunchRepairVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchRepairVC.m; sourceTree = "<group>"; };
+		16872826211196CA004E9250 /* LaunchScrapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchScrapVC.h; sourceTree = "<group>"; };
+		16872827211196CA004E9250 /* LaunchScrapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchScrapVC.m; sourceTree = "<group>"; };
+		1687282B21119FA1004E9250 /* LaunchRetiringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchRetiringVC.h; sourceTree = "<group>"; };
+		1687282C21119FA1004E9250 /* LaunchRetiringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchRetiringVC.m; sourceTree = "<group>"; };
 		16AD801220BEC365005F99BC /* storehouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storehouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16AD801E20BEC365005F99BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16AD802120BEC365005F99BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -288,6 +313,8 @@
 				162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */,
 				1654F3142105C916007EF7B0 /* LaunchBaseTVCell.h */,
 				1654F3152105C916007EF7B0 /* LaunchBaseTVCell.m */,
+				1687281C21105E59004E9250 /* LaunchFormTVCell.h */,
+				1687281D21105E59004E9250 /* LaunchFormTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -301,6 +328,14 @@
 				1654F30F2105BA60007EF7B0 /* LaunchBaseVC.m */,
 				1654F3112105C81A007EF7B0 /* LaunchPurchaseVC.h */,
 				1654F3122105C81A007EF7B0 /* LaunchPurchaseVC.m */,
+				16872812210EF897004E9250 /* LaunchGetUseVC.h */,
+				16872813210EF897004E9250 /* LaunchGetUseVC.m */,
+				168728212111933C004E9250 /* LaunchRepairVC.h */,
+				168728222111933C004E9250 /* LaunchRepairVC.m */,
+				16872826211196CA004E9250 /* LaunchScrapVC.h */,
+				16872827211196CA004E9250 /* LaunchScrapVC.m */,
+				1687282B21119FA1004E9250 /* LaunchRetiringVC.h */,
+				1687282C21119FA1004E9250 /* LaunchRetiringVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -679,6 +714,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				168728232111933C004E9250 /* LaunchRepairVC.m in Sources */,
 				16AD806520BECA10005F99BC /* AppDelegate.m in Sources */,
 				16AD808320BECB40005F99BC /* ApplyVC.m in Sources */,
 				162E471D20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
@@ -699,12 +735,16 @@
 				16AD806020BEC9E9005F99BC /* main.m in Sources */,
 				16AD807620BECA67005F99BC /* YYTabBar.m in Sources */,
 				16AD805820BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
+				16872814210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
 				162E472720C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
+				16872828211196CA004E9250 /* LaunchScrapVC.m in Sources */,
+				1687281E21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				162E472220C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				16AD808D20BECB9D005F99BC /* MineVC.m in Sources */,
 				1654F3132105C81A007EF7B0 /* LaunchPurchaseVC.m in Sources */,
 				16AD807920BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				1654F3102105BA60007EF7B0 /* LaunchBaseVC.m in Sources */,
+				1687282D21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				16AD807020BECA67005F99BC /* YYNavigationController.m in Sources */,
 				1654F32721070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
 			);
@@ -719,6 +759,7 @@
 				162E471E20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E472320C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				16AD808920BECB57005F99BC /* AssetsVC.m in Sources */,
+				1687282E21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				162E473220C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				16AD805920BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
@@ -726,16 +767,20 @@
 				161E57DF20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
 				1654F32221070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD807F20BECB2A005F99BC /* HomeVC.m in Sources */,
+				16872829211196CA004E9250 /* LaunchScrapVC.m in Sources */,
+				16872815210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
 				16AD807720BECA67005F99BC /* YYTabBar.m in Sources */,
 				16AD808E20BECB9D005F99BC /* MineVC.m in Sources */,
 				16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */,
 				16AD806620BECA10005F99BC /* AppDelegate.m in Sources */,
 				16AD807120BECA67005F99BC /* YYNavigationController.m in Sources */,
 				162E473720C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
+				1687281F21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				16AD807A20BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				16AD807420BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E472820C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
 				1654F32B21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
+				168728242111933C004E9250 /* LaunchRepairVC.m in Sources */,
 				162E474120C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				1654F3172105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808420BECB40005F99BC /* ApplyVC.m in Sources */,
@@ -753,6 +798,7 @@
 				162E471F20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E472420C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				16AD808A20BECB57005F99BC /* AssetsVC.m in Sources */,
+				1687282F21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				162E473320C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				16AD805A20BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
@@ -760,16 +806,20 @@
 				161E57E020CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
 				1654F32321070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD808020BECB2A005F99BC /* HomeVC.m in Sources */,
+				1687282A211196CA004E9250 /* LaunchScrapVC.m in Sources */,
+				16872816210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
 				16AD807820BECA67005F99BC /* YYTabBar.m in Sources */,
 				16AD808F20BECB9D005F99BC /* MineVC.m in Sources */,
 				16AD803A20BEC365005F99BC /* storehouseUITests.m in Sources */,
 				16AD806720BECA10005F99BC /* AppDelegate.m in Sources */,
 				16AD807220BECA67005F99BC /* YYNavigationController.m in Sources */,
 				162E473820C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
+				1687282021105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				16AD807B20BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				16AD807520BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162E472920C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
 				1654F32C21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
+				168728252111933C004E9250 /* LaunchRepairVC.m in Sources */,
 				162E474220C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				1654F3182105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808520BECB40005F99BC /* ApplyVC.m in Sources */,

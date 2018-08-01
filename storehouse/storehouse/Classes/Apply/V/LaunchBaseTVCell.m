@@ -26,13 +26,14 @@
     UILabel *itemLabel = [UILabel labelWithText:@"申请部门" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
     [self.contentView addSubview:itemLabel];
     [itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.contentView.mas_top).offset(17.5*kiphone6H);
-        make.left.offset(15*kiphone6);
-        make.width.offset(60*kiphone6);
+        make.centerY.equalTo(self.contentView.mas_top).offset(17.5);
+        make.left.offset(15);
+        make.width.offset(60);
     }];
     self.itemLabel = itemLabel;
     //内容textfiled
     UITextField *conentField = [[UITextField alloc]init];
+    conentField.returnKeyType = UIReturnKeyDone;
     //设置左边视图的宽度
     
     conentField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 9, 0)];
@@ -46,10 +47,10 @@
     conentField.layer.borderWidth = 1;
     [self.contentView addSubview:conentField];
     [conentField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.contentView.mas_top).offset(17.5*kiphone6H);
-        make.left.equalTo(itemLabel.mas_right).offset(11*kiphone6);
-        make.right.offset(-31*kiphone6);
-        make.height.offset(35*kiphone6H);
+        make.centerY.equalTo(self.contentView.mas_top).offset(17.5);
+        make.left.equalTo(itemLabel.mas_right).offset(11);
+        make.right.offset(-31);
+        make.height.offset(35);
     }];
     self.contentField = conentField;
     //列表按钮
@@ -61,7 +62,7 @@
     [conentField addSubview:listButton];
     [listButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.bottom.offset(0);
-        make.width.offset(25*kiphone6);
+        make.width.offset(25);
     }];
     self.listButton = listButton;
     self.listButton.hidden = true;

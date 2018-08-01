@@ -1,32 +1,32 @@
 //
-//  LaunchPurchaseVC.m
+//  LaunchRetiringVC.m
 //  storehouse
 //
-//  Created by 万宇 on 2018/7/23.
+//  Created by 万宇 on 2018/8/1.
 //  Copyright © 2018年 wanyu. All rights reserved.
 //
 
-#import "LaunchPurchaseVC.h"
+#import "LaunchRetiringVC.h"
 #import "LaunchBaseTVCell.h"
 #import "ZWPullMenuView.h"
 
 static NSString* tableCellid = @"table_cell";
-@interface LaunchPurchaseVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface LaunchRetiringVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) NSArray *itemTypeArray;//事项名称
 
 @end
 
-@implementation LaunchPurchaseVC
+@implementation LaunchRetiringVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"采购申请";
+    self.title = @"退库申请";
     //提交按钮
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:nil action:nil];
     [rightButton setTintColor:[UIColor colorWithHexString:@"30a2d4"]];
     self.navigationItem.rightBarButtonItem = rightButton;
-    self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"规格型号",@"计量单位",@"预算价格",@"采购数量",@"生产厂家",@"采购类别",@"采购理由", nil];
+    self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"规格型号",@"计量单位",@"价格",@"数量",@"生产厂家",@"退库理由", nil];
     self.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     self.tableView.scrollEnabled = false;
@@ -46,7 +46,7 @@ static NSString* tableCellid = @"table_cell";
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LaunchBaseTVCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellid forIndexPath:indexPath];
-    if (indexPath.row == 0 || indexPath.row == 3 || indexPath.row == 7) {
+    if (indexPath.row == 0 || indexPath.row == 3) {
         cell.listButton.hidden = false;
         cell.listButton.tag = 100+indexPath.row;
         [cell.listButton addTarget:self action:@selector(listButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -80,20 +80,12 @@ static NSString* tableCellid = @"table_cell";
             NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
             curruntCell.contentField.text = weakMenuView.titleArray[menuRow];
         };
-    }else{
-        ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:sender titleArray:@[@"计划内",@"计划外"]];
-        menuView.zwPullMenuStyle = PullMenuLightStyle;
-        __weak typeof(menuView) weakMenuView = menuView;
-        menuView.blockSelectedMenu = ^(NSInteger menuRow) {
-            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
-            curruntCell.contentField.text = weakMenuView.titleArray[menuRow];
-        };
     }
     
 }
 //设置列表行为不可编辑
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if (textField.tag == 50 || textField.tag == 53 || textField.tag == 57) {
+    if (textField.tag == 50 || textField.tag == 53) {
         return false;
     }
     return true;

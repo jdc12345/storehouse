@@ -25,7 +25,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    // 判断是否为根据控制器，如果不是跟控制器酒把tabBar隐藏并添加返回按钮
+    // 判断是否为根控制器，如果不是跟控制器酒把tabBar隐藏并添加返回按钮
     if (self.viewControllers.count) {
         // 隐藏TabBar
         viewController.hidesBottomBarWhenPushed = YES;
@@ -34,7 +34,7 @@
         UIButton *nagBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         nagBtn.frame = CGRectMake(0, 0, 40, 40);
         nagBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 15);
-        [nagBtn setImage:[UIImage imageNamed:@"navback"] forState:UIControlStateNormal];
+        [nagBtn setImage:[UIImage imageNamed:@"nav_back"] forState:UIControlStateNormal];
         
         [nagBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:nagBtn];

@@ -9,6 +9,10 @@
 #import "ApplyVC.h"
 #import "LaunchMainHeaderView.h"
 #import "LaunchPurchaseVC.h"
+#import "LaunchGetUseVC.h"
+#import "LaunchRepairVC.h"
+#import "LaunchScrapVC.h"
+#import "LaunchRetiringVC.h"
 
 @interface ApplyVC ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -48,7 +52,7 @@
     self.headerView.hidden = NO;
     [self.collectionView reloadData];
 //    [self requestApplyTypeListIsHeaderRefresh:NO];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -178,6 +182,53 @@
         {
             LaunchPurchaseVC *launchPurchaseVC = [[LaunchPurchaseVC alloc]init];
             [self.navigationController pushViewController:launchPurchaseVC animated:true];
+        }
+            break;
+        case 1:
+        {
+            LaunchGetUseVC *launchGetUseVC = [[LaunchGetUseVC alloc]init];
+            launchGetUseVC.applyType = 1;
+            [self.navigationController pushViewController:launchGetUseVC animated:true];
+        }
+            break;
+        case 2:
+        {
+            LaunchGetUseVC *launchBorrowVC = [[LaunchGetUseVC alloc]init];
+            launchBorrowVC.applyType = 2;
+            [self.navigationController pushViewController:launchBorrowVC animated:true];
+        }
+            break;
+        case 3:
+        {
+            LaunchRepairVC *launchRepairVC = [[LaunchRepairVC alloc]init];
+            launchRepairVC.applyType = 3;
+            [self.navigationController pushViewController:launchRepairVC animated:true];
+        }
+            break;
+        case 4:
+        {
+            LaunchRepairVC *launchReplaceVC = [[LaunchRepairVC alloc]init];
+            launchReplaceVC.applyType = 4;
+            [self.navigationController pushViewController:launchReplaceVC animated:true];
+        }
+            break;
+        case 5:
+        {
+            LaunchScrapVC *launchScrapVC = [[LaunchScrapVC alloc]init];
+            [self.navigationController pushViewController:launchScrapVC animated:true];
+        }
+            break;
+        case 6:
+        {
+            LaunchGetUseVC *launchReturnVC = [[LaunchGetUseVC alloc]init];
+            launchReturnVC.applyType = 6;
+            [self.navigationController pushViewController:launchReturnVC animated:true];
+        }
+            break;
+        case 7:
+        {
+            LaunchRetiringVC *launchRetiringVC = [[LaunchRetiringVC alloc]init];
+            [self.navigationController pushViewController:launchRetiringVC animated:true];
         }
             break;
             

@@ -25,7 +25,7 @@
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero];
         [self.view addSubview:tableView];
         [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.offset(20*kiphone6H);
+            make.top.offset(20);
             make.left.right.bottom.offset(0);
         }];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -33,7 +33,7 @@
         //    tableView.delegate =self;
         //    tableView.dataSource = self;
         tableView.rowHeight = UITableViewAutomaticDimension;
-        tableView.estimatedRowHeight = 44*kiphone6H;
+        tableView.estimatedRowHeight = 44;
         _tableView = tableView;
     }
     return _tableView;
