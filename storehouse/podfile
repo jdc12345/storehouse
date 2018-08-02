@@ -5,5 +5,7 @@ pod 'AFNetworking'
 pod 'Masonry'
 pod 'MJRefresh'
 pod 'SDWebImage'
+pod 'MJExtension'
+pod 'SVProgressHUD'
 end
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <AFNetworking.h>
 //HTTP REQUEST METHOD TYPE
 typedef NS_ENUM(NSInteger, HttpRequestType) {
     HttpRequestGet,

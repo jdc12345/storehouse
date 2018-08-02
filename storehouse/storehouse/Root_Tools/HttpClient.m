@@ -130,31 +130,31 @@
 
 
 ////看看网络是不是给力
-//- (BOOL)isConnectionAvailable{
-//    
-//    NSURL *baseURL = [NSURL URLWithString:@"http://www.baidu.com/"];
-//    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
-//    
-//    NSOperationQueue *operationQueue = manager.operationQueue;
-//    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-//        switch (status) {
-//            case AFNetworkReachabilityStatusReachableViaWWAN:
-//            case AFNetworkReachabilityStatusReachableViaWiFi:
-//                [operationQueue setSuspended:NO];
-//                self.isConnect = NO;
-//                break;
-//            case AFNetworkReachabilityStatusNotReachable:
-//            default:
-//                [operationQueue setSuspended:YES];
-//                self.isConnect = YES;
-//                break;
-//        }
-//    }];
-//    
-//    [manager.reachabilityManager startMonitoring];
-//    
-//    return !self.isConnect;
-//}
+- (BOOL)isConnectionAvailable{
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://www.baidu.com/"];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
+//    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];//AFN3.0已废除
+    NSOperationQueue *operationQueue = manager.operationQueue;
+    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                [operationQueue setSuspended:NO];
+                self.isConnect = NO;
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+            default:
+                [operationQueue setSuspended:YES];
+                self.isConnect = YES;
+                break;
+        }
+    }];
+    
+    [manager.reachabilityManager startMonitoring];
+    
+    return !self.isConnect;
+}
 //- (BOOL)isWifi{
 //    BOOL isWifi = NO;
 ////    CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];

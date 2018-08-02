@@ -11,6 +11,7 @@
 #ifdef __OBJC__ // 只被object－c文件所引用
 #import <Masonry.h>
 #import "UIColor+Extension.h"
+#import <SVProgressHUD.h>
 
 #pragma mark -
 #pragma mark  ------------Size----------------------
@@ -39,7 +40,7 @@
 //#define mPrefixUrl @"http://192.168.1.168:8082/yuyi"
 #pragma mark -
 #pragma mark ---------------Dis - Url------------------
-#define mPrefixUrl @"http://59.110.169.148:8080"
+#define mPrefixUrl @"http://192.168.1.168:8085"
 #define mDefineToken [CcUserModel defaultClient].userToken
 // 首页资讯2条数据接口
 //参数：       参数名        参数类型    备注

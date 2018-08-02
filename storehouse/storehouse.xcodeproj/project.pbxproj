@@ -73,6 +73,12 @@
 		1687282D21119FA1004E9250 /* LaunchRetiringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687282C21119FA1004E9250 /* LaunchRetiringVC.m */; };
 		1687282E21119FA1004E9250 /* LaunchRetiringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687282C21119FA1004E9250 /* LaunchRetiringVC.m */; };
 		1687282F21119FA1004E9250 /* LaunchRetiringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1687282C21119FA1004E9250 /* LaunchRetiringVC.m */; };
+		16872832211294B7004E9250 /* LogInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872831211294B7004E9250 /* LogInVC.m */; };
+		16872833211294B7004E9250 /* LogInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872831211294B7004E9250 /* LogInVC.m */; };
+		16872834211294B7004E9250 /* LogInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872831211294B7004E9250 /* LogInVC.m */; };
+		168728372112D189004E9250 /* CcUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 168728362112D189004E9250 /* CcUserModel.m */; };
+		168728382112D189004E9250 /* CcUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 168728362112D189004E9250 /* CcUserModel.m */; };
+		168728392112D189004E9250 /* CcUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 168728362112D189004E9250 /* CcUserModel.m */; };
 		16AD801F20BEC365005F99BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16AD801E20BEC365005F99BC /* Assets.xcassets */; };
 		16AD802220BEC365005F99BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16AD802020BEC365005F99BC /* LaunchScreen.storyboard */; };
 		16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AD802E20BEC365005F99BC /* storehouseTests.m */; };
@@ -180,6 +186,10 @@
 		16872827211196CA004E9250 /* LaunchScrapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchScrapVC.m; sourceTree = "<group>"; };
 		1687282B21119FA1004E9250 /* LaunchRetiringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchRetiringVC.h; sourceTree = "<group>"; };
 		1687282C21119FA1004E9250 /* LaunchRetiringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchRetiringVC.m; sourceTree = "<group>"; };
+		16872830211294B7004E9250 /* LogInVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInVC.h; sourceTree = "<group>"; };
+		16872831211294B7004E9250 /* LogInVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogInVC.m; sourceTree = "<group>"; };
+		168728352112D189004E9250 /* CcUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CcUserModel.h; sourceTree = "<group>"; };
+		168728362112D189004E9250 /* CcUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CcUserModel.m; sourceTree = "<group>"; };
 		16AD801220BEC365005F99BC /* storehouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storehouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16AD801E20BEC365005F99BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16AD802120BEC365005F99BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -354,6 +364,17 @@
 			path = ZWPullMenuView;
 			sourceTree = "<group>";
 		};
+		1687283A2112D1AC004E9250 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				16872830211294B7004E9250 /* LogInVC.h */,
+				16872831211294B7004E9250 /* LogInVC.m */,
+				168728352112D189004E9250 /* CcUserModel.h */,
+				168728362112D189004E9250 /* CcUserModel.m */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
 		16AD800920BEC365005F99BC = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +446,7 @@
 		16AD804920BEC76D005F99BC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1687283A2112D1AC004E9250 /* LogIn */,
 				1654F31921070DC5007EF7B0 /* ZWPullMenuView */,
 				16AD804B20BEC7B3005F99BC /* App delegate */,
 				16AD804C20BEC7C6005F99BC /* TabBarAndNav */,
@@ -664,6 +686,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-storehouse/Pods-storehouse-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -717,6 +740,7 @@
 				168728232111933C004E9250 /* LaunchRepairVC.m in Sources */,
 				16AD806520BECA10005F99BC /* AppDelegate.m in Sources */,
 				16AD808320BECB40005F99BC /* ApplyVC.m in Sources */,
+				168728372112D189004E9250 /* CcUserModel.m in Sources */,
 				162E471D20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E474820C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 				161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
@@ -746,6 +770,7 @@
 				1654F3102105BA60007EF7B0 /* LaunchBaseVC.m in Sources */,
 				1687282D21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				16AD807020BECA67005F99BC /* YYNavigationController.m in Sources */,
+				16872832211294B7004E9250 /* LogInVC.m in Sources */,
 				1654F32721070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -758,6 +783,7 @@
 				16AD805620BEC9AC005F99BC /* HttpClient.m in Sources */,
 				162E471E20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E472320C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
+				168728382112D189004E9250 /* CcUserModel.m in Sources */,
 				16AD808920BECB57005F99BC /* AssetsVC.m in Sources */,
 				1687282E21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
@@ -765,6 +791,7 @@
 				16AD805920BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				16AD806120BEC9E9005F99BC /* main.m in Sources */,
 				161E57DF20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
+				16872833211294B7004E9250 /* LogInVC.m in Sources */,
 				1654F32221070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD807F20BECB2A005F99BC /* HomeVC.m in Sources */,
 				16872829211196CA004E9250 /* LaunchScrapVC.m in Sources */,
@@ -797,6 +824,7 @@
 				16AD805720BEC9AC005F99BC /* HttpClient.m in Sources */,
 				162E471F20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E472420C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
+				168728392112D189004E9250 /* CcUserModel.m in Sources */,
 				16AD808A20BECB57005F99BC /* AssetsVC.m in Sources */,
 				1687282F21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
@@ -804,6 +832,7 @@
 				16AD805A20BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				16AD806220BEC9E9005F99BC /* main.m in Sources */,
 				161E57E020CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
+				16872834211294B7004E9250 /* LogInVC.m in Sources */,
 				1654F32321070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD808020BECB2A005F99BC /* HomeVC.m in Sources */,
 				1687282A211196CA004E9250 /* LaunchScrapVC.m in Sources */,

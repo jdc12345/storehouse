@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "YYTabBarController.h"
+#import "LogInVC.h"
+#import "CcUserModel.h"
 
 @interface AppDelegate ()
 
@@ -21,11 +23,19 @@
     //创建Window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
+    CcUserModel *userModel = [CcUserModel defaultClient];
+    NSString *userCookie = userModel.userCookie;
+    if (userCookie) {
+        //初始化一个tabBar控制器
+        YYTabBarController *tabbarVC = [[YYTabBarController alloc]init];
+        self.window.rootViewController = tabbarVC;
+        [self.window makeKeyAndVisible];
+    }else{
+        LogInVC *logInVC = [[LogInVC alloc]init];
+        self.window.rootViewController = logInVC;
+        [self.window makeKeyAndVisible];
+    }
     
-    //初始化一个tabBar控制器
-    YYTabBarController *tabbarVC = [[YYTabBarController alloc]init];
-    self.window.rootViewController = tabbarVC;
-    [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;
 }
