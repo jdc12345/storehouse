@@ -49,8 +49,9 @@ static NSUInteger kTag = 1000;
     /** 获取button的宽度 */
     CGFloat tabBarItemWidth = kScreenW / count ;
     /** 设置背景颜色 */
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithHexString:@"373a41"]];
+    tabBar.translucent = false;
     tabBar.backgroundColor = [UIColor colorWithHexString:@"373a41"];
-    
     for (NSUInteger idx = 0; idx < count; idx++) {
         /** 获取btn的X坐标 */
         CGFloat pointX = tabBarItemWidth * idx;
@@ -108,42 +109,42 @@ static NSUInteger kTag = 1000;
     [tabBarItem setTitle:title forState:UIControlStateNormal];
     [tabBarItem setTitleColor:[UIColor colorWithHexString:@"a5a8af"] forState:UIControlStateNormal];
     [tabBarItem setTitleColor:[UIColor colorWithHexString:@"22b2e7"] forState:UIControlStateSelected];
-
     [tabBarItem setImage:[UIImage imageNamed:normalImage] forState:UIControlStateNormal];
     [tabBarItem setImage:[UIImage imageNamed:selectedImage] forState:UIControlStateSelected];
 }
 
 #pragma mark - view methods
 - (CGSize)sizeThatFits:(CGSize)size {
-    uname(&systemInfo);//📱机型信息
-    NSString*phoneType = [NSString stringWithCString: systemInfo.machine encoding:NSASCIIStringEncoding];
-    if([phoneType  isEqualToString:@"iPhone10,3"] ||[phoneType  isEqualToString:@"iPhone10,6"]) {//是iphoneX,模拟器测不出
-            CGSize s = [super sizeThatFits:size];
-            if(@available(iOS 11.0, *))
-            {
-                CGFloat bottomInset = self.safeAreaInsets.bottom;
-                if( bottomInset > 0 && s.height < 50) {
-                    s.height += bottomInset;
-                }
+    if(kScreenH > 736) {//是iphoneX,模拟器测不出
+        CGSize s = [super sizeThatFits:size];
+        if(@available(iOS 11.0, *))
+        {
+            CGFloat bottomInset = self.safeAreaInsets.bottom;
+            if( bottomInset > 0 && s.height < 50) {
+                s.height += bottomInset;
             }
-            return s;
+        }
+        return s;
     }else{//不是iphoneX
         [super sizeThatFits:size];
         return CGSizeMake(kScreenW, 55);
     }
-    
-    
-//    CGSize s = [super sizeThatFits:size];
-//    if(@available(iOS 11.0, *))
-//    {
-//        CGFloat bottomInset = self.safeAreaInsets.bottom;
-//        if( bottomInset > 0 && s.height < 50) {
-//            s.height += bottomInset;
-//        }
+//    uname(&systemInfo);//📱机型信息
+//    NSString*phoneType = [NSString stringWithCString: systemInfo.machine encoding:NSASCIIStringEncoding];
+//    if([phoneType  isEqualToString:@"iPhone10,3"] ||[phoneType  isEqualToString:@"iPhone10,6"]) {//是iphoneX,模拟器测不出
+//            CGSize s = [super sizeThatFits:size];
+//            if(@available(iOS 11.0, *))
+//            {
+//                CGFloat bottomInset = self.safeAreaInsets.bottom;
+//                if( bottomInset > 0 && s.height < 50) {
+//                    s.height += bottomInset;
+//                }
+//            }
+//            return s;
+//    }else{//不是iphoneX
+//        [super sizeThatFits:size];
+//        return CGSizeMake(kScreenW, 55);
 //    }
-//    return s;
-//    [super sizeThatFits:size];
-//    return CGSizeMake(kScreenW, 55);
 }
 
 - (void)layoutSubviews {

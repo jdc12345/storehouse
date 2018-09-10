@@ -10,9 +10,14 @@
 #import "LaunchMainHeaderView.h"
 #import "LaunchPurchaseVC.h"
 #import "LaunchGetUseVC.h"
+#import "launchBorrowApplyVC.h"
 #import "LaunchRepairVC.h"
 #import "LaunchScrapVC.h"
 #import "LaunchRetiringVC.h"
+#import "LaunchSubListVC.h"
+#import "CcUserModel.h"
+#import "permissionTypeModel.h"
+#import <MJExtension.h>
 
 @interface ApplyVC ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -52,7 +57,7 @@
     self.headerView.hidden = NO;
     [self.collectionView reloadData];
 //    [self requestApplyTypeListIsHeaderRefresh:NO];
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -84,14 +89,14 @@
         _headerView = [[LaunchMainHeaderView alloc] init];
         __weak typeof(self) weakSelf = self;
         [_headerView setClickApprovalBlock:^{//点击调转事件
-//            [weakSelf pushToExpenseSnListWithIndex:0];
+            [weakSelf pushToExpenseSnListWithIndex:0];
         } clickRejectBlock:^{
-//            [weakSelf pushToExpenseSnListWithIndex:1];
+            [weakSelf pushToExpenseSnListWithIndex:1];
             weakSelf.headerView.isHaveRegectRedPoint = NO;
         } clickConfirmBlock:^{
-//            [weakSelf pushToExpenseSnListWithIndex:2];
+            [weakSelf pushToExpenseSnListWithIndex:2];
         } clickLossBlock:^{
-//            [weakSelf pushToExpenseSnListWithIndex:3];
+            [weakSelf pushToExpenseSnListWithIndex:3];
             weakSelf.headerView.isHaveStopRedPoint = NO;
         }];
         [self.view addSubview:_headerView];
@@ -103,6 +108,7 @@
     }
     return _headerView;
 }
+
 - (UICollectionView *)collectionView
 {
     if (_collectionView == nil) {
@@ -134,23 +140,23 @@
 }
 -(NSArray *)launchTypeArray{
     if (_launchTypeArray == nil) {
-        _launchTypeArray = [NSArray arrayWithObjects:@"采购申请",@"领用申请",@"借用申请",@"维修申请",@"以旧换新申请",@"报废申请",@"归还申请",@"退库申请", nil];
+        _launchTypeArray = [NSArray arrayWithObjects:@"采购申请",@"领用申请",@"借用申请",@"维修申请",@"以旧换新申请",@"报废申请",@"退库申请", nil];
     }
     return _launchTypeArray;
 }
 -(NSArray *)launchTypeColorArray{
     if (_launchTypeColorArray == nil) {
-        _launchTypeColorArray = [NSArray arrayWithObjects:@"2face4",@"23b880",@"bf9e51",@"9073ab",@"dc8268",@"0aa5d5",@"23b880",@"bf9e51", nil];
+        _launchTypeColorArray = [NSArray arrayWithObjects:@"2face4",@"23b880",@"bf9e51",@"9073ab",@"dc8268",@"0aa5d5",@"bf9e51", nil];
     }
     return _launchTypeColorArray;
 }
 #pragma mark - 按钮点击事件
 - (void) pushToExpenseSnListWithIndex:(NSInteger)index
 {
-//    CPXLaunchSubViewController *launchListVC = [[CPXLaunchSubViewController alloc] init];
-//    launchListVC.index = index;
+    LaunchSubListVC *launchListVC = [[LaunchSubListVC alloc] init];
+    launchListVC.index = index;
 //    launchListVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:launchListVC animated:YES];
+    [self.navigationController pushViewController:launchListVC animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -180,21 +186,36 @@
     switch (indexPath.row) {
         case 0:
         {
-            LaunchPurchaseVC *launchPurchaseVC = [[LaunchPurchaseVC alloc]init];
-            [self.navigationController pushViewController:launchPurchaseVC animated:true];
+            CcUserModel *defaulModel = [CcUserModel defaultClient];
+            if (defaulModel.permission.count > 0) {
+                BOOL flag = false;
+            for (NSDictionary *permissionDic in defaulModel.permission) {
+                permissionTypeModel *perModel = [permissionTypeModel mj_objectWithKeyValues:permissionDic];
+                //每次需遍历判断是否有该权限码和对应的权限
+                if ([perModel.target isEqualToString:@"buyApply"]&&[perModel.operaton isEqualToString:@"create"]) {
+                    LaunchPurchaseVC *launchPurchaseVC = [[LaunchPurchaseVC alloc]init];
+                    [self.navigationController pushViewController:launchPurchaseVC animated:true];
+                    flag = true;
+                    break;
+                }
+            }
+                if (flag == false) {
+                    [SVProgressHUD showInfoWithStatus:@"你没有该权限"];
+                }
+            }else{
+                [SVProgressHUD showInfoWithStatus:@"你没有任何申请权限"];
+            }
         }
             break;
         case 1:
         {
             LaunchGetUseVC *launchGetUseVC = [[LaunchGetUseVC alloc]init];
-            launchGetUseVC.applyType = 1;
             [self.navigationController pushViewController:launchGetUseVC animated:true];
         }
             break;
         case 2:
         {
-            LaunchGetUseVC *launchBorrowVC = [[LaunchGetUseVC alloc]init];
-            launchBorrowVC.applyType = 2;
+            launchBorrowApplyVC *launchBorrowVC = [[launchBorrowApplyVC alloc]init];
             [self.navigationController pushViewController:launchBorrowVC animated:true];
         }
             break;
@@ -218,14 +239,14 @@
             [self.navigationController pushViewController:launchScrapVC animated:true];
         }
             break;
+//        case 6:
+//        {
+//            LaunchGetUseVC *launchReturnVC = [[LaunchGetUseVC alloc]init];
+//            launchReturnVC.applyType = 6;
+//            [self.navigationController pushViewController:launchReturnVC animated:true];
+//        }
+//            break;
         case 6:
-        {
-            LaunchGetUseVC *launchReturnVC = [[LaunchGetUseVC alloc]init];
-            launchReturnVC.applyType = 6;
-            [self.navigationController pushViewController:launchReturnVC animated:true];
-        }
-            break;
-        case 7:
         {
             LaunchRetiringVC *launchRetiringVC = [[LaunchRetiringVC alloc]init];
             [self.navigationController pushViewController:launchRetiringVC animated:true];

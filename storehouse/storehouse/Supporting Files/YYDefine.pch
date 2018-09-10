@@ -12,7 +12,7 @@
 #import <Masonry.h>
 #import "UIColor+Extension.h"
 #import <SVProgressHUD.h>
-
+#import "CcUserModel.h"
 #pragma mark -
 #pragma mark  ------------Size----------------------
 
@@ -41,101 +41,33 @@
 #pragma mark -
 #pragma mark ---------------Dis - Url------------------
 #define mPrefixUrl @"http://192.168.1.168:8085"
-#define mDefineToken [CcUserModel defaultClient].userToken
-// 首页资讯2条数据接口
-//参数：       参数名        参数类型    备注
-//Publishchannel      Integer      发布渠道1=宇医2=宇医医生
-//time        Integer      发布时间1升序2降序
-#define mHomepageInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/doctorlyinformation/findPagePersonal.do?start=0&limit=2&Publishchannel=1"]
-// 首页资讯列表接口
-#define mHomepageInfoList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/doctorlyinformation/findPagePersonal.do?start=0&limit=10&Publishchannel=1"]
-//#define mHomepageInfoList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/article/findList.do?start=0&limit=20"]
-// 首页融云token接口
-#define mRCtokenUrl [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/personal/rongyuToken.do?personalid="]
-//根据融云返回id查询用户信息
-#define mRCUserInfoUrl [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/homeuser/findMyUserInfo.do?token="]
-#define mRCDoctorTokenUrl [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/physician/doctory.do?cid="]
-// 医院列表接口
-#define mHospitalInfoList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/hospital/findList.do?start=0&limit=10"]
 
-// 首页资讯详情数据接口
-#define mHomepageInfoDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/doctorlyinformation/getIdPersonal.do?id="]
-// 首页用户列表和测量数据
-#define mUserAndMeasureInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/homeuser/findListHome.do?"]
-
-// [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/homeuser/findOne.do?"]
-// 我的页面用户信息接口
-#define mMyInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/personal/get.do?token="]
-// 医院科室接口
-#define mHospitalClass [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/department/gethid.do?hid="]
-// 添加家庭用户的接口
-#define mAddFamily [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/homeuser/save.do?"]
-// 删除家庭用户的接口
-#define mremoveFamily [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/homeuser/delete.do?"]
+// 库房可领用物品列表数据
+#define mStoreThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/findList.do?"]
+// 库房可领用物品申请
+#define mLaunchGetStoreThings [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetRecipients/save.do?"]
+//提交资产借用申请
+#define mLaunchBorrowStoreThings [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetBorrow/save.do?"]
+//提交资产维修申请
+#define mLaunchRepairThing [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/save.do?"]
+//自己名下物品列表
+#define mHaveThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/findMyList.do"]
+//以旧换新申请
+#define mLaunchReplaceThing [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetOldfornew/save.do?"]
+//提交资产报废申请
+#define mLaunchAssetScrapThing [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetScrap/save.do?"]
+// 报废方式列表
+#define mScrapModeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/scrapMode/findList.do?"]
+// 提交资产退库申请
+#define mLaunchRecipientsDateThings [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetReturn/save.do?"]
 
 
-// 个人信息更改
-#define mChangeInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/personal/save.do?"]
-// 电子病历获取
-#define mMedicalToken [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/medical/token.do?"]
-// 电子病历详情
-#define mMedicalDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/medical/get.do?id="]
-// family电子病历获取
-#define mfamilyMedicalToken [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/medical/homeuserMedicalTime.do?id="]
-// family电子病历详情
-#define mfamilyMedicalDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/medical/homeuserMedicalDetails.do?mid="]
-
-// .用户挂号接口
-// #define mAppointmentCount [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/physician/getcid.do?cid="]
-#define mAppointmentCount [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/register/save.do"]
-// .用户挂号列表
-#define mAppointmentList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/datenumber/findList.do?clinicId="]
-// .药品全部分类接口
-//#define mHomepageInfoDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"start=0&limit=10&cid1=1"]
-// .获取药品详情接口
-//#define mHomepageInfoDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/drugs/getid.do?id=3"]
-// .首页搜索药品接口
-//#define mHomepageInfoDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/hospital/get.do?id="]
-// .意见反馈接口
-#define mFeedBack [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/feedback/save.do?"]
-// 首页药品列表
-#define mHomeMedical [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/drugs/findList.do?start=0&limit=6&cid=11"]
-
-// .首页轮播器接口
-#define mHomepageImages [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/doctorlyinformation/findall.do"]
-// 获取家庭成员
-#define mHomeusers [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/homeuser/findList.do?token="]
-// 获取家庭成员
-#define mAddHomeusers [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/homeuser/save.do?"]
-// 获取7天测量记录
-#define mHomeuserMeasure [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/homeuser/findOne.do?"]
-// 获取消息信息
-#define mPushNotfic [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/message/findList.do?token="]
 
 
-// 血压录入
-#define mBloodpressure [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/bloodpressure/save.do"]
-// 体温录入
-#define mTemperature [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/temperature/save.do"]
 
-// 商城首页接口
-#define medinicalFirstPage [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/category/listTreeDrugs.do"]
-// 药品详情数据接口
-#define medinicalDetailPage [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/drugs/getid.do?id="]
-// 药品分类“全部”按钮接口
-#define allCategoryBtnInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/drugs/findall.do?start=0&limit=10"]
-// 其他药品分类按钮接口
-#define otherCategoryBtnsInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/drugs/getcid1.do?cid1="]
-// 药品分类接口
-#define categorysInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/category/listAllTree.do"]
-// 药品分类小类接口
-#define smallCategoryInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/drugs/getcid2.do?cid2="]
-// 药品分类大类接口
-#define bigCategoryInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/drugs/getcid1.do?cid1="]
-// 医院搜索接口
-#define hospitalSearchInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/hospital/findvague.do?vague="]
-// 药品搜索接口
-#define medicinalSearchInfo [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/drugs/findvague.do?vague="]
+
+
+
 
 
 #pragma mark  ------------WeakSelf------------------

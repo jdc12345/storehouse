@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "permissionTypeModel.h"
 
 @interface CcUserModel : NSObject
 @property (nonatomic, strong) NSString *info_id;
@@ -26,7 +27,9 @@
 @property (nonatomic, strong) NSString *email;//Email
 @property (nonatomic, strong) NSString *status;//用户状态
 @property (nonatomic, strong) NSString *groupId;//用户组编号
-
+@property (nonatomic, strong) NSString *departmentCode;//部门编码
+@property (nonatomic, strong) NSString *departmentName;//部门名称
+@property (nonatomic, strong) NSArray *permission;
 @property (nonatomic, strong) NSString *userCookie;//登录请求的cookies
 
 

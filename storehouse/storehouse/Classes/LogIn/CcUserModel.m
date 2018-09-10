@@ -44,6 +44,11 @@
     [[NSUserDefaults standardUserDefaults] setValue:self.telephone forKey:@"telephone"];
     [[NSUserDefaults standardUserDefaults] setValue:self.marital forKey:@"marital"];
     [[NSUserDefaults standardUserDefaults] setValue:self.userCookie forKey:@"userCookie"];
+    [[NSUserDefaults standardUserDefaults] setValue:self.departmentCode forKey:@"departmentCode"];
+    [[NSUserDefaults standardUserDefaults] setValue:self.departmentName forKey:@"departmentName"];
+    //偏好设置存储数组字典需要转化为数据再存储
+    NSData *permissionData = [NSJSONSerialization dataWithJSONObject:self.permission options:NSJSONWritingPrettyPrinted error:nil];
+    [[NSUserDefaults standardUserDefaults] setValue:permissionData forKey:@"permission"];
 }
 - (void)setUserModelInfo{
     self.info_id = [[NSUserDefaults standardUserDefaults] objectForKey:@"info_id"];
@@ -60,6 +65,16 @@
     self.status = [[NSUserDefaults standardUserDefaults] objectForKey:@"status"];
     self.marital = [[NSUserDefaults standardUserDefaults] objectForKey:@"marital"];
     self.userCookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCookie"];
+    self.departmentCode = [[NSUserDefaults standardUserDefaults] objectForKey:@"departmentCode"];
+    self.departmentName = [[NSUserDefaults standardUserDefaults] objectForKey:@"departmentName"];
+//    将NSData转换成(NSString, NSArray)
+    NSData *permissionData = [[NSUserDefaults standardUserDefaults] objectForKey:@"permission"];
+    if (permissionData) {
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:permissionData options:NSJSONReadingAllowFragments error:nil];
+        NSArray *array = (NSArray *)jsonObject; // 或者 NSString *string = (NSString *)jsonObject;
+        self.permission = array;
+    }
+//    self.permission = [[NSUserDefaults standardUserDefaults] objectForKey:@"permission"];
 }
 - (void)removeUserInfo{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"info_id"];
@@ -76,6 +91,9 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"mobile"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"marital"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userCookie"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"departmentCode"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"departmentName"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"permission"];
     
 }
 @end

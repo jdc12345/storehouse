@@ -12,6 +12,7 @@
 #import "CcUserModel.h"
 #import <MJExtension.h>
 #import "YYTabBarController.h"
+#import "permissionTypeModel.h"
 
 @interface LogInVC ()<UITextFieldDelegate>
 @property(nonatomic,weak)UITextField *telNumberField;
@@ -295,6 +296,14 @@
                 NSDictionary *userDic = dic[@"User"];
                 CcUserModel *defaultModel = [CcUserModel defaultClient];
                 CcUserModel *userModel = [CcUserModel mj_objectWithKeyValues:userDic];
+//                NSArray *permissionModelArr = userModel.permission;
+//                NSMutableArray *tempArr = [NSMutableArray array];
+//                for (NSDictionary *typeDic in permissionModelArr) {
+//                    permissionTypeModel *typeModel = [permissionTypeModel mj_objectWithKeyValues:typeDic];
+//                    [tempArr addObject:typeModel];
+//                    
+//                }
+//                defaultModel.permission = tempArr.copy;
                 [defaultModel mj_setKeyValues:userModel];
                 //获取cookie
                 NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;

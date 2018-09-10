@@ -59,9 +59,10 @@
     listButton.backgroundColor = [UIColor colorWithHexString:@"d9d9d9"];
     listButton.layer.borderColor = [UIColor colorWithHexString:@"a0a0a0"].CGColor;
     listButton.layer.borderWidth = 1;
-    [conentField addSubview:listButton];
+    [self.contentView addSubview:listButton];
     [listButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.right.bottom.offset(0);
+        make.top.bottom.equalTo(conentField);
+        make.right.offset(-31);
         make.width.offset(25);
     }];
     self.listButton = listButton;

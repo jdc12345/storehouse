@@ -9,17 +9,44 @@
 #import "LaunchFormTVCell.h"
 #import "UILabel+Addition.h"
 @interface LaunchFormTVCell()
-
+@property(nonatomic,weak)UILabel *codeNumLabel;//编号
+@property(nonatomic,weak)UILabel *assetTypeLabel;//资产类型
+@property(nonatomic,weak)UILabel *assetNameLabel;//资产名称
 @end
 @implementation LaunchFormTVCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        //
+        //ui
         [self setupUI];
     }
     return self;
 }
+//设置请求的仓库数据
+-(void)setStoreThingModel:(storeThingsModel *)storeThingModel{
+    _storeThingModel = storeThingModel;
+    self.codeNumLabel.text = storeThingModel.info_id;
+    self.assetTypeLabel.text = storeThingModel.categoryName;
+    self.assetNameLabel.text = storeThingModel.assetName;
+    [self.assetNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.codeNumLabel);
+        make.left.equalTo(self.assetTypeLabel.mas_right);
+        make.right.offset(0);
+        make.height.offset(35);
+    }];
+    
+}
+//设置选中的数据到领用列表
+-(void)setSelectedThingsModel:(storeThingsModel *)selectedThingsModel{
+    _selectedThingsModel = selectedThingsModel;
+    self.codeNumLabel.text = selectedThingsModel.info_id;
+    self.assetTypeLabel.text = selectedThingsModel.categoryName;
+    self.assetNameLabel.text = selectedThingsModel.assetName;
+    self.selView.backgroundColor = [UIColor whiteColor];//去除复用cell后的选中效果
+    self.selBtn.selected = false;
+    self.selBtn.enabled = false;
+}
+
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;//取消选中效果
     //空白格
@@ -30,7 +57,9 @@
         make.left.bottom.offset(0);
         make.height.width.offset(35);
     }];
+    emptyBtn.selected = false;
     [emptyBtn addTarget:self action:@selector(selBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.selBtn = emptyBtn;
     //空白格的小方块
     UIView *selView = [[UIView alloc]init];
     [selView setBackgroundColor:[UIColor whiteColor]];
@@ -38,58 +67,53 @@
     selView.layer.borderWidth = 1;
     [emptyBtn addSubview:selView];
     [selView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.offset(0);
-        make.width.height.offset(5);
-        make.left.offset(10);
+        make.center.offset(0);
+        make.width.height.offset(7);
+        
     }];
+    selView.userInteractionEnabled = false;
     self.selView = selView;
-    //序号label
-    UILabel *numLabel = [UILabel labelWithText:@"1" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
-    numLabel.textAlignment = NSTextAlignmentCenter;
-    [emptyBtn addSubview:numLabel];
-    [numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(emptyBtn);
-        make.left.equalTo(selView.mas_right).offset(5);
-    }];
-    self.numLabel = numLabel;
-    //申请部门label
-    UILabel *departmentLabel = [UILabel labelWithText:@"申请部门" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
-    departmentLabel.backgroundColor = [UIColor whiteColor];
-    departmentLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:departmentLabel];
-    [departmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    //编号label
+    UILabel *codeNumLabel = [UILabel labelWithText:@"编号" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+    codeNumLabel.backgroundColor = [UIColor whiteColor];
+    codeNumLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:codeNumLabel];
+    [codeNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(emptyBtn);
         make.left.equalTo(emptyBtn.mas_right);
         make.width.offset(100);
         make.height.offset(35);
     }];
-    //申请人label
-    UILabel *ApplicantLabel = [UILabel labelWithText:@"申请人" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
-    ApplicantLabel.backgroundColor = [UIColor whiteColor];
-    ApplicantLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:ApplicantLabel];
-    [ApplicantLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.codeNumLabel = codeNumLabel;
+    //assetTypeLabel资产类型
+    UILabel *assetTypeLabel = [UILabel labelWithText:@"类别" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+    assetTypeLabel.backgroundColor = [UIColor whiteColor];
+    assetTypeLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:assetTypeLabel];
+    [assetTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(emptyBtn);
-        make.left.equalTo(departmentLabel.mas_right);
+        make.left.equalTo(codeNumLabel.mas_right);
         make.width.offset(100);
         make.height.offset(35);
     }];
-    //物品名称label
-    UILabel *goodsNameLabel = [UILabel labelWithText:@"物品名称" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
-    goodsNameLabel.backgroundColor = [UIColor whiteColor];
-    goodsNameLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:goodsNameLabel];
-    [goodsNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.assetTypeLabel = assetTypeLabel;
+    //assetNameLabel资产名称
+    UILabel *assetNameLabel = [UILabel labelWithText:@"名称" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+    assetNameLabel.backgroundColor = [UIColor whiteColor];
+    assetNameLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:assetNameLabel];
+    [assetNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(emptyBtn);
-        make.left.equalTo(ApplicantLabel.mas_right);
+        make.left.equalTo(assetTypeLabel.mas_right);
         make.width.offset(kScreenW-235);
         make.height.offset(35);
     }];
+    self.assetNameLabel = assetNameLabel;
     [self layoutIfNeeded];
     [self setBorderWithView:emptyBtn top:false left:true bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
-    [self setBorderWithView:departmentLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
-    [self setBorderWithView:ApplicantLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
-    [self setBorderWithView:goodsNameLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
+    [self setBorderWithView:codeNumLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
+    [self setBorderWithView:assetTypeLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
+    [self setBorderWithView:assetNameLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
 }
 //选中按钮点击事件
 - (void)selBtnClick:(UIButton*)sender
@@ -100,6 +124,13 @@
     }else{
         self.selView.backgroundColor = [UIColor whiteColor];
     }
+    if (self.storeThingModel) {//库房物品列表
+        self.ifSelectedBlock(self.storeThingModel, sender.selected);//不论是否选中都传递
+    }
+//    if (self.selectedThingsModel) {//已选中准备领用库房物品列表
+//        self.ifSelectedBlock(self.selectedThingsModel, sender.selected);//不论是否选中都传递
+//    }
+    
 }
 //给view添加不同位置的边框
 - (void)setBorderWithView:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width

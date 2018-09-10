@@ -25,7 +25,7 @@
     // 意思就是延伸到边界
     self.extendedLayoutIncludesOpaqueBars = true;//解决视图下移64
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    self.title = @"资产";
+    self.title = @"审批";
 }
 
 - (void)didReceiveMemoryWarning {

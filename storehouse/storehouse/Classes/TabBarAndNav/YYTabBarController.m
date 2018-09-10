@@ -60,7 +60,7 @@
     
     // 资产
     AssetsVC *consultVC = [[AssetsVC alloc] init];
-    [self addChildViewControllerAtIndex:2 childViewController:consultVC title:@"资产" normalImage:@"approval_normal" selectedImage:@"approval_select"];
+    [self addChildViewControllerAtIndex:2 childViewController:consultVC title:@"审批" normalImage:@"approval_normal" selectedImage:@"approval_select"];
     
     // 我的
     MineVC *personalVC = [[MineVC alloc] init];

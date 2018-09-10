@@ -6,8 +6,8 @@
 //  Copyright © 2018年 wanyu. All rights reserved.
 //
 
-#import "LaunchBaseVC.h"//领用申请/借用申请/归还申请
+#import "LaunchBaseVC.h"
 
-@interface LaunchGetUseVC : LaunchBaseVC
-@property(nonatomic,assign)NSInteger applyType;//领用:1,借用:2,归还:6
+@interface LaunchGetUseVC : LaunchBaseVC//领用申请
+
 @end

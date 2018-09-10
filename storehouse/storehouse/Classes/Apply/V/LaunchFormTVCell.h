@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "storeThingsModel.h"
+
+typedef void (^ifSelectedBlock)(storeThingsModel *selModel , BOOL btnSelected);
 
 @interface LaunchFormTVCell : UITableViewCell
-@property(nonatomic,weak)UILabel *numLabel;//序号
-@property(nonatomic,weak)UIView *selView;//选中
+//block传递选中cell的model:
+@property(nonatomic,copy) ifSelectedBlock ifSelectedBlock;
+@property(nonatomic,weak)UIButton *selBtn;//选择按钮
+@property(nonatomic,weak)UIView *selView;//选择视图
+@property(nonatomic,weak)storeThingsModel *storeThingModel;//传递过来的库房列表物品数据model
+@property(nonatomic,weak)storeThingsModel *selectedThingsModel;//传递过来的已选中库房列表物品数据model
 @end

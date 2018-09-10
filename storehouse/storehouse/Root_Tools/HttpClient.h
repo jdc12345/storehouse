@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, HttpRequestType) {
 typedef void(^PrepareExecuteBlock)(void);
 
 @interface HttpClient : NSObject
+@property(nonatomic,strong) AFHTTPSessionManager *manager;
 - (void)cancelHttpRequest;
 
 + (HttpClient *)defaultClient;
@@ -76,6 +77,6 @@ typedef void(^PrepareExecuteBlock)(void);
 //判断当前网络状态
 - (BOOL)isConnectionAvailable;
 
-- (BOOL)isWifi;
+//- (BOOL)isWifi;
 
 @end
