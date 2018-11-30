@@ -10,7 +10,6 @@
 #import "storeThingsModel.h"
 
 typedef void (^ifSelectedBlock)(storeThingsModel *selModel , BOOL btnSelected);
-
 @interface LaunchFormTVCell : UITableViewCell
 //block传递选中cell的model:
 @property(nonatomic,copy) ifSelectedBlock ifSelectedBlock;
@@ -18,4 +17,5 @@ typedef void (^ifSelectedBlock)(storeThingsModel *selModel , BOOL btnSelected);
 @property(nonatomic,weak)UIView *selView;//选择视图
 @property(nonatomic,weak)storeThingsModel *storeThingModel;//传递过来的库房列表物品数据model
 @property(nonatomic,weak)storeThingsModel *selectedThingsModel;//传递过来的已选中库房列表物品数据model
+@property(nonatomic,weak)UITextField *contentField;//资产数量
 @end

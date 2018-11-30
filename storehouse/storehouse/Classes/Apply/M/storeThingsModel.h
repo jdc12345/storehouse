@@ -68,5 +68,7 @@
 @property (nonatomic, strong) NSString *assetName;//资产名称
 @property (nonatomic, strong) NSString *parentId;//附属于哪个资产
 @property (nonatomic, strong) NSString *assetType;//资产类型
-
+@property (nonatomic, strong) NSString *num;//该资产库存数
+@property (nonatomic, assign) BOOL isSelected;//该数据是否被选中
+@property (nonatomic, strong) NSString *barcode;//二维码编码
 @end

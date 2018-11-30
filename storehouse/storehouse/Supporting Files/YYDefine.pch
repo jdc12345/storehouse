@@ -41,9 +41,34 @@
 #pragma mark -
 #pragma mark ---------------Dis - Url------------------
 #define mPrefixUrl @"http://192.168.1.168:8085"
+//库房管理系统外网服务器地址：
+//#define mPrefixUrl @"http://59.110.169.148:8085"
 
+// 判断扫一扫结果
+#define mScanResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetQrCode/getByCode.do?"]
+// 根据id查看资产详情
+#define mAssetDetailResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/get.do?"]
+// 资产类别请求
+#define mAssrtsCategoryResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/category/listAllTree.do"]
+// 资产保管人
+#define mAssetSavePersonList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/user/saveList.do"]
+
+//资产管理》资产列表分页查询接口
+#define mSearchResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/findPage.do?"]
+// 分页查询通知接口
+#define mNoticeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/findPage.do?"]
 // 库房可领用物品列表数据
-#define mStoreThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/findList.do?"]
+#define mStoreThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpRecipients.do?"]
+// 借用申请库房可借用物品列表数据
+#define mStoreBorrowThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpBorrow.do?"]
+//发起以旧换新申请分页查询资产信息列表数据
+#define mStoreOldfornewThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpOldfornew.do?"]
+//发起维修申请分页查询资产信息列表数据
+#define mStoreMaintenanceThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpMaintenance.do?"]
+//发起退库申请分页查询资产信息列表数据
+#define mStoreReturnThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpReturn.do?"]
+//发起报废申请分页查询资产信息列表数据
+#define mStoreScrapThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpScrap.do?"]
 // 库房可领用物品申请
 #define mLaunchGetStoreThings [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetRecipients/save.do?"]
 //提交资产借用申请
@@ -60,6 +85,42 @@
 #define mScrapModeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/scrapMode/findList.do?"]
 // 提交资产退库申请
 #define mLaunchRecipientsDateThings [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetReturn/save.do?"]
+// 提交审批列表请求
+#define mRequestApproveList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/convergeApproval/findPage.do?"]
+// 请求采购审批详情
+#define mbuyApplyDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/buyApply/get.do?"]
+//资产以旧换新详情
+#define mAssetOldfornewDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetOldfornew/get.do?"]
+//资产借用申请详情
+#define mAssetBorrowDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetBorrow/get.do?"]
+//资产领用申请详情
+#define mAssetRecipientsDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetRecipients/get.do?"]
+//资产退库申请详情
+#define mAssetReturnDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetReturn/get.do?"]
+//资产报废申请详情
+#define mAssetScrapDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetScrap/get.do?"]
+//资产维修申请详情
+#define mAssetmaintenanceLogDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/get.do?"]
+//采购申请审批
+#define mPurchaseApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/buyApply/doApproval.do?"]
+
+//资产以旧换新审批
+#define mReplaceApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetOldfornew/doApproval.do?"]
+
+//资产借用申请审批
+#define mBorrowApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetBorrow/doApproval.do?"]
+
+//资产领用申请审批
+#define mGetUseApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetRecipients/doApproval.do?"]
+
+//资产退库申请审批
+#define mReturnStoreApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetReturn/doApproval.do?"]
+
+//资产报废申请审批
+#define mAssetScrapApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetScrap/doApproval.do?"]
+
+//资产维修申请审批
+#define mMaintenanceLogApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/doApproval.do?"]
 
 
 

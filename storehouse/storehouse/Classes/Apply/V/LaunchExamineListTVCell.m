@@ -152,10 +152,10 @@
             self.iconView.image = [UIImage imageNamed:@"报废申请_类型图标"];
             self.typeLabel.text = @"报废申请";
             break;
-//        case 40:
-//            self.iconView.image = [UIImage imageNamed:@""];
-//            self.typeLabel.text = @"归还申请";
-//            break;
+            //        case 40:
+            //            self.iconView.image = [UIImage imageNamed:@""];
+            //            self.typeLabel.text = @"归还申请";
+            //            break;
         case 45:
             self.iconView.image = [UIImage imageNamed:@"退库申请_类型图标"];
             self.typeLabel.text = @"退库申请";

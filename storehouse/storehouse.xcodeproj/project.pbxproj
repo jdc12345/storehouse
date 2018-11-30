@@ -41,12 +41,70 @@
 		161D6EB721428F4D0040313F /* icon_jr_jkzx@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 161D6E9E21428F4D0040313F /* icon_jr_jkzx@3x.png */; };
 		161D6EB821428F4D0040313F /* icon_jr_jkzx@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 161D6E9E21428F4D0040313F /* icon_jr_jkzx@3x.png */; };
 		161D6EB921428F4D0040313F /* icon_jr_jkzx@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 161D6E9E21428F4D0040313F /* icon_jr_jkzx@3x.png */; };
+		161D6EBC214687180040313F /* willApproveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EBB214687180040313F /* willApproveVC.m */; };
+		161D6EBD214687180040313F /* willApproveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EBB214687180040313F /* willApproveVC.m */; };
+		161D6EBE214687180040313F /* willApproveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EBB214687180040313F /* willApproveVC.m */; };
+		161D6EC621468F2D0040313F /* NSObject+Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EC421468F2D0040313F /* NSObject+Formula.m */; };
+		161D6EC721468F2D0040313F /* NSObject+Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EC421468F2D0040313F /* NSObject+Formula.m */; };
+		161D6EC821468F2D0040313F /* NSObject+Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EC421468F2D0040313F /* NSObject+Formula.m */; };
+		161D6ECE2147D9930040313F /* ApproveListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ECD2147D9930040313F /* ApproveListModel.m */; };
+		161D6ECF2147D9930040313F /* ApproveListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ECD2147D9930040313F /* ApproveListModel.m */; };
+		161D6ED02147D9930040313F /* ApproveListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ECD2147D9930040313F /* ApproveListModel.m */; };
+		161D6ED32147DA970040313F /* approveListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ED22147DA970040313F /* approveListTVCell.m */; };
+		161D6ED42147DA970040313F /* approveListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ED22147DA970040313F /* approveListTVCell.m */; };
+		161D6ED52147DA970040313F /* approveListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ED22147DA970040313F /* approveListTVCell.m */; };
+		161D6ED8214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ED7214B44E30040313F /* PurchasePepairReplaceScrapVC.m */; };
+		161D6ED9214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ED7214B44E30040313F /* PurchasePepairReplaceScrapVC.m */; };
+		161D6EDA214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6ED7214B44E30040313F /* PurchasePepairReplaceScrapVC.m */; };
+		161D6EDD2153957C0040313F /* ApplyDetailTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EDC2153957C0040313F /* ApplyDetailTVCell.m */; };
+		161D6EDE2153957C0040313F /* ApplyDetailTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EDC2153957C0040313F /* ApplyDetailTVCell.m */; };
+		161D6EDF2153957C0040313F /* ApplyDetailTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EDC2153957C0040313F /* ApplyDetailTVCell.m */; };
+		161D6EE22154F9F40040313F /* BuyApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */; };
+		161D6EE32154F9F40040313F /* BuyApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */; };
+		161D6EE42154F9F40040313F /* BuyApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */; };
+		161D727221AE3D1900F04C21 /* LaunchOldForNewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D727121AE3D1900F04C21 /* LaunchOldForNewVC.m */; };
 		161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DE20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57DD20CFA278006B57B2 /* LaunchMainHeaderView.m */; };
 		161E57DF20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57DD20CFA278006B57B2 /* LaunchMainHeaderView.m */; };
 		161E57E020CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57DD20CFA278006B57B2 /* LaunchMainHeaderView.m */; };
+		162DE48F219E9A30007E68C2 /* HomePageScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE48E219E9A30007E68C2 /* HomePageScanVC.m */; };
+		162DE490219E9A30007E68C2 /* HomePageScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE48E219E9A30007E68C2 /* HomePageScanVC.m */; };
+		162DE491219E9A30007E68C2 /* HomePageScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE48E219E9A30007E68C2 /* HomePageScanVC.m */; };
+		162DE49721A00C72007E68C2 /* PersonalTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE49621A00C72007E68C2 /* PersonalTVCell.m */; };
+		162DE49821A00C72007E68C2 /* PersonalTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE49621A00C72007E68C2 /* PersonalTVCell.m */; };
+		162DE49921A00C72007E68C2 /* PersonalTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE49621A00C72007E68C2 /* PersonalTVCell.m */; };
+		162DE49C21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE49B21A15EAD007E68C2 /* AssetsManangeVC.m */; };
+		162DE49D21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE49B21A15EAD007E68C2 /* AssetsManangeVC.m */; };
+		162DE49E21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE49B21A15EAD007E68C2 /* AssetsManangeVC.m */; };
+		162DE4A121A16B81007E68C2 /* AssetsManageTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4A021A16B81007E68C2 /* AssetsManageTVCell.m */; };
+		162DE4A221A16B81007E68C2 /* AssetsManageTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4A021A16B81007E68C2 /* AssetsManageTVCell.m */; };
+		162DE4A321A16B81007E68C2 /* AssetsManageTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4A021A16B81007E68C2 /* AssetsManageTVCell.m */; };
+		162DE4A621A2C3DC007E68C2 /* AssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4A521A2C3DC007E68C2 /* AssetModel.m */; };
+		162DE4A721A2C3DC007E68C2 /* AssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4A521A2C3DC007E68C2 /* AssetModel.m */; };
+		162DE4A821A2C3DC007E68C2 /* AssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4A521A2C3DC007E68C2 /* AssetModel.m */; };
+		162DE4AB21A3A94D007E68C2 /* AssetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4AA21A3A94D007E68C2 /* AssetDetailVC.m */; };
+		162DE4AC21A3A94D007E68C2 /* AssetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4AA21A3A94D007E68C2 /* AssetDetailVC.m */; };
+		162DE4AD21A3A94D007E68C2 /* AssetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4AA21A3A94D007E68C2 /* AssetDetailVC.m */; };
+		162DE4B021A3F395007E68C2 /* AddAssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4AF21A3F395007E68C2 /* AddAssetVC.m */; };
+		162DE4B121A3F395007E68C2 /* AddAssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4AF21A3F395007E68C2 /* AddAssetVC.m */; };
+		162DE4B221A3F395007E68C2 /* AddAssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4AF21A3F395007E68C2 /* AddAssetVC.m */; };
+		162DE4B521A4111C007E68C2 /* AssetCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4B421A4111C007E68C2 /* AssetCategoryModel.m */; };
+		162DE4B621A4111C007E68C2 /* AssetCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4B421A4111C007E68C2 /* AssetCategoryModel.m */; };
+		162DE4B721A4111C007E68C2 /* AssetCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4B421A4111C007E68C2 /* AssetCategoryModel.m */; };
+		162DE4BA21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4B921A42A36007E68C2 /* HomePageNoticeModel.m */; };
+		162DE4BB21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4B921A42A36007E68C2 /* HomePageNoticeModel.m */; };
+		162DE4BC21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4B921A42A36007E68C2 /* HomePageNoticeModel.m */; };
+		162DE4BF21A42E62007E68C2 /* PostNoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4BE21A42E62007E68C2 /* PostNoticeVC.m */; };
+		162DE4C021A42E62007E68C2 /* PostNoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4BE21A42E62007E68C2 /* PostNoticeVC.m */; };
+		162DE4C121A42E62007E68C2 /* PostNoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4BE21A42E62007E68C2 /* PostNoticeVC.m */; };
+		162DE4C421A43340007E68C2 /* PostNoticeTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4C321A43340007E68C2 /* PostNoticeTVCell.m */; };
+		162DE4C521A43340007E68C2 /* PostNoticeTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4C321A43340007E68C2 /* PostNoticeTVCell.m */; };
+		162DE4C621A43340007E68C2 /* PostNoticeTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4C321A43340007E68C2 /* PostNoticeTVCell.m */; };
+		162DE4C921A51347007E68C2 /* AssetSaveAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4C821A51347007E68C2 /* AssetSaveAddressModel.m */; };
+		162DE4CA21A51347007E68C2 /* AssetSaveAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4C821A51347007E68C2 /* AssetSaveAddressModel.m */; };
+		162DE4CB21A51347007E68C2 /* AssetSaveAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162DE4C821A51347007E68C2 /* AssetSaveAddressModel.m */; };
 		162E471D20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E471C20C68D5400DED9B2 /* FunctionListFlowLayout.m */; };
 		162E471E20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E471C20C68D5400DED9B2 /* FunctionListFlowLayout.m */; };
 		162E471F20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E471C20C68D5400DED9B2 /* FunctionListFlowLayout.m */; };
@@ -112,6 +170,12 @@
 		1654F32A21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
 		1654F32B21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
 		1654F32C21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */; };
+		166EBFBC215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFBB215A18E300C8E424 /* RepairApplyDetailModel.m */; };
+		166EBFBD215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFBB215A18E300C8E424 /* RepairApplyDetailModel.m */; };
+		166EBFBE215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFBB215A18E300C8E424 /* RepairApplyDetailModel.m */; };
+		166EBFC1215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */; };
+		166EBFC2215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */; };
+		166EBFC3215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */; };
 		16872814210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
 		16872815210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
 		16872816210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
@@ -214,10 +278,50 @@
 		161D6E9C21428F4D0040313F /* CalendarDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDateCell.m; sourceTree = "<group>"; };
 		161D6E9D21428F4D0040313F /* icon_delete_tcqblb@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_delete_tcqblb@3x.png"; sourceTree = "<group>"; };
 		161D6E9E21428F4D0040313F /* icon_jr_jkzx@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_jr_jkzx@3x.png"; sourceTree = "<group>"; };
+		161D6EBA214687180040313F /* willApproveVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = willApproveVC.h; sourceTree = "<group>"; };
+		161D6EBB214687180040313F /* willApproveVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = willApproveVC.m; sourceTree = "<group>"; };
+		161D6EC421468F2D0040313F /* NSObject+Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Formula.m"; sourceTree = "<group>"; };
+		161D6EC521468F2D0040313F /* NSObject+Formula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Formula.h"; sourceTree = "<group>"; };
+		161D6ECC2147D9930040313F /* ApproveListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApproveListModel.h; sourceTree = "<group>"; };
+		161D6ECD2147D9930040313F /* ApproveListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApproveListModel.m; sourceTree = "<group>"; };
+		161D6ED12147DA970040313F /* approveListTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = approveListTVCell.h; sourceTree = "<group>"; };
+		161D6ED22147DA970040313F /* approveListTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = approveListTVCell.m; sourceTree = "<group>"; };
+		161D6ED6214B44E30040313F /* PurchasePepairReplaceScrapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PurchasePepairReplaceScrapVC.h; sourceTree = "<group>"; };
+		161D6ED7214B44E30040313F /* PurchasePepairReplaceScrapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PurchasePepairReplaceScrapVC.m; sourceTree = "<group>"; };
+		161D6EDB2153957C0040313F /* ApplyDetailTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyDetailTVCell.h; sourceTree = "<group>"; };
+		161D6EDC2153957C0040313F /* ApplyDetailTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyDetailTVCell.m; sourceTree = "<group>"; };
+		161D6EE02154F9F40040313F /* BuyApplyDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyApplyDetailModel.h; sourceTree = "<group>"; };
+		161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyApplyDetailModel.m; sourceTree = "<group>"; };
+		161D727021AE3D1900F04C21 /* LaunchOldForNewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchOldForNewVC.h; sourceTree = "<group>"; };
+		161D727121AE3D1900F04C21 /* LaunchOldForNewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchOldForNewVC.m; sourceTree = "<group>"; };
 		161E57D720CF77A6006B57B2 /* CPXCommonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXCommonLabel.h; sourceTree = "<group>"; };
 		161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPXCommonLabel.m; sourceTree = "<group>"; };
 		161E57DC20CFA278006B57B2 /* LaunchMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchMainHeaderView.h; sourceTree = "<group>"; };
 		161E57DD20CFA278006B57B2 /* LaunchMainHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchMainHeaderView.m; sourceTree = "<group>"; };
+		162DE48D219E9A30007E68C2 /* HomePageScanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageScanVC.h; sourceTree = "<group>"; };
+		162DE48E219E9A30007E68C2 /* HomePageScanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageScanVC.m; sourceTree = "<group>"; };
+		162DE49521A00C72007E68C2 /* PersonalTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalTVCell.h; sourceTree = "<group>"; };
+		162DE49621A00C72007E68C2 /* PersonalTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTVCell.m; sourceTree = "<group>"; };
+		162DE49A21A15EAD007E68C2 /* AssetsManangeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsManangeVC.h; sourceTree = "<group>"; };
+		162DE49B21A15EAD007E68C2 /* AssetsManangeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsManangeVC.m; sourceTree = "<group>"; };
+		162DE49F21A16B81007E68C2 /* AssetsManageTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsManageTVCell.h; sourceTree = "<group>"; };
+		162DE4A021A16B81007E68C2 /* AssetsManageTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsManageTVCell.m; sourceTree = "<group>"; };
+		162DE4A421A2C3DC007E68C2 /* AssetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetModel.h; sourceTree = "<group>"; };
+		162DE4A521A2C3DC007E68C2 /* AssetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetModel.m; sourceTree = "<group>"; };
+		162DE4A921A3A94D007E68C2 /* AssetDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetDetailVC.h; sourceTree = "<group>"; };
+		162DE4AA21A3A94D007E68C2 /* AssetDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetDetailVC.m; sourceTree = "<group>"; };
+		162DE4AE21A3F395007E68C2 /* AddAssetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAssetVC.h; sourceTree = "<group>"; };
+		162DE4AF21A3F395007E68C2 /* AddAssetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAssetVC.m; sourceTree = "<group>"; };
+		162DE4B321A4111C007E68C2 /* AssetCategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetCategoryModel.h; sourceTree = "<group>"; };
+		162DE4B421A4111C007E68C2 /* AssetCategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetCategoryModel.m; sourceTree = "<group>"; };
+		162DE4B821A42A36007E68C2 /* HomePageNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageNoticeModel.h; sourceTree = "<group>"; };
+		162DE4B921A42A36007E68C2 /* HomePageNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageNoticeModel.m; sourceTree = "<group>"; };
+		162DE4BD21A42E62007E68C2 /* PostNoticeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostNoticeVC.h; sourceTree = "<group>"; };
+		162DE4BE21A42E62007E68C2 /* PostNoticeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostNoticeVC.m; sourceTree = "<group>"; };
+		162DE4C221A43340007E68C2 /* PostNoticeTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostNoticeTVCell.h; sourceTree = "<group>"; };
+		162DE4C321A43340007E68C2 /* PostNoticeTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostNoticeTVCell.m; sourceTree = "<group>"; };
+		162DE4C721A51347007E68C2 /* AssetSaveAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetSaveAddressModel.h; sourceTree = "<group>"; };
+		162DE4C821A51347007E68C2 /* AssetSaveAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetSaveAddressModel.m; sourceTree = "<group>"; };
 		162E471B20C68D5400DED9B2 /* FunctionListFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FunctionListFlowLayout.h; sourceTree = "<group>"; };
 		162E471C20C68D5400DED9B2 /* FunctionListFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunctionListFlowLayout.m; sourceTree = "<group>"; };
 		162E472020C68E8900DED9B2 /* HomeFunctionCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFunctionCollectionViewCell.h; sourceTree = "<group>"; };
@@ -262,6 +366,10 @@
 		1654F31E21070DC5007EF7B0 /* ZWPullMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPullMenuModel.m; sourceTree = "<group>"; };
 		1654F31F21070DC5007EF7B0 /* ZWPullMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPullMenuView.h; sourceTree = "<group>"; };
 		1654F32021070DC5007EF7B0 /* ZWPullMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPullMenuView.m; sourceTree = "<group>"; };
+		166EBFBA215A18E300C8E424 /* RepairApplyDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairApplyDetailModel.h; sourceTree = "<group>"; };
+		166EBFBB215A18E300C8E424 /* RepairApplyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairApplyDetailModel.m; sourceTree = "<group>"; };
+		166EBFBF215A33C900C8E424 /* ScrapApplyDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrapApplyDetailModel.h; sourceTree = "<group>"; };
+		166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrapApplyDetailModel.m; sourceTree = "<group>"; };
 		16872812210EF897004E9250 /* LaunchGetUseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchGetUseVC.h; sourceTree = "<group>"; };
 		16872813210EF897004E9250 /* LaunchGetUseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchGetUseVC.m; sourceTree = "<group>"; };
 		1687281C21105E59004E9250 /* LaunchFormTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchFormTVCell.h; sourceTree = "<group>"; };
@@ -373,12 +481,74 @@
 			path = WMHCalendarView;
 			sourceTree = "<group>";
 		};
+		161D6EC92147D91B0040313F /* M */ = {
+			isa = PBXGroup;
+			children = (
+				161D6ECC2147D9930040313F /* ApproveListModel.h */,
+				161D6ECD2147D9930040313F /* ApproveListModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		161D6ECA2147D92C0040313F /* V */ = {
+			isa = PBXGroup;
+			children = (
+				161D6ED12147DA970040313F /* approveListTVCell.h */,
+				161D6ED22147DA970040313F /* approveListTVCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		161D6ECB2147D9330040313F /* C */ = {
+			isa = PBXGroup;
+			children = (
+				16AD808620BECB57005F99BC /* AssetsVC.h */,
+				16AD808720BECB57005F99BC /* AssetsVC.m */,
+				161D6EBA214687180040313F /* willApproveVC.h */,
+				161D6EBB214687180040313F /* willApproveVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		162DE49221A00965007E68C2 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				16AD808B20BECB9D005F99BC /* MineVC.h */,
+				16AD808C20BECB9D005F99BC /* MineVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		162DE49321A00965007E68C2 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		162DE49421A00974007E68C2 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				162DE49521A00C72007E68C2 /* PersonalTVCell.h */,
+				162DE49621A00C72007E68C2 /* PersonalTVCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
 		162E471820C68A5200DED9B2 /* M */ = {
 			isa = PBXGroup;
 			children = (
 				162E472A20C6915200DED9B2 /* HomeFunctionList.plist */,
 				162E472520C690C400DED9B2 /* HomeFunctionListModel.h */,
 				162E472620C690C400DED9B2 /* HomeFunctionListModel.m */,
+				162DE4A421A2C3DC007E68C2 /* AssetModel.h */,
+				162DE4A521A2C3DC007E68C2 /* AssetModel.m */,
+				162DE4B321A4111C007E68C2 /* AssetCategoryModel.h */,
+				162DE4B421A4111C007E68C2 /* AssetCategoryModel.m */,
+				162DE4B821A42A36007E68C2 /* HomePageNoticeModel.h */,
+				162DE4B921A42A36007E68C2 /* HomePageNoticeModel.m */,
+				162DE4C721A51347007E68C2 /* AssetSaveAddressModel.h */,
+				162DE4C821A51347007E68C2 /* AssetSaveAddressModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -392,6 +562,10 @@
 				162E472120C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m */,
 				162E473920C7B43E00DED9B2 /* HomeNoticeNewsTVCell.h */,
 				162E473A20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m */,
+				162DE49F21A16B81007E68C2 /* AssetsManageTVCell.h */,
+				162DE4A021A16B81007E68C2 /* AssetsManageTVCell.m */,
+				162DE4C221A43340007E68C2 /* PostNoticeTVCell.h */,
+				162DE4C321A43340007E68C2 /* PostNoticeTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -401,6 +575,16 @@
 			children = (
 				16AD807C20BECB2A005F99BC /* HomeVC.h */,
 				16AD807D20BECB2A005F99BC /* HomeVC.m */,
+				162DE48D219E9A30007E68C2 /* HomePageScanVC.h */,
+				162DE48E219E9A30007E68C2 /* HomePageScanVC.m */,
+				162DE49A21A15EAD007E68C2 /* AssetsManangeVC.h */,
+				162DE49B21A15EAD007E68C2 /* AssetsManangeVC.m */,
+				162DE4A921A3A94D007E68C2 /* AssetDetailVC.h */,
+				162DE4AA21A3A94D007E68C2 /* AssetDetailVC.m */,
+				162DE4AE21A3F395007E68C2 /* AddAssetVC.h */,
+				162DE4AF21A3F395007E68C2 /* AddAssetVC.m */,
+				162DE4BD21A42E62007E68C2 /* PostNoticeVC.h */,
+				162DE4BE21A42E62007E68C2 /* PostNoticeVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -423,6 +607,12 @@
 				16450F712124427100567BC4 /* LaunchListModel.m */,
 				161D6E83213FEA0F0040313F /* storeThingsModel.h */,
 				161D6E84213FEA0F0040313F /* storeThingsModel.m */,
+				161D6EE02154F9F40040313F /* BuyApplyDetailModel.h */,
+				161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */,
+				166EBFBA215A18E300C8E424 /* RepairApplyDetailModel.h */,
+				166EBFBB215A18E300C8E424 /* RepairApplyDetailModel.m */,
+				166EBFBF215A33C900C8E424 /* ScrapApplyDetailModel.h */,
+				166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -442,6 +632,8 @@
 				16450F672122C9B800567BC4 /* LaunchExamineListTVCell.m */,
 				16450F6B21242B4C00567BC4 /* LaunchTypeTVCell.h */,
 				16450F6C21242B4C00567BC4 /* LaunchTypeTVCell.m */,
+				161D6EDB2153957C0040313F /* ApplyDetailTVCell.h */,
+				161D6EDC2153957C0040313F /* ApplyDetailTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -461,10 +653,14 @@
 				161D6E8E214277D00040313F /* launchBorrowApplyVC.m */,
 				168728212111933C004E9250 /* LaunchRepairVC.h */,
 				168728222111933C004E9250 /* LaunchRepairVC.m */,
+				161D727021AE3D1900F04C21 /* LaunchOldForNewVC.h */,
+				161D727121AE3D1900F04C21 /* LaunchOldForNewVC.m */,
 				16872826211196CA004E9250 /* LaunchScrapVC.h */,
 				16872827211196CA004E9250 /* LaunchScrapVC.m */,
 				1687282B21119FA1004E9250 /* LaunchRetiringVC.h */,
 				1687282C21119FA1004E9250 /* LaunchRetiringVC.m */,
+				161D6ED6214B44E30040313F /* PurchasePepairReplaceScrapVC.h */,
+				161D6ED7214B44E30040313F /* PurchasePepairReplaceScrapVC.m */,
 				1687283F21143A68004E9250 /* LaunchSubListVC.h */,
 				1687284021143A68004E9250 /* LaunchSubListVC.m */,
 			);
@@ -572,6 +768,8 @@
 		16AD804720BEC74A005F99BC /* Root_Tools */ = {
 			isa = PBXGroup;
 			children = (
+				161D6EC521468F2D0040313F /* NSObject+Formula.h */,
+				161D6EC421468F2D0040313F /* NSObject+Formula.m */,
 				16450F5C211C395A00567BC4 /* UIView+Utils.h */,
 				16450F5D211C395B00567BC4 /* UIView+Utils.m */,
 				16450F5121198BE200567BC4 /* button */,
@@ -663,8 +861,9 @@
 		16AD804F20BEC81E005F99BC /* Approval */ = {
 			isa = PBXGroup;
 			children = (
-				16AD808620BECB57005F99BC /* AssetsVC.h */,
-				16AD808720BECB57005F99BC /* AssetsVC.m */,
+				161D6ECB2147D9330040313F /* C */,
+				161D6ECA2147D92C0040313F /* V */,
+				161D6EC92147D91B0040313F /* M */,
 			);
 			path = Approval;
 			sourceTree = "<group>";
@@ -672,8 +871,9 @@
 		16AD805020BEC8BE005F99BC /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				16AD808B20BECB9D005F99BC /* MineVC.h */,
-				16AD808C20BECB9D005F99BC /* MineVC.m */,
+				162DE49221A00965007E68C2 /* C */,
+				162DE49421A00974007E68C2 /* V */,
+				162DE49321A00965007E68C2 /* M */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -751,6 +951,9 @@
 		16AD800A20BEC365005F99BC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					"com.apple.gamecenter.Dashboard Image",
+				);
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = wanyu;
 				TargetAttributes = {
@@ -904,11 +1107,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				168728232111933C004E9250 /* LaunchRepairVC.m in Sources */,
+				161D6ED8214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
+				161D6EE22154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				1687283E21143738004E9250 /* BaseViewController.m in Sources */,
 				1687284121143A68004E9250 /* LaunchSubListVC.m in Sources */,
+				162DE49721A00C72007E68C2 /* PersonalTVCell.m in Sources */,
+				162DE4C421A43340007E68C2 /* PostNoticeTVCell.m in Sources */,
 				16450F6D21242B4C00567BC4 /* LaunchTypeTVCell.m in Sources */,
+				162DE4BA21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */,
 				16450F722124427100567BC4 /* LaunchListModel.m in Sources */,
 				16AD806520BECA10005F99BC /* AppDelegate.m in Sources */,
+				162DE4A121A16B81007E68C2 /* AssetsManageTVCell.m in Sources */,
 				16AD808320BECB40005F99BC /* ApplyVC.m in Sources */,
 				168728372112D189004E9250 /* CcUserModel.m in Sources */,
 				162E471D20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
@@ -919,11 +1128,18 @@
 				1654F32A21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				16AD808820BECB57005F99BC /* AssetsVC.m in Sources */,
 				162E473120C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
+				161D6EBC214687180040313F /* willApproveVC.m in Sources */,
+				162DE4BF21A42E62007E68C2 /* PostNoticeVC.m in Sources */,
 				162E473620C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
+				162DE4AB21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
+				161D727221AE3D1900F04C21 /* LaunchOldForNewVC.m in Sources */,
 				1654F3162105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD807320BECA67005F99BC /* YYTabBarController.m in Sources */,
+				162DE4B021A3F395007E68C2 /* AddAssetVC.m in Sources */,
 				162E474020C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
+				166EBFC1215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */,
 				16AD805520BEC9AC005F99BC /* HttpClient.m in Sources */,
+				161D6ED32147DA970040313F /* approveListTVCell.m in Sources */,
 				1654F32121070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD807E20BECB2A005F99BC /* HomeVC.m in Sources */,
 				162E473B20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
@@ -933,21 +1149,30 @@
 				16450F63211C43F300567BC4 /* permissionTypeModel.m in Sources */,
 				16AD805820BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				16872814210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
+				162DE4C921A51347007E68C2 /* AssetSaveAddressModel.m in Sources */,
+				161D6EDD2153957C0040313F /* ApplyDetailTVCell.m in Sources */,
+				162DE48F219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
 				16450F5921198C1700567BC4 /* CPXImageAndTitleButton.m in Sources */,
+				162DE49C21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */,
 				162E472720C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
+				162DE4B521A4111C007E68C2 /* AssetCategoryModel.m in Sources */,
+				161D6EC621468F2D0040313F /* NSObject+Formula.m in Sources */,
 				161D6E85213FEA0F0040313F /* storeThingsModel.m in Sources */,
 				16872828211196CA004E9250 /* LaunchScrapVC.m in Sources */,
 				161D6E8F214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				1687281E21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				162E472220C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				16450F682122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
+				161D6ECE2147D9930040313F /* ApproveListModel.m in Sources */,
 				16AD808D20BECB9D005F99BC /* MineVC.m in Sources */,
 				161D6E9F21428F4D0040313F /* WeekDateCell.m in Sources */,
+				162DE4A621A2C3DC007E68C2 /* AssetModel.m in Sources */,
 				1654F3132105C81A007EF7B0 /* LaunchPurchaseVC.m in Sources */,
 				16AD807920BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				1654F3102105BA60007EF7B0 /* LaunchBaseVC.m in Sources */,
 				1687282D21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				16AD807020BECA67005F99BC /* YYNavigationController.m in Sources */,
+				166EBFBC215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */,
 				16872832211294B7004E9250 /* LogInVC.m in Sources */,
 				161D6EA521428F4D0040313F /* WMHCalendarView.m in Sources */,
 				1654F32721070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
@@ -960,24 +1185,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				162E473C20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
+				166EBFC2215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */,
+				161D6EDE2153957C0040313F /* ApplyDetailTVCell.m in Sources */,
+				162DE4C521A43340007E68C2 /* PostNoticeTVCell.m in Sources */,
 				16AD805620BEC9AC005F99BC /* HttpClient.m in Sources */,
 				162E471E20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E472320C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				168728382112D189004E9250 /* CcUserModel.m in Sources */,
 				16AD808920BECB57005F99BC /* AssetsVC.m in Sources */,
 				1687282E21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
+				162DE4BB21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */,
+				162DE4C021A42E62007E68C2 /* PostNoticeVC.m in Sources */,
 				16450F4F2118333900567BC4 /* NSString+URL.m in Sources */,
 				161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				162E473220C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				16AD805920BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
+				162DE4AC21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
+				161D6EE32154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
+				161D6EBD214687180040313F /* willApproveVC.m in Sources */,
 				16AD806120BEC9E9005F99BC /* main.m in Sources */,
+				162DE4B121A3F395007E68C2 /* AddAssetVC.m in Sources */,
+				162DE4A721A2C3DC007E68C2 /* AssetModel.m in Sources */,
 				161E57DF20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
+				162DE4B621A4111C007E68C2 /* AssetCategoryModel.m in Sources */,
 				16872833211294B7004E9250 /* LogInVC.m in Sources */,
 				1654F32221070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD807F20BECB2A005F99BC /* HomeVC.m in Sources */,
 				16872829211196CA004E9250 /* LaunchScrapVC.m in Sources */,
 				16872815210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
 				16AD807720BECA67005F99BC /* YYTabBar.m in Sources */,
+				162DE49821A00C72007E68C2 /* PersonalTVCell.m in Sources */,
 				16AD808E20BECB9D005F99BC /* MineVC.m in Sources */,
 				16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */,
 				16450F732124427100567BC4 /* LaunchListModel.m in Sources */,
@@ -986,6 +1223,8 @@
 				161D6E90214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				16AD807120BECA67005F99BC /* YYNavigationController.m in Sources */,
 				162E473720C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
+				162DE490219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
+				161D6EC721468F2D0040313F /* NSObject+Formula.m in Sources */,
 				16450F64211C43F300567BC4 /* permissionTypeModel.m in Sources */,
 				1687281F21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				16AD807A20BECA67005F99BC /* YYTabBarItem.m in Sources */,
@@ -994,16 +1233,23 @@
 				16450F692122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
 				1654F32B21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				168728242111933C004E9250 /* LaunchRepairVC.m in Sources */,
+				161D6ED9214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
+				161D6ED42147DA970040313F /* approveListTVCell.m in Sources */,
 				162E474120C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
+				161D6ECF2147D9930040313F /* ApproveListModel.m in Sources */,
 				161D6EA621428F4D0040313F /* WMHCalendarView.m in Sources */,
 				1654F3172105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808420BECB40005F99BC /* ApplyVC.m in Sources */,
 				16450F5F211C395B00567BC4 /* UIView+Utils.m in Sources */,
+				162DE4A221A16B81007E68C2 /* AssetsManageTVCell.m in Sources */,
 				16450F6E21242B4C00567BC4 /* LaunchTypeTVCell.m in Sources */,
 				1654F32821070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
 				162E474920C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
+				162DE4CA21A51347007E68C2 /* AssetSaveAddressModel.m in Sources */,
+				162DE49D21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */,
 				16450F5A21198C1700567BC4 /* CPXImageAndTitleButton.m in Sources */,
 				161D6EA021428F4D0040313F /* WeekDateCell.m in Sources */,
+				166EBFBD215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */,
 				161D6EB221428F4D0040313F /* CalendarDateCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1013,24 +1259,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				162E473D20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
+				166EBFC3215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */,
+				161D6EDF2153957C0040313F /* ApplyDetailTVCell.m in Sources */,
+				162DE4C621A43340007E68C2 /* PostNoticeTVCell.m in Sources */,
 				16AD805720BEC9AC005F99BC /* HttpClient.m in Sources */,
 				162E471F20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				162E472420C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				168728392112D189004E9250 /* CcUserModel.m in Sources */,
 				16AD808A20BECB57005F99BC /* AssetsVC.m in Sources */,
 				1687282F21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
+				162DE4BC21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */,
+				162DE4C121A42E62007E68C2 /* PostNoticeVC.m in Sources */,
 				16450F502118333900567BC4 /* NSString+URL.m in Sources */,
 				161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				162E473320C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				16AD805A20BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
+				162DE4AD21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
+				161D6EE42154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
+				161D6EBE214687180040313F /* willApproveVC.m in Sources */,
 				16AD806220BEC9E9005F99BC /* main.m in Sources */,
+				162DE4B221A3F395007E68C2 /* AddAssetVC.m in Sources */,
+				162DE4A821A2C3DC007E68C2 /* AssetModel.m in Sources */,
 				161E57E020CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
+				162DE4B721A4111C007E68C2 /* AssetCategoryModel.m in Sources */,
 				16872834211294B7004E9250 /* LogInVC.m in Sources */,
 				1654F32321070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD808020BECB2A005F99BC /* HomeVC.m in Sources */,
 				1687282A211196CA004E9250 /* LaunchScrapVC.m in Sources */,
 				16872816210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
 				16AD807820BECA67005F99BC /* YYTabBar.m in Sources */,
+				162DE49921A00C72007E68C2 /* PersonalTVCell.m in Sources */,
 				16AD808F20BECB9D005F99BC /* MineVC.m in Sources */,
 				16AD803A20BEC365005F99BC /* storehouseUITests.m in Sources */,
 				16450F742124427100567BC4 /* LaunchListModel.m in Sources */,
@@ -1039,6 +1297,8 @@
 				161D6E91214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				16AD807220BECA67005F99BC /* YYNavigationController.m in Sources */,
 				162E473820C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
+				162DE491219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
+				161D6EC821468F2D0040313F /* NSObject+Formula.m in Sources */,
 				16450F65211C43F300567BC4 /* permissionTypeModel.m in Sources */,
 				1687282021105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				16AD807B20BECA67005F99BC /* YYTabBarItem.m in Sources */,
@@ -1047,16 +1307,23 @@
 				16450F6A2122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
 				1654F32C21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				168728252111933C004E9250 /* LaunchRepairVC.m in Sources */,
+				161D6EDA214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
+				161D6ED52147DA970040313F /* approveListTVCell.m in Sources */,
 				162E474220C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
+				161D6ED02147D9930040313F /* ApproveListModel.m in Sources */,
 				161D6EA721428F4D0040313F /* WMHCalendarView.m in Sources */,
 				1654F3182105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808520BECB40005F99BC /* ApplyVC.m in Sources */,
 				16450F60211C395B00567BC4 /* UIView+Utils.m in Sources */,
+				162DE4A321A16B81007E68C2 /* AssetsManageTVCell.m in Sources */,
 				16450F6F21242B4C00567BC4 /* LaunchTypeTVCell.m in Sources */,
 				1654F32921070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
 				162E474A20C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
+				162DE4CB21A51347007E68C2 /* AssetSaveAddressModel.m in Sources */,
+				162DE49E21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */,
 				16450F5B21198C1700567BC4 /* CPXImageAndTitleButton.m in Sources */,
 				161D6EA121428F4D0040313F /* WeekDateCell.m in Sources */,
+				166EBFBE215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */,
 				161D6EB321428F4D0040313F /* CalendarDateCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

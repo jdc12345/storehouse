@@ -17,7 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
 }
 -(UITableView *)tableView{
     if (_tableView == nil) {
@@ -37,6 +39,9 @@
         _tableView = tableView;
     }
     return _tableView;
+}
+- (void)tapAction:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -9,7 +9,7 @@
 #import "LaunchFormTVCell.h"
 #import "UILabel+Addition.h"
 @interface LaunchFormTVCell()
-@property(nonatomic,weak)UILabel *codeNumLabel;//编号
+//@property(nonatomic,weak)UILabel *codeNumLabel;//编号
 @property(nonatomic,weak)UILabel *assetTypeLabel;//资产类型
 @property(nonatomic,weak)UILabel *assetNameLabel;//资产名称
 @end
@@ -25,21 +25,29 @@
 //设置请求的仓库数据
 -(void)setStoreThingModel:(storeThingsModel *)storeThingModel{
     _storeThingModel = storeThingModel;
-    self.codeNumLabel.text = storeThingModel.info_id;
+    self.contentField.enabled = NO;
+    self.contentField.text = storeThingModel.num;
     self.assetTypeLabel.text = storeThingModel.categoryName;
     self.assetNameLabel.text = storeThingModel.assetName;
     [self.assetNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.codeNumLabel);
+        make.centerY.equalTo(self.contentField);
         make.left.equalTo(self.assetTypeLabel.mas_right);
         make.right.offset(0);
         make.height.offset(35);
     }];
+    if (storeThingModel.isSelected) {//选中状态
+        self.selBtn.selected = true;
+        self.selView.backgroundColor = [UIColor colorWithHexString:@"373a41"];
+    }else{//非选中状态
+        self.selBtn.selected = false;
+        self.selView.backgroundColor = [UIColor whiteColor];
+    }
     
 }
 //设置选中的数据到领用列表
 -(void)setSelectedThingsModel:(storeThingsModel *)selectedThingsModel{
     _selectedThingsModel = selectedThingsModel;
-    self.codeNumLabel.text = selectedThingsModel.info_id;
+    self.contentField.text = selectedThingsModel.num;
     self.assetTypeLabel.text = selectedThingsModel.categoryName;
     self.assetNameLabel.text = selectedThingsModel.assetName;
     self.selView.backgroundColor = [UIColor whiteColor];//去除复用cell后的选中效果
@@ -73,18 +81,42 @@
     }];
     selView.userInteractionEnabled = false;
     self.selView = selView;
-    //编号label
-    UILabel *codeNumLabel = [UILabel labelWithText:@"编号" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
-    codeNumLabel.backgroundColor = [UIColor whiteColor];
-    codeNumLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:codeNumLabel];
-    [codeNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    //内容textfiled
+    UITextField *conentField = [[UITextField alloc]init];
+    conentField.returnKeyType = UIReturnKeyDone;
+    //设置左边视图的宽度
+    
+    conentField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 9, 0)];
+    conentField.font = [UIFont systemFontOfSize:12];
+    conentField.textColor = [UIColor colorWithHexString:@"373a41"];
+    conentField.textAlignment = NSTextAlignmentCenter;
+    conentField.placeholder = @"请填写资产数量";
+    //设置显示模式为永远显示(默认不显示 必须设置 否则没有效果)
+    
+    conentField.leftViewMode = UITextFieldViewModeAlways;
+    conentField.backgroundColor = [UIColor whiteColor];
+//    conentField.layer.borderColor = [UIColor colorWithHexString:@"a0a0a0"].CGColor;
+//    conentField.layer.borderWidth = 1;
+    [self.contentView addSubview:conentField];
+    [conentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(emptyBtn);
         make.left.equalTo(emptyBtn.mas_right);
         make.width.offset(100);
         make.height.offset(35);
     }];
-    self.codeNumLabel = codeNumLabel;
+    self.contentField = conentField;
+//    //编号label
+//    UILabel *codeNumLabel = [UILabel labelWithText:@"数量" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+//    codeNumLabel.backgroundColor = [UIColor whiteColor];
+//    codeNumLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.contentView addSubview:codeNumLabel];
+//    [codeNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(emptyBtn);
+//        make.left.equalTo(emptyBtn.mas_right);
+//        make.width.offset(100);
+//        make.height.offset(35);
+//    }];
+//    self.codeNumLabel = codeNumLabel;
     //assetTypeLabel资产类型
     UILabel *assetTypeLabel = [UILabel labelWithText:@"类别" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
     assetTypeLabel.backgroundColor = [UIColor whiteColor];
@@ -92,7 +124,7 @@
     [self.contentView addSubview:assetTypeLabel];
     [assetTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(emptyBtn);
-        make.left.equalTo(codeNumLabel.mas_right);
+        make.left.equalTo(conentField.mas_right);
         make.width.offset(100);
         make.height.offset(35);
     }];
@@ -111,7 +143,7 @@
     self.assetNameLabel = assetNameLabel;
     [self layoutIfNeeded];
     [self setBorderWithView:emptyBtn top:false left:true bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
-    [self setBorderWithView:codeNumLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
+    [self setBorderWithView:conentField top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
     [self setBorderWithView:assetTypeLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
     [self setBorderWithView:assetNameLabel top:false left:false bottom:true right:true borderColor:[UIColor colorWithHexString:@"a0a0a0"] borderWidth:1];
 }

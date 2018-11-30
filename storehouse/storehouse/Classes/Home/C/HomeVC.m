@@ -12,13 +12,19 @@
 #import "NSArray+Addition.h"
 #import "HomeNoticeNewsTVCell.h"
 #import "UILabel+Addition.h"
-
+#import "HomePageScanVC.h"
+#import "AssetsManangeVC.h"
+#import "HttpClient.h"
+#import <MJExtension.h>
+#import "HomePageNoticeModel.h"
+#import "PostNoticeVC.h"
 
 static NSString* tableCellid = @"table_cell";
 static NSString* collectionCellid = @"collection_cell";
 @interface HomeVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSArray* functionListData;//功能列表
 @property(nonatomic,strong)NSMutableArray *noticeNewsArr;//通知消息数据源
+@property(nonatomic,weak)UITableView *tableView;//仓库可领用物料列表
 @end
 
 @implementation HomeVC
@@ -27,7 +33,6 @@ static NSString* collectionCellid = @"collection_cell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"sta:%f,nav:%f",kStatusBarHeight,kTopHeight);
     //去除黑线
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
@@ -51,7 +56,21 @@ static NSString* collectionCellid = @"collection_cell";
     return UIStatusBarStyleDefault;
 }
 - (void)loadData{
-    
+    NSString *urlString = [NSString stringWithFormat:@"%@msgType=0",mNoticeList];
+    HttpClient *client = [HttpClient defaultClient];
+    [client.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
+    [client requestWithPath:urlString method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSArray *responseArr = (NSArray*)responseObject[@"rows"];
+        for (NSDictionary *dic in responseArr) {
+            HomePageNoticeModel *infoModel = [HomePageNoticeModel mj_objectWithKeyValues:dic];
+            [self.noticeNewsArr addObject:infoModel];
+        }
+        [self.tableView reloadData];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];
+        return ;
+    }];
     [self setUpUI];
 }
 - (void)setUpUI {
@@ -79,7 +98,7 @@ static NSString* collectionCellid = @"collection_cell";
     
     //添加tableView
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero];
-//    self.recordTableView = tableView;
+    self.tableView = tableView;
     [backView addSubview:tableView];
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(collectionView.mas_bottom).offset(5*kiphone6H);
@@ -109,15 +128,15 @@ static NSString* collectionCellid = @"collection_cell";
     return cell;
 }
 //
-//// cell点击事件
-//- (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
-//{
-//    switch (indexPath.row) {
-//        case 0:{
-//            YJPropertyBillVC *vc = [[YJPropertyBillVC alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            break;
-//        }
+// cell点击事件
+- (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    switch (indexPath.row) {
+        case 0:{
+            HomePageScanVC *vc = [[HomePageScanVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
 //        case 1:{
 //            YJLifepaymentVC *vc = [[YJLifepaymentVC alloc] init];
 //            [self.navigationController pushViewController:vc animated:YES];
@@ -133,18 +152,16 @@ static NSString* collectionCellid = @"collection_cell";
 //            [self.navigationController pushViewController:vc animated:YES];
 //            break;
 //        }
-//        case 4:{
-//            YJNearbyShopViewController *vc = [[YJNearbyShopViewController alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            break;
-//        }
-//        case 5:{
-//            YJRenovationViewController *vc = [[YJRenovationViewController alloc] init];
-//            vc.title = @"家政服务";
-//            vc.businessId = 11;
-//            [self.navigationController pushViewController:vc animated:YES];
-//            break;
-//        }
+        case 4:{
+            PostNoticeVC *vc = [[PostNoticeVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        case 5:{
+            AssetsManangeVC *vc = [[AssetsManangeVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
 //        case 6:{
 //            YJHouseSearchListVC *vc = [[YJHouseSearchListVC alloc] init];
 //            [self.navigationController pushViewController:vc animated:YES];
@@ -157,14 +174,14 @@ static NSString* collectionCellid = @"collection_cell";
 //            [self.navigationController pushViewController:vc animated:YES];
 //            break;
 //        }
-//            
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    
-//}
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+}
 //
 // 解析功能列表数据
 - (NSArray*)loadFunctionListData
@@ -178,13 +195,12 @@ static NSString* collectionCellid = @"collection_cell";
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;//根据请求回来的数据定
-//    return self.noticeNewsArr.count;//根据请求回来的数据定
+    return self.noticeNewsArr.count;//根据请求回来的数据定
     
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomeNoticeNewsTVCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellid forIndexPath:indexPath];
-//    cell.model = self.recordArr[indexPath.row];
+    cell.model = self.noticeNewsArr[indexPath.row];
     return cell;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -237,6 +253,13 @@ static NSString* collectionCellid = @"collection_cell";
 //    
 //    //    self.navBarBgAlpha = @"1.0";//添加了导航栏和控制器的分类实现了导航栏透明处理
 //}
+#pragma mark -懒加载
+-(NSMutableArray *)noticeNewsArr{
+    if (_noticeNewsArr == nil) {
+        _noticeNewsArr = [NSMutableArray array];
+    }
+    return _noticeNewsArr;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

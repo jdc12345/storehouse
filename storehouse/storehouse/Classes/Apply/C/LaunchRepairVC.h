@@ -9,5 +9,4 @@
 #import "LaunchBaseVC.h"//维修申请/以旧换新申请
 
 @interface LaunchRepairVC : LaunchBaseVC
-@property(nonatomic,assign)NSInteger applyType;//维修:3,以旧换新:4
 @end

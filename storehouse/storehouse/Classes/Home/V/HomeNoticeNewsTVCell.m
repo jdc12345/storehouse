@@ -26,6 +26,11 @@
     [super awakeFromNib];
     [self setupUI];
 }
+-(void)setModel:(HomePageNoticeModel *)model{
+    _model = model;
+    self.timeLabel.text = model.createTimeString;
+    self.itemLabel.text = model.title;
+}
 -(void)setupUI{
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];//去除cell点击效果

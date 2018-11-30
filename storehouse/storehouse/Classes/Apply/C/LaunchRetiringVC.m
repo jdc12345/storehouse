@@ -17,13 +17,14 @@
 
 static NSString* tableCellid = @"table_cell";
 static NSString* listCell = @"listCell";
+static NSInteger start = 0;//上拉加载起始位置
 @interface LaunchRetiringVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) NSArray *itemTypeArray;//事项名称
 @property(nonatomic,weak)UITableView *storeTableView;//仓库可领用物料列表
 @property(nonatomic,weak)UIView *backView;//背景阴影view
 @property(nonatomic,strong)NSMutableArray *storeThingsArr;//库房物品列表数据
 @property(nonatomic,strong)NSMutableArray *selectedThingsArr;//选中的库房物品列表数据
-
+@property(nonatomic,weak)UITextField *searchField;//输入框
 @end
 
 @implementation LaunchRetiringVC
@@ -62,9 +63,9 @@ static NSString* listCell = @"listCell";
         for (int i = 0; i < self.selectedThingsArr.count; i++) {
             storeThingsModel *selModel = self.selectedThingsArr[i];
             if (i == 0) {
-                assetsIds = [NSString stringWithFormat:@"%@%@",assetsIds,selModel.info_id];
+                assetsIds = [NSString stringWithFormat:@"%@,%@",selModel.info_id,selModel.num];
             }else{
-                assetsIds = [NSString stringWithFormat:@"%@,%@",assetsIds,selModel.info_id];
+                assetsIds = [NSString stringWithFormat:@"%@;%@,%@",assetsIds,selModel.info_id,selModel.num];
             }
             
         }
@@ -95,7 +96,7 @@ static NSString* listCell = @"listCell";
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [SVProgressHUD show];
     [httpManager requestWithPath:reportUrlStr method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        [SVProgressHUD dismiss];
         NSDictionary *dic = (NSDictionary *)responseObject;
         if ([dic[@"code"] isEqualToString:@"0"]) {
             
@@ -104,7 +105,7 @@ static NSString* listCell = @"listCell";
             [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
         }
         sender.enabled = true;
-        [SVProgressHUD dismiss];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [SVProgressHUD dismiss];
         sender.enabled = true;
@@ -148,6 +149,20 @@ static NSString* listCell = @"listCell";
         //        storeTableView.layer.borderColor = [UIColor colorWithHexString:@"373a41"].CGColor;
         [self setBorderWithView:storeTableView top:true left:true bottom:true right:true borderColor:[UIColor colorWithHexString:@"373a41"] borderWidth:5];
         _storeTableView = storeTableView;
+        storeTableView.tableHeaderView = [self setSearchBar];
+        storeTableView.tableFooterView = [self setFooterView];
+        __weak typeof(self) weakSelf = self;
+        //下拉刷新
+        self.storeTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            // 进入刷新状态后会自动调用这个block
+            [weakSelf refreshHeader];
+            
+        }];
+        //上拉加载
+        self.storeTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            //Call this Block When enter the refresh status automatically
+            [weakSelf refreshFooter];
+        }];
     }
     return _storeTableView;
 }
@@ -157,7 +172,55 @@ static NSString* listCell = @"listCell";
     }
     return _selectedThingsArr;
 }
-
+//添加搜索栏
+- (UITextField *)setSearchBar{
+    //输入框
+    UITextField *searchField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, kScreenW - 60, 35)];
+    searchField.delegate = self;
+    self.searchField = searchField;
+    searchField.clearButtonMode = UITextFieldViewModeAlways;//删除内容的❎
+    [searchField setBackgroundColor:[UIColor colorWithHexString:@"#f2f2f2"]];
+    //输入框左侧放大镜
+    UIImage *image = [UIImage imageNamed:@"assestManage_search"];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+    [imageView sizeToFit];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, imageView.frame.size.width+5, imageView.frame.size.height)];
+    [view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(5);
+        make.top.right.bottom.offset(0);
+    }];
+    searchField.leftView = view;
+    searchField.placeholder = @"请输入资产名称";
+    [searchField setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+    searchField.returnKeyType = UIReturnKeySearch;
+    searchField.rightViewMode = UITextFieldViewModeAlways;
+    [searchField.layer setMasksToBounds:YES];
+    [searchField.layer setCornerRadius:8.0]; //设置矩形四个圆角半径
+    //边框宽度
+    [searchField.layer setBorderWidth:0.8];
+    searchField.layer.borderColor=[UIColor colorWithHexString:@"#f3f3f3"].CGColor;
+    return searchField;
+}
+//添加搜索列表的尾部view
+-(UIView *)setFooterView{
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW-60, 70)];
+    footerView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
+    //确定button
+    UIButton *confirmBtn = [[UIButton alloc]init];
+    confirmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [confirmBtn setBackgroundColor:[UIColor colorWithHexString:@"23b880"]];
+    [confirmBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+    [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [footerView addSubview:confirmBtn];
+    [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.offset(0);
+        make.width.offset(80);
+        make.height.offset(40);
+    }];
+    [confirmBtn addTarget:self action:@selector(confirmBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    return footerView;
+}
 #pragma mark - UITableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (tableView == self.tableView) {
@@ -197,6 +260,9 @@ static NSString* listCell = @"listCell";
             LaunchFormTVCell *cell = [tableView dequeueReusableCellWithIdentifier:listCell forIndexPath:indexPath];
             storeThingsModel *model = self.selectedThingsArr[indexPath.row];
             cell.selectedThingsModel = model;
+            cell.contentField.tag = [model.info_id integerValue] + 50;//为了标记textfield查找对应cell的数据model
+            cell.contentField.delegate = self;
+            cell.contentField.keyboardType = UIKeyboardTypeNumberPad;
             
             return cell;
         }
@@ -207,6 +273,7 @@ static NSString* listCell = @"listCell";
         //block传递选中领用结果
         __weak typeof(self) weakSelf = self;
         cell.ifSelectedBlock = ^(storeThingsModel *selModel, BOOL btnSelected) {
+            selModel.isSelected = btnSelected;//赋值是否处于选中状态给数据，以便tableview刷新时候状态保留
             if (btnSelected) {//选中
                 if (weakSelf.selectedThingsArr.count == 0){
                     [weakSelf.selectedThingsArr addObject:selModel];
@@ -287,7 +354,7 @@ static NSString* listCell = @"listCell";
         UIButton *delBtn = [[UIButton alloc]init];
         delBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [delBtn setTitleColor:[UIColor colorWithHexString:@"30a2d4"] forState:UIControlStateNormal];
-        [delBtn setTitle:@"增加/删除" forState:UIControlStateNormal];
+        [delBtn setTitle:@"增加" forState:UIControlStateNormal];
         [headerView addSubview:delBtn];
         [delBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.offset(0);
@@ -317,8 +384,8 @@ static NSString* listCell = @"listCell";
             make.left.bottom.offset(0);
             make.width.height.offset(35);
         }];
-        //编号label
-        UILabel *departmentLabel = [UILabel labelWithText:@"编号" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+        //数量label
+        UILabel *departmentLabel = [UILabel labelWithText:@"数量" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
         departmentLabel.backgroundColor = [UIColor whiteColor];
         departmentLabel.textAlignment = NSTextAlignmentCenter;
         [headerView addSubview:departmentLabel];
@@ -368,8 +435,8 @@ static NSString* listCell = @"listCell";
             make.top.left.bottom.offset(0);
             make.width.offset(35);
         }];
-        //编号label
-        UILabel *departmentLabel = [UILabel labelWithText:@"编号" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+        //数量label
+        UILabel *departmentLabel = [UILabel labelWithText:@"数量" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
         departmentLabel.backgroundColor = [UIColor whiteColor];
         departmentLabel.textAlignment = NSTextAlignmentCenter;
         [headerView addSubview:departmentLabel];
@@ -411,34 +478,37 @@ static NSString* listCell = @"listCell";
         
     }
 }
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (tableView == self.tableView) {
-        return nil;
-    }
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW-60, 70)];
-    headerView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-    //确定button
-    UIButton *confirmBtn = [[UIButton alloc]init];
-    confirmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [confirmBtn setBackgroundColor:[UIColor colorWithHexString:@"23b880"]];
-    [confirmBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
-    [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [headerView addSubview:confirmBtn];
-    [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.offset(0);
-        make.width.offset(80);
-        make.height.offset(40);
-    }];
-    [confirmBtn addTarget:self action:@selector(confirmBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    return headerView;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (tableView == self.tableView) {
-        return 0;
-    }else{
-        return 70;
+        //只要实现这个方法，就实现了默认滑动删除！！！！！
+        if (editingStyle == UITableViewCellEditingStyleDelete)
+        {
+            storeThingsModel *delModel = [self.selectedThingsArr objectAtIndex:indexPath.row];//删除的数据model(必须放在删除前，否侧不是对应的数据)
+            // 删除数据
+            [self.selectedThingsArr removeObjectAtIndex:indexPath.row];
+            NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:1];
+            [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+            if (self.storeThingsArr.count > 0) {//去除搜索列表的选中效果
+                [self.storeThingsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    storeThingsModel *model = obj;
+                    if (delModel.info_id == model.info_id) {
+                        model.isSelected = false;//修改删除的对应数据的选中状态
+                        LaunchFormTVCell *cell = [self.storeTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];//找到搜索列表对应cell
+                        cell.selBtn.selected = NO;
+                        cell.selView.backgroundColor = [UIColor whiteColor];
+                    }
+                }];
+            }
+        }
     }
 }
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
 //给view添加不同位置的边框
 - (void)setBorderWithView:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width
 {
@@ -468,9 +538,11 @@ static NSString* listCell = @"listCell";
     }
 }
 #pragma mark - btnClick
-//增加/删除按钮点击事件
+//增加按钮点击事件
 -(void)increaseBtnClick:(UIButton*)sender{
-    [self requestmStoreThingsList];
+    self.storeTableView.hidden = false;
+    self.backView.hidden = false;
+//    [self requestmStoreThingsList];
 }
 ////删除按钮点击事件
 //-(void)delBtnClick:(UIButton*)sender{
@@ -484,10 +556,46 @@ static NSString* listCell = @"listCell";
     NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:1];
     [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+#pragma mark - textFieldDelegate
 //设置列表行为不可编辑
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == self.searchField) {//searchBar
+        [self requestmStoreThingsListWith:textField.text];
+    }
     return [textField resignFirstResponder];
 }
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{//输入文字时 一直监听
+    
+    if (textField != self.searchField&&textField.text.length == 0 && [string isEqualToString:@"0"]) {
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{//返回BOOL值，指定是否允许文本字段结束编辑，当编辑结束，文本字段会让出第一响应者
+    //    if (textField != self.searchField) {
+    if ([textField.text integerValue] > 0) {//领用数量必须大于0
+        
+        NSInteger modelId = textField.tag - 50;
+        if (self.selectedThingsArr.count > 0) {
+            [self.selectedThingsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                storeThingsModel *model = obj;
+                if (modelId == [model.info_id integerValue]) {
+                    model.num = textField.text;//记录每次编辑的数字，方便刷新之后还是之前的数字
+                }
+            }];
+            
+        }
+    }
+    return YES;
+}
+-(BOOL)textFieldShouldClear:(UITextField *)textField{
+    //    [self.tableView reloadData];//在清除搜索框内容时候显示搜索记录
+    return true;
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
 }
@@ -496,44 +604,188 @@ static NSString* listCell = @"listCell";
 {
     self.backView.hidden = true;
     self.storeTableView.hidden = true;
+    [self.searchField resignFirstResponder];
 }
 #pragma mark -request
 /**
  *  请求名下可用物品列表
  */
-- (void)requestmStoreThingsList
+//- (void)requestmStoreThingsList
+//{
+//    [SVProgressHUD show];// 动画开始
+//
+//    HttpClient *httpManager = [HttpClient defaultClient];
+//    [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
+//    [SVProgressHUD show];
+//    [httpManager requestWithPath:mHaveThingsList method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//
+//        NSDictionary *dic = (NSDictionary *)responseObject;
+//        if ([dic[@"code"] isEqualToString:@"0"]) {
+//            NSArray *listArr = dic[@"rows"];
+//            NSMutableArray *mArr = [NSMutableArray array];
+//            for (NSDictionary *dic in listArr) {
+//                storeThingsModel *infoModel = [storeThingsModel mj_objectWithKeyValues:dic];
+//                [mArr addObject:infoModel];
+//            }
+//            self.storeThingsArr = mArr;
+//            [self.storeTableView reloadData];
+//            self.storeTableView.hidden = false;
+//            self.backView.hidden = false;
+//
+//
+//        }else if ([dic[@"code"] isEqualToString:@"-1"]){
+//            [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
+//        }
+//        [SVProgressHUD dismiss];
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        [SVProgressHUD dismiss];
+//        return ;
+//    }];
+//}
+- (void)requestmStoreThingsListWith:(NSString*)searchName
 {
     [SVProgressHUD show];// 动画开始
     
     HttpClient *httpManager = [HttpClient defaultClient];
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [SVProgressHUD show];
-    [httpManager requestWithPath:mHaveThingsList method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+    //把搜索中文转义
+    searchName = [searchName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //    http://192.168.1.168:8085/mobileapi/asset/fpRecipients.do?name=搜索内容
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=0&limit=6",mStoreReturnThingsList,searchName];
+    [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];
         NSDictionary *dic = (NSDictionary *)responseObject;
         if ([dic[@"code"] isEqualToString:@"0"]) {
             NSArray *listArr = dic[@"rows"];
             NSMutableArray *mArr = [NSMutableArray array];
             for (NSDictionary *dic in listArr) {
                 storeThingsModel *infoModel = [storeThingsModel mj_objectWithKeyValues:dic];
+                infoModel.isSelected = false;//一开始请求回来数据是非选中状态
                 [mArr addObject:infoModel];
             }
             self.storeThingsArr = mArr;
-            [self.storeTableView reloadData];
-            self.storeTableView.hidden = false;
-            self.backView.hidden = false;
+            if (self.storeThingsArr.count>0) {
+                start = self.storeThingsArr.count;
+            }
             
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                [self.searchField resignFirstResponder];
+                [self.storeTableView reloadData];
+                [self.storeTableView.mj_header endRefreshing];
+                if (start < 6) {//没有更多数据了
+                    [self.storeTableView.mj_footer endRefreshingWithNoMoreData];
+                }else{//有更多数据
+                    self.storeTableView.mj_footer.state = MJRefreshStateIdle;//改变footer的状态为初始化
+                }
+                
+            });
             
         }else if ([dic[@"code"] isEqualToString:@"-1"]){
             [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
         }
-        [SVProgressHUD dismiss];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [SVProgressHUD dismiss];
         return ;
     }];
 }
-
+//下拉刷新
+-(void)refreshHeader{
+    [SVProgressHUD show];// 动画开始
+    __weak typeof(self) weakSelf = self;
+    HttpClient *httpManager = [HttpClient defaultClient];
+    [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
+    [SVProgressHUD show];
+    //    http://192.168.1.168:8085/mobileapi/asset/fpRecipients.do?name=搜索内容
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=0&limit=6",mStoreReturnThingsList,self.searchField.text];
+    //把搜索中文转义
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        if ([dic[@"code"] isEqualToString:@"0"]) {
+            NSArray *listArr = dic[@"rows"];
+            NSMutableArray *mArr = [NSMutableArray array];
+            for (NSDictionary *dic in listArr) {
+                storeThingsModel *infoModel = [storeThingsModel mj_objectWithKeyValues:dic];
+                infoModel.isSelected = false;//一开始请求回来数据是非选中状态
+                [mArr addObject:infoModel];
+            }
+            weakSelf.storeThingsArr = mArr;
+            if (weakSelf.storeThingsArr.count>0) {
+                start = weakSelf.storeThingsArr.count;
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                [weakSelf.searchField resignFirstResponder];
+                [weakSelf.storeTableView reloadData];
+                [weakSelf.storeTableView.mj_header endRefreshing];
+                if (start < 6) {//没有更多数据了
+                    [weakSelf.storeTableView.mj_footer endRefreshingWithNoMoreData];
+                }else{//有更多数据
+                    weakSelf.storeTableView.mj_footer.state = MJRefreshStateIdle;//改变footer的状态为初始化
+                }
+            });
+            
+        }else if ([dic[@"code"] isEqualToString:@"-1"]){
+            [weakSelf.storeTableView.mj_header endRefreshing];
+            [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];
+        return ;
+    }];
+}
+//上拉刷新
+-(void)refreshFooter{
+    [SVProgressHUD show];// 动画开始
+    __weak typeof(self) weakSelf = self;
+    HttpClient *httpManager = [HttpClient defaultClient];
+    [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
+    [SVProgressHUD show];
+    //    http://192.168.1.168:8085/mobileapi/asset/fpRecipients.do?name=搜索内容
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=%ld&limit=6",mStoreReturnThingsList,self.searchField.text,(long)start];
+    //把搜索中文转义
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        if ([dic[@"code"] isEqualToString:@"0"]) {
+            NSArray *listArr = dic[@"rows"];
+            NSMutableArray *mArr = [NSMutableArray array];
+            for (NSDictionary *dic in listArr) {
+                storeThingsModel *infoModel = [storeThingsModel mj_objectWithKeyValues:dic];
+                infoModel.isSelected = false;//一开始请求回来数据是非选中状态
+                [mArr addObject:infoModel];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                if (mArr.count>0) {
+                    [weakSelf.storeThingsArr addObjectsFromArray:mArr];
+                    start = weakSelf.storeThingsArr.count;
+                    
+                    [weakSelf.storeTableView reloadData];
+                    if (start % 6 != 0) {
+                        [weakSelf.storeTableView.mj_footer endRefreshingWithNoMoreData];
+                    }else{
+                        [weakSelf.storeTableView.mj_footer endRefreshing];
+                    }
+                }else{
+                    [weakSelf.storeTableView.mj_footer endRefreshingWithNoMoreData];
+                }
+            });
+            
+        }else if ([dic[@"code"] isEqualToString:@"-1"]){
+            [weakSelf.storeTableView.mj_header endRefreshing];
+            [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];
+        return ;
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

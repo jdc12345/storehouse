@@ -12,6 +12,7 @@
 #import "LaunchGetUseVC.h"
 #import "launchBorrowApplyVC.h"
 #import "LaunchRepairVC.h"
+#import "LaunchOldForNewVC.h"
 #import "LaunchScrapVC.h"
 #import "LaunchRetiringVC.h"
 #import "LaunchSubListVC.h"
@@ -222,14 +223,12 @@
         case 3:
         {
             LaunchRepairVC *launchRepairVC = [[LaunchRepairVC alloc]init];
-            launchRepairVC.applyType = 3;
             [self.navigationController pushViewController:launchRepairVC animated:true];
         }
             break;
         case 4:
         {
-            LaunchRepairVC *launchReplaceVC = [[LaunchRepairVC alloc]init];
-            launchReplaceVC.applyType = 4;
+            LaunchOldForNewVC *launchReplaceVC = [[LaunchOldForNewVC alloc]init];
             [self.navigationController pushViewController:launchReplaceVC animated:true];
         }
             break;
