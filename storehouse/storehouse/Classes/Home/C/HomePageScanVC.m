@@ -244,7 +244,8 @@
 
                     if (intIsUse != 0 && intAssetId != 0) {//已入库
                         //跳转物品详情页面
-                        NSString *info_id = lastDic[@"id"];
+                        NSString *info_id = lastDic[@"assetId"];
+                        
                         AssetDetailVC *vc = [[AssetDetailVC alloc] init];
                         vc.info_id = info_id;
                         [self.navigationController pushViewController:vc animated:YES];
@@ -252,6 +253,7 @@
                         //跳转入库页面
                         AddAssetVC *vc = [[AddAssetVC alloc] init];
                         [self.navigationController pushViewController:vc animated:YES];
+                        vc.barCode = stringValue;
 
                     }
                     

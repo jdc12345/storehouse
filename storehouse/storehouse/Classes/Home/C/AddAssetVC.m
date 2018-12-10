@@ -15,15 +15,21 @@
 #import "AssetCategoryModel.h"
 #import <MJExtension.h>
 #import "CcUserModel.h"
+#import "AssetSaveAddressModel.h"
 
 static NSString* tableCellid = @"table_cell";
 @interface AddAssetVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) NSArray *itemTypeArray;//事项名称
-@property (nonatomic, strong) NSMutableArray *categoryFirstLevelArray;//分类第一级数组
+//@property (nonatomic, strong) NSMutableArray *categoryFirstLevelArray;//分类第一级数组
 @property (nonatomic, strong) NSMutableArray *categorySecondLevelArray;//分类第二级数组
 @property (nonatomic, strong) NSMutableArray *categoryThirdLevelArray;//分类第三级数组
 @property (nonatomic, strong) NSMutableArray *savePersonArray;//保管人列表数组
+@property (nonatomic, strong) NSString *savePersonId;//提交需要参数：保管人id
 @property (nonatomic, strong) NSString *categoryCode;//提交需要参数：类别码
+//@property (nonatomic, strong) NSMutableArray *addressFirstLevelArray;//分类第一级数组
+@property (nonatomic, strong) NSMutableArray *addressSecondLevelArray;//分类第二级数组
+@property (nonatomic, strong) NSMutableArray *addressThirdLevelArray;//分类第二级数组
+@property (nonatomic, strong) NSString *addressCode;//提交需要参数：存放地码
 @end
 
 @implementation AddAssetVC
@@ -36,7 +42,7 @@ static NSString* tableCellid = @"table_cell";
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(addLaunchBtnClick:)];
     [rightButton setTintColor:[UIColor colorWithHexString:@"30a2d4"]];
     self.navigationItem.rightBarButtonItem = rightButton;
-    self.itemTypeArray = [NSArray arrayWithObjects:@"资产类别",@"资产名称",@"保管人",@"型号",@"所在位置",@"资产编号", nil];
+    self.itemTypeArray = [NSArray arrayWithObjects:@"资产类别",@"资产名称",@"保 管 人",@"型    号",@"所在位置",@"资产编号",@"使用年限",@"价    格",@"数    量",@"计量单位",@"备    注", nil];
     self.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     self.tableView.scrollEnabled = false;
@@ -47,6 +53,7 @@ static NSString* tableCellid = @"table_cell";
     [self requestSavePersonList];
     [self requestAddress];
 }
+
 #pragma mark - request
 //资产类别请求
 -(void)requestAssetsCategary{
@@ -69,16 +76,16 @@ static NSString* tableCellid = @"table_cell";
 }
 //保管地点请求
 -(void)requestAddress{
-    NSString *urlStr = [NSString stringWithFormat:@"http://192.168.1.168:8085/mobileapi/saveAddress/findList.do"];
+//    NSString *urlStr = [NSString stringWithFormat:@"http://192.168.1.168:8085/mobileapi/saveAddress/findList.do"];
     HttpClient *client = [HttpClient defaultClient];
     [client.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
-    [client requestWithPath:urlStr method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:mAssetSaveAddressList method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *responseArr = (NSArray*)responseObject;
         for (NSDictionary *dic in responseArr) {//第一级所有类别(指所有类别，不用显示)
-            AssetCategoryModel *infoModel = [AssetCategoryModel mj_objectWithKeyValues:dic];
+            AssetSaveAddressModel *infoModel = [AssetSaveAddressModel mj_objectWithKeyValues:dic];
             for (NSDictionary *secondDic in infoModel.children) {//第二级类别
-                AssetCategoryModel *secondModel = [AssetCategoryModel mj_objectWithKeyValues:secondDic];
-                [self.categorySecondLevelArray addObject:secondModel];
+                AssetSaveAddressModel *secondModel = [AssetSaveAddressModel mj_objectWithKeyValues:secondDic];
+                [self.addressSecondLevelArray addObject:secondModel];
             }
         }
         
@@ -120,64 +127,45 @@ static NSString* tableCellid = @"table_cell";
         [SVProgressHUD showInfoWithStatus:@"请选择保管人"];
         return;
     }
-    LaunchBaseTVCell *cell4 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-    if (cell4.contentField.text.length==0) {
-        [SVProgressHUD showInfoWithStatus:@"请填写物品型号"];
-        return;
-    }
+    LaunchBaseTVCell *cell4 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];//型号(选填)
+
     LaunchBaseTVCell *cell5 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     if (cell5.contentField.text.length==0) {
         [SVProgressHUD showInfoWithStatus:@"请填写物品所在位置"];
         return;
     }
+    LaunchBaseTVCell *cell7 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];//使用年限(选填)
+    LaunchBaseTVCell *cell8 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:7 inSection:0]];//价格(选填)
     
-    
-    
-    LaunchBaseTVCell *cell6 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]];
-    if (cell6.contentField.text.length==0) {
-        [SVProgressHUD showInfoWithStatus:@"请填写你申请的物品采购数量"];
-        return;
-    }
-    LaunchBaseTVCell *cell7 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
-    if (cell7.contentField.text.length==0) {
-        [SVProgressHUD showInfoWithStatus:@"请填写你申请物品的生产厂家"];
-        return;
-    }
-    LaunchBaseTVCell *cell8 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:7 inSection:0]];
-    if (cell8.contentField.text.length==0) {
-        [SVProgressHUD showInfoWithStatus:@"请选择你申请的物品采购类别"];
-        return;
-    }
     LaunchBaseTVCell *cell9 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:8 inSection:0]];
     if (cell9.contentField.text.length==0) {
-        [SVProgressHUD showInfoWithStatus:@"请填写你申请的物品采购理由"];
+        [SVProgressHUD showInfoWithStatus:@"请填写你入库物品数量"];
         return;
     }
-    //    NSString *info_id = [CcUserModel defaultClient].info_id;
-    NSString *departmentCode = cell1.contentField.text;//申请部门
-    NSString *assetName = cell2.contentField.text;//物品名称
-    NSString *specTyp = cell3.contentField.text;//规格型号
-    NSString *unit = cell4.contentField.text;//计量单位
-    NSString *worth = cell5.contentField.text;//预算价格
-    NSString *buyCount = cell6.contentField.text;//采购数量
-    NSString *producerName = cell7.contentField.text;//生产厂家
-    NSString *buyCate;//采购类别
-    if ([cell8.contentField.text isEqualToString:@"计划内"]) {
-        buyCate = @"1";
-    }else{
-        buyCate = @"2";
+    LaunchBaseTVCell *cell10 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:9 inSection:0]];
+    if (cell10.contentField.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写计量单位"];
+        return;
     }
-    NSString *buyReason = cell9.contentField.text;//采购理由
+    LaunchBaseTVCell *cell11 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:10 inSection:0]];//备注(选填)
+
+    NSString *assetName = cell2.contentField.text;//资产名称
+    NSString *specTyp = cell4.contentField.text;//规格型号(选填)
+    NSString *useTimes = cell7.contentField.text;//使用年限(选填)
+    NSString *worth = cell8.contentField.text;//价格(选填)
+    NSString *num = cell9.contentField.text;//数量
+    NSString *unit = cell10.contentField.text;//计量单位
+    NSString *comment = cell11.contentField.text;//备注(选填)
     //http://192.168.1.168:8085/mobileapi/buyApply/save.do?token=9DB2FD6FDD2F116CD47CE6C48B3047EE
     sender.enabled = false;
     [SVProgressHUD show];// 动画开始
-    NSString *reportUrlStr = [NSString stringWithFormat:@"%@/mobileapi/buyApply/save.do?&companyId=1&departmentCode=%@&assetName=%@&specTyp=%@&unit=%@&worth=%@&buyCount=%@&producerName=%@&buyCate=%@&buyReason=%@",mPrefixUrl,departmentCode,assetName,specTyp,unit,worth,buyCount,producerName,buyCate,buyReason];
+    NSString *reportUrlStr = [NSString stringWithFormat:@"%@&categoryCode=%@&assetName=%@&saveUserId=%@&specTyp=%@&addressCode=%@&barcode=%@&useTimes=%@&worth=%@&num=%@&unit=%@&comment=%@",mAssetSaveForStoreRequest,self.categoryCode,assetName,self.savePersonId,specTyp,self.addressCode,self.barCode,useTimes,worth,num,unit,comment];
     reportUrlStr = [reportUrlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     HttpClient *httpManager = [HttpClient defaultClient];
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [SVProgressHUD show];
     [httpManager requestWithPath:reportUrlStr method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        [SVProgressHUD dismiss];
         NSDictionary *dic = (NSDictionary *)responseObject;
         if ([dic[@"code"] isEqualToString:@"0"]) {
             
@@ -186,7 +174,6 @@ static NSString* tableCellid = @"table_cell";
             [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
         }
         sender.enabled = true;
-        [SVProgressHUD dismiss];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [SVProgressHUD dismiss];
         sender.enabled = true;
@@ -205,11 +192,25 @@ static NSString* tableCellid = @"table_cell";
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LaunchBaseTVCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellid forIndexPath:indexPath];
-    if ( indexPath.row == 0 || indexPath.row == 2) {
+    if ( indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 || indexPath.row == 9) {
         cell.listButton.hidden = false;
         cell.listButton.tag = 100+indexPath.row;
         [cell.listButton addTarget:self action:@selector(listButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         cell.contentField.tag = 50+indexPath.row;
+    }
+    if ( indexPath.row == 3){
+        cell.contentField.placeholder = @"选填(单位元)";
+    }if ( indexPath.row == 5){
+        cell.contentField.text = self.barCode;
+    }
+    if ( indexPath.row == 6){
+       cell.contentField.placeholder = @"选填(单位年)";
+    }
+    if ( indexPath.row == 7 || indexPath.row == 10) {
+        cell.contentField.placeholder = @"选填";
+    }
+    if ( indexPath.row == 8){
+        cell.contentField.keyboardType = UIKeyboardTypeNumberPad;
     }
     cell.contentField.delegate = self;
     cell.itemLabel.text = self.itemTypeArray[indexPath.row];
@@ -225,7 +226,7 @@ static NSString* tableCellid = @"table_cell";
     LaunchBaseTVCell *curruntCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(sender.tag-100) inSection:0]];
     if (sender.tag == 100){//资产类别
         if (self.categorySecondLevelArray.count == 0) {
-            [SVProgressHUD showInfoWithStatus:@"请重试"];
+            [SVProgressHUD showInfoWithStatus:@"请重新进入该页面"];
             return;
         }
         NSMutableArray *secondTitleArr = [NSMutableArray array];//第二级标题数组
@@ -237,7 +238,7 @@ static NSString* tableCellid = @"table_cell";
         menuView.zwPullMenuStyle = PullMenuLightStyle;
         __weak typeof(menuView) weakMenuView = menuView;
         menuView.blockSelectedMenu = ^(NSInteger menuRow) {
-            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
+//            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
             AssetCategoryModel *secModel = self.categorySecondLevelArray[menuRow];
             if (secModel.children.count > 0) {//有三级选项
                 [self.categoryThirdLevelArray removeAllObjects];
@@ -250,7 +251,7 @@ static NSString* tableCellid = @"table_cell";
                 secondMenuView.zwPullMenuStyle = PullMenuLightStyle;
                 __weak typeof(secondMenuView) weakSecondMenuView = secondMenuView;
                 weakSecondMenuView.blockSelectedMenu = ^(NSInteger menuRow) {
-                    NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
+//                    NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
                     curruntCell.contentField.text = weakSecondMenuView.titleArray[menuRow];
                     AssetCategoryModel *model = self.categoryThirdLevelArray[menuRow];
                     self.categoryCode = model.treeCode;
@@ -261,7 +262,53 @@ static NSString* tableCellid = @"table_cell";
                 self.categoryCode = secModel.treeCode;
             }
         };
-    }else{//保管人列表
+    }else if (sender.tag == 104){//资产存放地
+        if (self.addressSecondLevelArray.count == 0) {
+            [SVProgressHUD showInfoWithStatus:@"请重新进入该页面"];
+            return;
+        }
+        NSMutableArray *secondTitleArr = [NSMutableArray array];//第二级标题数组
+        NSMutableArray *thirdTitleArr = [NSMutableArray array];//第三级标题数组
+        for (AssetSaveAddressModel *model in self.addressSecondLevelArray) {
+            [secondTitleArr addObject:model.text];
+        }
+        ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:sender titleArray:secondTitleArr];
+        menuView.zwPullMenuStyle = PullMenuLightStyle;
+        __weak typeof(menuView) weakMenuView = menuView;
+        menuView.blockSelectedMenu = ^(NSInteger menuRow) {
+            //            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
+            AssetSaveAddressModel *secModel = self.addressSecondLevelArray[menuRow];
+            if (secModel.children.count > 0) {//有三级选项(第一级没显示)
+                [self.addressThirdLevelArray removeAllObjects];
+                for (NSDictionary *thirdDic in secModel.children) {
+                    AssetSaveAddressModel *thirdModel = [AssetSaveAddressModel mj_objectWithKeyValues:thirdDic];
+                    [self.categoryThirdLevelArray addObject:thirdModel];//点击的第二级数据行对应的第三级数据源
+                    [thirdTitleArr addObject:thirdModel.text];//点击的第二级数据行对应的第三级标题数据源
+                }
+                ZWPullMenuView *secondMenuView = [ZWPullMenuView pullMenuAnchorView:sender titleArray:thirdTitleArr];
+                secondMenuView.zwPullMenuStyle = PullMenuLightStyle;
+                __weak typeof(secondMenuView) weakSecondMenuView = secondMenuView;
+                weakSecondMenuView.blockSelectedMenu = ^(NSInteger menuRow) {
+//                    NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
+                    curruntCell.contentField.text = weakSecondMenuView.titleArray[menuRow];
+                    AssetSaveAddressModel *model = self.categoryThirdLevelArray[menuRow];
+                    self.addressCode = model.treeCode;
+                };
+            }else {//没有三级选项
+                
+                curruntCell.contentField.text = weakMenuView.titleArray[menuRow];
+                self.addressCode = secModel.treeCode;
+            }
+        };
+    }else if(sender.tag == 109){//计量单位
+        ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:sender titleArray:@[@"台",@"个",@"箱",@"支",@"袋",@"条"]];
+        menuView.zwPullMenuStyle = PullMenuLightStyle;
+        __weak typeof(menuView) weakMenuView = menuView;
+        menuView.blockSelectedMenu = ^(NSInteger menuRow) {
+//            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
+            curruntCell.contentField.text = weakMenuView.titleArray[menuRow];
+        };
+    } else{//保管人列表
         NSMutableArray *titleArr = [NSMutableArray array];//标题数组
         for (CcUserModel *model in self.savePersonArray) {
             [titleArr addObject:model.trueName];
@@ -270,15 +317,17 @@ static NSString* tableCellid = @"table_cell";
         menuView.zwPullMenuStyle = PullMenuLightStyle;
         __weak typeof(menuView) weakMenuView = menuView;
         menuView.blockSelectedMenu = ^(NSInteger menuRow) {
-            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
+//            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
             curruntCell.contentField.text = weakMenuView.titleArray[menuRow];
+            CcUserModel *infoModel = self.savePersonArray[menuRow];
+            self.savePersonId = infoModel.info_id;
         };
     }
     
 }
 //设置列表行为不可编辑
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if (textField.tag == 50 || textField.tag == 52) {
+    if (textField.tag == 50 || textField.tag == 52 || textField.tag == 54) {
             return false;
     }
     return true;
@@ -290,12 +339,7 @@ static NSString* tableCellid = @"table_cell";
     [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
 }
 #pragma mark -懒加载
--(NSMutableArray *)categoryFirstLevelArray{
-    if (_categoryFirstLevelArray == nil) {
-        _categoryFirstLevelArray = [NSMutableArray array];
-    }
-    return _categoryFirstLevelArray;
-}
+
 -(NSMutableArray *)categorySecondLevelArray{
     if (_categorySecondLevelArray == nil) {
         _categorySecondLevelArray = [NSMutableArray array];
@@ -307,6 +351,19 @@ static NSString* tableCellid = @"table_cell";
         _categoryThirdLevelArray = [NSMutableArray array];
     }
     return _categoryThirdLevelArray;
+}
+
+-(NSMutableArray *)addressSecondLevelArray{
+    if (_addressSecondLevelArray == nil) {
+        _addressSecondLevelArray = [NSMutableArray array];
+    }
+    return _addressSecondLevelArray;
+}
+-(NSMutableArray *)addressThirdLevelArray{
+    if (_addressThirdLevelArray == nil) {
+        _addressThirdLevelArray = [NSMutableArray array];
+    }
+    return _addressThirdLevelArray;
 }
 -(NSMutableArray *)savePersonArray{
     if (_savePersonArray == nil) {

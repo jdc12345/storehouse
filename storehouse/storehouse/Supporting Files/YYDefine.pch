@@ -52,11 +52,16 @@
 #define mAssrtsCategoryResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/category/listAllTree.do"]
 // 资产保管人
 #define mAssetSavePersonList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/user/saveList.do"]
-
+// 资产存放地
+#define mAssetSaveAddressList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/saveAddress/listAllTree.do"]
+// 资产入库请求
+#define mAssetSaveForStoreRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/save.do?"]
 //资产管理》资产列表分页查询接口
 #define mSearchResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/findPage.do?"]
 // 分页查询通知接口
 #define mNoticeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/findPage.do?"]
+// 分页查询历史盘点接口
+#define mInventoryList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/findPage.do?"]
 // 库房可领用物品列表数据
 #define mStoreThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpRecipients.do?"]
 // 借用申请库房可借用物品列表数据

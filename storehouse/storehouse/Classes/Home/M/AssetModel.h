@@ -71,6 +71,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *barcode;//资产编码
 @property (nonatomic, strong) NSString *categoryName;//资产类别
 @property (nonatomic, strong) NSString *assetType;//资产型号
+@property (nonatomic, copy) NSString* useTimes;//使用年限
+@property (nonatomic, strong) NSString *worth;//资产原值，资产价格
+@property (nonatomic, strong) NSString *num;//资产数量
+@property (nonatomic, strong) NSString *unit;//计量单位
+@property (nonatomic, strong) NSString *comment;//资产备注（200字以内）
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -77,10 +77,16 @@ static NSString* tableCellid = @"table_cell";
     [client.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [client requestWithPath:urlString method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [SVProgressHUD dismiss];
-        NSDictionary *responseDic = (NSDictionary*)responseObject;
+        if ([responseObject[@"code"]  isEqualToString:@"0"]) {
+
+        NSDictionary *responseDic = (NSDictionary*)responseObject[@"message"];
         AssetModel *infoModel = [AssetModel mj_objectWithKeyValues:responseDic];
         self.assetModel = infoModel;
 //        [self.tableView reloadData];
+            
+        }else if ([responseObject[@"code"] isEqualToString:@"-1"]){
+            [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
+        }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [SVProgressHUD dismiss];
@@ -125,7 +131,22 @@ static NSString* tableCellid = @"table_cell";
         case 5:
             cell.itemContentLabel.text = self.assetModel.barcode;
             break;
-            
+        case 6:
+            cell.itemContentLabel.text = self.assetModel.useTimes;
+            break;
+        case 7:
+            cell.itemContentLabel.text = self.assetModel.worth;
+            break;
+        case 8:
+            cell.itemContentLabel.text = self.assetModel.num;
+            break;
+        case 9:
+            cell.itemContentLabel.text = self.assetModel.unit;
+            break;
+        case 10:
+            cell.itemContentLabel.text = self.assetModel.comment;
+            break;
+                    
         default:
             break;
     }

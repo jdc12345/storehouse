@@ -63,6 +63,18 @@
 		161D6EE32154F9F40040313F /* BuyApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */; };
 		161D6EE42154F9F40040313F /* BuyApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */; };
 		161D727221AE3D1900F04C21 /* LaunchOldForNewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D727121AE3D1900F04C21 /* LaunchOldForNewVC.m */; };
+		161D727F21BE6D7000F04C21 /* HomePageInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D727E21BE6D7000F04C21 /* HomePageInventoryVC.m */; };
+		161D728021BE6D7000F04C21 /* HomePageInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D727E21BE6D7000F04C21 /* HomePageInventoryVC.m */; };
+		161D728121BE6D7000F04C21 /* HomePageInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D727E21BE6D7000F04C21 /* HomePageInventoryVC.m */; };
+		161D728421BE857800F04C21 /* HistoryInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728321BE857800F04C21 /* HistoryInventoryVC.m */; };
+		161D728521BE857800F04C21 /* HistoryInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728321BE857800F04C21 /* HistoryInventoryVC.m */; };
+		161D728621BE857800F04C21 /* HistoryInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728321BE857800F04C21 /* HistoryInventoryVC.m */; };
+		161D728921BE881000F04C21 /* HistoryInventoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728821BE881000F04C21 /* HistoryInventoryTVCell.m */; };
+		161D728A21BE881000F04C21 /* HistoryInventoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728821BE881000F04C21 /* HistoryInventoryTVCell.m */; };
+		161D728B21BE881000F04C21 /* HistoryInventoryTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728821BE881000F04C21 /* HistoryInventoryTVCell.m */; };
+		161D728E21BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */; };
+		161D728F21BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */; };
+		161D729021BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */; };
 		161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
@@ -294,6 +306,14 @@
 		161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyApplyDetailModel.m; sourceTree = "<group>"; };
 		161D727021AE3D1900F04C21 /* LaunchOldForNewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchOldForNewVC.h; sourceTree = "<group>"; };
 		161D727121AE3D1900F04C21 /* LaunchOldForNewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchOldForNewVC.m; sourceTree = "<group>"; };
+		161D727D21BE6D7000F04C21 /* HomePageInventoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageInventoryVC.h; sourceTree = "<group>"; };
+		161D727E21BE6D7000F04C21 /* HomePageInventoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageInventoryVC.m; sourceTree = "<group>"; };
+		161D728221BE857800F04C21 /* HistoryInventoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryInventoryVC.h; sourceTree = "<group>"; };
+		161D728321BE857800F04C21 /* HistoryInventoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryInventoryVC.m; sourceTree = "<group>"; };
+		161D728721BE881000F04C21 /* HistoryInventoryTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryInventoryTVCell.h; sourceTree = "<group>"; };
+		161D728821BE881000F04C21 /* HistoryInventoryTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryInventoryTVCell.m; sourceTree = "<group>"; };
+		161D728C21BE88B000F04C21 /* HistoryInventoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryInventoryListModel.h; sourceTree = "<group>"; };
+		161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryInventoryListModel.m; sourceTree = "<group>"; };
 		161E57D720CF77A6006B57B2 /* CPXCommonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXCommonLabel.h; sourceTree = "<group>"; };
 		161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPXCommonLabel.m; sourceTree = "<group>"; };
 		161E57DC20CFA278006B57B2 /* LaunchMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchMainHeaderView.h; sourceTree = "<group>"; };
@@ -549,6 +569,8 @@
 				162DE4B921A42A36007E68C2 /* HomePageNoticeModel.m */,
 				162DE4C721A51347007E68C2 /* AssetSaveAddressModel.h */,
 				162DE4C821A51347007E68C2 /* AssetSaveAddressModel.m */,
+				161D728C21BE88B000F04C21 /* HistoryInventoryListModel.h */,
+				161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -566,6 +588,8 @@
 				162DE4A021A16B81007E68C2 /* AssetsManageTVCell.m */,
 				162DE4C221A43340007E68C2 /* PostNoticeTVCell.h */,
 				162DE4C321A43340007E68C2 /* PostNoticeTVCell.m */,
+				161D728721BE881000F04C21 /* HistoryInventoryTVCell.h */,
+				161D728821BE881000F04C21 /* HistoryInventoryTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -585,6 +609,10 @@
 				162DE4AF21A3F395007E68C2 /* AddAssetVC.m */,
 				162DE4BD21A42E62007E68C2 /* PostNoticeVC.h */,
 				162DE4BE21A42E62007E68C2 /* PostNoticeVC.m */,
+				161D727D21BE6D7000F04C21 /* HomePageInventoryVC.h */,
+				161D727E21BE6D7000F04C21 /* HomePageInventoryVC.m */,
+				161D728221BE857800F04C21 /* HistoryInventoryVC.h */,
+				161D728321BE857800F04C21 /* HistoryInventoryVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1107,6 +1135,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				168728232111933C004E9250 /* LaunchRepairVC.m in Sources */,
+				161D728921BE881000F04C21 /* HistoryInventoryTVCell.m in Sources */,
+				161D728421BE857800F04C21 /* HistoryInventoryVC.m in Sources */,
 				161D6ED8214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
 				161D6EE22154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				1687283E21143738004E9250 /* BaseViewController.m in Sources */,
@@ -1158,6 +1188,7 @@
 				162DE4B521A4111C007E68C2 /* AssetCategoryModel.m in Sources */,
 				161D6EC621468F2D0040313F /* NSObject+Formula.m in Sources */,
 				161D6E85213FEA0F0040313F /* storeThingsModel.m in Sources */,
+				161D728E21BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */,
 				16872828211196CA004E9250 /* LaunchScrapVC.m in Sources */,
 				161D6E8F214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				1687281E21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
@@ -1167,6 +1198,7 @@
 				16AD808D20BECB9D005F99BC /* MineVC.m in Sources */,
 				161D6E9F21428F4D0040313F /* WeekDateCell.m in Sources */,
 				162DE4A621A2C3DC007E68C2 /* AssetModel.m in Sources */,
+				161D727F21BE6D7000F04C21 /* HomePageInventoryVC.m in Sources */,
 				1654F3132105C81A007EF7B0 /* LaunchPurchaseVC.m in Sources */,
 				16AD807920BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				1654F3102105BA60007EF7B0 /* LaunchBaseVC.m in Sources */,
@@ -1184,8 +1216,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				161D728521BE857800F04C21 /* HistoryInventoryVC.m in Sources */,
 				162E473C20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
 				166EBFC2215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */,
+				161D728F21BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */,
 				161D6EDE2153957C0040313F /* ApplyDetailTVCell.m in Sources */,
 				162DE4C521A43340007E68C2 /* PostNoticeTVCell.m in Sources */,
 				16AD805620BEC9AC005F99BC /* HttpClient.m in Sources */,
@@ -1241,6 +1275,8 @@
 				1654F3172105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808420BECB40005F99BC /* ApplyVC.m in Sources */,
 				16450F5F211C395B00567BC4 /* UIView+Utils.m in Sources */,
+				161D728021BE6D7000F04C21 /* HomePageInventoryVC.m in Sources */,
+				161D728A21BE881000F04C21 /* HistoryInventoryTVCell.m in Sources */,
 				162DE4A221A16B81007E68C2 /* AssetsManageTVCell.m in Sources */,
 				16450F6E21242B4C00567BC4 /* LaunchTypeTVCell.m in Sources */,
 				1654F32821070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
@@ -1258,8 +1294,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				161D728621BE857800F04C21 /* HistoryInventoryVC.m in Sources */,
 				162E473D20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
 				166EBFC3215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */,
+				161D729021BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */,
 				161D6EDF2153957C0040313F /* ApplyDetailTVCell.m in Sources */,
 				162DE4C621A43340007E68C2 /* PostNoticeTVCell.m in Sources */,
 				16AD805720BEC9AC005F99BC /* HttpClient.m in Sources */,
@@ -1315,6 +1353,8 @@
 				1654F3182105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808520BECB40005F99BC /* ApplyVC.m in Sources */,
 				16450F60211C395B00567BC4 /* UIView+Utils.m in Sources */,
+				161D728121BE6D7000F04C21 /* HomePageInventoryVC.m in Sources */,
+				161D728B21BE881000F04C21 /* HistoryInventoryTVCell.m in Sources */,
 				162DE4A321A16B81007E68C2 /* AssetsManageTVCell.m in Sources */,
 				16450F6F21242B4C00567BC4 /* LaunchTypeTVCell.m in Sources */,
 				1654F32921070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
