@@ -62,6 +62,12 @@
 #define mNoticeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/findPage.do?"]
 // 分页查询历史盘点接口
 #define mInventoryList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/findPage.do?"]
+// 根据 ID 获取资产盘点信息接口
+#define mInventoryDetailRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/get.do?"]
+//执行盘点操作,扫码盘点，手工盘点接口
+#define mInventoryScanConfirmRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventoryItem/doInventory.do?"]
+//执行盘点结案接口
+#define mInventoryOverRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/doClose.do?"]
 // 库房可领用物品列表数据
 #define mStoreThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpRecipients.do?"]
 // 借用申请库房可借用物品列表数据

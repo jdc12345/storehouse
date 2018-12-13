@@ -30,7 +30,16 @@
 }
 -(void)setModel:(HistoryInventoryListModel *)model{
     _model = model;
-    
+    self.departmentLabel.text = model.subject;
+    self.typeLabel.text = model.info_description;
+    self.timeLabel.text = model.beginDateString;
+    if (model.closedDateString.length > 0) {
+        self.stateLabel.text = @"已结案";
+        self.stateLabel.textColor = [UIColor colorWithHexString:@"dc8268"];
+    }else{
+        self.stateLabel.text = @"进行中";
+        self.stateLabel.textColor = [UIColor greenColor];
+    }
 }
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;//取消选中效果
@@ -50,8 +59,8 @@
         make.size.offset(50);
     }];
     self.iconView = iconView;
-    //审批人/部门label
-    UILabel *departmentLabel = [UILabel labelWithText:@"待审批人：" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+    //盘点主题label
+    UILabel *departmentLabel = [UILabel labelWithText:@"盘点主题：" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
     [backView addSubview:departmentLabel];
     [departmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(22);
@@ -66,8 +75,8 @@
     //        make.left.equalTo(departmentLabel.mas_right).offset(20);
     //    }];
     //    self.nameLabel = nameLabel;
-    //类型label
-    UILabel *typeLabel = [UILabel labelWithText:@"领用申请" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+    //内容label
+    UILabel *typeLabel = [UILabel labelWithText:@"内容label" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
     [backView addSubview:typeLabel];
     [typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(departmentLabel);
@@ -83,7 +92,7 @@
     }];
     self.timeLabel = timeLabel;
     //状态label
-    UILabel *stateLabel = [UILabel labelWithText:@"审批状态" andTextColor:[UIColor colorWithHexString:@"dc8268"] andFontSize:9];
+    UILabel *stateLabel = [UILabel labelWithText:@"状态" andTextColor:[UIColor colorWithHexString:@"dc8268"] andFontSize:12];
     [backView addSubview:stateLabel];
     [stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.offset(0);

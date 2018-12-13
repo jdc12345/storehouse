@@ -31,6 +31,8 @@ static NSInteger apedStart = 0;
 //子控制器
 @property(weak, nonatomic)willApproveVC *willApVC;
 @property(weak, nonatomic)willApproveVC *apedVC;
+@property(nonatomic, assign)float offSet;//记录偏移量
+@property(nonatomic, assign)int pageNum;//记录跳转时候页面
 @end
 
 @implementation AssetsVC
@@ -255,6 +257,11 @@ static NSInteger apedStart = 0;
 -(void)transForPushDetailWithCell:(ApproveListModel *)model{
     PurchasePepairReplaceScrapVC *detailVc = [[PurchasePepairReplaceScrapVC alloc]init];
     detailVc.model = model;
+    if (self.offSet > kScreenW*.5) {
+        self.pageNum = 2;
+    }else{
+        self.pageNum = 1;
+    }
     [self.navigationController pushViewController:detailVc animated:true];
 }
 //
@@ -403,9 +410,10 @@ static NSInteger apedStart = 0;
     //获取偏移量
     CGFloat offSetX = self.cardDetailView.contentOffset.x;
     NSLog(@"%f",offSetX);
+    self.offSet = offSetX;
     //滑动改变相应btn'的文字颜色
-    UIButton *hotBtn = self.cardCategoryButtons[0];
-    UIButton *selectBtn = self.cardCategoryButtons[1];
+//    UIButton *hotBtn = self.cardCategoryButtons[0];
+//    UIButton *selectBtn = self.cardCategoryButtons[1];
 //    if (offSetX == 0) {
 //        [self.cardLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
 //            make.width.offset(kScreenW*0.5);
@@ -423,8 +431,8 @@ static NSInteger apedStart = 0;
             make.bottom.equalTo(self.cardsView);
             make.centerX.offset(kScreenW*0.25);
         }];
-        [selectBtn setTitleColor:[UIColor colorWithHexString:@"1ebeec"] forState:UIControlStateNormal];
-        [hotBtn setTitleColor:[UIColor colorWithHexString:@"6a6a6a"] forState:UIControlStateNormal];
+//        [selectBtn setTitleColor:[UIColor colorWithHexString:@"1ebeec"] forState:UIControlStateNormal];
+//        [hotBtn setTitleColor:[UIColor colorWithHexString:@"6a6a6a"] forState:UIControlStateNormal];
     }else{
         [self.cardLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.width.offset(kScreenW*0.5);
@@ -432,11 +440,22 @@ static NSInteger apedStart = 0;
             make.bottom.equalTo(self.cardsView);
             make.centerX.offset(-kScreenW*0.25);
         }];
-        [hotBtn setTitleColor:[UIColor colorWithHexString:@"1ebeec"] forState:UIControlStateNormal];
-        [selectBtn setTitleColor:[UIColor colorWithHexString:@"6a6a6a"] forState:UIControlStateNormal];
+//        [hotBtn setTitleColor:[UIColor colorWithHexString:@"1ebeec"] forState:UIControlStateNormal];
+//        [selectBtn setTitleColor:[UIColor colorWithHexString:@"6a6a6a"] forState:UIControlStateNormal];
         
     }
     
+}
+//解决跳转时候页面滑动的问题
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:true];
+    UIButton *willBtn = self.cardCategoryButtons[0];
+    UIButton *aprodBtn = self.cardCategoryButtons[1];
+    if (self.pageNum == 2) {
+        [self shopCategoryButtonClick:aprodBtn];
+    }else{
+        [self shopCategoryButtonClick:willBtn];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

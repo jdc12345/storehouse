@@ -31,7 +31,7 @@ static NSString* tableCellid = @"table_cell";
     self.navigationItem.rightBarButtonItem = rightButton;
     self.title = @"资产详情";
     self.itemTypeArray = [NSArray arrayWithObjects:@"资产名称",@"资产类别",@"保管人",@"型号",@"存放位置",@"资产编号",@"使用年限",@"价  格",@"数量",@"计量单位",@"备  注", nil];
-    if (self.info_id) {//去除扫一扫页面，避免返回到扫一扫页面
+    if (self.info_id && !self.ifFromInventory) {//去除扫一扫页面，避免返回到扫一扫页面
         //得到当前视图控制器中的所有控制器
         NSMutableArray *array = [self.navigationController.viewControllers mutableCopy];
         //把扫一扫页面从里面删除
@@ -67,10 +67,9 @@ static NSString* tableCellid = @"table_cell";
     [self.tableView reloadData];
   
 }
-//从扫一扫页面跳转过来
+//从扫一扫页面跳转过来或者盘点详情点击过来
 -(void)setInfo_id:(NSString *)info_id{
     _info_id = info_id;
-    //把搜索中文转义
     NSString *urlString = [NSString stringWithFormat:@"%@id=%@",mAssetDetailResult,info_id];
     HttpClient *client = [HttpClient defaultClient];
     [SVProgressHUD show];
@@ -146,7 +145,7 @@ static NSString* tableCellid = @"table_cell";
         case 10:
             cell.itemContentLabel.text = self.assetModel.comment;
             break;
-                    
+            
         default:
             break;
     }

@@ -75,6 +75,18 @@
 		161D728E21BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */; };
 		161D728F21BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */; };
 		161D729021BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */; };
+		161D729321BFC2E800F04C21 /* InventoryDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729221BFC2E800F04C21 /* InventoryDetailVC.m */; };
+		161D729421BFC2E800F04C21 /* InventoryDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729221BFC2E800F04C21 /* InventoryDetailVC.m */; };
+		161D729521BFC2E800F04C21 /* InventoryDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729221BFC2E800F04C21 /* InventoryDetailVC.m */; };
+		161D729821BFCE8000F04C21 /* InventoryAssetsFormTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729721BFCE8000F04C21 /* InventoryAssetsFormTVCell.m */; };
+		161D729921BFCE8000F04C21 /* InventoryAssetsFormTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729721BFCE8000F04C21 /* InventoryAssetsFormTVCell.m */; };
+		161D729A21BFCE8000F04C21 /* InventoryAssetsFormTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729721BFCE8000F04C21 /* InventoryAssetsFormTVCell.m */; };
+		161D729D21C10D4200F04C21 /* InventoryAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729C21C10D4200F04C21 /* InventoryAssetModel.m */; };
+		161D729E21C10D4200F04C21 /* InventoryAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729C21C10D4200F04C21 /* InventoryAssetModel.m */; };
+		161D729F21C10D4200F04C21 /* InventoryAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D729C21C10D4200F04C21 /* InventoryAssetModel.m */; };
+		161D72A221C11F9F00F04C21 /* InventoryScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72A121C11F9F00F04C21 /* InventoryScanVC.m */; };
+		161D72A321C11F9F00F04C21 /* InventoryScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72A121C11F9F00F04C21 /* InventoryScanVC.m */; };
+		161D72A421C11F9F00F04C21 /* InventoryScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72A121C11F9F00F04C21 /* InventoryScanVC.m */; };
 		161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
@@ -314,6 +326,14 @@
 		161D728821BE881000F04C21 /* HistoryInventoryTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryInventoryTVCell.m; sourceTree = "<group>"; };
 		161D728C21BE88B000F04C21 /* HistoryInventoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryInventoryListModel.h; sourceTree = "<group>"; };
 		161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryInventoryListModel.m; sourceTree = "<group>"; };
+		161D729121BFC2E800F04C21 /* InventoryDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryDetailVC.h; sourceTree = "<group>"; };
+		161D729221BFC2E800F04C21 /* InventoryDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryDetailVC.m; sourceTree = "<group>"; };
+		161D729621BFCE8000F04C21 /* InventoryAssetsFormTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryAssetsFormTVCell.h; sourceTree = "<group>"; };
+		161D729721BFCE8000F04C21 /* InventoryAssetsFormTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryAssetsFormTVCell.m; sourceTree = "<group>"; };
+		161D729B21C10D4200F04C21 /* InventoryAssetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryAssetModel.h; sourceTree = "<group>"; };
+		161D729C21C10D4200F04C21 /* InventoryAssetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryAssetModel.m; sourceTree = "<group>"; };
+		161D72A021C11F9F00F04C21 /* InventoryScanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InventoryScanVC.h; sourceTree = "<group>"; };
+		161D72A121C11F9F00F04C21 /* InventoryScanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InventoryScanVC.m; sourceTree = "<group>"; };
 		161E57D720CF77A6006B57B2 /* CPXCommonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXCommonLabel.h; sourceTree = "<group>"; };
 		161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPXCommonLabel.m; sourceTree = "<group>"; };
 		161E57DC20CFA278006B57B2 /* LaunchMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchMainHeaderView.h; sourceTree = "<group>"; };
@@ -571,6 +591,8 @@
 				162DE4C821A51347007E68C2 /* AssetSaveAddressModel.m */,
 				161D728C21BE88B000F04C21 /* HistoryInventoryListModel.h */,
 				161D728D21BE88B000F04C21 /* HistoryInventoryListModel.m */,
+				161D729B21C10D4200F04C21 /* InventoryAssetModel.h */,
+				161D729C21C10D4200F04C21 /* InventoryAssetModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -590,6 +612,8 @@
 				162DE4C321A43340007E68C2 /* PostNoticeTVCell.m */,
 				161D728721BE881000F04C21 /* HistoryInventoryTVCell.h */,
 				161D728821BE881000F04C21 /* HistoryInventoryTVCell.m */,
+				161D729621BFCE8000F04C21 /* InventoryAssetsFormTVCell.h */,
+				161D729721BFCE8000F04C21 /* InventoryAssetsFormTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -613,6 +637,10 @@
 				161D727E21BE6D7000F04C21 /* HomePageInventoryVC.m */,
 				161D728221BE857800F04C21 /* HistoryInventoryVC.h */,
 				161D728321BE857800F04C21 /* HistoryInventoryVC.m */,
+				161D729121BFC2E800F04C21 /* InventoryDetailVC.h */,
+				161D729221BFC2E800F04C21 /* InventoryDetailVC.m */,
+				161D72A021C11F9F00F04C21 /* InventoryScanVC.h */,
+				161D72A121C11F9F00F04C21 /* InventoryScanVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1158,6 +1186,7 @@
 				1654F32A21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				16AD808820BECB57005F99BC /* AssetsVC.m in Sources */,
 				162E473120C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
+				161D729321BFC2E800F04C21 /* InventoryDetailVC.m in Sources */,
 				161D6EBC214687180040313F /* willApproveVC.m in Sources */,
 				162DE4BF21A42E62007E68C2 /* PostNoticeVC.m in Sources */,
 				162E473620C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
@@ -1182,6 +1211,7 @@
 				162DE4C921A51347007E68C2 /* AssetSaveAddressModel.m in Sources */,
 				161D6EDD2153957C0040313F /* ApplyDetailTVCell.m in Sources */,
 				162DE48F219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
+				161D729821BFCE8000F04C21 /* InventoryAssetsFormTVCell.m in Sources */,
 				16450F5921198C1700567BC4 /* CPXImageAndTitleButton.m in Sources */,
 				162DE49C21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */,
 				162E472720C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
@@ -1192,6 +1222,7 @@
 				16872828211196CA004E9250 /* LaunchScrapVC.m in Sources */,
 				161D6E8F214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				1687281E21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
+				161D72A221C11F9F00F04C21 /* InventoryScanVC.m in Sources */,
 				162E472220C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				16450F682122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
 				161D6ECE2147D9930040313F /* ApproveListModel.m in Sources */,
@@ -1205,6 +1236,7 @@
 				1687282D21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				16AD807020BECA67005F99BC /* YYNavigationController.m in Sources */,
 				166EBFBC215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */,
+				161D729D21C10D4200F04C21 /* InventoryAssetModel.m in Sources */,
 				16872832211294B7004E9250 /* LogInVC.m in Sources */,
 				161D6EA521428F4D0040313F /* WMHCalendarView.m in Sources */,
 				1654F32721070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
@@ -1253,9 +1285,13 @@
 				16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */,
 				16450F732124427100567BC4 /* LaunchListModel.m in Sources */,
 				161D6E86213FEA0F0040313F /* storeThingsModel.m in Sources */,
+				161D72A321C11F9F00F04C21 /* InventoryScanVC.m in Sources */,
 				16AD806620BECA10005F99BC /* AppDelegate.m in Sources */,
+				161D729921BFCE8000F04C21 /* InventoryAssetsFormTVCell.m in Sources */,
+				161D729E21C10D4200F04C21 /* InventoryAssetModel.m in Sources */,
 				161D6E90214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				16AD807120BECA67005F99BC /* YYNavigationController.m in Sources */,
+				161D729421BFC2E800F04C21 /* InventoryDetailVC.m in Sources */,
 				162E473720C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
 				162DE490219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
 				161D6EC721468F2D0040313F /* NSObject+Formula.m in Sources */,
@@ -1331,9 +1367,13 @@
 				16AD803A20BEC365005F99BC /* storehouseUITests.m in Sources */,
 				16450F742124427100567BC4 /* LaunchListModel.m in Sources */,
 				161D6E87213FEA0F0040313F /* storeThingsModel.m in Sources */,
+				161D72A421C11F9F00F04C21 /* InventoryScanVC.m in Sources */,
 				16AD806720BECA10005F99BC /* AppDelegate.m in Sources */,
+				161D729A21BFCE8000F04C21 /* InventoryAssetsFormTVCell.m in Sources */,
+				161D729F21C10D4200F04C21 /* InventoryAssetModel.m in Sources */,
 				161D6E91214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				16AD807220BECA67005F99BC /* YYNavigationController.m in Sources */,
+				161D729521BFC2E800F04C21 /* InventoryDetailVC.m in Sources */,
 				162E473820C6957C00DED9B2 /* NSObject+Addition.m in Sources */,
 				162DE491219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
 				161D6EC821468F2D0040313F /* NSObject+Formula.m in Sources */,

@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AssetDetailVC : UIViewController
+@property(nonatomic,assign)BOOL ifFromInventory;//是否从盘点详情页面条转过来
 @property(nonatomic,strong)NSString *info_id;//扫一扫页面传过来的资产id
 @property(nonatomic,strong)AssetModel *assetModel;//资产管理页面传过来的资产model
 @end

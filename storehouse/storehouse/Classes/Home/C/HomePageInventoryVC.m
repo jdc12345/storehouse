@@ -14,6 +14,7 @@
 #import "NSObject+Formula.h"
 #import "HistoryInventoryListModel.h"
 #import "PurchasePepairReplaceScrapVC.h"
+#import "InventoryDetailVC.h"
 
 static NSInteger apedStart = 0;//上拉加载起始位置
 @interface HomePageInventoryVC ()<UIScrollViewDelegate,refreshDelegate>
@@ -43,7 +44,7 @@ static NSInteger apedStart = 0;//上拉加载起始位置
     // 意思就是延伸到边界
     self.extendedLayoutIncludesOpaqueBars = true;//解决视图下移64
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    self.title = @"新键盘点";
+    self.title = @"盘点汇总";
     [self setupUI];
     [self requestInventoryList];//历史盘点
 }
@@ -160,10 +161,10 @@ static NSInteger apedStart = 0;//上拉加载起始位置
             return ;
         }];
 }
--(void)transForPushDetailWithCell:(ApproveListModel *)model{
-//    PurchasePepairReplaceScrapVC *detailVc = [[PurchasePepairReplaceScrapVC alloc]init];
-//    detailVc.model = model;
-//    [self.navigationController pushViewController:detailVc animated:true];
+-(void)transForPushDetailWithCell:(HistoryInventoryListModel *)model{
+    InventoryDetailVC *detailVc = [[InventoryDetailVC alloc]init];
+    detailVc.infoModel = model;
+    [self.navigationController pushViewController:detailVc animated:true];
 }
 //
 -(void)setupUI{
@@ -177,8 +178,8 @@ static NSInteger apedStart = 0;//上拉加载起始位置
     UIButton *ApprovedButton = [[UIButton alloc]init];
     UIButton *willApproveButton = [[UIButton alloc]init];
     //设置按钮标题
-    [ApprovedButton setTitle:@"历史盘点" forState:UIControlStateNormal];
-    [willApproveButton setTitle:@"新建盘点" forState:UIControlStateNormal];
+    [ApprovedButton setTitle:@"新建盘点" forState:UIControlStateNormal];
+    [willApproveButton setTitle:@"盘点汇总" forState:UIControlStateNormal];
     //把按钮添加到一个数组中
     NSArray *cardCategoryButtons = @[willApproveButton,ApprovedButton];
     //
@@ -266,25 +267,27 @@ static NSInteger apedStart = 0;//上拉加载起始位置
         make.bottom.equalTo(cardsView.mas_top);
     }];
     [cardDetailView layoutIfNeeded];
-    [willApVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+    [apedVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.offset(0);
         make.width.equalTo(cardDetailView);
         make.height.equalTo(cardDetailView);
         
     }];
-    [apedVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+    [willApVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.offset(0);
-        make.left.equalTo(willApVC.view.mas_right);
+        make.left.equalTo(apedVC.view.mas_right);
         make.width.equalTo(cardDetailView);
         make.height.equalTo(cardDetailView);
         
     }];
+    
 }
 
 //按钮点击事件
 -(void)shopCategoryButtonClick:(UIButton*)sender{
     [sender setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
     sender.backgroundColor = [UIColor colorWithHexString:@"1ebeec"];
+    self.title = sender.titleLabel.text;
     for (UIButton *btn in self.cardCategoryButtons) {
         if (btn.tag != sender.tag) {
             [btn setTitleColor:[UIColor colorWithHexString:@"1ebeec"] forState:UIControlStateNormal];

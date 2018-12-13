@@ -27,10 +27,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HistoryInventoryListModel : NSObject
-@property (nonatomic, strong) NSString *info_id;
-@property (nonatomic, strong) NSString *beginDateString;//开始时间
-@property (nonatomic, strong) NSString *subject;//盘点主题
-@property (nonatomic, strong) NSString *inventoryUserId;//盘点用户的id
+@property (nonatomic, copy) NSString *info_id;
+@property (nonatomic, copy) NSString *beginDateString;//开始时间
+@property (nonatomic, copy) NSString *subject;//盘点主题
+@property (nonatomic, copy) NSString *info_description;//盘点内容
+@property (nonatomic, copy) NSString *inventoryUserId;//盘点用户的id
+@property (nonatomic, copy) NSString *closedDateString;//结案时间(判断状态)
 
 @end
 

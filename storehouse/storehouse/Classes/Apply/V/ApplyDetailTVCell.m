@@ -26,7 +26,7 @@
     UILabel *itemLabel = [UILabel labelWithText:@"申请部门" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
     [self.contentView addSubview:itemLabel];
     [itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(32);
+        make.centerY.offset(0);
         make.left.offset(15);
         make.width.offset(60);
     }];
