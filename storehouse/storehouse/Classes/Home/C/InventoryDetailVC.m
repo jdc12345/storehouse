@@ -12,7 +12,6 @@
 #import <MJRefresh.h>
 #import <MJExtension.h>
 #import "storeThingsModel.h"
-#import <MJRefresh.h>
 #import "InventoryAssetModel.h"
 #import "ApplyDetailTVCell.h"
 #import "InventoryAssetsFormTVCell.h"

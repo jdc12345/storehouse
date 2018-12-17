@@ -1,14 +1,14 @@
 //
-//  AssetCategoryModel.m
+//  ApproveDetailAssetModel.m
 //  storehouse
 //
-//  Created by 万宇 on 2018/11/20.
+//  Created by 万宇 on 2018/12/16.
 //  Copyright © 2018 wanyu. All rights reserved.
 //
 
-#import "AssetCategoryModel.h"
+#import "ApproveDetailAssetModel.h"
 
-@implementation AssetCategoryModel
+@implementation ApproveDetailAssetModel
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
     
 }

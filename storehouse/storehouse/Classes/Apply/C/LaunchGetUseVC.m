@@ -629,7 +629,7 @@ static NSInteger start = 0;//上拉加载起始位置
     //把搜索中文转义
     searchName = [searchName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 //    http://192.168.1.168:8085/mobileapi/asset/fpRecipients.do?name=搜索内容
-    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=0&limit=6",mStoreThingsList,searchName];
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=0&limit=6",mStoreRecipientsList,searchName];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [SVProgressHUD dismiss];
         NSDictionary *dic = (NSDictionary *)responseObject;
@@ -675,7 +675,7 @@ static NSInteger start = 0;//上拉加载起始位置
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [SVProgressHUD show];
     //    http://192.168.1.168:8085/mobileapi/asset/fpRecipients.do?name=搜索内容
-    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=0&limit=6",mStoreThingsList,self.searchField.text];
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=0&limit=6",mStoreRecipientsList,self.searchField.text];
     //把搜索中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -723,7 +723,7 @@ static NSInteger start = 0;//上拉加载起始位置
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [SVProgressHUD show];
     //    http://192.168.1.168:8085/mobileapi/asset/fpRecipients.do?name=搜索内容
-    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=%ld&limit=6",mStoreThingsList,self.searchField.text,(long)start];
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&start=%ld&limit=6",mStoreRecipientsList,self.searchField.text,(long)start];
     //把搜索中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {

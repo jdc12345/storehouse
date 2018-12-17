@@ -9,7 +9,7 @@
 #import "AssetsManageTVCell.h"
 #import "UILabel+Addition.h"
 @interface AssetsManageTVCell()
-@property(nonatomic,weak)UILabel *codeNumLabel;//编号
+@property(nonatomic,weak)UILabel *assetNumLabel;//资产数量
 @property(nonatomic,weak)UILabel *storePlacelabel;//保存地
 @property(nonatomic,weak)UILabel *assetNameLabel;//资产名称
 @property(nonatomic,weak)UILabel *keeperLabel;//保管人label
@@ -26,7 +26,7 @@
 }
 -(void)setAssetModel:(AssetModel *)assetModel{
     _assetModel = assetModel;
-    self.codeNumLabel.text = assetModel.barcode;
+    self.assetNumLabel.text = assetModel.num;
     self.assetNameLabel.text = assetModel.assetName;
     self.keeperLabel.text = assetModel.saveUserName;
     self.storePlacelabel.text = assetModel.addressName;
@@ -40,7 +40,7 @@
     [self.contentView addSubview:numLabel];
     [numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.offset(0);
-        make.width.offset(30);
+        make.width.offset(40);
         make.height.offset(35);
     }];
     self.numLabel = numLabel;
@@ -52,10 +52,10 @@
     [departmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(numLabel);
         make.left.equalTo(numLabel.mas_right);
-        make.width.offset(100);
+        make.width.offset(75);
         make.height.offset(35);
     }];
-    self.codeNumLabel = departmentLabel;
+    self.assetNumLabel = departmentLabel;
     //物品名称label
     UILabel *goodsNameLabel = [UILabel labelWithText:@"资产名称" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
     goodsNameLabel.backgroundColor = [UIColor whiteColor];
@@ -88,7 +88,7 @@
     [storelabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(numLabel);
         make.left.equalTo(keeperLabel.mas_right);
-        make.width.offset(kScreenW - 280);
+        make.width.offset(kScreenW - 265);
         make.height.offset(35);
     }];
     self.storePlacelabel = storelabel;

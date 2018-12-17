@@ -12,10 +12,8 @@
 #import "CcUserModel.h"
 #import "HttpClient.h"
 #import "NSString+URL.h"
-#import "AssetCategoryModel.h"
+#import "InventoryTypeModel.h"
 #import <MJExtension.h>
-#import "CcUserModel.h"
-#import "AssetSaveAddressModel.h"
 
 static NSString* tableCellid = @"table_cell";
 @interface AddAssetVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
@@ -62,9 +60,9 @@ static NSString* tableCellid = @"table_cell";
     [client requestWithPath:mAssrtsCategoryResult method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *responseArr = (NSArray*)responseObject;
         for (NSDictionary *dic in responseArr) {//第一级所有类别(指所有类别，不用显示)
-            AssetCategoryModel *infoModel = [AssetCategoryModel mj_objectWithKeyValues:dic];
+            InventoryTypeModel *infoModel = [InventoryTypeModel mj_objectWithKeyValues:dic];
             for (NSDictionary *secondDic in infoModel.children) {//第二级类别
-                AssetCategoryModel *secondModel = [AssetCategoryModel mj_objectWithKeyValues:secondDic];
+                InventoryTypeModel *secondModel = [InventoryTypeModel mj_objectWithKeyValues:secondDic];
                 [self.categorySecondLevelArray addObject:secondModel];
             }
         }
@@ -82,9 +80,9 @@ static NSString* tableCellid = @"table_cell";
     [client requestWithPath:mAssetSaveAddressList method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *responseArr = (NSArray*)responseObject;
         for (NSDictionary *dic in responseArr) {//第一级所有类别(指所有类别，不用显示)
-            AssetSaveAddressModel *infoModel = [AssetSaveAddressModel mj_objectWithKeyValues:dic];
+            InventoryTypeModel *infoModel = [InventoryTypeModel mj_objectWithKeyValues:dic];
             for (NSDictionary *secondDic in infoModel.children) {//第二级类别
-                AssetSaveAddressModel *secondModel = [AssetSaveAddressModel mj_objectWithKeyValues:secondDic];
+                InventoryTypeModel *secondModel = [InventoryTypeModel mj_objectWithKeyValues:secondDic];
                 [self.addressSecondLevelArray addObject:secondModel];
             }
         }
@@ -231,7 +229,7 @@ static NSString* tableCellid = @"table_cell";
         }
         NSMutableArray *secondTitleArr = [NSMutableArray array];//第二级标题数组
         NSMutableArray *thirdTitleArr = [NSMutableArray array];//第三级标题数组
-        for (AssetCategoryModel *model in self.categorySecondLevelArray) {
+        for (InventoryTypeModel *model in self.categorySecondLevelArray) {
             [secondTitleArr addObject:model.text];
         }
         ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:sender titleArray:secondTitleArr];
@@ -239,11 +237,11 @@ static NSString* tableCellid = @"table_cell";
         __weak typeof(menuView) weakMenuView = menuView;
         menuView.blockSelectedMenu = ^(NSInteger menuRow) {
 //            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
-            AssetCategoryModel *secModel = self.categorySecondLevelArray[menuRow];
+            InventoryTypeModel *secModel = self.categorySecondLevelArray[menuRow];
             if (secModel.children.count > 0) {//有三级选项
                 [self.categoryThirdLevelArray removeAllObjects];
                 for (NSDictionary *thirdDic in secModel.children) {
-                    AssetCategoryModel *thirdModel = [AssetCategoryModel mj_objectWithKeyValues:thirdDic];
+                    InventoryTypeModel *thirdModel = [InventoryTypeModel mj_objectWithKeyValues:thirdDic];
                     [self.categoryThirdLevelArray addObject:thirdModel];//点击的第二级数据行对应的第三级数据源
                     [thirdTitleArr addObject:thirdModel.text];//点击的第二级数据行对应的第三级标题数据源
                 }
@@ -253,7 +251,7 @@ static NSString* tableCellid = @"table_cell";
                 weakSecondMenuView.blockSelectedMenu = ^(NSInteger menuRow) {
 //                    NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
                     curruntCell.contentField.text = weakSecondMenuView.titleArray[menuRow];
-                    AssetCategoryModel *model = self.categoryThirdLevelArray[menuRow];
+                    InventoryTypeModel *model = self.categoryThirdLevelArray[menuRow];
                     self.categoryCode = model.treeCode;
                 };
             }else {//没有三级选项
@@ -269,7 +267,7 @@ static NSString* tableCellid = @"table_cell";
         }
         NSMutableArray *secondTitleArr = [NSMutableArray array];//第二级标题数组
         NSMutableArray *thirdTitleArr = [NSMutableArray array];//第三级标题数组
-        for (AssetSaveAddressModel *model in self.addressSecondLevelArray) {
+        for (InventoryTypeModel *model in self.addressSecondLevelArray) {
             [secondTitleArr addObject:model.text];
         }
         ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:sender titleArray:secondTitleArr];
@@ -277,11 +275,11 @@ static NSString* tableCellid = @"table_cell";
         __weak typeof(menuView) weakMenuView = menuView;
         menuView.blockSelectedMenu = ^(NSInteger menuRow) {
             //            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
-            AssetSaveAddressModel *secModel = self.addressSecondLevelArray[menuRow];
+            InventoryTypeModel *secModel = self.addressSecondLevelArray[menuRow];
             if (secModel.children.count > 0) {//有三级选项(第一级没显示)
                 [self.addressThirdLevelArray removeAllObjects];
                 for (NSDictionary *thirdDic in secModel.children) {
-                    AssetSaveAddressModel *thirdModel = [AssetSaveAddressModel mj_objectWithKeyValues:thirdDic];
+                    InventoryTypeModel *thirdModel = [InventoryTypeModel mj_objectWithKeyValues:thirdDic];
                     [self.categoryThirdLevelArray addObject:thirdModel];//点击的第二级数据行对应的第三级数据源
                     [thirdTitleArr addObject:thirdModel.text];//点击的第二级数据行对应的第三级标题数据源
                 }
@@ -291,7 +289,7 @@ static NSString* tableCellid = @"table_cell";
                 weakSecondMenuView.blockSelectedMenu = ^(NSInteger menuRow) {
 //                    NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
                     curruntCell.contentField.text = weakSecondMenuView.titleArray[menuRow];
-                    AssetSaveAddressModel *model = self.categoryThirdLevelArray[menuRow];
+                    InventoryTypeModel *model = self.categoryThirdLevelArray[menuRow];
                     self.addressCode = model.treeCode;
                 };
             }else {//没有三级选项

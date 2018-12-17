@@ -1,14 +1,14 @@
 //
-//  AssetSaveAddressModel.m
+//  borrowApplyDetailModel.m
 //  storehouse
 //
-//  Created by 万宇 on 2018/11/21.
+//  Created by 万宇 on 2018/12/16.
 //  Copyright © 2018 wanyu. All rights reserved.
 //
 
-#import "AssetSaveAddressModel.h"
+#import "borrowApplyDetailModel.h"
 
-@implementation AssetSaveAddressModel
+@implementation borrowApplyDetailModel
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
     
 }

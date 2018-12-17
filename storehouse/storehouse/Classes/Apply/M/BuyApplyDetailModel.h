@@ -62,5 +62,6 @@
 @property (nonatomic, strong) NSString *buyReason;//采购理由
 @property (nonatomic, strong) NSString *departmentName;//部门
 @property (nonatomic, strong) NSString *specTyp;//规格型号
+@property (nonatomic, copy) NSString *rejectReason;//审批备注
 
 @end

@@ -54,7 +54,7 @@ static NSInteger apedStart = 0;
     [self requestApproveListWithStatus:1];//已审批
 }
 /**
- *  请求待审批列表
+ *  请求审批列表
  */
 - (void)requestApproveListWithStatus:(int)msgStatus
 {

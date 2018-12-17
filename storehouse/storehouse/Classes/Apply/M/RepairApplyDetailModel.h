@@ -41,5 +41,5 @@
 @property (nonatomic, strong) NSString *maintenance;//维修方
 //@property (nonatomic, strong) NSString *maintenance;//所在位置
 @property (nonatomic, strong) NSString *departmentName;//部门
-
+@property (nonatomic, copy) NSString *rejectReason;//审批备注
 @end

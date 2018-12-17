@@ -58,6 +58,9 @@
 //useUserId = 1;
 //useUserName = "";
 //worth = 0;
+
+
+
 #import <Foundation/Foundation.h>
 
 @interface storeThingsModel : NSObject

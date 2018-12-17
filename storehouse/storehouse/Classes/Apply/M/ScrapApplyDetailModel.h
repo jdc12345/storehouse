@@ -16,4 +16,5 @@
 @property (nonatomic, strong) NSString *scrapModeId;//报废方式
 @property (nonatomic, strong) NSString *scrapDateString;//所在位置
 @property (nonatomic, strong) NSString *departmentName;//部门
+@property (nonatomic, copy) NSString *rejectReason;//审批备注
 @end

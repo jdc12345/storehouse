@@ -57,7 +57,7 @@
 // 资产入库请求
 #define mAssetSaveForStoreRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/save.do?"]
 //资产管理》资产列表分页查询接口
-#define mSearchResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/findPage.do?"]
+#define mSearchResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpManage.do?"]
 // 分页查询通知接口
 #define mNoticeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/findPage.do?"]
 // 分页查询历史盘点接口
@@ -68,8 +68,18 @@
 #define mInventoryScanConfirmRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventoryItem/doInventory.do?"]
 //执行盘点结案接口
 #define mInventoryOverRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/doClose.do?"]
-// 库房可领用物品列表数据
-#define mStoreThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpRecipients.do?"]
+//盘点资产类别接口
+#define mInventoryCategoryRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/category/listAllTree.do"]
+//盘点资产所属部门接口
+#define mInventoryDepartmentRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/department/listAllTree.do"]
+//盘点资产存放地接口
+#define mInventorySaveAddressRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/saveAddress/listAllTree.do"]
+//新建盘点提交接口
+#define mInventoryCompleteRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/saveBy.do?"]
+//// 库房可领用物品列表数据
+//#define mStoreThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/saveBy.do?"]
+//发起领用申请分页查询资产信息列表
+#define mStoreRecipientsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpRecipients.do?"]
 // 借用申请库房可借用物品列表数据
 #define mStoreBorrowThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpBorrow.do?"]
 //发起以旧换新申请分页查询资产信息列表数据

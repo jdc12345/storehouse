@@ -52,3 +52,20 @@
 @property (nonatomic, strong) NSString *approvalState;//审批状态；1=同意，2=驳回
 //@property (nonatomic, strong) NSString *approvalTrueName;//待审批人
 @end
+//msgType:消息类型,
+//0=SYSTEM=系统消息，
+//5=MESSAGE=私信，
+//10=BUY=采购申请，
+//15=CHECK=验收，
+//20=INPUT=入库，
+//25=OUTPUT=出库，
+//30=RECIPIENT=领用，
+//35=BORROW=借用，
+//40=REVERT=归还，
+//45=RETURN=退库，
+//50=OLDFORNEW=以旧换新，
+//55=DAMAGED=报损，
+//60=MAINTAIN=维修，
+//65=SCRAP=报废，
+//70=INVENTORY=盘点，
+//75=TRANSFER=转移

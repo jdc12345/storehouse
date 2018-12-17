@@ -8,10 +8,10 @@
 
 #import "LaunchTypeTVCell.h"
 @interface LaunchTypeTVCell ()
-
-@property (nonatomic,strong) UILabel     *launchTypeLabel;
+@property(nonatomic,strong)UILabel *launchTypeLabel;//事项
 @property (nonatomic,strong) UIImageView *selectedImageView;
 @property (nonatomic,strong) UIView      *bottomLine;
+
 //@property (nonatomic,assign) CPXLaunchTypeCellStyle cellStyle;
 
 @end
@@ -25,6 +25,15 @@
         [self setupUI];
     }
     return self;
+}
+-(void)setModel:(LaunchTypeModel *)model{
+    _model = model;
+    self.launchTypeLabel.text = model.typeName;
+    if (model.isSelected) {
+        self.selectedImageView.hidden = false;
+    }else{
+        self.selectedImageView.hidden = true;
+    }
 }
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;//取消选中效果
@@ -52,6 +61,7 @@
     [_selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.offset(0);
         make.right.offset(-20);
+        make.width.height.offset(40);
     }];
     
 }

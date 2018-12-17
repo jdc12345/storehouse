@@ -9,8 +9,6 @@
 #import "InventoryScanVC.h"
 #import <AVFoundation/AVFoundation.h>
 #import "HttpClient.h"
-//#import "AssetDetailVC.h"
-//#import "AddAssetVC.h"
 #import "InventoryDetailVC.h"
 
 

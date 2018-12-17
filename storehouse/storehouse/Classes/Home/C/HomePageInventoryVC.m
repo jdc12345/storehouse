@@ -15,21 +15,18 @@
 #import "HistoryInventoryListModel.h"
 #import "PurchasePepairReplaceScrapVC.h"
 #import "InventoryDetailVC.h"
+#import "NewAddInventoryVC.h"
 
 static NSInteger apedStart = 0;//上拉加载起始位置
 @interface HomePageInventoryVC ()<UIScrollViewDelegate,refreshDelegate>
-//跟button的监听事件有关
-//@property(weak, nonatomic)UIView *cardLineView;
 //
 @property(weak, nonatomic)UIScrollView *cardDetailView;
 //根据scrollView滚动距离设置滚动线位置时候需要
 @property(strong, nonatomic)NSArray *cardCategoryButtons;
-//设置滚动线约束时候需要
 @property(strong, nonatomic)UIView *cardsView;
-//@property(nonatomic,strong)NSMutableArray *willApproveList;//待审批数据
 @property(nonatomic,strong)NSMutableArray *inventoryList;//历史盘点数据
 //子控制器
-@property(weak, nonatomic)HistoryInventoryVC *willApVC;
+@property(weak, nonatomic)NewAddInventoryVC *willApVC;
 @property(weak, nonatomic)HistoryInventoryVC *apedVC;
 @end
 @implementation HomePageInventoryVC
@@ -47,6 +44,8 @@ static NSInteger apedStart = 0;//上拉加载起始位置
     self.title = @"盘点汇总";
     [self setupUI];
     [self requestInventoryList];//历史盘点
+    
+    
 }
 /**
  *  请求历史盘点数据列表
@@ -217,22 +216,21 @@ static NSInteger apedStart = 0;//上拉加载起始位置
     //
     self.cardDetailView.delegate = self;
     //
-    HistoryInventoryVC *willApVC = [[HistoryInventoryVC alloc]init];
     HistoryInventoryVC *apedVC = [[HistoryInventoryVC alloc]init];
+    NewAddInventoryVC *willApVC = [[NewAddInventoryVC alloc]init];
     //设置代理
-    willApVC.delegate = self;
     apedVC.delegate = self;
     
     //
-    willApVC.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     apedVC.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
+    willApVC.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     
     //添加子控件的view
-    [cardDetailView addSubview:willApVC.view];
     [cardDetailView addSubview:apedVC.view];
+    [cardDetailView addSubview:willApVC.view];
     //建立父子关系
-    [self addChildViewController:willApVC];
     [self addChildViewController:apedVC];
+    [self addChildViewController:willApVC];
     //告诉程序已经添加成功
     [willApVC didMoveToParentViewController:self];
     [apedVC didMoveToParentViewController:self];
@@ -294,40 +292,19 @@ static NSInteger apedStart = 0;//上拉加载起始位置
             btn.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
         }
     }
+    if ([sender.titleLabel.text isEqualToString:@"新建盘点"]) {
+        //新建盘点完成按钮
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(addLaunchBtnClick)];
+        [rightButton setTintColor:[UIColor colorWithHexString:@"30a2d4"]];
+        self.navigationItem.rightBarButtonItem = rightButton;
+    }else{
+        self.navigationItem.rightBarButtonItem = nil;
+    }
     [self.cardDetailView setContentOffset:CGPointMake(sender.tag*self.cardDetailView.bounds.size.width, 0) animated:YES];
 }
-////根据偏移距离设置滚动线的位置
-//
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//
-//    //获取偏移量
-//    CGFloat offSetX = self.cardDetailView.contentOffset.x;
-////    NSLog(@"%f",offSetX);
-//    //滑动改变相应btn'的文字颜色
-//    UIButton *hotBtn = self.cardCategoryButtons[0];
-//    UIButton *selectBtn = self.cardCategoryButtons[1];
-//    if (offSetX >= kScreenW) {
-////        [self.cardLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
-////            make.width.offset(kScreenW*0.5);
-////            make.height.offset(2);
-////            make.bottom.equalTo(self.cardsView);
-////            make.centerX.offset(kScreenW*0.25);
-////        }];
-//        [selectBtn setTitleColor:[UIColor colorWithHexString:@"1ebeec"] forState:UIControlStateNormal];
-//        [hotBtn setTitleColor:[UIColor colorWithHexString:@"6a6a6a"] forState:UIControlStateNormal];
-//    }else{
-////        [self.cardLineView mas_remakeConstraints:^(MASConstraintMaker *make) {
-////            make.width.offset(kScreenW*0.5);
-////            make.height.offset(2);
-////            make.bottom.equalTo(self.cardsView);
-////            make.centerX.offset(-kScreenW*0.25);
-////        }];
-//        [hotBtn setTitleColor:[UIColor colorWithHexString:@"1ebeec"] forState:UIControlStateNormal];
-//        [selectBtn setTitleColor:[UIColor colorWithHexString:@"6a6a6a"] forState:UIControlStateNormal];
-//
-//    }
-//
-//}
+- (void)addLaunchBtnClick {
+    self.willApVC.ifCompleteNewInventory = true;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -15,7 +15,10 @@
 #import "HttpClient.h"
 #import "CcUserModel.h"
 #import "LaunchListModel.h"
+#import "LaunchTypeModel.h"
+#import "MineApplyDetailVC.h"
 
+static NSInteger start = 0;//上拉加载起始位置
 static NSString* listCellid = @"tablelist_cell";
 static NSString* typeCellid = @"type_cell";
 @interface LaunchSubListVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -28,7 +31,8 @@ static NSString* typeCellid = @"type_cell";
 @property (nonatomic, strong) CPXImageAndTitleButton    *launchSortButton;//申请分类按钮
 //@property (nonatomic, strong) CPXLaunchTypeModel        *selectedSortModel;
 @property (nonatomic, strong) UITableView               *launchSortTableView;//申请分类列表
-@property (nonatomic, strong) NSArray *launchSortTypeArray;//申请分类列表数据源
+@property (nonatomic, strong) NSMutableArray *launchSortTypeArray;//申请分类列表数据源
+@property (nonatomic, strong) LaunchTypeModel               *selectingtypeModel;//类型model
 @end
 
 @implementation LaunchSubListVC
@@ -37,7 +41,17 @@ static NSString* typeCellid = @"type_cell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setTitle];
-    self.launchSortTypeArray = [NSArray arrayWithObjects:@"采购申请",@"领用申请",@"借用申请",@"维修申请",@"以旧换新申请",@"报废申请",@"归还申请",@"退库申请", nil];;
+    //设置分类类型数据源
+    self.launchSortTypeArray = [NSMutableArray array];
+    NSArray *itemsArr = [NSArray arrayWithObjects:@"采购申请",@"领用申请",@"借用申请",@"维修申请",@"以旧换新申请",@"报废申请",@"退库申请", nil];
+    NSArray *msgTypeArr = [NSArray arrayWithObjects:@"10",@"30",@"35",@"60",@"50",@"65",@"45", nil];
+    for (int i = 0; i < itemsArr.count; i++) {
+        LaunchTypeModel *typeModel = [[LaunchTypeModel alloc]init];
+        typeModel.typeName = itemsArr[i];
+        typeModel.applyType = msgTypeArr[i];
+        typeModel.isSelected = false;
+        [self.launchSortTypeArray addObject:typeModel];
+    }
     [self launchSortButton];
     [self launchSortTableView];
     //请求列表数据(首次请求全部类型数据，所以传0)
@@ -99,9 +113,9 @@ static NSString* typeCellid = @"type_cell";
     //    msgStatus：消息状态, 0=审批中，1=被驳回，2=已完成，3=已失效  msgType:不传代表请求全部
     NSString *listUrlStr;
     if ([SelectedType isEqualToString:@"0"]) {
-        listUrlStr = [NSString stringWithFormat:@"%@/mobileapi/convergeApply/findPage.do?msgStatus=%ld",mPrefixUrl,self.index];
+        listUrlStr = [NSString stringWithFormat:@"%@/mobileapi/convergeApply/findPage.do?msgStatus=%ld&start=0&limit=6",mPrefixUrl,self.index];
     }else{
-        listUrlStr = [NSString stringWithFormat:@"%@/mobileapi/convergeApply/findPage.do?msgStatus=%ld&msgType=%@",mPrefixUrl,self.index,SelectedType];
+        listUrlStr = [NSString stringWithFormat:@"%@/mobileapi/convergeApply/findPage.do?msgStatus=%ld&msgType=%@&start=0&limit=6",mPrefixUrl,self.index,SelectedType];
     }
     listUrlStr = [listUrlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     HttpClient *httpManager = [HttpClient defaultClient];
@@ -112,6 +126,7 @@ static NSString* typeCellid = @"type_cell";
         NSDictionary *dic = (NSDictionary *)responseObject;
         if ([dic[@"code"] isEqualToString:@"0"]) {
             NSArray *listArr = dic[@"rows"];
+            [self.dataList removeAllObjects];
             for (int i = 0; i < listArr.count; i++) {
                 NSDictionary *modelDic = listArr[i];
                 LaunchListModel *listModel = [LaunchListModel mj_objectWithKeyValues:modelDic];
@@ -128,54 +143,107 @@ static NSString* typeCellid = @"type_cell";
         [SVProgressHUD dismiss];
         return ;
     }];
-//    if (self.isLoading) {
-//        return;
-//    }
-//    self.isLoading = YES;
-//    NSArray *array = @[@1, @3, @5, @4];
-//    self.processStatus = [array[self.index] integerValue];
-//    __weak typeof(self) weakSelf = self;
-//    NSString *minId = @"0";
-//    if (isFooterRefresh) {
-//        minId = self.minId;
-//    }
-//    [[CPXHTTPClient instanceClient] requestLaunchMainDataWithProcessStatus:[array[self.index] integerValue]
-//                                                                     minId:minId
-//                                                                    typeId:self.selectedSortModel.type
-//                                                         isNeedShowLoading:isHaveRefreshStatus
-//                                                             completeBlock:^(CPXLaunchCellModel* listModel, CPXError* error) {
-//                                                                 weakSelf.isLoading = NO;
-//                                                                 [weakSelf.tableView.header endRefreshing];
-//                                                                 [weakSelf.tableView.footer endRefreshing];
-//                                                                 if (!error) {
-//                                                                     if (listModel.next == 1) {
-//                                                                         weakSelf.minId = listModel.minId;
-//                                                                     }else if (listModel.next == 0){
-//                                                                         [weakSelf.tableView.footer noticeNoMoreData];
-//                                                                     }
-//
-//                                                                     if (isFooterRefresh){
-//                                                                         [weakSelf.dataList addObjectsFromArray:listModel.list];
-//                                                                     }else{
-//                                                                         [weakSelf.dataList removeAllObjects];
-//                                                                         [weakSelf.dataList addObjectsFromArray:listModel.list];
-//                                                                     }
-//                                                                     weakSelf.errorTipView.hidden = YES;
-//                                                                 }else{
-//                                                                     if (error.errorCode == CPXErrorTypeDataIsBlink) {
-//                                                                         [weakSelf.dataList removeAllObjects];
-//                                                                     }
-//                                                                     if (weakSelf.dataList.count <= 0) {
-//                                                                         [weakSelf setDefaultErrorTipWithError:error
-//                                                                                                    retryBlock:^{
-//                                                                                                        [weakSelf requestLaunchListIsHaveRefreshStatus:YES isFooterRefresh:NO];
-//                                                                                                    }];
-//                                                                     }
-//                                                                 }
-//                                                                 [weakSelf.tableView reloadData];
-//                                                             }];
-}
 
+}
+//下拉刷新
+-(void)refreshHeader{
+    [SVProgressHUD show];// 动画开始
+    __weak typeof(self) weakSelf = self;
+    HttpClient *httpManager = [HttpClient defaultClient];
+    [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
+    [SVProgressHUD show];
+    NSString *urlString;
+    if (self.selectingtypeModel == nil) {
+        urlString = [NSString stringWithFormat:@"%@/mobileapi/convergeApply/findPage.do?msgStatus=%ld&start=0&limit=6",mPrefixUrl,self.index];
+    }else{
+        urlString = [NSString stringWithFormat:@"%@/mobileapi/convergeApply/findPage.do?msgStatus=%ld&msgType=%@&start=0&limit=6",mPrefixUrl,self.index,self.selectingtypeModel.applyType];
+    }
+    //把中文转义
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSDictionary *responseDic = (NSDictionary*)responseObject;
+        if ([responseDic[@"code"] isEqualToString:@"0"]) {
+            NSArray *responseArr = responseDic[@"rows"];
+            NSMutableArray *assetsArr = [NSMutableArray array];
+            for (NSDictionary *dict in responseArr){
+                LaunchListModel *infoModel = [LaunchListModel mj_objectWithKeyValues:dict];
+                [assetsArr addObject:infoModel];
+            }
+            weakSelf.dataList = assetsArr;
+            if (weakSelf.dataList.count>0) {
+                start = weakSelf.dataList.count;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                [weakSelf.tableView reloadData];
+                [weakSelf.tableView.mj_header endRefreshing];
+                if (start < 6) {//没有更多数据了
+                    [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else{//有更多数据
+                    weakSelf.tableView.mj_footer.state = MJRefreshStateIdle;//改变footer的状态为初始化
+                }
+            });
+        }else if ([responseDic[@"code"] isEqualToString:@"-1"]){
+            [weakSelf.tableView.mj_header endRefreshing];
+            [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];
+        return ;
+    }];
+}
+//上拉刷新
+-(void)refreshFooter{
+    [SVProgressHUD show];// 动画开始
+    __weak typeof(self) weakSelf = self;
+    HttpClient *httpManager = [HttpClient defaultClient];
+    [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
+    [SVProgressHUD show];
+    NSString *urlString;
+    if (self.selectingtypeModel == nil) {
+        urlString = [NSString stringWithFormat:@"%@/mobileapi/convergeApply/findPage.do?msgStatus=%ld&start=%ld&limit=6",mPrefixUrl,self.index,start];
+    }else{
+        urlString = [NSString stringWithFormat:@"%@/mobileapi/convergeApply/findPage.do?msgStatus=%ld&msgType=%@&start=%ld&limit=6",mPrefixUrl,self.index,self.selectingtypeModel.applyType,start];
+    }
+    //把中文转义
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        if ([dic[@"code"] isEqualToString:@"0"]) {
+            NSArray *responseArr = dic[@"rows"];
+            NSMutableArray *assetsArr = [NSMutableArray array];
+            for (NSDictionary *dict in responseArr){
+                LaunchListModel *infoModel = [LaunchListModel mj_objectWithKeyValues:dict];
+                [assetsArr addObject:infoModel];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                if (assetsArr.count>0) {
+                    [weakSelf.dataList addObjectsFromArray:assetsArr];
+                    start = weakSelf.dataList.count;
+
+                    [weakSelf.tableView reloadData];
+                    if (start % 6 != 0) {
+                        [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else{
+                        [weakSelf.tableView.mj_footer endRefreshing];
+                    }
+                }else{
+                    [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
+            });
+
+        }else if ([dic[@"code"] isEqualToString:@"-1"]){
+            [weakSelf.tableView.mj_header endRefreshing];
+            [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];
+        return ;
+    }];
+}
 
 //- (void)refreshSortTypeDataWithModel:(CPXLaunchTypeModel *)typeModel{
 //    if (self.selectedSortModel != typeModel) {
@@ -197,14 +265,18 @@ static NSString* typeCellid = @"type_cell";
             make.left.bottom.right.equalTo(self.view);
             make.top.equalTo(self.launchSortButton.mas_bottom);
         }];
-//        __weak typeof(self) weakSelf = self;
-//        [_tableView addLegendHeaderWithRefreshingBlock:^{
-//            [weakSelf requestLaunchListIsHaveRefreshStatus:NO isFooterRefresh:NO];
-//        }];
-//        _tableView.header.updatedTimeHidden = YES;
-//        [_tableView addLegendFooterWithRefreshingBlock:^{
-//            [weakSelf requestLaunchListIsHaveRefreshStatus:NO isFooterRefresh:YES];
-//        }];
+        __weak typeof(self) weakSelf = self;
+        //下拉刷新
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            // 进入刷新状态后会自动调用这个block
+            [weakSelf refreshHeader];
+            
+        }];
+//        上拉加载
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            //Call this Block When enter the refresh status automatically
+            [weakSelf refreshFooter];
+        }];
     }
     return _tableView;
 }
@@ -287,7 +359,12 @@ static NSString* typeCellid = @"type_cell";
     }else{
         self.launchSortTableView.hidden = NO;
         [self.launchSortTableView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height - 64 - 44);
+            if (kScreenH > 736) {//iPhone X
+                make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height - 88 - 44 -34);
+            }else{
+                make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height - 64 - 44);
+            }
+            
         }];
         self.launchSortButton.selected = YES;
         [UIView animateWithDuration:0.2 animations:^{
@@ -324,8 +401,9 @@ static NSString* typeCellid = @"type_cell";
     UITableViewCell *cell;
     if (tableView == self.launchSortTableView){
         LaunchTypeTVCell *sortCell = [tableView dequeueReusableCellWithIdentifier:typeCellid forIndexPath:indexPath];
-//        CPXLaunchTypeModel *typeModel = [self.launchSortTypeArray objectAtIndex:indexPath.row];
+        LaunchTypeModel *typeModel = [self.launchSortTypeArray objectAtIndex:indexPath.row];
 //        [sortCell setLaunchTypeModel:typeModel cellType:CPXLaunchTypeCellStyleSortType];
+        sortCell.model = typeModel;
         cell = sortCell;
     }else{
         LaunchExamineListTVCell *launchCell = [tableView dequeueReusableCellWithIdentifier:listCellid forIndexPath:indexPath];
@@ -339,6 +417,30 @@ static NSString* typeCellid = @"type_cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView == self.launchSortTableView){
+        LaunchTypeTVCell *sortCell = [tableView cellForRowAtIndexPath:indexPath];
+        sortCell.model.isSelected = true;
+        self.selectingtypeModel.isSelected = false;
+        self.selectingtypeModel = sortCell.model;
+        [tableView reloadData];
+        self.launchSortButton.selected = NO;
+        [self.launchSortTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            self.launchSortTableView.hidden = YES;
+        }];
+        //根据选择类型请求新数据源
+        [self requestLaunchListCurruntSelectedType:sortCell.model.applyType];
+    }else{
+        LaunchExamineListTVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        MineApplyDetailVC *detailVc = [[MineApplyDetailVC alloc]init];
+        detailVc.model = cell.model;
+        [self.navigationController pushViewController:detailVc animated:true];
+        
+    }
 //    if (tableView == self.launchSortTableView){
 //        self.selectedSortModel.isSelected = NO;
 //        CPXLaunchTypeModel *typeModel = [self.launchSortTypeArray objectAtIndex:indexPath.row];

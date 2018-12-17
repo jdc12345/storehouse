@@ -1,14 +1,14 @@
 //
-//  ScrapApplyDetailModel.m
+//  InventoryTypeModel.m
 //  storehouse
 //
-//  Created by 万宇 on 2018/9/25.
-//  Copyright © 2018年 wanyu. All rights reserved.
+//  Created by 万宇 on 2018/12/13.
+//  Copyright © 2018 wanyu. All rights reserved.
 //
 
-#import "ScrapApplyDetailModel.h"
+#import "InventoryTypeModel.h"
 
-@implementation ScrapApplyDetailModel
+@implementation InventoryTypeModel
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
     
 }
