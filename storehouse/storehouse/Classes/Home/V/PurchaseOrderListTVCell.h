@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PurchaseOrderListModel.h"
+#import "RepairManagerListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PurchaseOrderListTVCell : UITableViewCell
+///*采购订单列表
+- (void)setModel:(PurchaseOrderListModel *)model processStatus:(NSInteger)processStatus;
+///*维修申请列表
+- (void)setRepairModel:(RepairManagerListModel *)model processStatus:(NSInteger)processStatus;
 
 @end
 

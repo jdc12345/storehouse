@@ -60,6 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *borrowDateString;//借用时间
 @property (nonatomic, copy) NSString *willReturnDateString;//归还时间
 @property (nonatomic, copy) NSString *rejectReason;//审批备注
+@property (nonatomic, copy) NSString *gmtCreateString;//申请时间
 @end
 
 NS_ASSUME_NONNULL_END

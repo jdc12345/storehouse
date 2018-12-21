@@ -9,5 +9,13 @@
 #import "FittingsListModel.h"
 
 @implementation FittingsListModel
-
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    
+}
+/**
+ * PS:用自己的属性，代替字典里的
+ */
++ (NSDictionary *)replacedKeyFromPropertyName {
+    return @{@"info_id" : @"id"};
+}
 @end

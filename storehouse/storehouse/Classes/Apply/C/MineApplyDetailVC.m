@@ -61,32 +61,32 @@ static NSString* assetCellid = @"table_assetCellid";
     switch ([model.msgType intValue]) {
         case 10://采购申请
             self.title = @"采购申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"规格型号",@"计量单位",@"预算价格",@"采购数量",@"生产厂家",@"采购类别",@"采购理由",@"审批备注", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"规格型号",@"计量单位",@"预算价格",@"采购数量",@"生产厂家",@"采购类别",@"采购理由",@"审批备注",@"申请时间", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mbuyApplyDetail,model.referId];
             break;
         case 30://领用申请
             self.title = @"领用申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"领用备注",@"审批备注", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"领用备注",@"审批备注",@"申请时间", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetRecipientsDetail,model.referId];
             break;
         case 35://借用申请
             self.title = @"借用申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"借用备注",@"借用时间",@"预计归还时间",@"审批备注",nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"借用备注",@"借用时间",@"归还时间",@"审批备注",@"申请时间",nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetBorrowDetail,model.referId];
             break;
         case 60://维修申请
             self.title = @"维修申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"故障说明",@"审批备注", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"资产编码",@"维修类型",@"申请时间",@"故障说明",@"审批备注", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetmaintenanceLogDetail,model.referId];
             break;
         case 50://以旧换新申请
             self.title = @"以旧换新申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"备注说明",@"审批备注", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"备注说明",@"审批备注",@"申请时间", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetOldfornewDetail,model.referId];
             break;
         case 65://报废申请
             self.title = @"报废申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"报废类型",@"报废日期",@"报废理由",@"审批备注", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"报废类型",@"报废日期",@"报废理由",@"审批备注",@"申请时间", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetScrapDetail,model.referId];
             break;
             //        case 40:
@@ -95,7 +95,7 @@ static NSString* assetCellid = @"table_assetCellid";
             //            break;
         case 45://退库申请
             self.title = @"退库申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"退库理由",@"审批备注", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"退库理由",@"审批备注",@"申请时间", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetReturnDetail,model.referId];
             break;
             
@@ -241,422 +241,224 @@ static NSString* assetCellid = @"table_assetCellid";
                 //60=MAINTAIN=维修，
                 //65=SCRAP=报废，
             case 10://采购申请
-            {
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.buyModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.buyModel.assetName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.buyModel.specTyp;
-                            break;
-                        case 3:
-                            cell.itemContentLabel.text = self.buyModel.unit;
-                            break;
-                        case 4:
-                            cell.itemContentLabel.text = self.buyModel.worth;
-                            break;
-                        case 5:
-                            cell.itemContentLabel.text = self.buyModel.buyCount;
-                            break;
-                        case 6:
-                            cell.itemContentLabel.text = self.buyModel.producerName;
-                            break;
-                        case 7:
-                            cell.itemContentLabel.text = self.buyModel.buyCate;
-                            break;
-                        case 8:
-                            cell.itemContentLabel.text = self.buyModel.buyReason;
-                            break;
-                        case 9:
-                            cell.contentField.hidden = false;
-                            cell.itemContentLabel.text = @"";
-                            self.contentField = cell.contentField;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                }else{//已审批
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.buyModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.buyModel.assetName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.buyModel.specTyp;
-                            break;
-                        case 3:
-                            cell.itemContentLabel.text = self.buyModel.unit;
-                            break;
-                        case 4:
-                            cell.itemContentLabel.text = self.buyModel.worth;
-                            break;
-                        case 5:
-                            cell.itemContentLabel.text = self.buyModel.buyCount;
-                            break;
-                        case 6:
-                            cell.itemContentLabel.text = self.buyModel.producerName;
-                            break;
-                        case 7:
-                            cell.itemContentLabel.text = self.buyModel.buyCate;
-                            break;
-                        case 8:
-                            cell.itemContentLabel.text = self.buyModel.buyReason;
-                            break;
-                        case 9:
-                            cell.contentField.hidden = true;
-                            cell.itemContentLabel.text = self.buyModel.rejectReason;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                    
+                switch (indexPath.row) {
+                    case 0:
+                        cell.itemContentLabel.text = self.buyModel.departmentName;
+                        break;
+                    case 1:
+                        cell.itemContentLabel.text = self.buyModel.assetName;
+                        break;
+                    case 2:
+                        cell.itemContentLabel.text = self.buyModel.specTyp;
+                        break;
+                    case 3:
+                        cell.itemContentLabel.text = self.buyModel.unit;
+                        break;
+                    case 4:
+                        cell.itemContentLabel.text = self.buyModel.worth;
+                        break;
+                    case 5:
+                        cell.itemContentLabel.text = self.buyModel.buyCount;
+                        break;
+                    case 6:
+                        cell.itemContentLabel.text = self.buyModel.producerName;
+                        break;
+                    case 7:
+                        cell.itemContentLabel.text = self.buyModel.buyCate;
+                        break;
+                    case 8:
+                        cell.itemContentLabel.text = self.buyModel.buyReason;
+                        break;
+                    case 9:
+                        cell.contentField.hidden = true;
+                        cell.itemContentLabel.text = self.buyModel.rejectReason;
+                        break;
+                    case 10:
+                        cell.itemContentLabel.text = self.buyModel.applyTimeString;
+                        break;
+                        
+                    default:
+                        break;
                 }
-                
-            }
                 break;
             case 60://维修申请
-            {
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.repairModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.repairModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.repairModel.assetName;
-                            break;
-                        case 3:
-                            cell.itemContentLabel.text = self.repairModel.comment;
-                            break;
-                        case 4:
-                            cell.contentField.hidden = false;
-                            cell.itemContentLabel.text = @"";
-                            self.contentField = cell.contentField;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                }else{//已审批
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.repairModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.repairModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.repairModel.assetName;
-                            break;
-                        case 3:
-                            cell.itemContentLabel.text = self.repairModel.comment;
-                            break;
-                        case 4:
-                            cell.contentField.hidden = true;
-                            cell.itemContentLabel.text = self.repairModel.rejectReason;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                    
+                switch (indexPath.row) {
+                    case 0:
+                        cell.itemContentLabel.text = self.repairModel.departmentName;
+                        break;
+                    case 1:
+                        cell.itemContentLabel.text = self.repairModel.userName;
+                        break;
+                    case 2:
+                        cell.itemContentLabel.text = self.repairModel.assetName;
+                        break;
+                    case 3:
+                        cell.itemContentLabel.text = self.repairModel.barcode;
+                        break;
+                    case 4:
+                        if (self.repairModel.mainType) {
+                            cell.itemContentLabel.text = @"重大维修";
+                        }else{
+                            cell.itemContentLabel.text = @"日常维修";
+                        }
+                        break;
+                    case 5:
+                        cell.itemContentLabel.text = self.repairModel.repairDateString;
+                        break;
+                    case 6:
+                        cell.itemContentLabel.text = self.repairModel.comment;
+                        break;
+                    case 7:
+                        cell.itemContentLabel.text = self.repairModel.rejectReason;
+                        break;
+                        
+                    default:
+                        break;
                 }
-                
-            }
                 break;
             case 50://以旧换新申请
-            {
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.replaceModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.replaceModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.replaceModel.assetName;
-                            break;
-                        case 3:
-                            cell.itemContentLabel.text = self.replaceModel.comment;
-                            break;
-                        case 4:
-                            cell.contentField.hidden = false;
-                            cell.itemContentLabel.text = @"";
-                            self.contentField = cell.contentField;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                }else{//已审批
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.replaceModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.replaceModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.replaceModel.assetName;
-                            break;
-                        case 3:
-                            cell.itemContentLabel.text = self.replaceModel.comment;
-                            break;
-                        case 4:
-                            cell.contentField.hidden = true;
-                            cell.itemContentLabel.text = self.replaceModel.rejectReason;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                    
+                switch (indexPath.row) {
+                    case 0:
+                        cell.itemContentLabel.text = self.replaceModel.departmentName;
+                        break;
+                    case 1:
+                        cell.itemContentLabel.text = self.replaceModel.userName;
+                        break;
+                    case 2:
+                        cell.itemContentLabel.text = self.replaceModel.assetName;
+                        break;
+                    case 3:
+                        cell.itemContentLabel.text = self.replaceModel.comment;
+                        break;
+                    case 4:
+                        cell.contentField.hidden = true;
+                        cell.itemContentLabel.text = self.replaceModel.rejectReason;
+                        break;
+                    case 5:
+                        cell.itemContentLabel.text = self.replaceModel.repairDateString;
+                        break;
+                        
+                    default:
+                        break;
                 }
-                
-            }
                 break;
             case 65://报废申请
-            {
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.scrapModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.scrapModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.scrapModel.assetsName;
-                            break;
-                        case 3:{
-                            if ([self.scrapModel.scrapModeId integerValue] == 1) {//过期
-                                cell.itemContentLabel.text = @"过期";
-                            }else if ([self.scrapModel.scrapModeId integerValue] == 2){
-                                cell.itemContentLabel.text = @"损坏";
-                            }else if ([self.scrapModel.scrapModeId integerValue] == 3){
-                                cell.itemContentLabel.text = @"丢失";
-                            }else if ([self.scrapModel.scrapModeId integerValue] == 4){
-                                cell.itemContentLabel.text = @"捐赠";
-                            }
+                switch (indexPath.row) {
+                    case 0:
+                        cell.itemContentLabel.text = self.scrapModel.departmentName;
+                        break;
+                    case 1:
+                        cell.itemContentLabel.text = self.scrapModel.userName;
+                        break;
+                    case 2:
+                        cell.itemContentLabel.text = self.scrapModel.assetsName;
+                        break;
+                    case 3:{
+                        if ([self.scrapModel.scrapModeId integerValue] == 1) {//过期
+                            cell.itemContentLabel.text = @"过期";
+                        }else if ([self.scrapModel.scrapModeId integerValue] == 2){
+                            cell.itemContentLabel.text = @"损坏";
+                        }else if ([self.scrapModel.scrapModeId integerValue] == 3){
+                            cell.itemContentLabel.text = @"丢失";
+                        }else if ([self.scrapModel.scrapModeId integerValue] == 4){
+                            cell.itemContentLabel.text = @"捐赠";
                         }
-                            break;
-                        case 4:
-                            cell.itemContentLabel.text = self.scrapModel.scrapDateString;
-                            break;
-                        case 5:
-                            cell.itemContentLabel.text = self.scrapModel.comment;
-                            break;
-                        case 6:
-                            cell.contentField.hidden = false;
-                            cell.itemContentLabel.text = @"";
-                            self.contentField = cell.contentField;
-                            break;
-                            
-                        default:
-                            break;
                     }
-                }else{//已审批
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.scrapModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.scrapModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.scrapModel.assetsName;
-                            break;
-                        case 3:{
-                            if ([self.scrapModel.scrapModeId integerValue] == 1) {//过期
-                                cell.itemContentLabel.text = @"过期";
-                            }else if ([self.scrapModel.scrapModeId integerValue] == 2){
-                                cell.itemContentLabel.text = @"损坏";
-                            }else if ([self.scrapModel.scrapModeId integerValue] == 3){
-                                cell.itemContentLabel.text = @"丢失";
-                            }else if ([self.scrapModel.scrapModeId integerValue] == 4){
-                                cell.itemContentLabel.text = @"捐赠";
-                            }
-                        }
-                            break;
-                        case 4:
-                            cell.itemContentLabel.text = self.scrapModel.scrapDateString;
-                            break;
-                        case 5:
-                            cell.itemContentLabel.text = self.scrapModel.comment;
-                            break;
-                        case 6:
-                            cell.contentField.hidden = true;
-                            cell.itemContentLabel.text = self.scrapModel.rejectReason;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                    
+                        break;
+                    case 4:
+                        cell.itemContentLabel.text = self.scrapModel.scrapDateString;
+                        break;
+                    case 5:
+                        cell.itemContentLabel.text = self.scrapModel.comment;
+                        break;
+                    case 6:
+                        cell.contentField.hidden = true;
+                        cell.itemContentLabel.text = self.scrapModel.rejectReason;
+                        break;
+                    case 7:
+                        cell.itemContentLabel.text = self.scrapModel.gmtCreateString;
+                        break;
+                        
+                    default:
+                        break;
                 }
-                
-            }
                 break;
             case 30://领用申请
-            {
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.getModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.getModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.getModel.comment;
-                            break;
-                        case 3:
-                            cell.contentField.hidden = false;
-                            cell.itemContentLabel.text = @"";
-                            self.contentField = cell.contentField;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                }else{//已审批
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.getModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.getModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.getModel.comment;
-                            break;
-                        case 3:
-                            cell.contentField.hidden = true;
-                            cell.itemContentLabel.text = self.getModel.rejectReason;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                    
+                switch (indexPath.row) {
+                    case 0:
+                        cell.itemContentLabel.text = self.getModel.departmentName;
+                        break;
+                    case 1:
+                        cell.itemContentLabel.text = self.getModel.userName;
+                        break;
+                    case 2:
+                        cell.itemContentLabel.text = self.getModel.comment;
+                        break;
+                    case 3:
+                        cell.contentField.hidden = true;
+                        cell.itemContentLabel.text = self.getModel.rejectReason;
+                        break;
+                    case 4:
+                        cell.itemContentLabel.text = self.getModel.gmtCreateString;
+                        break;
+                        
+                    default:
+                        break;
                 }
-                
-            }
                 
                 break;
             case 35://借用申请
-            {
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.borrowModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.borrowModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.borrowModel.comment;
-                            break;
-                        case 3:
-                            cell.itemContentLabel.text = self.borrowModel.borrowDateString;
-                            break;
-                        case 4:
-                            cell.itemContentLabel.text = self.borrowModel.willReturnDateString;
-                            break;
-                        case 5:
-                            cell.contentField.hidden = false;
-                            cell.itemContentLabel.text = @"";
-                            self.contentField = cell.contentField;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                }else{//已审批
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.borrowModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.borrowModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.borrowModel.comment;
-                            break;
-                        case 3:
-                            cell.itemContentLabel.text = self.borrowModel.borrowDateString;
-                            break;
-                        case 4:
-                            cell.itemContentLabel.text = self.borrowModel.willReturnDateString;
-                            break;
-                        case 5:
-                            cell.contentField.hidden = true;
-                            cell.itemContentLabel.text = self.borrowModel.rejectReason;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                    
+                switch (indexPath.row) {
+                    case 0:
+                        cell.itemContentLabel.text = self.borrowModel.departmentName;
+                        break;
+                    case 1:
+                        cell.itemContentLabel.text = self.borrowModel.userName;
+                        break;
+                    case 2:
+                        cell.itemContentLabel.text = self.borrowModel.comment;
+                        break;
+                    case 3:
+                        cell.itemContentLabel.text = self.borrowModel.borrowDateString;
+                        break;
+                    case 4:
+                        cell.itemContentLabel.text = self.borrowModel.willReturnDateString;
+                        break;
+                    case 5:
+                        cell.contentField.hidden = true;
+                        cell.itemContentLabel.text = self.borrowModel.rejectReason;
+                        break;
+                    case 6:
+                        cell.itemContentLabel.text = self.borrowModel.gmtCreateString;
+                        break;
+                        
+                    default:
+                        break;
                 }
-                
-            }
                 break;
                 
             case 45://退库申请
-            {
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.returnModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.returnModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.returnModel.comment;
-                            break;
-                        case 3:
-                            cell.contentField.hidden = false;
-                            cell.itemContentLabel.text = @"";
-                            self.contentField = cell.contentField;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                }else{//已审批
-                    switch (indexPath.row) {
-                        case 0:
-                            cell.itemContentLabel.text = self.returnModel.departmentName;
-                            break;
-                        case 1:
-                            cell.itemContentLabel.text = self.returnModel.userName;
-                            break;
-                        case 2:
-                            cell.itemContentLabel.text = self.returnModel.comment;
-                            break;
-                        case 3:
-                            cell.contentField.hidden = true;
-                            cell.itemContentLabel.text = self.returnModel.rejectReason;
-                            break;
-                            
-                        default:
-                            break;
-                    }
+                switch (indexPath.row) {
+                    case 0:
+                        cell.itemContentLabel.text = self.returnModel.departmentName;
+                        break;
+                    case 1:
+                        cell.itemContentLabel.text = self.returnModel.userName;
+                        break;
+                    case 2:
+                        cell.itemContentLabel.text = self.returnModel.comment;
+                        break;
+                    case 3:
+                        cell.contentField.hidden = true;
+                        cell.itemContentLabel.text = self.returnModel.rejectReason;
+                        break;
+                    case 4:
+                        cell.itemContentLabel.text = self.returnModel.gmtCreateString;
+                        break;
+                        
+                    default:
+                        break;
                 }
-            }
                 break;
                 
             default:
@@ -678,71 +480,40 @@ static NSString* assetCellid = @"table_assetCellid";
             if (section == 0) {
                 UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, 180)];
                 view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
-                
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    //同意btn
-                    UIButton *agreeBtn = [[UIButton alloc]init];
-                    [agreeBtn setBackgroundColor:[UIColor colorWithHexString:@"23b880"]];
-                    [agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
-                    agreeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-                    [agreeBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
-                    agreeBtn.layer.masksToBounds = YES;
-                    agreeBtn.layer.cornerRadius = 5;
-                    [view addSubview:agreeBtn];
-                    [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.centerY.offset(0);
-                        make.right.equalTo(view.mas_centerX).offset(-22);
-                        make.width.offset(100);
-                        make.height.offset(40);
-                    }];
-                    //驳回btn
-                    UIButton *rejectBtn = [[UIButton alloc]init];
-                    [rejectBtn setBackgroundColor:[UIColor colorWithHexString:@"dc8268"]];
-                    [rejectBtn setTitle:@"驳回" forState:UIControlStateNormal];
-                    rejectBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-                    [rejectBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
-                    rejectBtn.layer.masksToBounds = YES;
-                    rejectBtn.layer.cornerRadius = 5;
-                    [view addSubview:rejectBtn];
-                    [rejectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.centerY.offset(0);
-                        make.left.equalTo(view.mas_centerX).offset(22);
-                        make.width.offset(100);
-                        make.height.offset(40);
-                    }];
-                    agreeBtn.tag = 1;
-                    rejectBtn.tag = 0;
-                    [agreeBtn addTarget:self action:@selector(applyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                    [rejectBtn addTarget:self action:@selector(applyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                }else{//已审批
-                    //驳回、同意、失效lebal
-                    UILabel *label = [[UILabel alloc]init];
-                    label.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-                    label.textAlignment = NSTextAlignmentCenter;
-                    label.font = [UIFont systemFontOfSize:12];
-                    label.layer.cornerRadius = 5;
-                    label.layer.masksToBounds = YES;
-                    label.layer.borderWidth = 2;
-                    [view addSubview:label];
-                    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.center.offset(0);
-                        make.width.offset(100);
-                        make.height.offset(40);
-                    }];
-//                    switch ([self.model.approvalState  integerValue]) {
-//                        case 1:
-//                            label.textColor = [UIColor colorWithHexString:@"23b880"];
-//                            label.text = @"已同意";
-//                            break;
-//                        case 2:
-//                            label.textColor = [UIColor colorWithHexString:@"dc8268"];
-//                            label.text = @"已驳回";
-//                            break;
-//                            
-//                        default:
-//                            break;
-//                    }
-                    
+                //驳回、同意、失效lebal
+                UILabel *label = [[UILabel alloc]init];
+                label.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+                label.textAlignment = NSTextAlignmentCenter;
+                label.font = [UIFont systemFontOfSize:12];
+                label.layer.cornerRadius = 5;
+                label.layer.masksToBounds = YES;
+                label.layer.borderWidth = 2;
+                [view addSubview:label];
+                [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.center.offset(0);
+                    make.width.offset(100);
+                    make.height.offset(40);
+                }];
+                switch (self.index) {//申请状态：0审批中，1被驳回，2已完成，3已失效
+                    case 0:
+                        label.textColor = [UIColor colorWithHexString:@"23b880"];
+                        label.text = @"审批中";
+                        break;
+                    case 1:
+                        label.textColor = [UIColor colorWithHexString:@"dc8268"];
+                        label.text = @"已驳回";
+                        break;
+                    case 2:
+                        label.textColor = [UIColor colorWithHexString:@"23b880"];
+                        label.text = @"已完成";
+                        break;
+                    case 3:
+                        label.textColor = [UIColor colorWithHexString:@"dc8268"];
+                        label.text = @"已失效";
+                        break;
+                        
+                    default:
+                        break;
                 }
                 
                 return view;
@@ -757,74 +528,44 @@ static NSString* assetCellid = @"table_assetCellid";
             if (section == 1) {
                 UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, 180)];
                 view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
-                
-                if ([self.model.msgStatus integerValue] == 0) {//审批中
-                    //同意btn
-                    UIButton *agreeBtn = [[UIButton alloc]init];
-                    [agreeBtn setBackgroundColor:[UIColor colorWithHexString:@"23b880"]];
-                    [agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
-                    agreeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-                    [agreeBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
-                    agreeBtn.layer.masksToBounds = YES;
-                    agreeBtn.layer.cornerRadius = 5;
-                    [view addSubview:agreeBtn];
-                    [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.centerY.offset(0);
-                        make.right.equalTo(view.mas_centerX).offset(-22);
-                        make.width.offset(100);
-                        make.height.offset(40);
-                    }];
-                    //驳回btn
-                    UIButton *rejectBtn = [[UIButton alloc]init];
-                    [rejectBtn setBackgroundColor:[UIColor colorWithHexString:@"dc8268"]];
-                    [rejectBtn setTitle:@"驳回" forState:UIControlStateNormal];
-                    rejectBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-                    [rejectBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
-                    rejectBtn.layer.masksToBounds = YES;
-                    rejectBtn.layer.cornerRadius = 5;
-                    [view addSubview:rejectBtn];
-                    [rejectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.centerY.offset(0);
-                        make.left.equalTo(view.mas_centerX).offset(22);
-                        make.width.offset(100);
-                        make.height.offset(40);
-                    }];
-                    agreeBtn.tag = 1;
-                    rejectBtn.tag = 0;
-                    [agreeBtn addTarget:self action:@selector(applyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                    [rejectBtn addTarget:self action:@selector(applyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                }else{//已审批
-                    //驳回、同意、失效lebal
-                    UILabel *label = [[UILabel alloc]init];
-                    label.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-                    label.textAlignment = NSTextAlignmentCenter;
-                    label.font = [UIFont systemFontOfSize:12];
-                    label.layer.cornerRadius = 5;
-                    label.layer.masksToBounds = YES;
-                    label.layer.borderWidth = 2;
-                    [view addSubview:label];
-                    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.center.offset(0);
-                        make.width.offset(100);
-                        make.height.offset(40);
-                    }];
-//                    switch ([self.model.approvalState  integerValue]) {
-//                        case 1:
-//                            label.textColor = [UIColor colorWithHexString:@"23b880"];
-//                            label.text = @"已同意";
-//                            break;
-//                        case 2:
-//                            label.textColor = [UIColor colorWithHexString:@"dc8268"];
-//                            label.text = @"已驳回";
-//                            break;
-//
-//                        default:
-//                            break;
-//                    }
-                    
+                //驳回、同意、失效lebal
+                UILabel *label = [[UILabel alloc]init];
+                label.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+                label.textAlignment = NSTextAlignmentCenter;
+                label.font = [UIFont systemFontOfSize:12];
+                label.layer.cornerRadius = 5;
+                label.layer.masksToBounds = YES;
+                label.layer.borderWidth = 2;
+                [view addSubview:label];
+                [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.center.offset(0);
+                    make.width.offset(100);
+                    make.height.offset(40);
+                }];
+                switch (self.index) {//申请状态：0审批中，1被驳回，2已完成，3已失效
+                    case 0:
+                        label.textColor = [UIColor colorWithHexString:@"23b880"];
+                        label.text = @"审批中";
+                        break;
+                    case 1:
+                        label.textColor = [UIColor colorWithHexString:@"dc8268"];
+                        label.text = @"已驳回";
+                        break;
+                    case 2:
+                        label.textColor = [UIColor colorWithHexString:@"23b880"];
+                        label.text = @"已完成";
+                        break;
+                    case 3:
+                        label.textColor = [UIColor colorWithHexString:@"dc8268"];
+                        label.text = @"已失效";
+                        break;
+                        
+                    default:
+                        break;
                 }
                 
                 return view;
+                
                 
             }else{
                 return nil;
@@ -835,7 +576,6 @@ static NSString* assetCellid = @"table_assetCellid";
             break;
     }
     return nil;
-    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     switch ([self.model.msgType intValue]) {

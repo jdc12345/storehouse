@@ -63,5 +63,10 @@
 @property (nonatomic, strong) NSString *departmentName;//部门
 @property (nonatomic, strong) NSString *specTyp;//规格型号
 @property (nonatomic, copy) NSString *rejectReason;//审批备注
-
+@property (nonatomic, copy) NSString *applyTimeString;//申请时间
+//采购订单
+@property (nonatomic, copy) NSString *buyAddress;//采购地点
+@property (nonatomic, copy) NSString *buyWorth;//采购价格
+@property (nonatomic, copy) NSString *acceptanceEvaluation;//验收评价
+@property (nonatomic, copy) NSString *acceptanceOpinion;//验收意见
 @end

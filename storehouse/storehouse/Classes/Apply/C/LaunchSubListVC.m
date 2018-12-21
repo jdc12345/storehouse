@@ -131,9 +131,20 @@ static NSString* typeCellid = @"type_cell";
                 NSDictionary *modelDic = listArr[i];
                 LaunchListModel *listModel = [LaunchListModel mj_objectWithKeyValues:modelDic];
                 [self.dataList addObject:listModel];
-                [self.tableView reloadData];
             }
-            
+            if (self.dataList.count>0) {
+                start = self.dataList.count;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                [self.tableView reloadData];
+                [self.tableView.mj_header endRefreshing];
+                if (start < 6) {//没有更多数据了
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else{//有更多数据
+                    self.tableView.mj_footer.state = MJRefreshStateIdle;//改变footer的状态为初始化
+                }
+            });
             
         }else if ([dic[@"code"] isEqualToString:@"-1"]){
             [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
@@ -438,6 +449,7 @@ static NSString* typeCellid = @"type_cell";
         LaunchExamineListTVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         MineApplyDetailVC *detailVc = [[MineApplyDetailVC alloc]init];
         detailVc.model = cell.model;
+        detailVc.index = self.index;
         [self.navigationController pushViewController:detailVc animated:true];
         
     }

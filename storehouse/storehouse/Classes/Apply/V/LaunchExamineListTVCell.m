@@ -79,7 +79,7 @@
     }];
     self.timeLabel = timeLabel;
     //状态label
-    UILabel *stateLabel = [UILabel labelWithText:@"审批状态" andTextColor:[UIColor colorWithHexString:@"dc8268"] andFontSize:9];
+    UILabel *stateLabel = [UILabel labelWithText:@"审批状态" andTextColor:[UIColor colorWithHexString:@"dc8268"] andFontSize:12];
     [backView addSubview:stateLabel];
     [stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.offset(0);

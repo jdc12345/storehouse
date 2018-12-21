@@ -19,6 +19,8 @@
 #import "HomePageNoticeModel.h"
 #import "PostNoticeVC.h"
 #import "HomePageInventoryVC.h"
+#import "PurchaseOrderVC.h"
+#import "RepairManagerListVC.h"
 
 static NSString* tableCellid = @"table_cell";
 static NSString* collectionCellid = @"collection_cell";
@@ -143,16 +145,49 @@ static NSString* collectionCellid = @"collection_cell";
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }
-//        case 2:{
-//            YJReportRepairVC *vc = [[YJReportRepairVC alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            break;
-//        }
-//        case 3:{
-//            YJExpressDeliveryVC *vc = [[YJExpressDeliveryVC alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            break;
-//        }
+        case 2:{
+            CcUserModel *defaulModel = [CcUserModel defaultClient];
+            if (defaulModel.permission.count > 0) {
+                BOOL flag = false;
+                for (NSDictionary *permissionDic in defaulModel.permission) {
+                    permissionTypeModel *perModel = [permissionTypeModel mj_objectWithKeyValues:permissionDic];
+                    //每次需遍历判断是否有该权限码和对应的权限
+                    if ([perModel.target isEqualToString:@"buyManage"]&&[perModel.operaton isEqualToString:@"*"]) {
+                        PurchaseOrderVC *launchPurchaseVC = [[PurchaseOrderVC alloc]init];
+                        [self.navigationController pushViewController:launchPurchaseVC animated:true];
+                        flag = true;
+                    }
+                }
+                if (flag == false) {
+                    [SVProgressHUD showInfoWithStatus:@"你没有该权限"];
+                }
+            }else{
+                [SVProgressHUD showInfoWithStatus:@"你没有任何申请权限"];
+            }
+            break;
+        }
+        case 3:{
+            CcUserModel *defaulModel = [CcUserModel defaultClient];
+            if (defaulModel.permission.count > 0) {
+                BOOL flag = false;
+                for (NSDictionary *permissionDic in defaulModel.permission) {
+                    permissionTypeModel *perModel = [permissionTypeModel mj_objectWithKeyValues:permissionDic];
+                    //每次需遍历判断是否有该权限码和对应的权限
+                    if ([perModel.target isEqualToString:@"mainManage"]&&[perModel.operaton isEqualToString:@"*"]) {
+                        RepairManagerListVC *launchPurchaseVC = [[RepairManagerListVC alloc]init];
+                        [self.navigationController pushViewController:launchPurchaseVC animated:true];
+                        flag = true;
+                    }
+                }
+                if (flag == false) {
+                    [SVProgressHUD showInfoWithStatus:@"你没有该权限"];
+                }
+            }else{
+                [SVProgressHUD showInfoWithStatus:@"你没有任何申请权限"];
+            }
+            break;
+        }
+
         case 4:{
             PostNoticeVC *vc = [[PostNoticeVC alloc] init];
             [self.navigationController pushViewController:vc animated:YES];

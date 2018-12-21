@@ -111,6 +111,33 @@
 		161D72CA21C7C2C900F04C21 /* MineApplyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72C921C7C2C900F04C21 /* MineApplyDetailVC.m */; };
 		161D72CB21C7C2C900F04C21 /* MineApplyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72C921C7C2C900F04C21 /* MineApplyDetailVC.m */; };
 		161D72CC21C7C2C900F04C21 /* MineApplyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72C921C7C2C900F04C21 /* MineApplyDetailVC.m */; };
+		161D72CF21C8F8CF00F04C21 /* PurchaseOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72CE21C8F8CF00F04C21 /* PurchaseOrderVC.m */; };
+		161D72D021C8F8CF00F04C21 /* PurchaseOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72CE21C8F8CF00F04C21 /* PurchaseOrderVC.m */; };
+		161D72D121C8F8CF00F04C21 /* PurchaseOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72CE21C8F8CF00F04C21 /* PurchaseOrderVC.m */; };
+		161D72D421C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72D321C9F0CD00F04C21 /* PurchaseOrderListTVCell.m */; };
+		161D72D521C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72D321C9F0CD00F04C21 /* PurchaseOrderListTVCell.m */; };
+		161D72D621C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72D321C9F0CD00F04C21 /* PurchaseOrderListTVCell.m */; };
+		161D72D921C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72D821C9F97600F04C21 /* PurchaseOrderListModel.m */; };
+		161D72DA21C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72D821C9F97600F04C21 /* PurchaseOrderListModel.m */; };
+		161D72DB21C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72D821C9F97600F04C21 /* PurchaseOrderListModel.m */; };
+		161D72DE21CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72DD21CB4AE200F04C21 /* PurchaseOrderDetailVC.m */; };
+		161D72DF21CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72DD21CB4AE200F04C21 /* PurchaseOrderDetailVC.m */; };
+		161D72E021CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72DD21CB4AE200F04C21 /* PurchaseOrderDetailVC.m */; };
+		161D72E321CCF02F00F04C21 /* RepairManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72E221CCF02F00F04C21 /* RepairManagerVC.m */; };
+		161D72E421CCF02F00F04C21 /* RepairManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72E221CCF02F00F04C21 /* RepairManagerVC.m */; };
+		161D72E521CCF02F00F04C21 /* RepairManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72E221CCF02F00F04C21 /* RepairManagerVC.m */; };
+		161D72E821CCF53000F04C21 /* RepairManagerListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72E721CCF53000F04C21 /* RepairManagerListVC.m */; };
+		161D72E921CCF53000F04C21 /* RepairManagerListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72E721CCF53000F04C21 /* RepairManagerListVC.m */; };
+		161D72EA21CCF53000F04C21 /* RepairManagerListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72E721CCF53000F04C21 /* RepairManagerListVC.m */; };
+		161D72ED21CCFBA000F04C21 /* RepairManagerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72EC21CCFBA000F04C21 /* RepairManagerListModel.m */; };
+		161D72EE21CCFBA000F04C21 /* RepairManagerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72EC21CCFBA000F04C21 /* RepairManagerListModel.m */; };
+		161D72EF21CCFBA000F04C21 /* RepairManagerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72EC21CCFBA000F04C21 /* RepairManagerListModel.m */; };
+		161D72F221CD0C0C00F04C21 /* FittingsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F121CD0C0C00F04C21 /* FittingsListModel.m */; };
+		161D72F321CD0C0C00F04C21 /* FittingsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F121CD0C0C00F04C21 /* FittingsListModel.m */; };
+		161D72F421CD0C0C00F04C21 /* FittingsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F121CD0C0C00F04C21 /* FittingsListModel.m */; };
+		161D72F721CD131000F04C21 /* RepairFittingTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F621CD131000F04C21 /* RepairFittingTVCell.m */; };
+		161D72F821CD131000F04C21 /* RepairFittingTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F621CD131000F04C21 /* RepairFittingTVCell.m */; };
+		161D72F921CD131000F04C21 /* RepairFittingTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F621CD131000F04C21 /* RepairFittingTVCell.m */; };
 		161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
@@ -368,6 +395,24 @@
 		161D72C421C7A32600F04C21 /* LaunchTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchTypeModel.m; sourceTree = "<group>"; };
 		161D72C821C7C2C900F04C21 /* MineApplyDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineApplyDetailVC.h; sourceTree = "<group>"; };
 		161D72C921C7C2C900F04C21 /* MineApplyDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineApplyDetailVC.m; sourceTree = "<group>"; };
+		161D72CD21C8F8CF00F04C21 /* PurchaseOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PurchaseOrderVC.h; sourceTree = "<group>"; };
+		161D72CE21C8F8CF00F04C21 /* PurchaseOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PurchaseOrderVC.m; sourceTree = "<group>"; };
+		161D72D221C9F0CD00F04C21 /* PurchaseOrderListTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PurchaseOrderListTVCell.h; sourceTree = "<group>"; };
+		161D72D321C9F0CD00F04C21 /* PurchaseOrderListTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PurchaseOrderListTVCell.m; sourceTree = "<group>"; };
+		161D72D721C9F97600F04C21 /* PurchaseOrderListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PurchaseOrderListModel.h; sourceTree = "<group>"; };
+		161D72D821C9F97600F04C21 /* PurchaseOrderListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PurchaseOrderListModel.m; sourceTree = "<group>"; };
+		161D72DC21CB4AE200F04C21 /* PurchaseOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PurchaseOrderDetailVC.h; sourceTree = "<group>"; };
+		161D72DD21CB4AE200F04C21 /* PurchaseOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PurchaseOrderDetailVC.m; sourceTree = "<group>"; };
+		161D72E121CCF02F00F04C21 /* RepairManagerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairManagerVC.h; sourceTree = "<group>"; };
+		161D72E221CCF02F00F04C21 /* RepairManagerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairManagerVC.m; sourceTree = "<group>"; };
+		161D72E621CCF53000F04C21 /* RepairManagerListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairManagerListVC.h; sourceTree = "<group>"; };
+		161D72E721CCF53000F04C21 /* RepairManagerListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairManagerListVC.m; sourceTree = "<group>"; };
+		161D72EB21CCFBA000F04C21 /* RepairManagerListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairManagerListModel.h; sourceTree = "<group>"; };
+		161D72EC21CCFBA000F04C21 /* RepairManagerListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairManagerListModel.m; sourceTree = "<group>"; };
+		161D72F021CD0C0C00F04C21 /* FittingsListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FittingsListModel.h; sourceTree = "<group>"; };
+		161D72F121CD0C0C00F04C21 /* FittingsListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FittingsListModel.m; sourceTree = "<group>"; };
+		161D72F521CD131000F04C21 /* RepairFittingTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairFittingTVCell.h; sourceTree = "<group>"; };
+		161D72F621CD131000F04C21 /* RepairFittingTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairFittingTVCell.m; sourceTree = "<group>"; };
 		161E57D720CF77A6006B57B2 /* CPXCommonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXCommonLabel.h; sourceTree = "<group>"; };
 		161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPXCommonLabel.m; sourceTree = "<group>"; };
 		161E57DC20CFA278006B57B2 /* LaunchMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchMainHeaderView.h; sourceTree = "<group>"; };
@@ -625,6 +670,12 @@
 				161D729C21C10D4200F04C21 /* InventoryAssetModel.m */,
 				161D72AA21C2550D00F04C21 /* InventoryTypeModel.h */,
 				161D72AB21C2550D00F04C21 /* InventoryTypeModel.m */,
+				161D72D721C9F97600F04C21 /* PurchaseOrderListModel.h */,
+				161D72D821C9F97600F04C21 /* PurchaseOrderListModel.m */,
+				161D72EB21CCFBA000F04C21 /* RepairManagerListModel.h */,
+				161D72EC21CCFBA000F04C21 /* RepairManagerListModel.m */,
+				161D72F021CD0C0C00F04C21 /* FittingsListModel.h */,
+				161D72F121CD0C0C00F04C21 /* FittingsListModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -646,6 +697,10 @@
 				161D728821BE881000F04C21 /* HistoryInventoryTVCell.m */,
 				161D729621BFCE8000F04C21 /* InventoryAssetsFormTVCell.h */,
 				161D729721BFCE8000F04C21 /* InventoryAssetsFormTVCell.m */,
+				161D72D221C9F0CD00F04C21 /* PurchaseOrderListTVCell.h */,
+				161D72D321C9F0CD00F04C21 /* PurchaseOrderListTVCell.m */,
+				161D72F521CD131000F04C21 /* RepairFittingTVCell.h */,
+				161D72F621CD131000F04C21 /* RepairFittingTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -675,6 +730,14 @@
 				161D72A121C11F9F00F04C21 /* InventoryScanVC.m */,
 				161D72A521C2444D00F04C21 /* NewAddInventoryVC.h */,
 				161D72A621C2444D00F04C21 /* NewAddInventoryVC.m */,
+				161D72CD21C8F8CF00F04C21 /* PurchaseOrderVC.h */,
+				161D72CE21C8F8CF00F04C21 /* PurchaseOrderVC.m */,
+				161D72DC21CB4AE200F04C21 /* PurchaseOrderDetailVC.h */,
+				161D72DD21CB4AE200F04C21 /* PurchaseOrderDetailVC.m */,
+				161D72E621CCF53000F04C21 /* RepairManagerListVC.h */,
+				161D72E721CCF53000F04C21 /* RepairManagerListVC.m */,
+				161D72E121CCF02F00F04C21 /* RepairManagerVC.h */,
+				161D72E221CCF02F00F04C21 /* RepairManagerVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1209,11 +1272,13 @@
 				161D728421BE857800F04C21 /* HistoryInventoryVC.m in Sources */,
 				161D6ED8214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
 				161D6EE22154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
+				161D72D421C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */,
 				1687283E21143738004E9250 /* BaseViewController.m in Sources */,
 				1687284121143A68004E9250 /* LaunchSubListVC.m in Sources */,
 				162DE49721A00C72007E68C2 /* PersonalTVCell.m in Sources */,
 				161D72A721C2444D00F04C21 /* NewAddInventoryVC.m in Sources */,
 				162DE4C421A43340007E68C2 /* PostNoticeTVCell.m in Sources */,
+				161D72CF21C8F8CF00F04C21 /* PurchaseOrderVC.m in Sources */,
 				161D72B121C656C400F04C21 /* GetApplyDetailModel.m in Sources */,
 				16450F6D21242B4C00567BC4 /* LaunchTypeTVCell.m in Sources */,
 				162DE4BA21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */,
@@ -1225,6 +1290,7 @@
 				162E471D20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				16450F4E2118333900567BC4 /* NSString+URL.m in Sources */,
 				162E474820C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
+				161D72DE21CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */,
 				161D6EB121428F4D0040313F /* CalendarDateCell.m in Sources */,
 				161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				1654F32A21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
@@ -1237,6 +1303,7 @@
 				162DE4AB21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
 				161D72BB21C65FF200F04C21 /* ApproveDetailAssetTVCell.m in Sources */,
 				161D727221AE3D1900F04C21 /* LaunchOldForNewVC.m in Sources */,
+				161D72F721CD131000F04C21 /* RepairFittingTVCell.m in Sources */,
 				1654F3162105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD807320BECA67005F99BC /* YYTabBarController.m in Sources */,
 				162DE4B021A3F395007E68C2 /* AddAssetVC.m in Sources */,
@@ -1264,8 +1331,10 @@
 				161D6E85213FEA0F0040313F /* storeThingsModel.m in Sources */,
 				161D728E21BE88B000F04C21 /* HistoryInventoryListModel.m in Sources */,
 				16872828211196CA004E9250 /* LaunchScrapVC.m in Sources */,
+				161D72E321CCF02F00F04C21 /* RepairManagerVC.m in Sources */,
 				161D6E8F214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				1687281E21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
+				161D72F221CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				161D72A221C11F9F00F04C21 /* InventoryScanVC.m in Sources */,
 				162E472220C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
 				16450F682122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
@@ -1281,6 +1350,8 @@
 				16AD807020BECA67005F99BC /* YYNavigationController.m in Sources */,
 				161D72B621C65E5600F04C21 /* ApproveDetailAssetModel.m in Sources */,
 				166EBFBC215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */,
+				161D72D921C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */,
+				161D72ED21CCFBA000F04C21 /* RepairManagerListModel.m in Sources */,
 				161D72C021C67AA100F04C21 /* borrowApplyDetailModel.m in Sources */,
 				161D72CA21C7C2C900F04C21 /* MineApplyDetailVC.m in Sources */,
 				161D729D21C10D4200F04C21 /* InventoryAssetModel.m in Sources */,
@@ -1288,6 +1359,7 @@
 				161D6EA521428F4D0040313F /* WMHCalendarView.m in Sources */,
 				1654F32721070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
 				161D72AC21C2550D00F04C21 /* InventoryTypeModel.m in Sources */,
+				161D72E821CCF53000F04C21 /* RepairManagerListVC.m in Sources */,
 				16450F5E211C395B00567BC4 /* UIView+Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1312,14 +1384,18 @@
 				162DE4BB21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */,
 				162DE4C021A42E62007E68C2 /* PostNoticeVC.m in Sources */,
 				16450F4F2118333900567BC4 /* NSString+URL.m in Sources */,
+				161D72DF21CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */,
 				161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				162E473220C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				16AD805920BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				162DE4AC21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
 				161D6EE32154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				161D6EBD214687180040313F /* willApproveVC.m in Sources */,
+				161D72F321CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				16AD806120BEC9E9005F99BC /* main.m in Sources */,
+				161D72DA21C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */,
 				162DE4B121A3F395007E68C2 /* AddAssetVC.m in Sources */,
+				161D72D521C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */,
 				162DE4A721A2C3DC007E68C2 /* AssetModel.m in Sources */,
 				161D72A821C2444D00F04C21 /* NewAddInventoryVC.m in Sources */,
 				161E57DF20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
@@ -1354,14 +1430,17 @@
 				161D72C121C67AA100F04C21 /* borrowApplyDetailModel.m in Sources */,
 				162E472820C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
 				16450F692122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
+				161D72D021C8F8CF00F04C21 /* PurchaseOrderVC.m in Sources */,
 				1654F32B21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				168728242111933C004E9250 /* LaunchRepairVC.m in Sources */,
 				161D6ED9214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
 				161D6ED42147DA970040313F /* approveListTVCell.m in Sources */,
 				162E474120C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				161D6ECF2147D9930040313F /* ApproveListModel.m in Sources */,
+				161D72E921CCF53000F04C21 /* RepairManagerListVC.m in Sources */,
 				161D72AD21C2550D00F04C21 /* InventoryTypeModel.m in Sources */,
 				161D6EA621428F4D0040313F /* WMHCalendarView.m in Sources */,
+				161D72F821CD131000F04C21 /* RepairFittingTVCell.m in Sources */,
 				1654F3172105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808420BECB40005F99BC /* ApplyVC.m in Sources */,
 				16450F5F211C395B00567BC4 /* UIView+Utils.m in Sources */,
@@ -1373,9 +1452,11 @@
 				162E474920C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 				162DE49D21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */,
 				16450F5A21198C1700567BC4 /* CPXImageAndTitleButton.m in Sources */,
+				161D72E421CCF02F00F04C21 /* RepairManagerVC.m in Sources */,
 				161D6EA021428F4D0040313F /* WeekDateCell.m in Sources */,
 				166EBFBD215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */,
 				161D72B721C65E5600F04C21 /* ApproveDetailAssetModel.m in Sources */,
+				161D72EE21CCFBA000F04C21 /* RepairManagerListModel.m in Sources */,
 				161D6EB221428F4D0040313F /* CalendarDateCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1400,14 +1481,18 @@
 				162DE4BC21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */,
 				162DE4C121A42E62007E68C2 /* PostNoticeVC.m in Sources */,
 				16450F502118333900567BC4 /* NSString+URL.m in Sources */,
+				161D72E021CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */,
 				161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				162E473320C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
 				16AD805A20BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				162DE4AD21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
 				161D6EE42154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				161D6EBE214687180040313F /* willApproveVC.m in Sources */,
+				161D72F421CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				16AD806220BEC9E9005F99BC /* main.m in Sources */,
+				161D72DB21C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */,
 				162DE4B221A3F395007E68C2 /* AddAssetVC.m in Sources */,
+				161D72D621C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */,
 				162DE4A821A2C3DC007E68C2 /* AssetModel.m in Sources */,
 				161D72A921C2444D00F04C21 /* NewAddInventoryVC.m in Sources */,
 				161E57E020CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
@@ -1442,14 +1527,17 @@
 				161D72C221C67AA100F04C21 /* borrowApplyDetailModel.m in Sources */,
 				162E472920C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
 				16450F6A2122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
+				161D72D121C8F8CF00F04C21 /* PurchaseOrderVC.m in Sources */,
 				1654F32C21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				168728252111933C004E9250 /* LaunchRepairVC.m in Sources */,
 				161D6EDA214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
 				161D6ED52147DA970040313F /* approveListTVCell.m in Sources */,
 				162E474220C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				161D6ED02147D9930040313F /* ApproveListModel.m in Sources */,
+				161D72EA21CCF53000F04C21 /* RepairManagerListVC.m in Sources */,
 				161D72AE21C2550D00F04C21 /* InventoryTypeModel.m in Sources */,
 				161D6EA721428F4D0040313F /* WMHCalendarView.m in Sources */,
+				161D72F921CD131000F04C21 /* RepairFittingTVCell.m in Sources */,
 				1654F3182105C916007EF7B0 /* LaunchBaseTVCell.m in Sources */,
 				16AD808520BECB40005F99BC /* ApplyVC.m in Sources */,
 				16450F60211C395B00567BC4 /* UIView+Utils.m in Sources */,
@@ -1461,9 +1549,11 @@
 				162E474A20C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 				162DE49E21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */,
 				16450F5B21198C1700567BC4 /* CPXImageAndTitleButton.m in Sources */,
+				161D72E521CCF02F00F04C21 /* RepairManagerVC.m in Sources */,
 				161D6EA121428F4D0040313F /* WeekDateCell.m in Sources */,
 				166EBFBE215A18E300C8E424 /* RepairApplyDetailModel.m in Sources */,
 				161D72B821C65E5600F04C21 /* ApproveDetailAssetModel.m in Sources */,
+				161D72EF21CCFBA000F04C21 /* RepairManagerListModel.m in Sources */,
 				161D6EB321428F4D0040313F /* CalendarDateCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

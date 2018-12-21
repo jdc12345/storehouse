@@ -58,6 +58,16 @@
 #define mAssetSaveForStoreRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/save.do?"]
 //资产管理》资产列表分页查询接口
 #define mSearchResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpManage.do?"]
+// 分页查询采购订单列表接口
+#define mPurchaseOrderList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/buyApply/fpManage.do?"]
+//    开始采购接口
+#define mBegainbuyRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/buyApply/startBuy.do?"]
+// 维修管理分页查询维修申请列表
+#define mRepairManagerList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/fpManage.do?"]
+//维修管理》根据ID查询维修申请详情接口
+#define mRepairManagerDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/getManage.do?"]
+//维修管理》维修编辑》添加配件：分页查询配件列表接口
+#define mRepairManagerFittingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpFittings.do?"]
 // 分页查询通知接口
 #define mNoticeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/findPage.do?"]
 // 分页查询历史盘点接口
@@ -76,10 +86,12 @@
 #define mInventorySaveAddressRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/saveAddress/listAllTree.do"]
 //新建盘点提交接口
 #define mInventoryCompleteRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/saveBy.do?"]
+
 //// 库房可领用物品列表数据
 //#define mStoreThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/saveBy.do?"]
 //发起领用申请分页查询资产信息列表
 #define mStoreRecipientsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpRecipients.do?"]
+
 // 借用申请库房可借用物品列表数据
 #define mStoreBorrowThingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpBorrow.do?"]
 //发起以旧换新申请分页查询资产信息列表数据

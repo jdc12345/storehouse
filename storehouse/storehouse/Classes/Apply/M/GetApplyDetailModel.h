@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *comment;//备注说明
 @property (nonatomic, copy) NSString *departmentName;//部门
 @property (nonatomic, copy) NSString *rejectReason;//审批备注
+@property (nonatomic, copy) NSString *gmtCreateString;//申请时间
 @end
 
 NS_ASSUME_NONNULL_END

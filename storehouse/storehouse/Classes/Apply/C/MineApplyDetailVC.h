@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  从列表传过来的审批模型数据
  */
 @property (nonatomic, strong) LaunchListModel *model;
+@property (nonatomic,assign) NSInteger index;//申请状态：0审批中，1被驳回，2已完成，3已失效
 @end
 
 NS_ASSUME_NONNULL_END
