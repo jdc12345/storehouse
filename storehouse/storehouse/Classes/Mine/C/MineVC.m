@@ -7,26 +7,17 @@
 //
 
 #import "MineVC.h"
-//#import "YYSectionViewController.h"
 #import "PersonalTVCell.h"
-//#import "YYRecardViewController.h"
-//#import "YYPInfomartionViewController.h"
-//#import "YYSettingViewController.h"
-//#import "YYEquipmentViewController.h"
-//#import "YYFamilyAddViewController.h"
-//#import "YYShopCartVC.h"
-//#import "YYOrderDetailVC.h"
-//#import "YYAddressEditVC.h"
-//#import "NotficationViewController.h"
 #import "HttpClient.h"
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
 #import "CcUserModel.h"
-//#import "YYHomeUserModel.h"
 #import "UILabel+Addition.h"
-//#import "YYPersonalDetailInfoVC.h"
+#import "ZWPullMenuView.h"
+#import <Photos/Photos.h>
+#import "MyNewsListVC.h"
 
-@interface MineVC ()<UITableViewDataSource, UITableViewDelegate>
+@interface MineVC ()<UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
@@ -36,6 +27,7 @@
 @property (nonatomic, strong) UIImageView *genderV;//性别
 @property (nonatomic, strong) UIImageView *iconView;//头像
 //@property (nonatomic, strong) YYHomeUserModel *personalModel;//用户个人信息
+@property(nonatomic,weak)UIImage *image;//选中图片
 
 @end
 
@@ -147,19 +139,84 @@
 //执行手势触发的方法：
 - (void)event:(UITapGestureRecognizer *)gesture
 {
-//    YYPersonalDetailInfoVC *pvc = [[YYPersonalDetailInfoVC alloc]init];
-//    pvc.personalModel = self.personalModel;
-//    [self.navigationController pushViewController:pvc animated:true];
+    ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:self.iconView titleArray:@[@"拍摄",@"相册"]];
+    menuView.zwPullMenuStyle = PullMenuLightStyle;
+//    __weak typeof(menuView) weakMenuView = menuView;
+    __weak typeof(self) weakSelf = self;
+    menuView.blockSelectedMenu = ^(NSInteger menuRow) {
+        switch (menuRow) {
+            case 0:
+            {
+                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                picker.delegate = weakSelf;
+                picker.allowsEditing = YES; //可编辑
+                //判断是否可以打开照相机
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    //摄像头
+                    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    
+                } else { //否则打开照片库
+                    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    //        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                }
+                [self presentViewController:picker animated:YES completion:nil];
+            }
+                break;
+                case 1:
+            {
+                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                picker.delegate = self;
+                picker.allowsEditing = YES; //可编辑
+                picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                [self presentViewController:picker animated:YES completion:nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    };
+}
+#pragma mark - UIImagePickerControllerDelegate
+
+//拍摄完成后要执行的代理方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    //    BOOL success;
+    //    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([mediaType isEqualToString:@"public.image"]) {
+        //得到照片
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {//新拍摄图片才需要存储
+                //图片存入相册
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+            }
+        }
+        [self.iconView setImage:image];
+        self.image = image;
+        [self postImageRequest];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+//进入拍摄页面点击取消按钮
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark -
 #pragma mark ------------Tableview Delegate----------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CcUserModel *model = [CcUserModel defaultClient];
+//    CcUserModel *model = [CcUserModel defaultClient];
     if (indexPath.section == 0){
         if (indexPath.row == 0) {
-//            [self.navigationController pushViewController:[[YYRecardViewController alloc]init] animated:YES];
+            [self.navigationController pushViewController:[[MyNewsListVC alloc]init] animated:YES];
         }else{
 //            NotficationViewController *shopVC = [[NotficationViewController alloc]init];
 //            [self.navigationController pushViewController:shopVC animated:YES];
@@ -204,34 +261,38 @@
 
 #pragma mark -
 #pragma mark ------------Http client----------------------
-//- (void)httpRequest{
-//    NSString *tokenStr = [CcUserModel defaultClient].userToken;
-//    [[HttpClient defaultClient]requestWithPath:[NSString stringWithFormat:@"%@%@",mMyInfo,tokenStr] method:0 parameters:nil prepareExecute:^{
-//
-//    } success:^(NSURLSessionDataTask *task, id responseObject) {
-//        //        NSLog(@"res = = %@",responseObject);
-//        NSDictionary *dict = responseObject[@"result"];
-//        //        CcUserModel *userMoedel = [CcUserModel mj_objectWithKeyValues:responseObject];
-//        YYHomeUserModel *userMoedel = [YYHomeUserModel mj_objectWithKeyValues:dict];
-//
-//
-//        //        NSLog(@"%@",userMoedel.avatar);
-//
-//
-//        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",mPrefixUrl,userMoedel.avatar]] placeholderImage:[UIImage imageNamed:@"avatar.jpg"]];
-//
-//        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@岁",userMoedel.trueName,userMoedel.age];
-//        if ([userMoedel.gender containsString:@"男"]) {
-//            [self.genderV setImage:[UIImage imageNamed:@"boy_mine"]];
-//        }else{
-//            [self.genderV setImage:[UIImage imageNamed:@"boy_mine"]];
-//        }
-//        self.personalModel = userMoedel;
-//
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//
-//    }];
-//}
+- (void)postImageRequest{
+    NSData *picData = UIImageJPEGRepresentation(self.image, 0.5);
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain", nil];
+    [SVProgressHUD show];
+    [manager POST:mPostAvatarRequest parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        if (picData) {
+            //  图片上传
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"yyyyMMddHHmmss";
+            NSString *fileName = [NSString stringWithFormat:@"avatar%@.png", [formatter stringFromDate:[NSDate date]]];
+            [formData appendPartWithFileData:picData name:@"uploadFile" fileName:fileName mimeType:@"image/png"];
+        }
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [SVProgressHUD dismiss];
+        NSString *message = responseObject[@"message"];
+        [message stringByRemovingPercentEncoding];
+        NSLog(@"房间图片上传== %@,%@", responseObject,message);
+        if ([responseObject[@"code"] isEqualToString:@"0"]) {
+            [SVProgressHUD showSuccessWithStatus:@"修改成功!"];
+        }else{
+            [SVProgressHUD showErrorWithStatus:message];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"错误信息=====%@", error.description);
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"请求失败!"];
+    }];
+    
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.automaticallyAdjustsScrollViewInsets = false;

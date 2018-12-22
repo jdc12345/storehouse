@@ -28,7 +28,7 @@
 //设置选中的数据到资产列表
 -(void)setModel:(ApproveDetailAssetModel *)model{
     _model = model;
-    self.contentField.text = model.totalNum;
+    self.contentField.text = model.totalNum?:@"1";
     self.assetTypeLabel.text = model.categoryName;
     self.assetNameLabel.text = model.assetsName;
     self.selView.backgroundColor = [UIColor whiteColor];//去除复用cell后的选中效果

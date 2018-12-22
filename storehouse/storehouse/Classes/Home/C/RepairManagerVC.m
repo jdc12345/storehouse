@@ -32,7 +32,9 @@ static NSInteger start = 0;//上拉加载起始位置
 @property(nonatomic,weak)UITextField *searchField;//输入框
 @property(nonatomic,strong)RepairApplyDetailModel *repairModel;//维修申请model
 @property(nonatomic,weak)UITextField *contentField;//故障说明
-
+@property(nonatomic,weak)UIButton *yesBtn;
+@property(nonatomic,weak)UIButton *noBtn;
+@property(nonatomic,assign)NSInteger isFixed;//是否维修(0否1是)
 @end
 
 @implementation RepairManagerVC
@@ -49,6 +51,105 @@ static NSInteger start = 0;//上拉加载起始位置
     self.tableView.dataSource = self;
     [self.tableView registerClass:[ApplyDetailTVCell class] forCellReuseIdentifier:tableCellid];
     [self.tableView registerClass:[RepairFittingTVCell class] forCellReuseIdentifier:listCell];
+    self.tableView.tableFooterView = [self viewForFooter];
+}
+//设置tableview的尾部视图
+-(UIView *)viewForFooter{
+    if (self.state == 2) {//维修记录
+        UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, 44)];
+        footerView.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
+        //事项label
+        UILabel *itemLabel = [UILabel labelWithText:@"是否修复" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+        [footerView addSubview:itemLabel];
+        [itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.offset(0);
+            make.left.offset(15);
+            make.width.offset(60);
+        }];
+        //selbutton
+        UIButton *selBtn = [[UIButton alloc]init];
+        selBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [selBtn setTitleColor:[UIColor colorWithHexString:@"30a2d4"] forState:UIControlStateNormal];
+        [footerView addSubview:selBtn];
+        [selBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.offset(0);
+            make.left.offset(95);
+            make.width.offset(80);
+            make.height.offset(44);
+        }];
+        [selBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [selBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+        if ([self.repairModel.isFixed intValue] == 0) {
+            [selBtn setTitle:@"否" forState:UIControlStateNormal];
+            selBtn.selected = false;
+        }else{
+            [selBtn setTitle:@"是" forState:UIControlStateNormal];
+            selBtn.selected = true;
+        }
+        return footerView;
+    }else{//待维修
+        UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, 90)];
+        footerView.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
+        //事项label
+        UILabel *itemLabel = [UILabel labelWithText:@"是否修复" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+        [footerView addSubview:itemLabel];
+        [itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(footerView.mas_top).offset(22);
+            make.left.offset(15);
+            make.width.offset(60);
+        }];
+        //yesbutton
+        UIButton *yesBtn = [[UIButton alloc]init];
+        yesBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [yesBtn setTitleColor:[UIColor colorWithHexString:@"30a2d4"] forState:UIControlStateNormal];
+        [yesBtn setTitle:@"是" forState:UIControlStateNormal];
+        [footerView addSubview:yesBtn];
+        [yesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(itemLabel);
+            make.left.offset(95);
+            make.width.offset(80);
+            make.height.offset(44);
+        }];
+        [yesBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [yesBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+        //nobutton
+        UIButton *noBtn = [[UIButton alloc]init];
+        noBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [noBtn setTitleColor:[UIColor colorWithHexString:@"30a2d4"] forState:UIControlStateNormal];
+        [noBtn setTitle:@"否" forState:UIControlStateNormal];
+        [footerView addSubview:noBtn];
+        [noBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(itemLabel);
+            make.left.equalTo(yesBtn.mas_right).offset(35);
+            make.width.offset(80);
+            make.height.offset(44);
+        }];
+        [noBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [noBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+        yesBtn.tag = 60;
+        noBtn.tag = 61;
+        self.yesBtn = yesBtn;
+        self.noBtn = noBtn;
+        [yesBtn addTarget:self action:@selector(ifFixBtnClick:) forControlEvents:UIControlEventTouchDragInside];
+        [yesBtn addTarget:self action:@selector(ifFixBtnClick:) forControlEvents:UIControlEventTouchDragInside];
+        //确定button
+        UIButton *confirmBtn = [[UIButton alloc]init];
+        confirmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [confirmBtn setBackgroundColor:[UIColor colorWithHexString:@"23b880"]];
+        [confirmBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+        [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [footerView addSubview:confirmBtn];
+        [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.centerY.equalTo(footerView.mas_top).offset(65);
+            make.width.offset(80);
+            make.height.offset(46);
+        }];
+        [confirmBtn addTarget:self action:@selector(confirmFixBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        return footerView;
+        
+    }
+    return nil;
 }
 -(void)setState:(NSInteger)state{
     _state = state;
@@ -360,7 +461,10 @@ static NSInteger start = 0;//上拉加载起始位置
             cell.contentField.tag = [model.info_id integerValue] + 50;//为了标记textfield查找对应cell的数据model
             cell.contentField.delegate = self;
             cell.contentField.keyboardType = UIKeyboardTypeNumberPad;
-            
+            if (self.state != 1) {
+                cell.contentField.enabled = false;
+                cell.contentField.placeholder = @"1";
+            }
             return cell;
         }
     }else{//tableView == storeTableview
@@ -412,6 +516,7 @@ static NSInteger start = 0;//上拉加载起始位置
         return 35;
     }
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:true];
 }
@@ -484,7 +589,7 @@ static NSInteger start = 0;//上拉加载起始位置
             make.height.offset(35);
         }];
         //类别label
-        UILabel *ApplicantLabel = [UILabel labelWithText:@"类别" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+        UILabel *ApplicantLabel = [UILabel labelWithText:@"型号" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
         ApplicantLabel.backgroundColor = [UIColor whiteColor];
         ApplicantLabel.textAlignment = NSTextAlignmentCenter;
         [headerView addSubview:ApplicantLabel];
@@ -535,7 +640,7 @@ static NSInteger start = 0;//上拉加载起始位置
             make.top.bottom.offset(0);
         }];
         //类别label
-        UILabel *ApplicantLabel = [UILabel labelWithText:@"类别" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+        UILabel *ApplicantLabel = [UILabel labelWithText:@"型号" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
         ApplicantLabel.backgroundColor = [UIColor whiteColor];
         ApplicantLabel.textAlignment = NSTextAlignmentCenter;
         [headerView addSubview:ApplicantLabel];
@@ -630,19 +735,93 @@ static NSInteger start = 0;//上拉加载起始位置
 -(void)increaseBtnClick:(UIButton*)sender{
     self.storeTableView.hidden = false;
     self.backView.hidden = false;
-    //    if (self.searchField) {
-    //        [self requestmStoreThingsListWith:self.searchField.text];
-    //    }else{
-    //        [self requestmStoreThingsListWith:@""];
-    //    }
     
 }
-////删除按钮点击事件
-//-(void)delBtnClick:(UIButton*)sender{
-//    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:1];
-//    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+//是否维修选择按钮点击事件
+-(void)ifFixBtnClick:(UIButton*)sender{
+    sender.selected =!sender.selected;
+    if (sender.tag == 60) {//yesBtn
+        if (sender.selected) {
+            self.isFixed = 1;
+            self.noBtn.selected = false;
+        }else{
+            self.isFixed = 0;
+            self.noBtn.selected = true;
+        }
+    }else{//noBtn
+        if (sender.selected) {
+            self.isFixed = 0;
+            self.yesBtn.selected = false;
+        }else{
+            self.isFixed = 1;
+            self.yesBtn.selected = true;
+        }
+    }
+}
+//是否维修确定按钮点击事件
+//-(void)confirmFixBtnClick:(UIButton*)sender{
+////    维修管理》维修编辑保存接口
+////http://192.168.1.168:8085/mobileapi/assetRecipients/saveManage.do
+////    参数：
+////    id             |Long      |Y    |维修申请编号
+////    maintenance    |String    |N    |维修方;
+////    cost           |Double    |N    |维修费用;
+////    isFixed        |Byte      |Y    |是否已修复;0=未修复，1=已修复
+////    assetsIds      |String    |Y    |配件列表，格式：资产编号,数量;id,num;1,1;
+////    错误码：
+////    1=缺少参数：assetsIds
+////    2=缺少参数：id
+////    3=对应编号的申请不存在
+////    4=缺少参数：isFixed
+//    LaunchBaseTVCell *cell7 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0]];
+//    NSString *comment = @"";//备注说明
+//    if (cell7.contentField.text.length > 0) {
+//        comment = cell7.contentField.text;
+//    }
+//    
+//    NSString *assetId = @"";//维修物品编号
+//    if (!self.curruntSelectedThing) {
+//        [SVProgressHUD showInfoWithStatus:@"请添加维修物品"];
+//        
+//        return;
+//    }else{
+//        assetId = self.curruntSelectedThing.info_id;
+//    }
+//    NSString *totalNum = @"";//维修物品数量
+//    LaunchBaseTVCell *cell5 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+//    if (cell5.contentField.text.integerValue > 0) {
+//        totalNum = cell5.contentField.text;
+//    }else{
+//        [SVProgressHUD showInfoWithStatus:@"请添加正确的维修数量"];
+//        return;
+//    }
+//    //http://192.168.1.168:8085/mobileapi/maintenanceLog/save.do?assetId=1 维修
+//    sender.enabled = false;
+//    [SVProgressHUD show];// 动画开始
+//    NSString *reportUrlStr = @"";
+//    reportUrlStr = [NSString stringWithFormat:@"%@&assetId=%@&totalNum=%@&mainType=%ld&comment=%@",mRepairManagersaveManage,assetId,totalNum,self.mainType,comment];
+//    
+//    reportUrlStr = [reportUrlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+//    HttpClient *httpManager = [HttpClient defaultClient];
+//    [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
+//    [SVProgressHUD show];
+//    [httpManager requestWithPath:reportUrlStr method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        [SVProgressHUD dismiss];
+//        NSDictionary *dic = (NSDictionary *)responseObject;
+//        if ([dic[@"code"] isEqualToString:@"0"]) {
+//            
+//            [SVProgressHUD showSuccessWithStatus:@"发起成功"];
+//        }else if ([dic[@"code"] isEqualToString:@"-1"]){
+//            [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
+//        }
+//        sender.enabled = true;
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        [SVProgressHUD dismiss];
+//        sender.enabled = true;
+//        return ;
+//    }];
 //}
-//确定按钮点击事件
+//配件选择确定按钮点击事件
 -(void)confirmBtnClick:(UIButton*)sender{
     self.storeTableView.hidden = true;
     self.backView.hidden = true;

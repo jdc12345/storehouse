@@ -138,6 +138,12 @@
 		161D72F721CD131000F04C21 /* RepairFittingTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F621CD131000F04C21 /* RepairFittingTVCell.m */; };
 		161D72F821CD131000F04C21 /* RepairFittingTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F621CD131000F04C21 /* RepairFittingTVCell.m */; };
 		161D72F921CD131000F04C21 /* RepairFittingTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D72F621CD131000F04C21 /* RepairFittingTVCell.m */; };
+		161D730121CE51D400F04C21 /* MyNewsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D730021CE51D400F04C21 /* MyNewsListVC.m */; };
+		161D730221CE51D400F04C21 /* MyNewsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D730021CE51D400F04C21 /* MyNewsListVC.m */; };
+		161D730321CE51D400F04C21 /* MyNewsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D730021CE51D400F04C21 /* MyNewsListVC.m */; };
+		161D730621CE5A4C00F04C21 /* NoticeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D730521CE5A4C00F04C21 /* NoticeDetailVC.m */; };
+		161D730721CE5A4C00F04C21 /* NoticeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D730521CE5A4C00F04C21 /* NoticeDetailVC.m */; };
+		161D730821CE5A4C00F04C21 /* NoticeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 161D730521CE5A4C00F04C21 /* NoticeDetailVC.m */; };
 		161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
 		161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */; };
@@ -413,6 +419,10 @@
 		161D72F121CD0C0C00F04C21 /* FittingsListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FittingsListModel.m; sourceTree = "<group>"; };
 		161D72F521CD131000F04C21 /* RepairFittingTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairFittingTVCell.h; sourceTree = "<group>"; };
 		161D72F621CD131000F04C21 /* RepairFittingTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairFittingTVCell.m; sourceTree = "<group>"; };
+		161D72FF21CE51D400F04C21 /* MyNewsListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyNewsListVC.h; sourceTree = "<group>"; };
+		161D730021CE51D400F04C21 /* MyNewsListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyNewsListVC.m; sourceTree = "<group>"; };
+		161D730421CE5A4C00F04C21 /* NoticeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeDetailVC.h; sourceTree = "<group>"; };
+		161D730521CE5A4C00F04C21 /* NoticeDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailVC.m; sourceTree = "<group>"; };
 		161E57D720CF77A6006B57B2 /* CPXCommonLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXCommonLabel.h; sourceTree = "<group>"; };
 		161E57D820CF77A6006B57B2 /* CPXCommonLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPXCommonLabel.m; sourceTree = "<group>"; };
 		161E57DC20CFA278006B57B2 /* LaunchMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchMainHeaderView.h; sourceTree = "<group>"; };
@@ -634,6 +644,8 @@
 			children = (
 				16AD808B20BECB9D005F99BC /* MineVC.h */,
 				16AD808C20BECB9D005F99BC /* MineVC.m */,
+				161D72FF21CE51D400F04C21 /* MyNewsListVC.h */,
+				161D730021CE51D400F04C21 /* MyNewsListVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -710,6 +722,8 @@
 			children = (
 				16AD807C20BECB2A005F99BC /* HomeVC.h */,
 				16AD807D20BECB2A005F99BC /* HomeVC.m */,
+				161D730421CE5A4C00F04C21 /* NoticeDetailVC.h */,
+				161D730521CE5A4C00F04C21 /* NoticeDetailVC.m */,
 				162DE48D219E9A30007E68C2 /* HomePageScanVC.h */,
 				162DE48E219E9A30007E68C2 /* HomePageScanVC.m */,
 				162DE49A21A15EAD007E68C2 /* AssetsManangeVC.h */,
@@ -1334,6 +1348,7 @@
 				161D72E321CCF02F00F04C21 /* RepairManagerVC.m in Sources */,
 				161D6E8F214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				1687281E21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
+				161D730121CE51D400F04C21 /* MyNewsListVC.m in Sources */,
 				161D72F221CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				161D72A221C11F9F00F04C21 /* InventoryScanVC.m in Sources */,
 				162E472220C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
@@ -1355,6 +1370,7 @@
 				161D72C021C67AA100F04C21 /* borrowApplyDetailModel.m in Sources */,
 				161D72CA21C7C2C900F04C21 /* MineApplyDetailVC.m in Sources */,
 				161D729D21C10D4200F04C21 /* InventoryAssetModel.m in Sources */,
+				161D730621CE5A4C00F04C21 /* NoticeDetailVC.m in Sources */,
 				16872832211294B7004E9250 /* LogInVC.m in Sources */,
 				161D6EA521428F4D0040313F /* WMHCalendarView.m in Sources */,
 				1654F32721070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
@@ -1393,6 +1409,7 @@
 				161D6EBD214687180040313F /* willApproveVC.m in Sources */,
 				161D72F321CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				16AD806120BEC9E9005F99BC /* main.m in Sources */,
+				161D730221CE51D400F04C21 /* MyNewsListVC.m in Sources */,
 				161D72DA21C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */,
 				162DE4B121A3F395007E68C2 /* AddAssetVC.m in Sources */,
 				161D72D521C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */,
@@ -1436,6 +1453,7 @@
 				161D6ED9214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
 				161D6ED42147DA970040313F /* approveListTVCell.m in Sources */,
 				162E474120C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
+				161D730721CE5A4C00F04C21 /* NoticeDetailVC.m in Sources */,
 				161D6ECF2147D9930040313F /* ApproveListModel.m in Sources */,
 				161D72E921CCF53000F04C21 /* RepairManagerListVC.m in Sources */,
 				161D72AD21C2550D00F04C21 /* InventoryTypeModel.m in Sources */,
@@ -1490,6 +1508,7 @@
 				161D6EBE214687180040313F /* willApproveVC.m in Sources */,
 				161D72F421CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				16AD806220BEC9E9005F99BC /* main.m in Sources */,
+				161D730321CE51D400F04C21 /* MyNewsListVC.m in Sources */,
 				161D72DB21C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */,
 				162DE4B221A3F395007E68C2 /* AddAssetVC.m in Sources */,
 				161D72D621C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */,
@@ -1533,6 +1552,7 @@
 				161D6EDA214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
 				161D6ED52147DA970040313F /* approveListTVCell.m in Sources */,
 				162E474220C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
+				161D730821CE5A4C00F04C21 /* NoticeDetailVC.m in Sources */,
 				161D6ED02147D9930040313F /* ApproveListModel.m in Sources */,
 				161D72EA21CCF53000F04C21 /* RepairManagerListVC.m in Sources */,
 				161D72AE21C2550D00F04C21 /* InventoryTypeModel.m in Sources */,

@@ -40,9 +40,9 @@
 //#define mPrefixUrl @"http://192.168.1.168:8082/yuyi"
 #pragma mark -
 #pragma mark ---------------Dis - Url------------------
-#define mPrefixUrl @"http://192.168.1.168:8085"
+//#define mPrefixUrl @"http://192.168.1.168:8085"
 //库房管理系统外网服务器地址：
-//#define mPrefixUrl @"http://59.110.169.148:8085"
+#define mPrefixUrl @"http://59.110.169.148:8085"
 
 // 判断扫一扫结果
 #define mScanResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetQrCode/getByCode.do?"]
@@ -68,6 +68,8 @@
 #define mRepairManagerDetail [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/getManage.do?"]
 //维修管理》维修编辑》添加配件：分页查询配件列表接口
 #define mRepairManagerFittingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpFittings.do?"]
+//维修管理》维修编辑保存接口
+#define mRepairManagersaveManage [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetRecipients/saveManage.do"]
 // 分页查询通知接口
 #define mNoticeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/findPage.do?"]
 // 分页查询历史盘点接口
@@ -154,8 +156,8 @@
 
 //资产维修申请审批
 #define mMaintenanceLogApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/doApproval.do?"]
-
-
+//资产维修申请审批
+#define mPostAvatarRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/user/saveAvatar.do"]
 
 
 

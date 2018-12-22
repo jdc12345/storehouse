@@ -24,12 +24,9 @@ static NSString* typeCellid = @"type_cell";
 @interface LaunchSubListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray            *dataList;//申请详情列表数据源
 @property (nonatomic,strong) UITableView                *tableView;//申请详情列表
-//@property (nonatomic, assign) NSInteger                 processStatus;
 @property (nonatomic, copy  ) NSString                  *minId;//申请列表数据类型
-//@property (nonatomic, assign) BOOL                      isLoading;
 //
 @property (nonatomic, strong) CPXImageAndTitleButton    *launchSortButton;//申请分类按钮
-//@property (nonatomic, strong) CPXLaunchTypeModel        *selectedSortModel;
 @property (nonatomic, strong) UITableView               *launchSortTableView;//申请分类列表
 @property (nonatomic, strong) NSMutableArray *launchSortTypeArray;//申请分类列表数据源
 @property (nonatomic, strong) LaunchTypeModel               *selectingtypeModel;//类型model
@@ -92,14 +89,6 @@ static NSString* typeCellid = @"type_cell";
 //        }
 //    }];
 }
-
-//- (void) setSelectedTime
-//{
-//    self.selectedSortModel = self.self.launchSortTypeArray.firstObject;
-//    [self.launchSortButton setTitle:self.selectedSortModel.typeName forState:UIControlStateNormal];
-//    self.selectedSortModel.isSelected = YES;
-//    [self.launchSortTableView reloadData];
-//}
 
 
 /**
@@ -256,12 +245,6 @@ static NSString* typeCellid = @"type_cell";
     }];
 }
 
-//- (void)refreshSortTypeDataWithModel:(CPXLaunchTypeModel *)typeModel{
-//    if (self.selectedSortModel != typeModel) {
-//        self.selectedSortModel = typeModel;
-//        [self.tableView.header beginRefreshing];
-//    }
-//}
 #pragma mark - 懒加载
 - (UITableView *)tableView
 {
@@ -320,13 +303,7 @@ static NSString* typeCellid = @"type_cell";
             make.left.right.top.equalTo(self.view);
             make.height.mas_equalTo(40);
         }];
-//        UIView *bottomLine = [[UIView alloc] init];
-//        bottomLine.backgroundColor = CPXCommonLineLayerColorColor;
-//        [_launchSortButton addSubview:bottomLine];
-//        [bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.bottom.right.equalTo(_launchSortButton);
-//            make.height.mas_equalTo(0.5);
-//        }];
+
     }
     return _launchSortButton;
 }
@@ -453,20 +430,7 @@ static NSString* typeCellid = @"type_cell";
         [self.navigationController pushViewController:detailVc animated:true];
         
     }
-//    if (tableView == self.launchSortTableView){
-//        self.selectedSortModel.isSelected = NO;
-//        CPXLaunchTypeModel *typeModel = [self.launchSortTypeArray objectAtIndex:indexPath.row];
-//        typeModel.isSelected = YES;
-//        [self.launchSortTableView reloadData];
-//        [self resetLaunchSortView];
-//        [self.launchSortButton setTitle:typeModel.typeName forState:UIControlStateNormal];
-//        [self refreshSortTypeDataWithModel:typeModel];
-//    }else{
-//        CPXLaunchCellDetailModel *model = self.dataList[indexPath.row];
-//        UIViewController * detailVC = [CPXLaunchDetailVCManager launchDetailVCWithExpenseSn:model.expenseSn andExpenseType:model.typeModel.type ShopId:model.shopModel.id index:[self processStatusWithIndex]];
-//        detailVC.hidesBottomBarWhenPushed = YES;
-//        [self.view.navigationController pushViewController:detailVC animated:YES];
-//    }
+
 }
 
 
@@ -475,8 +439,6 @@ static NSString* typeCellid = @"type_cell";
     if (tableView == self.launchSortTableView){
         return [LaunchTypeTVCell cellHeight];
     }else{
-//        CPXLaunchCellDetailModel *model = self.dataList[indexPath.row];
-//        return [CPXLaunchCell calculateRowHeightWithIndex:self.index model:model];
         return 95;
     }
 }
