@@ -131,7 +131,12 @@ static NSString* assetCellid = @"table_assetCellid";
             cell.itemContentLabel.text = self.buyModel.producerName;
             break;
         case 7:
-            cell.itemContentLabel.text = self.buyModel.buyCate;
+            if ([self.buyModel.buyCate intValue] == 1) {
+                cell.itemContentLabel.text = @"计划内";
+            }else{
+                cell.itemContentLabel.text = @"计划外";
+            }
+            
             break;
         case 8:
             cell.itemContentLabel.text = self.buyModel.buyReason;

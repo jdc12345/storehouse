@@ -251,6 +251,36 @@
 		166EBFC1215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */; };
 		166EBFC2215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */; };
 		166EBFC3215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */; };
+		167446F521CF6E81007D5C08 /* MineAssetsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446F421CF6E81007D5C08 /* MineAssetsVC.m */; };
+		167446F621CF6E81007D5C08 /* MineAssetsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446F421CF6E81007D5C08 /* MineAssetsVC.m */; };
+		167446F721CF6E81007D5C08 /* MineAssetsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446F421CF6E81007D5C08 /* MineAssetsVC.m */; };
+		167446FA21CF9E7C007D5C08 /* MineSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446F921CF9E7C007D5C08 /* MineSettingVC.m */; };
+		167446FB21CF9E7C007D5C08 /* MineSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446F921CF9E7C007D5C08 /* MineSettingVC.m */; };
+		167446FC21CF9E7C007D5C08 /* MineSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446F921CF9E7C007D5C08 /* MineSettingVC.m */; };
+		167446FF21CFA81C007D5C08 /* YYFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446FE21CFA81C007D5C08 /* YYFeedbackViewController.m */; };
+		1674470021CFA81C007D5C08 /* YYFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446FE21CFA81C007D5C08 /* YYFeedbackViewController.m */; };
+		1674470121CFA81C007D5C08 /* YYFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 167446FE21CFA81C007D5C08 /* YYFeedbackViewController.m */; };
+		1674470421CFAF9B007D5C08 /* ModifyPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470321CFAF9B007D5C08 /* ModifyPasswordVC.m */; };
+		1674470521CFAF9B007D5C08 /* ModifyPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470321CFAF9B007D5C08 /* ModifyPasswordVC.m */; };
+		1674470621CFAF9B007D5C08 /* ModifyPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470321CFAF9B007D5C08 /* ModifyPasswordVC.m */; };
+		1674470921D10B4F007D5C08 /* OutInStoreListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470821D10B4F007D5C08 /* OutInStoreListVC.m */; };
+		1674470A21D10B4F007D5C08 /* OutInStoreListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470821D10B4F007D5C08 /* OutInStoreListVC.m */; };
+		1674470B21D10B4F007D5C08 /* OutInStoreListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470821D10B4F007D5C08 /* OutInStoreListVC.m */; };
+		1674470E21D1D5B0007D5C08 /* OutPutListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470D21D1D5B0007D5C08 /* OutPutListTVCell.m */; };
+		1674470F21D1D5B0007D5C08 /* OutPutListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470D21D1D5B0007D5C08 /* OutPutListTVCell.m */; };
+		1674471021D1D5B0007D5C08 /* OutPutListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674470D21D1D5B0007D5C08 /* OutPutListTVCell.m */; };
+		1674471321D1DF41007D5C08 /* CheckdetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471221D1DF41007D5C08 /* CheckdetailVC.m */; };
+		1674471421D1DF41007D5C08 /* CheckdetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471221D1DF41007D5C08 /* CheckdetailVC.m */; };
+		1674471521D1DF41007D5C08 /* CheckdetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471221D1DF41007D5C08 /* CheckdetailVC.m */; };
+		1674471821D39295007D5C08 /* OutPutGetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471721D39295007D5C08 /* OutPutGetDetailVC.m */; };
+		1674471921D39295007D5C08 /* OutPutGetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471721D39295007D5C08 /* OutPutGetDetailVC.m */; };
+		1674471A21D39295007D5C08 /* OutPutGetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471721D39295007D5C08 /* OutPutGetDetailVC.m */; };
+		1674471D21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471C21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m */; };
+		1674471E21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471C21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m */; };
+		1674471F21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674471C21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m */; };
+		1674472221D4CE37007D5C08 /* ReplaceApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674472121D4CE37007D5C08 /* ReplaceApplyDetailModel.m */; };
+		1674472321D4CE37007D5C08 /* ReplaceApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674472121D4CE37007D5C08 /* ReplaceApplyDetailModel.m */; };
+		1674472421D4CE37007D5C08 /* ReplaceApplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1674472121D4CE37007D5C08 /* ReplaceApplyDetailModel.m */; };
 		16872814210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
 		16872815210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
 		16872816210EF897004E9250 /* LaunchGetUseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16872813210EF897004E9250 /* LaunchGetUseVC.m */; };
@@ -495,6 +525,26 @@
 		166EBFBB215A18E300C8E424 /* RepairApplyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairApplyDetailModel.m; sourceTree = "<group>"; };
 		166EBFBF215A33C900C8E424 /* ScrapApplyDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrapApplyDetailModel.h; sourceTree = "<group>"; };
 		166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrapApplyDetailModel.m; sourceTree = "<group>"; };
+		167446F321CF6E81007D5C08 /* MineAssetsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineAssetsVC.h; sourceTree = "<group>"; };
+		167446F421CF6E81007D5C08 /* MineAssetsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineAssetsVC.m; sourceTree = "<group>"; };
+		167446F821CF9E7C007D5C08 /* MineSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSettingVC.h; sourceTree = "<group>"; };
+		167446F921CF9E7C007D5C08 /* MineSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineSettingVC.m; sourceTree = "<group>"; };
+		167446FD21CFA81C007D5C08 /* YYFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFeedbackViewController.h; sourceTree = "<group>"; };
+		167446FE21CFA81C007D5C08 /* YYFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFeedbackViewController.m; sourceTree = "<group>"; };
+		1674470221CFAF9B007D5C08 /* ModifyPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordVC.h; sourceTree = "<group>"; };
+		1674470321CFAF9B007D5C08 /* ModifyPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordVC.m; sourceTree = "<group>"; };
+		1674470721D10B4F007D5C08 /* OutInStoreListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutInStoreListVC.h; sourceTree = "<group>"; };
+		1674470821D10B4F007D5C08 /* OutInStoreListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OutInStoreListVC.m; sourceTree = "<group>"; };
+		1674470C21D1D5B0007D5C08 /* OutPutListTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutPutListTVCell.h; sourceTree = "<group>"; };
+		1674470D21D1D5B0007D5C08 /* OutPutListTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OutPutListTVCell.m; sourceTree = "<group>"; };
+		1674471121D1DF41007D5C08 /* CheckdetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckdetailVC.h; sourceTree = "<group>"; };
+		1674471221D1DF41007D5C08 /* CheckdetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckdetailVC.m; sourceTree = "<group>"; };
+		1674471621D39295007D5C08 /* OutPutGetDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutPutGetDetailVC.h; sourceTree = "<group>"; };
+		1674471721D39295007D5C08 /* OutPutGetDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OutPutGetDetailVC.m; sourceTree = "<group>"; };
+		1674471B21D4B1AA007D5C08 /* OutPutBorrowDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutPutBorrowDetailVC.h; sourceTree = "<group>"; };
+		1674471C21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OutPutBorrowDetailVC.m; sourceTree = "<group>"; };
+		1674472021D4CE37007D5C08 /* ReplaceApplyDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplaceApplyDetailModel.h; sourceTree = "<group>"; };
+		1674472121D4CE37007D5C08 /* ReplaceApplyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplaceApplyDetailModel.m; sourceTree = "<group>"; };
 		16872812210EF897004E9250 /* LaunchGetUseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchGetUseVC.h; sourceTree = "<group>"; };
 		16872813210EF897004E9250 /* LaunchGetUseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchGetUseVC.m; sourceTree = "<group>"; };
 		1687281C21105E59004E9250 /* LaunchFormTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchFormTVCell.h; sourceTree = "<group>"; };
@@ -646,6 +696,14 @@
 				16AD808C20BECB9D005F99BC /* MineVC.m */,
 				161D72FF21CE51D400F04C21 /* MyNewsListVC.h */,
 				161D730021CE51D400F04C21 /* MyNewsListVC.m */,
+				167446F321CF6E81007D5C08 /* MineAssetsVC.h */,
+				167446F421CF6E81007D5C08 /* MineAssetsVC.m */,
+				167446F821CF9E7C007D5C08 /* MineSettingVC.h */,
+				167446F921CF9E7C007D5C08 /* MineSettingVC.m */,
+				167446FD21CFA81C007D5C08 /* YYFeedbackViewController.h */,
+				167446FE21CFA81C007D5C08 /* YYFeedbackViewController.m */,
+				1674470221CFAF9B007D5C08 /* ModifyPasswordVC.h */,
+				1674470321CFAF9B007D5C08 /* ModifyPasswordVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -713,6 +771,8 @@
 				161D72D321C9F0CD00F04C21 /* PurchaseOrderListTVCell.m */,
 				161D72F521CD131000F04C21 /* RepairFittingTVCell.h */,
 				161D72F621CD131000F04C21 /* RepairFittingTVCell.m */,
+				1674470C21D1D5B0007D5C08 /* OutPutListTVCell.h */,
+				1674470D21D1D5B0007D5C08 /* OutPutListTVCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -752,6 +812,14 @@
 				161D72E721CCF53000F04C21 /* RepairManagerListVC.m */,
 				161D72E121CCF02F00F04C21 /* RepairManagerVC.h */,
 				161D72E221CCF02F00F04C21 /* RepairManagerVC.m */,
+				1674470721D10B4F007D5C08 /* OutInStoreListVC.h */,
+				1674470821D10B4F007D5C08 /* OutInStoreListVC.m */,
+				1674471121D1DF41007D5C08 /* CheckdetailVC.h */,
+				1674471221D1DF41007D5C08 /* CheckdetailVC.m */,
+				1674471621D39295007D5C08 /* OutPutGetDetailVC.h */,
+				1674471721D39295007D5C08 /* OutPutGetDetailVC.m */,
+				1674471B21D4B1AA007D5C08 /* OutPutBorrowDetailVC.h */,
+				1674471C21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -778,6 +846,8 @@
 				161D6EE12154F9F40040313F /* BuyApplyDetailModel.m */,
 				166EBFBA215A18E300C8E424 /* RepairApplyDetailModel.h */,
 				166EBFBB215A18E300C8E424 /* RepairApplyDetailModel.m */,
+				1674472021D4CE37007D5C08 /* ReplaceApplyDetailModel.h */,
+				1674472121D4CE37007D5C08 /* ReplaceApplyDetailModel.m */,
 				166EBFBF215A33C900C8E424 /* ScrapApplyDetailModel.h */,
 				166EBFC0215A33C900C8E424 /* ScrapApplyDetailModel.m */,
 				161D72AF21C656C400F04C21 /* GetApplyDetailModel.h */,
@@ -1285,6 +1355,8 @@
 				161D728921BE881000F04C21 /* HistoryInventoryTVCell.m in Sources */,
 				161D728421BE857800F04C21 /* HistoryInventoryVC.m in Sources */,
 				161D6ED8214B44E30040313F /* PurchasePepairReplaceScrapVC.m in Sources */,
+				167446F521CF6E81007D5C08 /* MineAssetsVC.m in Sources */,
+				1674470421CFAF9B007D5C08 /* ModifyPasswordVC.m in Sources */,
 				161D6EE22154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				161D72D421C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */,
 				1687283E21143738004E9250 /* BaseViewController.m in Sources */,
@@ -1310,6 +1382,7 @@
 				1654F32A21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
 				16AD808820BECB57005F99BC /* AssetsVC.m in Sources */,
 				162E473120C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
+				1674470921D10B4F007D5C08 /* OutInStoreListVC.m in Sources */,
 				161D729321BFC2E800F04C21 /* InventoryDetailVC.m in Sources */,
 				161D6EBC214687180040313F /* willApproveVC.m in Sources */,
 				162DE4BF21A42E62007E68C2 /* PostNoticeVC.m in Sources */,
@@ -1324,16 +1397,21 @@
 				162E474020C7B60C00DED9B2 /* UILabel+Addition.m in Sources */,
 				166EBFC1215A33C900C8E424 /* ScrapApplyDetailModel.m in Sources */,
 				161D72C521C7A32600F04C21 /* LaunchTypeModel.m in Sources */,
+				167446FA21CF9E7C007D5C08 /* MineSettingVC.m in Sources */,
+				1674471321D1DF41007D5C08 /* CheckdetailVC.m in Sources */,
 				16AD805520BEC9AC005F99BC /* HttpClient.m in Sources */,
 				161D6ED32147DA970040313F /* approveListTVCell.m in Sources */,
+				167446FF21CFA81C007D5C08 /* YYFeedbackViewController.m in Sources */,
 				1654F32121070DC5007EF7B0 /* ZWPullMenuCell.m in Sources */,
 				16AD807E20BECB2A005F99BC /* HomeVC.m in Sources */,
 				162E473B20C7B43E00DED9B2 /* HomeNoticeNewsTVCell.m in Sources */,
 				161E57DE20CFA278006B57B2 /* LaunchMainHeaderView.m in Sources */,
+				1674470E21D1D5B0007D5C08 /* OutPutListTVCell.m in Sources */,
 				16AD806020BEC9E9005F99BC /* main.m in Sources */,
 				16AD807620BECA67005F99BC /* YYTabBar.m in Sources */,
 				16450F63211C43F300567BC4 /* permissionTypeModel.m in Sources */,
 				16AD805820BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
+				1674471D21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m in Sources */,
 				16872814210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
 				161D6EDD2153957C0040313F /* ApplyDetailTVCell.m in Sources */,
 				162DE48F219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
@@ -1349,9 +1427,11 @@
 				161D6E8F214277D00040313F /* launchBorrowApplyVC.m in Sources */,
 				1687281E21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				161D730121CE51D400F04C21 /* MyNewsListVC.m in Sources */,
+				1674471821D39295007D5C08 /* OutPutGetDetailVC.m in Sources */,
 				161D72F221CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				161D72A221C11F9F00F04C21 /* InventoryScanVC.m in Sources */,
 				162E472220C68E8900DED9B2 /* HomeFunctionCollectionViewCell.m in Sources */,
+				1674472221D4CE37007D5C08 /* ReplaceApplyDetailModel.m in Sources */,
 				16450F682122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
 				161D6ECE2147D9930040313F /* ApproveListModel.m in Sources */,
 				16AD808D20BECB9D005F99BC /* MineVC.m in Sources */,
@@ -1398,18 +1478,24 @@
 				1687282E21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				161D72CB21C7C2C900F04C21 /* MineApplyDetailVC.m in Sources */,
 				162DE4BB21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */,
+				167446F621CF6E81007D5C08 /* MineAssetsVC.m in Sources */,
 				162DE4C021A42E62007E68C2 /* PostNoticeVC.m in Sources */,
+				167446FB21CF9E7C007D5C08 /* MineSettingVC.m in Sources */,
+				1674470021CFA81C007D5C08 /* YYFeedbackViewController.m in Sources */,
 				16450F4F2118333900567BC4 /* NSString+URL.m in Sources */,
 				161D72DF21CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */,
 				161E57DA20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				162E473220C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
+				1674470A21D10B4F007D5C08 /* OutInStoreListVC.m in Sources */,
 				16AD805920BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
+				1674472321D4CE37007D5C08 /* ReplaceApplyDetailModel.m in Sources */,
 				162DE4AC21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
 				161D6EE32154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				161D6EBD214687180040313F /* willApproveVC.m in Sources */,
 				161D72F321CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				16AD806120BEC9E9005F99BC /* main.m in Sources */,
 				161D730221CE51D400F04C21 /* MyNewsListVC.m in Sources */,
+				1674470F21D1D5B0007D5C08 /* OutPutListTVCell.m in Sources */,
 				161D72DA21C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */,
 				162DE4B121A3F395007E68C2 /* AddAssetVC.m in Sources */,
 				161D72D521C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */,
@@ -1422,6 +1508,7 @@
 				16872829211196CA004E9250 /* LaunchScrapVC.m in Sources */,
 				16872815210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
 				16AD807720BECA67005F99BC /* YYTabBar.m in Sources */,
+				1674471921D39295007D5C08 /* OutPutGetDetailVC.m in Sources */,
 				162DE49821A00C72007E68C2 /* PersonalTVCell.m in Sources */,
 				16AD808E20BECB9D005F99BC /* MineVC.m in Sources */,
 				16AD802F20BEC365005F99BC /* storehouseTests.m in Sources */,
@@ -1441,11 +1528,13 @@
 				162DE490219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
 				161D6EC721468F2D0040313F /* NSObject+Formula.m in Sources */,
 				16450F64211C43F300567BC4 /* permissionTypeModel.m in Sources */,
+				1674471421D1DF41007D5C08 /* CheckdetailVC.m in Sources */,
 				1687281F21105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				16AD807A20BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				16AD807420BECA67005F99BC /* YYTabBarController.m in Sources */,
 				161D72C121C67AA100F04C21 /* borrowApplyDetailModel.m in Sources */,
 				162E472820C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
+				1674470521CFAF9B007D5C08 /* ModifyPasswordVC.m in Sources */,
 				16450F692122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
 				161D72D021C8F8CF00F04C21 /* PurchaseOrderVC.m in Sources */,
 				1654F32B21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
@@ -1467,6 +1556,7 @@
 				162DE4A221A16B81007E68C2 /* AssetsManageTVCell.m in Sources */,
 				16450F6E21242B4C00567BC4 /* LaunchTypeTVCell.m in Sources */,
 				1654F32821070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
+				1674471E21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m in Sources */,
 				162E474920C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 				162DE49D21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */,
 				16450F5A21198C1700567BC4 /* CPXImageAndTitleButton.m in Sources */,
@@ -1497,18 +1587,24 @@
 				1687282F21119FA1004E9250 /* LaunchRetiringVC.m in Sources */,
 				161D72CC21C7C2C900F04C21 /* MineApplyDetailVC.m in Sources */,
 				162DE4BC21A42A36007E68C2 /* HomePageNoticeModel.m in Sources */,
+				167446F721CF6E81007D5C08 /* MineAssetsVC.m in Sources */,
 				162DE4C121A42E62007E68C2 /* PostNoticeVC.m in Sources */,
+				167446FC21CF9E7C007D5C08 /* MineSettingVC.m in Sources */,
+				1674470121CFA81C007D5C08 /* YYFeedbackViewController.m in Sources */,
 				16450F502118333900567BC4 /* NSString+URL.m in Sources */,
 				161D72E021CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */,
 				161E57DB20CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
 				162E473320C6954C00DED9B2 /* NSArray+Addition.m in Sources */,
+				1674470B21D10B4F007D5C08 /* OutInStoreListVC.m in Sources */,
 				16AD805A20BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
+				1674472421D4CE37007D5C08 /* ReplaceApplyDetailModel.m in Sources */,
 				162DE4AD21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
 				161D6EE42154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				161D6EBE214687180040313F /* willApproveVC.m in Sources */,
 				161D72F421CD0C0C00F04C21 /* FittingsListModel.m in Sources */,
 				16AD806220BEC9E9005F99BC /* main.m in Sources */,
 				161D730321CE51D400F04C21 /* MyNewsListVC.m in Sources */,
+				1674471021D1D5B0007D5C08 /* OutPutListTVCell.m in Sources */,
 				161D72DB21C9F97600F04C21 /* PurchaseOrderListModel.m in Sources */,
 				162DE4B221A3F395007E68C2 /* AddAssetVC.m in Sources */,
 				161D72D621C9F0CD00F04C21 /* PurchaseOrderListTVCell.m in Sources */,
@@ -1521,6 +1617,7 @@
 				1687282A211196CA004E9250 /* LaunchScrapVC.m in Sources */,
 				16872816210EF897004E9250 /* LaunchGetUseVC.m in Sources */,
 				16AD807820BECA67005F99BC /* YYTabBar.m in Sources */,
+				1674471A21D39295007D5C08 /* OutPutGetDetailVC.m in Sources */,
 				162DE49921A00C72007E68C2 /* PersonalTVCell.m in Sources */,
 				16AD808F20BECB9D005F99BC /* MineVC.m in Sources */,
 				16AD803A20BEC365005F99BC /* storehouseUITests.m in Sources */,
@@ -1540,11 +1637,13 @@
 				162DE491219E9A30007E68C2 /* HomePageScanVC.m in Sources */,
 				161D6EC821468F2D0040313F /* NSObject+Formula.m in Sources */,
 				16450F65211C43F300567BC4 /* permissionTypeModel.m in Sources */,
+				1674471521D1DF41007D5C08 /* CheckdetailVC.m in Sources */,
 				1687282021105E59004E9250 /* LaunchFormTVCell.m in Sources */,
 				16AD807B20BECA67005F99BC /* YYTabBarItem.m in Sources */,
 				16AD807520BECA67005F99BC /* YYTabBarController.m in Sources */,
 				161D72C221C67AA100F04C21 /* borrowApplyDetailModel.m in Sources */,
 				162E472920C690C400DED9B2 /* HomeFunctionListModel.m in Sources */,
+				1674470621CFAF9B007D5C08 /* ModifyPasswordVC.m in Sources */,
 				16450F6A2122C9B800567BC4 /* LaunchExamineListTVCell.m in Sources */,
 				161D72D121C8F8CF00F04C21 /* PurchaseOrderVC.m in Sources */,
 				1654F32C21070DC5007EF7B0 /* ZWPullMenuView.m in Sources */,
@@ -1566,6 +1665,7 @@
 				162DE4A321A16B81007E68C2 /* AssetsManageTVCell.m in Sources */,
 				16450F6F21242B4C00567BC4 /* LaunchTypeTVCell.m in Sources */,
 				1654F32921070DC5007EF7B0 /* ZWPullMenuModel.m in Sources */,
+				1674471F21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m in Sources */,
 				162E474A20C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
 				162DE49E21A15EAD007E68C2 /* AssetsManangeVC.m in Sources */,
 				16450F5B21198C1700567BC4 /* CPXImageAndTitleButton.m in Sources */,

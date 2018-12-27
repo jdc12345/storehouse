@@ -308,7 +308,7 @@
                 //获取cookie
                 NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
                 NSDictionary *fields = [response allHeaderFields]; //afnetworking写法
-                NSLog(@"------->%@",fields[@"Set-cookie"]);
+//                NSLog(@"------->%@",fields[@"Set-cookie"]);
                 NSString *userCookie = fields[@"Set-cookie"];//获取当前cookie
                 defaultModel.userCookie = userCookie;
                 //保存用户信息
@@ -321,7 +321,7 @@
                 if ([dic[@"result"] isEqualToString:@""]) {
                     [self showAlertWithMessage:@"请确认电话号码正确以及网络是否正常"];
                 }else{
-                    [self showAlertWithMessage:@"请确认验证码正确"];
+                    [self showAlertWithMessage:@"请确认密码正确"];
                 }
                 
                 self.passWordField.text = nil;

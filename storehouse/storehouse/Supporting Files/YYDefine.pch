@@ -40,9 +40,9 @@
 //#define mPrefixUrl @"http://192.168.1.168:8082/yuyi"
 #pragma mark -
 #pragma mark ---------------Dis - Url------------------
-//#define mPrefixUrl @"http://192.168.1.168:8085"
+#define mPrefixUrl @"http://192.168.1.168:8085"
 //库房管理系统外网服务器地址：
-#define mPrefixUrl @"http://59.110.169.148:8085"
+//#define mPrefixUrl @"http://59.110.169.148:8085"
 
 // 判断扫一扫结果
 #define mScanResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetQrCode/getByCode.do?"]
@@ -69,9 +69,25 @@
 //维修管理》维修编辑》添加配件：分页查询配件列表接口
 #define mRepairManagerFittingsList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/fpFittings.do?"]
 //维修管理》维修编辑保存接口
-#define mRepairManagersaveManage [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetRecipients/saveManage.do"]
+#define mRepairManagersaveManage [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/saveManage.do?"]
 // 分页查询通知接口
 #define mNoticeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/findPage.do?"]
+// 分页查询出库入库验收列表接口
+#define mfpCheckList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/buyApply/fpCheck.do?"]
+//出库入库》分页查询资产领用申请列表
+#define mfpOutPutGetApplyList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetRecipients/fpOutbound.do?"]
+//    出库入库》采购验收接口
+#define mfpCheckConfirmRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/buyApply/saveCheck.do?"]
+//    出库入库》资产领用申请》出库接口
+#define mfpOutPutGetConfirmRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"//mobileapi/assetRecipients/saveOutbound.do?"]
+//出库入库》分页查询资产借用列表接口
+#define mfpOutPutassetBorrowApplyList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetBorrow/fpOutbound.do?"]
+//出库入库》资产借用申请》出库接口、借出接口
+#define mfpOutPutBorrowOutRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetBorrow/saveOutbound.do?"]
+//出库入库》资产借用申请》入库接口、归还接口
+#define mfpOutPutBorrowReturnRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetBorrow/saveInbound.do?"]
+//出库入库》以旧换新》分页查询资产以旧换新列表接口
+#define mfpOutPutAssetRepalceApplyList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetOldfornew/fpOutbound.do?"]
 // 分页查询历史盘点接口
 #define mInventoryList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/findPage.do?"]
 // 根据 ID 获取资产盘点信息接口
@@ -156,12 +172,14 @@
 
 //资产维修申请审批
 #define mMaintenanceLogApprove [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/doApproval.do?"]
-//资产维修申请审批
+//用户头像上传
 #define mPostAvatarRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/user/saveAvatar.do"]
-
-
-
-
+//用户个人名下资产列表
+#define mUserAssetsRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/findMyList.do?"]
+//意见反馈提交接口
+#define mFeedBackRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/feedback/save.do?"]
+//修改密码接口
+#define mModifyRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/user/modPwd.do?"]
 
 
 

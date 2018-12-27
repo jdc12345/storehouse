@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *barcode;//资产编码
 @property (nonatomic, copy) NSString *mainType;//维修类型
 @property (nonatomic, copy) NSString *auditorDateString;//申请时间
+@property (nonatomic, copy) NSString *isFixed;//是否维修(0否1是)
 @end
 
 NS_ASSUME_NONNULL_END

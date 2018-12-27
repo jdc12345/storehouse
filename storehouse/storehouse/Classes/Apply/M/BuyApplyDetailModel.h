@@ -69,4 +69,7 @@
 @property (nonatomic, copy) NSString *buyWorth;//采购价格
 @property (nonatomic, copy) NSString *acceptanceEvaluation;//验收评价
 @property (nonatomic, copy) NSString *acceptanceOpinion;//验收意见
+//验收(出入库)
+@property (nonatomic, copy) NSString *applyUserName;//申请人
+@property (nonatomic, copy) NSString *comment;//备注
 @end

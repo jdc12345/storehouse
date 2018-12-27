@@ -16,6 +16,9 @@
 #import "ZWPullMenuView.h"
 #import <Photos/Photos.h>
 #import "MyNewsListVC.h"
+#import <UIView+WebCache.h>
+#import "MineAssetsVC.h"
+#import "MineSettingVC.h"
 
 @interface MineVC ()<UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -89,6 +92,9 @@
     //添加头像
     UIImageView *iconView = [[UIImageView alloc]init];
     UIImage *iconImage = [UIImage imageNamed:@"personal_select"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",mPrefixUrl,[CcUserModel defaultClient].avatar];
+    [iconView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:iconImage options:SDWebImageHandleCookies];//这个标志表示可以逐步下载图片，在下载过程中，网页能够逐步的显示图片。默认情况下，图片只在下载完成后一次性显示
+//SDWebImageHandleCookies:通过设置NSMutableURLRequest来操作cookies保存到NSHTTPCookieStore。 HTTPShouldHandlerCookies = YES。
     iconView.image = iconImage;
     [backView addSubview:iconView];
     [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -218,11 +224,12 @@
         if (indexPath.row == 0) {
             [self.navigationController pushViewController:[[MyNewsListVC alloc]init] animated:YES];
         }else{
-//            NotficationViewController *shopVC = [[NotficationViewController alloc]init];
-//            [self.navigationController pushViewController:shopVC animated:YES];
+            MineAssetsVC *shopVC = [[MineAssetsVC alloc]init];
+            [self.navigationController pushViewController:shopVC animated:YES];
         }
     }else if (indexPath.section == 1){
-        
+        MineSettingVC *shopVC = [[MineSettingVC alloc]init];
+        [self.navigationController pushViewController:shopVC animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -278,8 +285,11 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         NSString *message = responseObject[@"message"];
-        [message stringByRemovingPercentEncoding];
-        NSLog(@"房间图片上传== %@,%@", responseObject,message);
+        CcUserModel *defaultModel = [CcUserModel defaultClient];
+        defaultModel.avatar = message;//后台返回图片地址赋值给本地存储
+        [defaultModel saveAllInfo];
+//        [message stringByRemovingPercentEncoding];
+//        NSLog(@"房间图片上传== %@,%@", responseObject,message);
         if ([responseObject[@"code"] isEqualToString:@"0"]) {
             [SVProgressHUD showSuccessWithStatus:@"修改成功!"];
         }else{
@@ -287,7 +297,7 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"错误信息=====%@", error.description);
+//        NSLog(@"错误信息=====%@", error.description);
         [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"请求失败!"];
     }];

@@ -23,6 +23,7 @@
 #import "RepairManagerListVC.h"
 #import <MJRefresh.h>
 #import "NoticeDetailVC.h"
+#import "OutInStoreListVC.h"
 
 static NSInteger start = 0;//上拉加载起始位置
 static NSString* tableCellid = @"table_cell";
@@ -132,7 +133,7 @@ static NSString* collectionCellid = @"collection_cell";
         return ;
     }];
 }
-//上拉刷新
+//上拉加载
 -(void)refreshFooter{
     __weak typeof(self) weakSelf = self;
     HttpClient *httpManager = [HttpClient defaultClient];
@@ -247,6 +248,7 @@ static NSString* collectionCellid = @"collection_cell";
 // cell点击事件
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    CcUserModel *defaulModel = [CcUserModel defaultClient];
     switch (indexPath.row) {
         case 0:{
             HomePageScanVC *vc = [[HomePageScanVC alloc] init];
@@ -259,7 +261,6 @@ static NSString* collectionCellid = @"collection_cell";
             break;
         }
         case 2:{
-            CcUserModel *defaulModel = [CcUserModel defaultClient];
             if (defaulModel.permission.count > 0) {
                 BOOL flag = false;
                 for (NSDictionary *permissionDic in defaulModel.permission) {
@@ -280,7 +281,6 @@ static NSString* collectionCellid = @"collection_cell";
             break;
         }
         case 3:{
-            CcUserModel *defaulModel = [CcUserModel defaultClient];
             if (defaulModel.permission.count > 0) {
                 BOOL flag = false;
                 for (NSDictionary *permissionDic in defaulModel.permission) {
@@ -311,11 +311,26 @@ static NSString* collectionCellid = @"collection_cell";
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }
-//        case 6:{
-//            YJHouseSearchListVC *vc = [[YJHouseSearchListVC alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            break;
-//        }
+        case 6:{
+            if (defaulModel.permission.count > 0) {
+                BOOL flag = false;
+                for (NSDictionary *permissionDic in defaulModel.permission) {
+                    permissionTypeModel *perModel = [permissionTypeModel mj_objectWithKeyValues:permissionDic];
+                    //每次需遍历判断是否有该权限码和对应的权限
+                    if ([perModel.target isEqualToString:@"stockInOut"]&&[perModel.operaton isEqualToString:@"*"]) {
+                        OutInStoreListVC *outInStoreListVC = [[OutInStoreListVC alloc]init];
+                        [self.navigationController pushViewController:outInStoreListVC animated:true];
+                        flag = true;
+                    }
+                }
+                if (flag == false) {
+                    [SVProgressHUD showInfoWithStatus:@"你没有该权限"];
+                }
+            }else{
+                [SVProgressHUD showInfoWithStatus:@"你没有任何申请权限"];
+            }
+            break;
+        }
 //        case 7:{
 //            YJRenovationViewController *vc = [[YJRenovationViewController alloc] init];
 //            vc.title = @"装修服务";

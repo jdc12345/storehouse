@@ -40,9 +40,9 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>低值易耗</string>
+		<string>出库入库</string>
 		<key>icon</key>
-		<string>home_low_value</string>
+		<string>home_outPutIn</string>
 	</dict>
 	<dict>
 		<key>name</key>

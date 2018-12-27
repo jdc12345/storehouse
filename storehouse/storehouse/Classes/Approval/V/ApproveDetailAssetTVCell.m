@@ -36,7 +36,32 @@
     self.selBtn.enabled = false;
     
 }
-
+-(void)setOutPutmodel:(ApproveDetailAssetModel *)outPutmodel{
+    _outPutmodel = outPutmodel;
+    if (self.outboundDateString.length > 0) {//已领用
+        self.contentField.text = outPutmodel.num?:@"0";
+    }else{//未领用
+        self.contentField.text = outPutmodel.totalNum?:@"0";
+    }
+    self.assetTypeLabel.text = outPutmodel.categoryName;
+    self.assetNameLabel.text = outPutmodel.assetsName;
+    self.selView.backgroundColor = [UIColor whiteColor];//去除复用cell后的选中效果
+    self.selBtn.selected = false;
+    self.selBtn.enabled = false;
+}
+-(void)setBorrowModel:(ApproveDetailAssetModel *)borrowModel{
+    _borrowModel = borrowModel;
+    if (self.outboundDateString.length > 0) {//已借出
+        self.contentField.text = borrowModel.num?:@"0";
+    }else{//未领用
+        self.contentField.text = borrowModel.totalNum?:@"0";
+    }
+    self.assetTypeLabel.text = borrowModel.categoryName;
+    self.assetNameLabel.text = borrowModel.assetsName;
+    self.selView.backgroundColor = [UIColor whiteColor];//去除复用cell后的选中效果
+    self.selBtn.selected = false;
+    self.selBtn.enabled = false;
+}
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;//取消选中效果
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];

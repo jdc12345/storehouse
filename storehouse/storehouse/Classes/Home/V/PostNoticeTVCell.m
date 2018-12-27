@@ -32,16 +32,16 @@
     }];
     self.itemLabel = itemLabel;
     //内容textfiled
-    UITextField *conentField = [[UITextField alloc]init];
+    UITextView *conentField = [[UITextView alloc]init];
     conentField.returnKeyType = UIReturnKeyDone;
     //设置左边视图的宽度
     
-    conentField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 9, 0)];
+//    conentField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 9, 0)];
     conentField.font = [UIFont systemFontOfSize:12];
     conentField.textColor = [UIColor colorWithHexString:@"373a41"];
     //设置显示模式为永远显示(默认不显示 必须设置 否则没有效果)
     
-    conentField.leftViewMode = UITextFieldViewModeAlways;
+//    conentField.leftViewMode = UITextFieldViewModeAlways;
     conentField.backgroundColor = [UIColor whiteColor];
     conentField.layer.borderColor = [UIColor colorWithHexString:@"a0a0a0"].CGColor;
     conentField.layer.borderWidth = 1;

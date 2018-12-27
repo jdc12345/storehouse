@@ -18,6 +18,7 @@
 #import "ApproveDetailAssetTVCell.h"
 #import "UILabel+Addition.h"
 #import "borrowApplyDetailModel.h"
+#import "ReplaceApplyDetailModel.h"
 
 static NSString* tableCellid = @"table_cell";
 static NSString* assetCellid = @"table_assetCellid";
@@ -26,7 +27,7 @@ static NSString* assetCellid = @"table_assetCellid";
 @property (nonatomic, strong) NSMutableArray *assetsArray;//申请相关资产列表
 @property (nonatomic, strong) BuyApplyDetailModel *buyModel;//请求的采购申请数据模型
 @property (nonatomic, strong) RepairApplyDetailModel *repairModel;//请求的维修申请数据模型
-@property (nonatomic, strong) RepairApplyDetailModel *replaceModel;//请求的以旧换新申请数据模型
+@property (nonatomic, strong) ReplaceApplyDetailModel *replaceModel;//请求的以旧换新申请数据模型
 @property (nonatomic, strong) ScrapApplyDetailModel *scrapModel;//请求的报废申请数据模型
 @property (nonatomic, strong) GetApplyDetailModel *getModel;//请求的领用申请数据模型
 @property (nonatomic, strong)  borrowApplyDetailModel*borrowModel;//请求的借用申请数据模型
@@ -70,7 +71,7 @@ static NSString* assetCellid = @"table_assetCellid";
             break;
         case 35://借用申请
             self.title = @"借用申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"借用备注",@"借用时间",@"预计归还时间",@"审批备注",@"申请时间",nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"借用备注",@"借用时间",@"预归还时间",@"审批备注",@"申请时间",nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetBorrowDetail,model.referId];
             break;
         case 60://维修申请
@@ -80,7 +81,7 @@ static NSString* assetCellid = @"table_assetCellid";
             break;
         case 50://以旧换新申请
             self.title = @"以旧换新申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"备注说明",@"审批备注",@"申请时间", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"物品数量",@"申请时间", @"备注说明",nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetOldfornewDetail,model.referId];
             break;
         case 65://报废申请
@@ -155,7 +156,7 @@ static NSString* assetCellid = @"table_assetCellid";
                 case 50://以旧换新申请
                 {
                     NSDictionary *replaceApplyDic = dic[@"assetOldfornew"];
-                    RepairApplyDetailModel *replaceModel = [RepairApplyDetailModel mj_objectWithKeyValues:replaceApplyDic];
+                    ReplaceApplyDetailModel *replaceModel = [ReplaceApplyDetailModel mj_objectWithKeyValues:replaceApplyDic];
                     self.replaceModel = replaceModel;
                 }
                     break;
@@ -419,15 +420,15 @@ static NSString* assetCellid = @"table_assetCellid";
                             cell.itemContentLabel.text = self.replaceModel.assetName;
                             break;
                         case 3:
-                            cell.itemContentLabel.text = self.replaceModel.comment;
+                            cell.itemContentLabel.text = self.replaceModel.totalNum;
                             break;
                         case 4:
+                            cell.itemContentLabel.text = self.replaceModel.gmtCreateString;
+                            break;
+                        case 5:
                             cell.contentField.hidden = false;
                             cell.itemContentLabel.text = @"";
                             self.contentField = cell.contentField;
-                            break;
-                        case 5:
-                            cell.itemContentLabel.text = self.replaceModel.repairDateString;
                             break;
                             
                         default:
@@ -445,14 +446,14 @@ static NSString* assetCellid = @"table_assetCellid";
                             cell.itemContentLabel.text = self.replaceModel.assetName;
                             break;
                         case 3:
-                            cell.itemContentLabel.text = self.replaceModel.comment;
+                            cell.itemContentLabel.text = self.replaceModel.totalNum;
                             break;
                         case 4:
-                            cell.contentField.hidden = true;
-                            cell.itemContentLabel.text = self.replaceModel.rejectReason;
+                            cell.itemContentLabel.text = self.replaceModel.gmtCreateString;
                             break;
                         case 5:
-                            cell.itemContentLabel.text = self.replaceModel.repairDateString;
+                            cell.contentField.hidden = true;
+                            cell.itemContentLabel.text = self.replaceModel.comment;
                             break;
                             
                         default:
@@ -1035,10 +1036,9 @@ static NSString* assetCellid = @"table_assetCellid";
             listUrlStr = [NSString stringWithFormat:@"%@id=%@&isAdopt=%d&rejectReason=%@",mGetUseApprove,self.model.referId,isAdopt,rejectReason];
             break;
             
-            //        case 35://借用申请
-            //            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"规格型号",@"计量单位",@"预算价格",@"采购数量",@"生产厂家",@"采购类别",@"采购理由", nil];
-            //            listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetBorrowDetail,model.referId];
-            //            break;
+        case 35://采购申请
+            listUrlStr = [NSString stringWithFormat:@"%@id=%@&isAdopt=%d&rejectReason=%@",mBorrowApprove,self.model.referId,isAdopt,rejectReason];
+            break;
         case 60://维修申请
             listUrlStr = [NSString stringWithFormat:@"%@id=%@&isAdopt=%d&rejectReason=%@",mMaintenanceLogApprove,self.model.referId,isAdopt,rejectReason];
             break;
@@ -1060,7 +1060,7 @@ static NSString* assetCellid = @"table_assetCellid";
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [SVProgressHUD show];
     [httpManager requestWithPath:listUrlStr method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        [SVProgressHUD dismiss];
         NSDictionary *dic = (NSDictionary *)responseObject;
         if ([dic[@"code"] isEqualToString:@"0"]) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -1068,7 +1068,6 @@ static NSString* assetCellid = @"table_assetCellid";
         }else if ([dic[@"code"] isEqualToString:@"-1"]){
             [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
         }
-        [SVProgressHUD dismiss];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [SVProgressHUD dismiss];
         return ;

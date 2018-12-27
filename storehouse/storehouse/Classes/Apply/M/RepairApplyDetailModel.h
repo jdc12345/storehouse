@@ -36,6 +36,7 @@
 //    userId = 4;
 //    userName = "\U9773\U7b49\U81e3";
 //}
+
 #import <Foundation/Foundation.h>
 
 @interface RepairApplyDetailModel : NSObject
@@ -50,6 +51,7 @@
 @property (nonatomic, copy) NSString *barcode;//资产编码
 @property (nonatomic, copy) NSString *mainType;//维修类型
 //@property (nonatomic, copy) NSString *repairDateString;//修复时间(申请审批详情页面需要从新赋值申请时间)
+@property (nonatomic, copy) NSString *gmtCreateString;//申请时间
 //维修管理
 @property (nonatomic, copy) NSString *isFixed;//是否修复
 @property (nonatomic, copy) NSString *repairDateString;//修复时间

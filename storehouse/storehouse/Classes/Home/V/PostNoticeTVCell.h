@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PostNoticeTVCell : UITableViewCell
 @property(nonatomic,weak)UILabel *itemLabel;
-@property(nonatomic,weak)UITextField *contentField;
+@property(nonatomic,weak)UITextView *contentField;
 @end
 
 NS_ASSUME_NONNULL_END

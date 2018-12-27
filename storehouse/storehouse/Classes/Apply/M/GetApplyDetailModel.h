@@ -53,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *departmentName;//部门
 @property (nonatomic, copy) NSString *rejectReason;//审批备注
 @property (nonatomic, copy) NSString *gmtCreateString;//申请时间
+//出库入库
+@property (nonatomic, copy) NSString *outboundDateString;//领用日期来判断是否已经领用，日期为空=未出库，不为空=已出库
 @end
 
 NS_ASSUME_NONNULL_END

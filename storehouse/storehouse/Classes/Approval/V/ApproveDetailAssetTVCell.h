@@ -19,8 +19,11 @@ typedef void (^ifSelectedBlock)(ApproveDetailAssetModel *selModel , BOOL btnSele
 /**
  *  资产数据
  */
-@property (nonatomic, strong) ApproveDetailAssetModel *model;
+@property (nonatomic, strong) ApproveDetailAssetModel *model;//审批页面传过来
 @property(nonatomic,weak)UITextField *contentField;//资产数量
+@property (nonatomic,copy) NSString *outboundDateString;//根据 outboundDate 出库日期来判断是否已经出库，日期为空=未出库，不为空=已出库
+@property (nonatomic, strong) ApproveDetailAssetModel *outPutmodel;//出入库领用页面传过来
+@property (nonatomic, strong) ApproveDetailAssetModel *borrowModel;//出入库借用页面传过来
 @end
 
 NS_ASSUME_NONNULL_END

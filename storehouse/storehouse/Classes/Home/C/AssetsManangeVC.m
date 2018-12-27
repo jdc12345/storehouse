@@ -25,9 +25,6 @@
 static NSString* listCell = @"listCell";
 static NSInteger start = 0;//上拉加载起始位置
 @interface AssetsManangeVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
-//@property (nonatomic, strong) NSArray *itemTypeArray;//事项名称
-//@property(nonatomic,weak)UITableView *storeTableView;//仓库可领用物料列表
-//@property(nonatomic,weak)UIView *backView;//背景阴影view
 @property(nonatomic,strong)NSMutableArray *assetsArr;//资产列表
 //@property(nonatomic,strong)NSMutableArray *selectedThingsArr;//选中的库房物品列表数据
 @property(nonatomic,weak)UITextField *searchField;//输入框

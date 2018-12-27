@@ -28,7 +28,7 @@
     [itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.offset(0);
         make.left.offset(15);
-        make.width.offset(60);
+        make.width.offset(70);
     }];
     self.itemLabel = itemLabel;
     //事项内容label
@@ -36,7 +36,7 @@
     [self.contentView addSubview:itemContentLabel];
     [itemContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(itemLabel);
-        make.left.offset(95);
+        make.left.offset(105);
     }];
     self.itemContentLabel = itemContentLabel;
     //内容textfiled
@@ -56,7 +56,7 @@
     [self.contentView addSubview:conentField];
     [conentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(-1);
-        make.left.offset(95);
+        make.left.offset(105);
         make.right.offset(-31);
         make.height.offset(35);
     }];

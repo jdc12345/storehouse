@@ -155,9 +155,11 @@ static NSString* tableCellid = @"table_cell";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PostNoticeTVCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellid forIndexPath:indexPath];
     if (indexPath.row == 0) {
-        cell.contentField.placeholder = @"通知标题";
+//        cell.contentField.placeholder = @"通知标题";
+    }else{
+       cell.contentField.textContainerInset = UIEdgeInsetsMake(15, 10, 15, 10);
     }
-    cell.contentField.delegate = self;
+//    cell.contentField.delegate = self;
     cell.itemLabel.text = self.itemTypeArray[indexPath.row];
     
     return cell;
@@ -178,16 +180,16 @@ static NSString* tableCellid = @"table_cell";
     
     
 }
-//设置列表行为不可编辑
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    //    if (textField.tag == 50 || textField.tag == 53 || textField.tag == 57) {
-    //        return false;
-    //    }
-    return true;
-}
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    return [textField resignFirstResponder];
-}
+////设置列表行为不可编辑
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//    //    if (textField.tag == 50 || textField.tag == 53 || textField.tag == 57) {
+//    //        return false;
+//    //    }
+//    return true;
+//}
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    return [textField resignFirstResponder];
+//}
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
 }

@@ -231,7 +231,7 @@ static NSInteger start = 0;//上拉加载起始位置
         return ;
     }];
 }
-//上拉刷新
+//上拉加载
 -(void)refreshFooter{
     __weak typeof(self) weakSelf = self;
     HttpClient *httpManager = [HttpClient defaultClient];
@@ -242,7 +242,7 @@ static NSInteger start = 0;//上拉加载起始位置
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *responseDic = (NSDictionary*)responseObject;
         if ([responseDic[@"code"] isEqualToString:@"0"]) {
-            [self.ordersArr removeAllObjects];
+//            [self.ordersArr removeAllObjects];
             NSArray *responseArr = responseDic[@"rows"];
             for (NSDictionary *dict in responseArr){
                 PurchaseOrderListModel *infoModel = [PurchaseOrderListModel mj_objectWithKeyValues:dict];

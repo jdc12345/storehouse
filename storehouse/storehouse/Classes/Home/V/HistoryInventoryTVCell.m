@@ -38,7 +38,7 @@
         self.stateLabel.textColor = [UIColor colorWithHexString:@"dc8268"];
     }else{
         self.stateLabel.text = @"进行中";
-        self.stateLabel.textColor = [UIColor greenColor];
+        self.stateLabel.textColor = [UIColor colorWithHexString:@"23b880"];
     }
 }
 - (void)setupUI{

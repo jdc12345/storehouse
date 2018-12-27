@@ -164,7 +164,7 @@ static NSString* tableCellid = @"table_cell";
         menuView.zwPullMenuStyle = PullMenuLightStyle;
         __weak typeof(menuView) weakMenuView = menuView;
         menuView.blockSelectedMenu = ^(NSInteger menuRow) {
-            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
+//            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
             curruntCell.contentField.text = weakMenuView.titleArray[menuRow];
         };
     }else{
@@ -172,7 +172,7 @@ static NSString* tableCellid = @"table_cell";
         menuView.zwPullMenuStyle = PullMenuLightStyle;
         __weak typeof(menuView) weakMenuView = menuView;
         menuView.blockSelectedMenu = ^(NSInteger menuRow) {
-            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
+//            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
             curruntCell.contentField.text = weakMenuView.titleArray[menuRow];
         };
     }

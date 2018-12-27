@@ -47,6 +47,8 @@
 //userId = 3;
 //userName = "\U5218\U6d77\U4e1c";
 //willReturnDateString = "2018-11-30 00:00:00";
+
+
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -61,6 +63,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *willReturnDateString;//归还时间
 @property (nonatomic, copy) NSString *rejectReason;//审批备注
 @property (nonatomic, copy) NSString *gmtCreateString;//申请时间
+//状态：outboundDate 实际借出日期 来判断状态，为空=未出库，不为空=已出库；inboundDate 实际入库/归还日期 来判断状态，为空=未归还，不为空=已归还
+@property (nonatomic, copy) NSString *inboundDateString;//实际入库/归还日期
+@property (nonatomic, copy) NSString *outboundDateString;//实际借出日期
 @end
 
 NS_ASSUME_NONNULL_END
