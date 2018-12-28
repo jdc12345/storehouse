@@ -24,6 +24,8 @@ typedef void (^ifSelectedBlock)(ApproveDetailAssetModel *selModel , BOOL btnSele
 @property (nonatomic,copy) NSString *outboundDateString;//根据 outboundDate 出库日期来判断是否已经出库，日期为空=未出库，不为空=已出库
 @property (nonatomic, strong) ApproveDetailAssetModel *outPutmodel;//出入库领用页面传过来
 @property (nonatomic, strong) ApproveDetailAssetModel *borrowModel;//出入库借用页面传过来
+@property (nonatomic,copy) NSString *inboundDateString;//状态：inboundDateString 实际入库/退库日期 来判断状态，为空=未入库，不为空=已入库
+@property (nonatomic, strong) ApproveDetailAssetModel *BackStoreModel;//出入库退库页面传过来
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,weak)GetApplyDetailModel *getModel;//传递过来的领用列表物品数据model
 @property(nonatomic,weak)borrowApplyDetailModel *borrowModel;//传递过来的借用列表物品数据model
 @property(nonatomic,weak)ReplaceApplyDetailModel *replaceModel;//传递过来的以旧换新列表物品数据model
+@property(nonatomic,weak)GetApplyDetailModel *backModel;//传递过来的退库列表物品数据model
 @end
 
 NS_ASSUME_NONNULL_END

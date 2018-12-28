@@ -20,6 +20,8 @@
 #import "borrowApplyDetailModel.h"
 #import "OutPutBorrowDetailVC.h"
 #import "ReplaceApplyDetailModel.h"
+#import "OutPutReplaceDetailVC.h"
+#import "OutPutBackStoreDetailVC.h"
 
 static NSString* listCell = @"listCell";
 static NSInteger start = 0;//上拉加载起始位置
@@ -152,7 +154,12 @@ static NSInteger start = 0;//上拉加载起始位置
             cell.replaceModel = model;
             break;
         }
-            
+        case 5:
+        {
+            GetApplyDetailModel *model = self.ordersArr[indexPath.row];
+            cell.backModel = model;
+            break;
+        }
         default:
             break;
     }
@@ -191,13 +198,29 @@ static NSInteger start = 0;//上拉加载起始位置
         {
             borrowApplyDetailModel *model = self.ordersArr[indexPath.row];
             OutPutBorrowDetailVC *vc = [[OutPutBorrowDetailVC alloc] init];
-//            vc.outboundDateString = model.outboundDateString;//根据 outboundDate 领用日期来判断是否已经领用，日期为空=未出库，不为空=已出库
             vc.model = model;
             [self.navigationController pushViewController:vc animated:YES];
             [tableView deselectRowAtIndexPath:indexPath animated:true];
         }
             break;
-            
+        case 4://领用
+        {
+            ReplaceApplyDetailModel *model = self.ordersArr[indexPath.row];
+            OutPutReplaceDetailVC *vc = [[OutPutReplaceDetailVC alloc] init];
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+            [tableView deselectRowAtIndexPath:indexPath animated:true];
+        }
+            break;
+        case 5://退库
+        {
+            GetApplyDetailModel *model = self.ordersArr[indexPath.row];
+            OutPutBackStoreDetailVC *vc = [[OutPutBackStoreDetailVC alloc] init];
+            vc.inboundDateString = model.outboundDateString;//根据 outboundDate 领用日期来判断是否已经领用，日期为空=未出库，不为空=已出库
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+            [tableView deselectRowAtIndexPath:indexPath animated:true];
+        }
         default:
             break;
     }
@@ -222,9 +245,9 @@ static NSInteger start = 0;//上拉加载起始位置
         case 4:
             urlString = [NSString stringWithFormat:@"%@&start=0&limit=6",mfpOutPutAssetRepalceApplyList];
             break;
-//        case 35:
-//            urlString = [NSString stringWithFormat:@"%@status=%ld&start=0&limit=6",mPurchaseOrderList,self.status];
-//            break;
+        case 5:
+            urlString = [NSString stringWithFormat:@"%@&start=0&limit=6",mfpOutPutAssetBackStoreList];
+            break;
             
         default:
             break;
@@ -260,6 +283,11 @@ static NSInteger start = 0;//上拉加载起始位置
                     }
                     case 4:{
                         ReplaceApplyDetailModel *infoModel = [ReplaceApplyDetailModel mj_objectWithKeyValues:dict];
+                        [self.ordersArr addObject:infoModel];
+                        break;
+                    }
+                    case 5:{
+                        GetApplyDetailModel *infoModel = [GetApplyDetailModel mj_objectWithKeyValues:dict];
                         [self.ordersArr addObject:infoModel];
                         break;
                     }
@@ -317,9 +345,9 @@ static NSInteger start = 0;//上拉加载起始位置
         case 4:
             urlString = [NSString stringWithFormat:@"%@&start=0&limit=6",mfpOutPutAssetRepalceApplyList];
             break;
-            //        case 35:
-            //            urlString = [NSString stringWithFormat:@"%@status=%ld&start=0&limit=6",mPurchaseOrderList,self.status];
-            //            break;
+        case 5:
+            urlString = [NSString stringWithFormat:@"%@&start=0&limit=6",mfpOutPutAssetBackStoreList];
+            break;
             
         default:
             break;
@@ -350,6 +378,11 @@ static NSInteger start = 0;//上拉加载起始位置
                     }
                     case 4:{
                         ReplaceApplyDetailModel *infoModel = [ReplaceApplyDetailModel mj_objectWithKeyValues:dict];
+                        [self.ordersArr addObject:infoModel];
+                        break;
+                    }
+                    case 5:{
+                        GetApplyDetailModel *infoModel = [GetApplyDetailModel mj_objectWithKeyValues:dict];
                         [self.ordersArr addObject:infoModel];
                         break;
                     }
@@ -399,9 +432,9 @@ static NSInteger start = 0;//上拉加载起始位置
         case 4:
             urlString = [NSString stringWithFormat:@"%@&start=%ld&limit=6",mfpOutPutAssetRepalceApplyList,(long)start];
             break;
-            //        case 35:
-            //            urlString = [NSString stringWithFormat:@"%@status=%ld&start=0&limit=6",mPurchaseOrderList,self.status];
-            //            break;
+        case 5:
+            urlString = [NSString stringWithFormat:@"%@&start=%ld&limit=6",mfpOutPutAssetBackStoreList,(long)start];
+            break;
             
         default:
             break;
@@ -432,6 +465,11 @@ static NSInteger start = 0;//上拉加载起始位置
                     }
                     case 4:{
                         ReplaceApplyDetailModel *infoModel = [ReplaceApplyDetailModel mj_objectWithKeyValues:dict];
+                        [self.ordersArr addObject:infoModel];
+                        break;
+                    }
+                    case 5:{
+                        GetApplyDetailModel *infoModel = [GetApplyDetailModel mj_objectWithKeyValues:dict];
                         [self.ordersArr addObject:infoModel];
                         break;
                     }

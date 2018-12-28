@@ -36,6 +36,7 @@
     self.selBtn.enabled = false;
     
 }
+//领用详情页面
 -(void)setOutPutmodel:(ApproveDetailAssetModel *)outPutmodel{
     _outPutmodel = outPutmodel;
     if (self.outboundDateString.length > 0) {//已领用
@@ -45,6 +46,20 @@
     }
     self.assetTypeLabel.text = outPutmodel.categoryName;
     self.assetNameLabel.text = outPutmodel.assetsName;
+    self.selView.backgroundColor = [UIColor whiteColor];//去除复用cell后的选中效果
+    self.selBtn.selected = false;
+    self.selBtn.enabled = false;
+}
+//退库详情页面
+-(void)setBackStoreModel:(ApproveDetailAssetModel *)BackStoreModel{
+    _BackStoreModel = BackStoreModel;
+    if (self.inboundDateString.length > 0) {//已退库
+        self.contentField.text = BackStoreModel.num?:@"0";
+    }else{//未退库
+        self.contentField.text = BackStoreModel.totalNum?:@"0";
+    }
+    self.assetTypeLabel.text = BackStoreModel.categoryName;
+    self.assetNameLabel.text = BackStoreModel.assetsName;
     self.selView.backgroundColor = [UIColor whiteColor];//去除复用cell后的选中效果
     self.selBtn.selected = false;
     self.selBtn.enabled = false;

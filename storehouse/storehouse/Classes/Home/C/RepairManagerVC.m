@@ -420,7 +420,6 @@ static NSInteger start = 0;//上拉加载起始位置
     if (tableView == self.tableView) {
         if (indexPath.section == 0) {
             ApplyDetailTVCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellid forIndexPath:indexPath];
-            
             cell.itemLabel.text = self.itemTypeArray[indexPath.row];
             switch (indexPath.row) {
                 case 0:
@@ -685,6 +684,19 @@ static NSInteger start = 0;//上拉加载起始位置
         
     }
 }
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+
+{
+    if (tableView == self.tableView) {
+        if (indexPath.section == 1 && self.state == 1) {
+        return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableView) {
@@ -713,7 +725,16 @@ static NSInteger start = 0;//上拉加载起始位置
 }
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"删除";
+    if (tableView == self.tableView) {
+        if (indexPath.section == 1) {
+            return @"删除";
+        }else{
+            return nil;
+        }
+    }else{
+        return nil;
+    }
+    
 }
 
 //给view添加不同位置的边框

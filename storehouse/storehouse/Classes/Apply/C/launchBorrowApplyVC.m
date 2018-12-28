@@ -523,6 +523,19 @@ static NSInteger start = 0;//上拉加载起始位置
 //        return 70;
 //    }
 //}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+
+{
+    if (tableView == self.tableView) {
+        if (indexPath.section == 1) {
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableView) {

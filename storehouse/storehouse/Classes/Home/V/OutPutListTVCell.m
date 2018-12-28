@@ -119,6 +119,26 @@
     }
     
 }
+//退库
+-(void)setBackModel:(GetApplyDetailModel *)backModel{
+    _backModel = backModel;
+    self.departmentLabel.text = [NSString stringWithFormat:@"%@  %@",backModel.departmentName,backModel.userName];
+    [self.assetNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.departmentLabel);
+        make.top.equalTo(self.departmentLabel.mas_bottom).offset(9);
+        make.height.offset(0);
+    }];
+    self.timeLabel.text = backModel.gmtCreateString;
+    //    根据 outboundDate 领用日期来判断是否已经领用，日期为空=未出库，不为空=已出库
+    if (backModel.inboundDateString.length > 0) {
+        self.stateLabel.text = @"已退库";
+        self.stateLabel.textColor = [UIColor colorWithHexString:@"23b880"];
+    }else{
+        self.stateLabel.text = @"未退库";
+        self.stateLabel.textColor = [UIColor colorWithHexString:@"dc8268"];
+    }
+    
+}
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;//取消选中效果
     //背景view

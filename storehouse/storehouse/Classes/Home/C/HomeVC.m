@@ -94,7 +94,6 @@ static NSString* collectionCellid = @"collection_cell";
 }
 //下拉刷新
 -(void)refreshHeader{
-    [SVProgressHUD show];// 动画开始
     __weak typeof(self) weakSelf = self;
     HttpClient *httpManager = [HttpClient defaultClient];
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录

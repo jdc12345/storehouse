@@ -48,6 +48,8 @@
 #define mScanResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetQrCode/getByCode.do?"]
 // 根据id查看资产详情
 #define mAssetDetailResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/asset/get.do?"]
+//资产变动情况分页查询接口：
+#define mAssetRecordDetailResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/changesLog/findPage.do?"]
 // 资产类别请求
 #define mAssrtsCategoryResult [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/category/listAllTree.do"]
 // 资产保管人
@@ -88,6 +90,12 @@
 #define mfpOutPutBorrowReturnRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetBorrow/saveInbound.do?"]
 //出库入库》以旧换新》分页查询资产以旧换新列表接口
 #define mfpOutPutAssetRepalceApplyList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetOldfornew/fpOutbound.do?"]
+//出库入库》以旧换新》执行更换接口
+#define mfpOutPutAssetRepalceConfirmRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetOldfornew/saveChange.do?"]
+//出库入库》分页查询资产退库列表接口
+#define mfpOutPutAssetBackStoreList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetReturn/fpInbound.do?"]
+//出库入库》资产退库申请》退库接口、入库接口
+#define mfpOutPutAssetBackStoreConfirmRequest [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/assetReturn/saveInbound.do?"]
 // 分页查询历史盘点接口
 #define mInventoryList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/inventory/findPage.do?"]
 // 根据 ID 获取资产盘点信息接口

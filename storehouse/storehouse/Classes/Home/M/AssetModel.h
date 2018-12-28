@@ -65,9 +65,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AssetModel : NSObject
+@property (nonatomic, copy) NSString* info_id;//资产id
 @property (nonatomic, copy) NSString* assetName;//资产名称
 @property (nonatomic, copy) NSString* addressName;//保存地
 @property (nonatomic, copy) NSString* saveUserName;//保管人
+@property (nonatomic, copy) NSString* useUserId;//保管人id
+@property (nonatomic, copy) NSString* saveUserId;//使用人
 @property (nonatomic, strong) NSString *barcode;//资产编码
 @property (nonatomic, strong) NSString *categoryName;//资产类别
 @property (nonatomic, strong) NSString *assetType;//资产型号
