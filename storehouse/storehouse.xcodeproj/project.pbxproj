@@ -565,6 +565,7 @@
 		1674473F21D5C09F007D5C08 /* AssetChangeRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetChangeRecordModel.m; sourceTree = "<group>"; };
 		1674474321D5C512007D5C08 /* AssetChangeRecordTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetChangeRecordTVCell.h; sourceTree = "<group>"; };
 		1674474421D5C512007D5C08 /* AssetChangeRecordTVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetChangeRecordTVCell.m; sourceTree = "<group>"; };
+		1674474921D6457D007D5C08 /* storehouse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = storehouse.entitlements; sourceTree = "<group>"; };
 		16872812210EF897004E9250 /* LaunchGetUseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchGetUseVC.h; sourceTree = "<group>"; };
 		16872813210EF897004E9250 /* LaunchGetUseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchGetUseVC.m; sourceTree = "<group>"; };
 		1687281C21105E59004E9250 /* LaunchFormTVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchFormTVCell.h; sourceTree = "<group>"; };
@@ -1010,6 +1011,7 @@
 		16AD801420BEC365005F99BC /* storehouse */ = {
 			isa = PBXGroup;
 			children = (
+				1674474921D6457D007D5C08 /* storehouse.entitlements */,
 				16AD804720BEC74A005F99BC /* Root_Tools */,
 				16AD804920BEC76D005F99BC /* Classes */,
 				16AD805B20BEC9E9005F99BC /* Info.plist */,
@@ -1233,6 +1235,11 @@
 					16AD801120BEC365005F99BC = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					16AD802920BEC365005F99BC = {
 						CreatedOnToolsVersion = 9.2;
@@ -1855,6 +1862,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = storehouse/storehouse.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HM3WX6CXQ7;
 				GCC_PREFIX_HEADER = "/Users/w/jdc/storehouse/storehouse/storehouse/Supporting Files/YYDefine.pch";
@@ -1873,6 +1881,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = storehouse/storehouse.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HM3WX6CXQ7;
 				GCC_PREFIX_HEADER = "/Users/w/jdc/storehouse/storehouse/storehouse/Supporting Files/YYDefine.pch";

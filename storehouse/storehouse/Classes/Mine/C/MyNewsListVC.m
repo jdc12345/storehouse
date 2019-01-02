@@ -50,7 +50,7 @@ static NSString* tableCellid = @"table_cell";
 //    return UIStatusBarStyleDefault;
 //}
 - (void)loadData{
-    NSString *urlString = [NSString stringWithFormat:@"%@msgType=0",mNoticeList];
+    NSString *urlString = [NSString stringWithFormat:@"%@",mNoticeList];
     HttpClient *client = [HttpClient defaultClient];
     [client.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [client requestWithPath:urlString method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -85,7 +85,7 @@ static NSString* tableCellid = @"table_cell";
     __weak typeof(self) weakSelf = self;
     HttpClient *httpManager = [HttpClient defaultClient];
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
-    NSString *urlString = [NSString stringWithFormat:@"%@msgType=0&start=0&limit=6",mNoticeList];
+    NSString *urlString = [NSString stringWithFormat:@"%@start=0&limit=6",mNoticeList];
     //把中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -125,7 +125,7 @@ static NSString* tableCellid = @"table_cell";
     __weak typeof(self) weakSelf = self;
     HttpClient *httpManager = [HttpClient defaultClient];
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
-    NSString *urlString = [NSString stringWithFormat:@"%@msgType=0&start=%ld&limit=6",mNoticeList,start];
+    NSString *urlString = [NSString stringWithFormat:@"%@start=%ld&limit=6",mNoticeList,start];
     //把中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -232,7 +232,7 @@ static NSString* tableCellid = @"table_cell";
     return titleView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 32*kiphone6H;
+    return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 46*kiphone6H;
@@ -253,7 +253,27 @@ static NSString* tableCellid = @"table_cell";
     NoticeDetailVC *vc = [[NoticeDetailVC alloc] init];
     vc.model = self.noticeNewsArr[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
-    
+    //    消息》标记为已读接口
+    //http://192.168.1.168:8085/mobileapi/message/setReaded.do?id=消息编号
+    //    1=缺少参数：id
+    //    2=对应编号的消息不存在
+    //标记成功
+    //    HomeNoticeNewsTVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    HomePageNoticeModel *infoModel = self.noticeNewsArr[indexPath.row];
+    NSString *noticeUrlStr = [NSString stringWithFormat:@"%@id=%@",mSetReaded,infoModel.info_id];
+    [[HttpClient defaultClient]requestWithPath:noticeUrlStr method:1 parameters:nil prepareExecute:^{
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];// 动画结束
+        if ([responseObject[@"code"] isEqualToString:@"0"] ) {
+            infoModel.isRead = true;
+            
+            [tableView reloadData];//去掉圆点
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];// 动画结束
+        return ;
+    }];
+
 }
 //
 //-(void)viewWillAppear:(BOOL)animated{

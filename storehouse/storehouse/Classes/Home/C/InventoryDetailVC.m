@@ -295,7 +295,7 @@ static NSString* inventoryingCell = @"inventorying_Cell";
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-    if (tableView == self.tableView) {
+    if (tableView == self.tableView && indexPath.section == 1) {
         InventoryAssetsFormTVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         InventoryAssetModel *model = cell.inventoryAssetModel;
         AssetDetailVC *vc = [[AssetDetailVC alloc]init];

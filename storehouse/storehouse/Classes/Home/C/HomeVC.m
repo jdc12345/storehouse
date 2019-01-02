@@ -25,6 +25,7 @@
 #import "NoticeDetailVC.h"
 #import "OutInStoreListVC.h"
 
+
 static NSInteger start = 0;//上拉加载起始位置
 static NSString* tableCellid = @"table_cell";
 static NSString* collectionCellid = @"collection_cell";
@@ -63,7 +64,7 @@ static NSString* collectionCellid = @"collection_cell";
     return UIStatusBarStyleDefault;
 }
 - (void)loadData{
-    NSString *urlString = [NSString stringWithFormat:@"%@msgType=0&start=0&limit=6",mNoticeList];
+    NSString *urlString = [NSString stringWithFormat:@"%@start=0&limit=6",mNoticeList];
     HttpClient *client = [HttpClient defaultClient];
     [client.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [client requestWithPath:urlString method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -97,7 +98,7 @@ static NSString* collectionCellid = @"collection_cell";
     __weak typeof(self) weakSelf = self;
     HttpClient *httpManager = [HttpClient defaultClient];
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
-    NSString *urlString = [NSString stringWithFormat:@"%@msgType=0&start=0&limit=6",mNoticeList];
+    NSString *urlString = [NSString stringWithFormat:@"%@start=0&limit=6",mNoticeList];
     //把中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -137,7 +138,7 @@ static NSString* collectionCellid = @"collection_cell";
     __weak typeof(self) weakSelf = self;
     HttpClient *httpManager = [HttpClient defaultClient];
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
-    NSString *urlString = [NSString stringWithFormat:@"%@msgType=0&start=%ld&limit=6",mNoticeList,start];
+    NSString *urlString = [NSString stringWithFormat:@"%@start=%ld&limit=6",mNoticeList,start];
     //把中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -255,8 +256,23 @@ static NSString* collectionCellid = @"collection_cell";
             break;
         }
         case 1:{
-            HomePageInventoryVC *vc = [[HomePageInventoryVC alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            if (defaulModel.permission.count > 0) {
+                BOOL flag = false;
+                for (NSDictionary *permissionDic in defaulModel.permission) {
+                    permissionTypeModel *perModel = [permissionTypeModel mj_objectWithKeyValues:permissionDic];
+                    //每次需遍历判断是否有该权限码和对应的权限
+                    if ([perModel.target isEqualToString:@"inventory"]&&[perModel.operaton isEqualToString:@"*"]) {
+                        HomePageInventoryVC *InventoryVC = [[HomePageInventoryVC alloc]init];
+                        [self.navigationController pushViewController:InventoryVC animated:true];
+                        flag = true;
+                    }
+                }
+                if (flag == false) {
+                    [SVProgressHUD showInfoWithStatus:@"你没有该权限"];
+                }
+            }else{
+                [SVProgressHUD showInfoWithStatus:@"你没有任何申请权限"];
+            }
             break;
         }
         case 2:{
@@ -301,13 +317,43 @@ static NSString* collectionCellid = @"collection_cell";
         }
 
         case 4:{
-            PostNoticeVC *vc = [[PostNoticeVC alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            if (defaulModel.permission.count > 0) {
+                BOOL flag = false;
+                for (NSDictionary *permissionDic in defaulModel.permission) {
+                    permissionTypeModel *perModel = [permissionTypeModel mj_objectWithKeyValues:permissionDic];
+                    //每次需遍历判断是否有该权限码和对应的权限
+                    if ([perModel.target isEqualToString:@"notice"]&&[perModel.operaton isEqualToString:@"*"]) {
+                        PostNoticeVC *vc = [[PostNoticeVC alloc] init];
+                        [self.navigationController pushViewController:vc animated:YES];
+                        flag = true;
+                    }
+                }
+                if (flag == false) {
+                    [SVProgressHUD showInfoWithStatus:@"你没有该权限"];
+                }
+            }else{
+                [SVProgressHUD showInfoWithStatus:@"你没有任何申请权限"];
+            }
             break;
         }
         case 5:{
-            AssetsManangeVC *vc = [[AssetsManangeVC alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            if (defaulModel.permission.count > 0) {
+                BOOL flag = false;
+                for (NSDictionary *permissionDic in defaulModel.permission) {
+                    permissionTypeModel *perModel = [permissionTypeModel mj_objectWithKeyValues:permissionDic];
+                    //每次需遍历判断是否有该权限码和对应的权限
+                    if ([perModel.target isEqualToString:@"assetManage"]&&[perModel.operaton isEqualToString:@"*"]) {
+                        AssetsManangeVC *vc = [[AssetsManangeVC alloc] init];
+                        [self.navigationController pushViewController:vc animated:YES];
+                        flag = true;
+                    }
+                }
+                if (flag == false) {
+                    [SVProgressHUD showInfoWithStatus:@"你没有该权限"];
+                }
+            }else{
+                [SVProgressHUD showInfoWithStatus:@"你没有任何申请权限"];
+            }
             break;
         }
         case 6:{
@@ -330,13 +376,13 @@ static NSString* collectionCellid = @"collection_cell";
             }
             break;
         }
-//        case 7:{
-//            YJRenovationViewController *vc = [[YJRenovationViewController alloc] init];
-//            vc.title = @"装修服务";
-//            vc.businessId = 12;
-//            [self.navigationController pushViewController:vc animated:YES];
-//            break;
-//        }
+        case 7:{
+            [SVProgressHUD showInfoWithStatus:@"该功能暂未开通"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+            });
+            break;
+        }
             
             break;
             
@@ -406,16 +452,34 @@ static NSString* collectionCellid = @"collection_cell";
     NoticeDetailVC *vc = [[NoticeDetailVC alloc] init];
     vc.model = self.noticeNewsArr[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
-    
+//    消息》标记为已读接口
+//http://192.168.1.168:8085/mobileapi/message/setReaded.do?id=消息编号
+//    1=缺少参数：id
+//    2=对应编号的消息不存在
+    //标记成功
+//    HomeNoticeNewsTVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    HomePageNoticeModel *infoModel = self.noticeNewsArr[indexPath.row];
+    NSString *noticeUrlStr = [NSString stringWithFormat:@"%@id=%@",mSetReaded,infoModel.info_id];
+    [[HttpClient defaultClient]requestWithPath:noticeUrlStr method:1 parameters:nil prepareExecute:^{
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];// 动画结束
+        if ([responseObject[@"code"] isEqualToString:@"0"] ) {
+            infoModel.isRead = true;
+            
+            [tableView reloadData];//去掉圆点
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];// 动画结束
+        return ;
+    }];
+
 }
 //
-//-(void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-//    //    self.navBarBgAlpha = @"0.0";//添加了导航栏和控制器的分类实现了导航栏透明处理
-//    //    self.navigationController.navigationBar.translucent = true;
-//    self.navigationController.navigationBarHidden = YES;
-//}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self refreshHeader];
+    
+}
 //-(void)viewWillDisappear:(BOOL)animated{
 //    [super viewWillDisappear:animated];
 //    [self.navigationController setNavigationBarHidden:NO animated:YES];

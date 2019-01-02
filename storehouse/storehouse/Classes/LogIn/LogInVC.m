@@ -13,6 +13,7 @@
 #import <MJExtension.h>
 #import "YYTabBarController.h"
 #import "permissionTypeModel.h"
+#import <JPUSHService.h>
 
 @interface LogInVC ()<UITextFieldDelegate>
 @property(nonatomic,weak)UITextField *telNumberField;
@@ -103,125 +104,190 @@
     }];
     self.telNumberField = telNumberField;
     telNumberField.delegate = self;
-    
-//    //添加图片验证码label
-//    UILabel *imageCodeLabel = [UILabel labelWithText:@"随机码" andTextColor:[UIColor colorWithHexString:@"#333333"] andFontSize:14];
-//    [inputView addSubview:imageCodeLabel];
-//    [imageCodeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.offset(15*kiphone6);
-//        make.centerY.equalTo(line1.mas_bottom).offset(24*kiphone6);
-//    }];
-    
-//    //添加图片验证码textField
-//    UITextField *imageCodeField = [[UITextField alloc]init];
-//    imageCodeField.placeholder = @"请输入随机码";
-//    imageCodeField.font = [UIFont systemFontOfSize:14];
-//    imageCodeField.textColor = [UIColor colorWithHexString:@"333333"];
-//    imageCodeField.keyboardType = UIKeyboardTypeNumberPad;//设置键盘的样式
-//    [inputView addSubview:imageCodeField];
-//    [imageCodeField mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(imageCodeLabel.mas_right).offset(20*kiphone6);
-//        make.centerY.equalTo(imageCodeLabel);
-//        make.width.offset(110);
-//    }];
-//    self.imageCodeField = imageCodeField;
-//    imageCodeField.delegate = self;
-//    //添加显示图片验证码的imageView
-//    UIImageView *codeImageView = [[UIImageView alloc]init];
-//    [inputView addSubview:codeImageView];
-//    [codeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.offset(-15*kiphone6);
-//        make.centerY.equalTo(imageCodeField);
-//        make.width.offset(100*kiphone6);
-//        make.height.offset(35*kiphone6);
-//    }];
-//    self.codeImageView = codeImageView;
-//    codeImageView.userInteractionEnabled = true;
-    //添加点击更换图片事件
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapAction:)];
-//    [codeImageView addGestureRecognizer:tap];
-    
-    //显示请求回来的图片
-    //参数：当前时间毫秒
-//    NSTimeInterval nowtime = [[NSDate date] timeIntervalSince1970]*1000;
-//    long long theTime = [[NSNumber numberWithDouble:nowtime] longLongValue];
-//    NSString *curTime = [NSString stringWithFormat:@"%llu",theTime];
-//    self.curTime = curTime;
-//    //动态码图片url
-//    NSString *codeUrlStr = [NSString stringWithFormat:@"%@/personal/imgcode.do?ts=%@",mPrefixUrl,curTime];
-//    [codeImageView sd_setImageWithURL:[NSURL URLWithString:codeUrlStr] placeholderImage:nil options:SDWebImageHandleCookies];
-//    //    [codeImageView sd_setImageWithURL:[NSURL URLWithString:codeUrlStr] placeholderImage:nil options:SDWebImageHandleCookies progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//    //        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:codeUrlStr]];
-//    //        NSDictionary* requestFields = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
-//    //        [[NSUserDefaults standardUserDefaults] setObject:[requestFields objectForKey:@"Cookie"] forKey:@"DynamicCodeCookie"];
-//    //        NSLog(@"----->%@",cookies.description);
-//    //    }];
+    //
+    //    版本请求
+    //http://192.168.1.168:8085/mobileapi/dict/get.do?id=5
+    NSString *noticeUrlStr = @"http://192.168.1.168:8085/mobilepub/dict/get.do?id=5";
+    HttpClient *httpManager = [HttpClient defaultClient];
+    [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
+    [httpManager requestWithPath:noticeUrlStr method:1 parameters:nil prepareExecute:^{
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];// 动画结束
+        if ([responseObject[@"code"] isEqualToString:@"0"] ) {
+           NSDictionary *dic = responseObject[@"dict"];
+            NSString *value = dic[@"value"];
+            if ([value intValue] < 2) {//审核
+            //添加验证码textField
+            UITextField *codeField = [[UITextField alloc]init];
+                codeField.font = [UIFont systemFontOfSize:14];
+                codeField.textColor = [UIColor colorWithHexString:@"ffffff"];
+                codeField.layer.cornerRadius = 4;
+                codeField.layer.borderColor = [UIColor colorWithHexString:@"d1dbe7"].CGColor;
+                codeField.layer.borderWidth = 1;
+                UIView *pLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
+                pLeftView.backgroundColor = [UIColor clearColor];
+                UIImageView *passImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"password_login_leftView"]];
+                [pLeftView addSubview:passImageView];
+                [passImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.center.offset(0);
+                    make.width.offset(passImageView.bounds.size.width);
+                    make.height.offset(passImageView.bounds.size.height);
+                }];
+                codeField.leftView = pLeftView;
+                codeField.leftViewMode = UITextFieldViewModeAlways;
+                codeField.placeholder = @"请输入验证码";
+                [codeField setValue:[UIColor colorWithHexString:@"ffffff"] forKeyPath:@"_placeholderLabel.textColor"];
+                [codeField setValue:[UIFont boldSystemFontOfSize:12] forKeyPath:@"_placeholderLabel.font"];
+                //            telNumberField.font = [UIFont systemFontOfSize:12];
+                codeField.keyboardType = UIKeyboardTypeNumberPad;//设置键盘的样式
+            [self.view addSubview:codeField];
+            [codeField mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(telNumberField.mas_bottom).offset(44);
+                make.left.equalTo(telNumberField);
+                make.width.offset(200);
+                make.height.offset(44);
+            }];
+            self.passWordField = codeField;
+            //添加获取验证码Btn
+            UIButton *getCodeBtn = [[UIButton alloc]init];
+            getCodeBtn.layer.masksToBounds = true;
+            getCodeBtn.layer.cornerRadius = 17.5*kiphone6;
+            [getCodeBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
+            [getCodeBtn setTitleColor:[UIColor colorWithHexString:@"#ffffff"] forState:UIControlStateNormal];
+            [getCodeBtn setBackgroundColor:[UIColor colorWithHexString:@"#1ebeec"]];
+            getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+            [self.view addSubview:getCodeBtn];
+            [getCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.offset(-5*kiphone6);
+                make.centerY.equalTo(codeField);
+                make.width.offset(100*kiphone6);
+                make.height.offset(35*kiphone6);
+            }];
+            //点击事件
+            [getCodeBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchDown];
+            
+        }else{
+            //添加密码textField
+            UITextField *passWordField = [[UITextField alloc]init];
+            passWordField.font = [UIFont systemFontOfSize:14];
+            passWordField.textColor = [UIColor colorWithHexString:@"ffffff"];
+            passWordField.layer.cornerRadius = 4;
+            passWordField.layer.borderColor = [UIColor colorWithHexString:@"d1dbe7"].CGColor;
+            passWordField.layer.borderWidth = 1;
+            UIView *pLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
+            pLeftView.backgroundColor = [UIColor clearColor];
+            UIImageView *passImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"password_login_leftView"]];
+            [pLeftView addSubview:passImageView];
+            [passImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.offset(0);
+                make.width.offset(passImageView.bounds.size.width);
+                make.height.offset(passImageView.bounds.size.height);
+            }];
+            passWordField.leftView = pLeftView;
+            passWordField.leftViewMode = UITextFieldViewModeAlways;
+            passWordField.placeholder = @"请输入密码";
+            [passWordField setValue:[UIColor colorWithHexString:@"ffffff"] forKeyPath:@"_placeholderLabel.textColor"];
+            [passWordField setValue:[UIFont boldSystemFontOfSize:12] forKeyPath:@"_placeholderLabel.font"];
+//            telNumberField.font = [UIFont systemFontOfSize:12];
+            passWordField.keyboardType = UIKeyboardTypeNumberPad;//设置键盘的样式
+            [self.view addSubview:passWordField];
+            [passWordField mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(telNumberField.mas_bottom).offset(44);
+                make.centerX.equalTo(logImageView);
+                make.width.offset(250);
+                make.height.offset(44);
+            }];
+            self.passWordField = passWordField;
+        }
+        }else{
+            [SVProgressHUD showWithStatus:responseObject[@"message"]];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];// 动画结束
+        return ;
+    }];
+
+//    if (1) {
+//        //添加验证码textField
+//        UITextField *codeField = [[UITextField alloc]init];
+//        codeField.font = [UIFont systemFontOfSize:14];
+//        codeField.textColor = [UIColor colorWithHexString:@"ffffff"];
+//        codeField.layer.cornerRadius = 4;
+//        codeField.layer.borderColor = [UIColor colorWithHexString:@"d1dbe7"].CGColor;
+//        codeField.layer.borderWidth = 1;
+//        [codeField setValue:[UIColor colorWithHexString:@"ffffff"] forKeyPath:@"_placeholderLabel.textColor"];
+//        [codeField setValue:[UIFont boldSystemFontOfSize:12] forKeyPath:@"_placeholderLabel.font"];
+//        UIView *pLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
+//        pLeftView.backgroundColor = [UIColor clearColor];
+//        UIImageView *passImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"password_login_leftView"]];
+//        [pLeftView addSubview:passImageView];
+//        [passImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.center.offset(0);
+//            make.width.offset(passImageView.bounds.size.width);
+//            make.height.offset(passImageView.bounds.size.height);
+//        }];
+//        codeField.leftView = pLeftView;
+//        codeField.leftViewMode = UITextFieldViewModeAlways;
+//        codeField.placeholder = @"请输入验证码";
+//        codeField.keyboardType = UIKeyboardTypeNumberPad;//设置键盘的样式
+//        [self.view addSubview:codeField];
+//        [codeField mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(telNumberField.mas_bottom).offset(44);
+//            make.left.equalTo(telNumberField);
+//            make.width.offset(200);
+//            make.height.offset(44);
+//        }];
 //
-//    //添加line2
-//    UIView *line2 = [[UIView alloc]init];
-//    line2.backgroundColor = [UIColor colorWithHexString:@"cccccc"];
-//    [inputView addSubview:line2];
-//    [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(line1.mas_bottom).offset(49*kiphone6);
-//        make.left.right.offset(0);
-//        make.height.offset(1/[UIScreen mainScreen].scale);
-//    }];
-//    //添加验证码label
-//    UILabel *codeNumLabel = [UILabel labelWithText:@"验证码" andTextColor:[UIColor colorWithHexString:@"#333333"] andFontSize:14];
-//    [inputView addSubview:codeNumLabel];
-//    [codeNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.offset(15*kiphone6);
-//        make.centerY.equalTo(line2.mas_centerY).offset(25*kiphone6);
-//    }];
-    //添加密码textField
-    UITextField *passWordField = [[UITextField alloc]init];
-    passWordField.font = [UIFont systemFontOfSize:14];
-    passWordField.textColor = [UIColor colorWithHexString:@"ffffff"];
-    passWordField.layer.cornerRadius = 4;
-    passWordField.layer.borderColor = [UIColor colorWithHexString:@"d1dbe7"].CGColor;
-    passWordField.layer.borderWidth = 1;
-    UIView *pLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
-    pLeftView.backgroundColor = [UIColor clearColor];
-    UIImageView *passImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"password_login_leftView"]];
-    [pLeftView addSubview:passImageView];
-    [passImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.offset(0);
-        make.width.offset(passImageView.bounds.size.width);
-        make.height.offset(passImageView.bounds.size.height);
-    }];
-    passWordField.leftView = pLeftView;
-    passWordField.leftViewMode = UITextFieldViewModeAlways;
-    passWordField.placeholder = @"请输入密码";
-    [passWordField setValue:[UIColor colorWithHexString:@"ffffff"] forKeyPath:@"_placeholderLabel.textColor"];
-    [passWordField setValue:[UIFont boldSystemFontOfSize:12] forKeyPath:@"_placeholderLabel.font"];
-    telNumberField.font = [UIFont systemFontOfSize:12];
-    passWordField.keyboardType = UIKeyboardTypeNumberPad;//设置键盘的样式
-    [self.view addSubview:passWordField];
-    [passWordField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(telNumberField.mas_bottom).offset(44);
-        make.centerX.equalTo(logImageView);
-        make.width.offset(250);
-        make.height.offset(44);
-    }];
-    self.passWordField = passWordField;
-    
-//    //添加获取验证码Btn
-//    UIButton *getCodeBtn = [[UIButton alloc]init];
-//    getCodeBtn.layer.masksToBounds = true;
-//    getCodeBtn.layer.cornerRadius = 17.5*kiphone6;
-//    [getCodeBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
-//    [getCodeBtn setTitleColor:[UIColor colorWithHexString:@"#ffffff"] forState:UIControlStateNormal];
-//    [getCodeBtn setBackgroundColor:[UIColor colorWithHexString:@"#1ebeec"]];
-//    getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-//    [inputView addSubview:getCodeBtn];
-//    [getCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.offset(-15*kiphone6);
-//        make.centerY.equalTo(codeNumLabel);
-//        make.width.offset(100*kiphone6);
-//        make.height.offset(35*kiphone6);
-//    }];
-//    //点击事件
-//    [getCodeBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchDown];
+//        //添加获取验证码Btn
+//        UIButton *getCodeBtn = [[UIButton alloc]init];
+//        getCodeBtn.layer.masksToBounds = true;
+//        getCodeBtn.layer.cornerRadius = 17.5*kiphone6;
+//        [getCodeBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
+//        [getCodeBtn setTitleColor:[UIColor colorWithHexString:@"#ffffff"] forState:UIControlStateNormal];
+//        [getCodeBtn setBackgroundColor:[UIColor colorWithHexString:@"#1ebeec"]];
+//        getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+//        [self.view addSubview:getCodeBtn];
+//        [getCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.offset(-5*kiphone6);
+//            make.centerY.equalTo(codeField);
+//            make.width.offset(100*kiphone6);
+//            make.height.offset(35*kiphone6);
+//        }];
+//        //点击事件
+//        [getCodeBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchDown];
+//    }else{
+//        //添加密码textField
+//        UITextField *passWordField = [[UITextField alloc]init];
+//        passWordField.font = [UIFont systemFontOfSize:14];
+//        passWordField.textColor = [UIColor colorWithHexString:@"ffffff"];
+//        passWordField.layer.cornerRadius = 4;
+//        passWordField.layer.borderColor = [UIColor colorWithHexString:@"d1dbe7"].CGColor;
+//        passWordField.layer.borderWidth = 1;
+//        UIView *pLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 44)];
+//        pLeftView.backgroundColor = [UIColor clearColor];
+//        UIImageView *passImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"password_login_leftView"]];
+//        [pLeftView addSubview:passImageView];
+//        [passImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.center.offset(0);
+//            make.width.offset(passImageView.bounds.size.width);
+//            make.height.offset(passImageView.bounds.size.height);
+//        }];
+//        passWordField.leftView = pLeftView;
+//        passWordField.leftViewMode = UITextFieldViewModeAlways;
+//        passWordField.placeholder = @"请输入密码";
+//        [passWordField setValue:[UIColor colorWithHexString:@"ffffff"] forKeyPath:@"_placeholderLabel.textColor"];
+//        [passWordField setValue:[UIFont boldSystemFontOfSize:12] forKeyPath:@"_placeholderLabel.font"];
+//        telNumberField.font = [UIFont systemFontOfSize:12];
+//        passWordField.keyboardType = UIKeyboardTypeNumberPad;//设置键盘的样式
+//        [self.view addSubview:passWordField];
+//        [passWordField mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(telNumberField.mas_bottom).offset(44);
+//            make.centerX.equalTo(logImageView);
+//            make.width.offset(250);
+//            make.height.offset(44);
+//        }];
+//        self.passWordField = passWordField;
+//    }
 //    //添加确认阅读条款Label---------需要修改添加链接
 //    UILabel *readLabel = [UILabel labelWithText:@"我已确认阅读并同意《使用条款和隐私协议》" andTextColor:[UIColor blackColor] andFontSize:12];
 //    [self.view addSubview:readLabel];
@@ -290,7 +356,7 @@
 //        [httpManager.manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"telphoneCodeCookie"] forHTTPHeaderField:@"Cookie"];//设置之前手机验证码请求返回的cookie并设置到登录请求中，以便服务器确认登录
         [SVProgressHUD show];
         [httpManager requestWithPath:urlString method:HttpRequestPost parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    
+            [SVProgressHUD dismiss];
             NSDictionary *dic = (NSDictionary *)responseObject;
             if ([dic[@"code"] isEqualToString:@"0"]) {
                 NSDictionary *userDic = dic[@"User"];
@@ -305,6 +371,11 @@
 //                }
 //                defaultModel.permission = tempArr.copy;
                 [defaultModel mj_setKeyValues:userModel];
+                [JPUSHService setAlias:defaultModel.telephone completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {//设置别名进行定向推送
+                    if (iResCode == 0) {
+//                        NSLog(@"%@",iAlias);//设置别名成功
+                    }
+                } seq:0];
                 //获取cookie
                 NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
                 NSDictionary *fields = [response allHeaderFields]; //afnetworking写法
@@ -327,7 +398,6 @@
                 self.passWordField.text = nil;
                 
             }
-            [SVProgressHUD dismiss];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [SVProgressHUD dismiss];
             return ;
@@ -442,6 +512,42 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+//审核需要
+-(void)buttonClick:(UIButton *)button{
+    
+    //倒计时时间
+    __block NSInteger timeOut = 59;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    //每秒执行一次
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(_timer, ^{
+        
+        //倒计时结束，关闭
+        if (timeOut <= 0) {
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [button setBackgroundColor:[UIColor colorWithHexString:@"#1ebeec"]];
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [button setTitle:@"发送验证码" forState:UIControlStateNormal];
+                button.userInteractionEnabled = true;
+            });
+        } else {
+            int allTime = 60;
+            int seconds = timeOut % allTime;
+            NSString *timeStr = [NSString stringWithFormat:@"%0.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [button setBackgroundColor:[UIColor colorWithHexString:@"#cccccc"]];
+                [button setTitle:[NSString stringWithFormat:@"%@ S",timeStr] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                button.userInteractionEnabled = false;
+            });
+            timeOut--;
+        }
+    });
+    dispatch_resume(_timer);
+    
 }
 
 /*

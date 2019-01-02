@@ -74,6 +74,10 @@
 #define mRepairManagersaveManage [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/maintenanceLog/saveManage.do?"]
 // 分页查询通知接口
 #define mNoticeList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/findPage.do?"]
+//消息》标记为已读接口
+#define mSetReaded [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/setReaded.do?"]
+// 发通知接口
+#define mPostNotice [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/message/save.do?"]
 // 分页查询出库入库验收列表接口
 #define mfpCheckList [NSString stringWithFormat:@"%@%@",mPrefixUrl,@"/mobileapi/buyApply/fpCheck.do?"]
 //出库入库》分页查询资产领用申请列表

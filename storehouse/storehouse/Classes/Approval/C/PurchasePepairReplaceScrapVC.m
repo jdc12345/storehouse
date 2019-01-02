@@ -880,9 +880,7 @@ static NSString* assetCellid = @"table_assetCellid";
                         default:
                             break;
                     }
-                    
                 }
-                
                 return view;
                 
             }else{

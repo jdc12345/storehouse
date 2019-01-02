@@ -13,6 +13,7 @@
 @property (nonatomic, weak) UIImageView* typeImage;
 @property (nonatomic, weak) UILabel* itemLabel;
 @property (nonatomic, weak) UILabel* timeLabel;
+@property (nonatomic, weak) UIImageView* backBage;
 @end
 @implementation HomeNoticeNewsTVCell
 
@@ -30,6 +31,13 @@
     _model = model;
     self.timeLabel.text = model.createTimeString;
     self.itemLabel.text = model.title;
+    if (!model.isRead) {
+
+        self.backBage.image = [UIImage imageNamed:@"red_circle"];
+        
+    }else{
+        self.backBage.image = [UIImage imageNamed:@""];
+    }
 }
 -(void)setupUI{
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
@@ -55,7 +63,17 @@
         make.right.offset(-15*kiphone6);
         make.centerY.offset(0);
     }];
-    
+    UIImageView *backBage = [[UIImageView alloc]init];//bage的背景
+    backBage.backgroundColor = [UIColor whiteColor];
+    backBage.layer.masksToBounds = true;
+    backBage.layer.cornerRadius = 2.5;
+    [self.contentView addSubview:backBage];
+    [backBage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(typeImage.mas_right).offset(1);
+        make.top.equalTo(typeImage.mas_top).offset(2);
+        make.width.height.offset(5*kiphone6);
+    }];
+    self.backBage = backBage;
     self.itemLabel = itemLabel;
     self.timeLabel = timeLabel;
     self.typeImage = typeImage;

@@ -24,9 +24,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomePageNoticeModel : NSObject
+@property (nonatomic, copy) NSString* info_id;
 @property (nonatomic, copy) NSString* title;//标题
 @property (nonatomic, copy) NSString* content;//内容
 @property (nonatomic, copy) NSString* createTimeString;//发出时间
+@property (nonatomic, assign) BOOL isRead;//是否已读
 @end
 
 NS_ASSUME_NONNULL_END

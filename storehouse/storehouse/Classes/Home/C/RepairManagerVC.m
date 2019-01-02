@@ -46,7 +46,7 @@ static NSInteger start = 0;//上拉加载起始位置
     //提交按钮
     self.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
-    self.tableView.scrollEnabled = false;
+//    self.tableView.scrollEnabled = false;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[ApplyDetailTVCell class] forCellReuseIdentifier:tableCellid];

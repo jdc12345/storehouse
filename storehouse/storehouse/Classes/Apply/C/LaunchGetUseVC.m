@@ -26,6 +26,7 @@ static NSInteger start = 0;//上拉加载起始位置
 @property(nonatomic,strong)NSMutableArray *storeThingsArr;//库房物品列表数据
 @property(nonatomic,strong)NSMutableArray *selectedThingsArr;//选中的库房物品列表数据
 @property(nonatomic,weak)UITextField *searchField;//输入框
+@property(nonatomic,assign) CGRect activedTextFieldRect;//2.当前正在编辑的textField的frame相对于tableView的位置
 
 @end
 
@@ -47,6 +48,8 @@ static NSInteger start = 0;//上拉加载起始位置
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LaunchBaseTVCell class] forCellReuseIdentifier:tableCellid];
     [self.tableView registerClass:[LaunchFormTVCell class] forCellReuseIdentifier:listCell];
+    //1.设置tableView的键盘退出模式：
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     self.title = @"领用申请";
 }
 //采购申请提交网络请求
@@ -619,6 +622,52 @@ static NSInteger start = 0;//上拉加载起始位置
 -(BOOL)textFieldShouldClear:(UITextField *)textField{
     //    [self.tableView reloadData];//在清除搜索框内容时候显示搜索记录
     return true;
+}
+//4.第四步是关键一步，将tableView中正在编辑的textFiled的代理设成self.在代理方法中做如下处理：
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.activedTextFieldRect = [textField convertRect:textField.frame toView:self.tableView];
+}
+//5.在keyBoardWillShowWithNotification处理键盘弹出事件
+- (void)keyBoardWillShowWithNotification:(NSNotification *)notification {
+    //取出键盘最终的frame
+    CGRect rect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    //取出键盘弹出需要花费的时间
+    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    //获取最佳位置距离屏幕上方的距离
+    if ((self.activedTextFieldRect.origin.y + self.activedTextFieldRect.size.height) >  ([UIScreen mainScreen].bounds.size.height - rect.size.height-64)) {//键盘的高度 高于textView的高度 需要滚动,减64为了适应自定义键盘
+        NSInteger nvaBarHeight;
+        if (kScreenH > 736) {//iPhone X
+            nvaBarHeight = 88;
+        }else{
+            nvaBarHeight = 64;
+        }
+        [UIView animateWithDuration:duration animations:^{
+            self.tableView.contentOffset = CGPointMake(0, nvaBarHeight + self.activedTextFieldRect.origin.y + self.activedTextFieldRect.size.height - ([UIScreen mainScreen].bounds.size.height - rect.size.height)+20);
+        }];
+    }
+}
+//6.在KeyboardWillHideNotification处理键盘收起事件
+- (void)KeyboardWillHideNotification:(NSNotification *)notification {
+    //取出键盘弹出需要花费的时间
+    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:duration animations:^{
+        self.tableView.contentOffset = CGPointMake(0,0);
+    }];
+}
+#pragma -viewAppear\disappear
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //3.注册键盘通知
+    //.监听键盘弹出、收起事件
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShowWithNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+}
+//7.移除键盘监听
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //移除键盘监听 直接按照通知名字去移除键盘通知, 这是正确方式
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 //执行手势触发的方法：

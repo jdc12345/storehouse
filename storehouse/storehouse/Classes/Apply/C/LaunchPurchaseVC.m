@@ -16,7 +16,7 @@
 static NSString* tableCellid = @"table_cell";
 @interface LaunchPurchaseVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) NSArray *itemTypeArray;//事项名称
-
+@property(nonatomic,assign) CGRect activedTextFieldRect;//2.当前正在编辑的textField的frame相对于tableView的位置
 @end
 
 @implementation LaunchPurchaseVC
@@ -32,10 +32,11 @@ static NSString* tableCellid = @"table_cell";
     self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"规格型号",@"计量单位",@"采购数量",@"生产厂家",@"采购类别",@"采购理由", nil];
     self.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
-    self.tableView.scrollEnabled = false;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LaunchBaseTVCell class] forCellReuseIdentifier:tableCellid];
+    //1.设置tableView的键盘退出模式：
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
        
 }
 //采购申请提交网络请求
@@ -192,7 +193,52 @@ static NSString* tableCellid = @"table_cell";
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的(自定义)
 }
-
+//4.第四步是关键一步，将tableView中正在编辑的textFiled的代理设成self.在代理方法中做如下处理：
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.activedTextFieldRect = [textField convertRect:textField.frame toView:self.tableView];
+}
+//5.在keyBoardWillShowWithNotification处理键盘弹出事件
+- (void)keyBoardWillShowWithNotification:(NSNotification *)notification {
+    //取出键盘最终的frame
+    CGRect rect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    //取出键盘弹出需要花费的时间
+    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    //获取最佳位置距离屏幕上方的距离
+    if ((self.activedTextFieldRect.origin.y + self.activedTextFieldRect.size.height) >  ([UIScreen mainScreen].bounds.size.height - rect.size.height-64)) {//键盘的高度 高于textView的高度 需要滚动,减64为了适应自定义键盘
+        NSInteger nvaBarHeight;
+        if (kScreenH > 736) {//iPhone X
+            nvaBarHeight = 88;
+        }else{
+            nvaBarHeight = 64;
+        }
+        [UIView animateWithDuration:duration animations:^{
+            self.tableView.contentOffset = CGPointMake(0, nvaBarHeight + self.activedTextFieldRect.origin.y + self.activedTextFieldRect.size.height - ([UIScreen mainScreen].bounds.size.height - rect.size.height)+20);
+        }];
+    }
+}
+//6.在KeyboardWillHideNotification处理键盘收起事件
+- (void)KeyboardWillHideNotification:(NSNotification *)notification {
+    //取出键盘弹出需要花费的时间
+    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:duration animations:^{
+        self.tableView.contentOffset = CGPointMake(0,0);
+    }];
+}
+#pragma -viewAppear\disappear
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //3.注册键盘通知
+    //.监听键盘弹出、收起事件
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShowWithNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+}
+//7.移除键盘监听
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //移除键盘监听 直接按照通知名字去移除键盘通知, 这是正确方式
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

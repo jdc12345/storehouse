@@ -93,7 +93,9 @@ static NSInteger apedStart = 0;
                     willStart = self.willApproveList.count;
                 }
             }
-            
+            if (listArr.count < 1) {
+                [SVProgressHUD showWithStatus:@"暂时没有需要审批的申请"];
+            }
         }else if ([dic[@"code"] isEqualToString:@"-1"]){
             [SVProgressHUD showInfoWithStatus:@"登录已过期,请重新登录"];
         }
