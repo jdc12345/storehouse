@@ -13,14 +13,17 @@
 //#import "BuyApplyDetailModel.h"
 //#import "ApproveDetailAssetTVCell.h"
 #import "UILabel+Addition.h"
+#import "ReplaceScanVC.h"
 
 static NSString* tableCellid = @"table_cell";
 static NSString* assetCellid = @"table_assetCellid";
-@interface OutPutReplaceDetailVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface OutPutReplaceDetailVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,barCodeDelegate>
 @property (nonatomic, strong) NSArray *itemTypeArray;//事项名称
 @property (nonatomic, strong) NSMutableArray *assetsArray;//申请相关资产列表
 @property (nonatomic, strong) ReplaceApplyDetailModel *replaceModel;//请求的以旧换新申请数据模型
-@property(nonatomic,weak)UITextField *contentField;//更换资产数量
+@property(nonatomic,weak)UITextField *barCodeField;//更换资产编码
+@property(nonatomic,weak)UITextField *nameField;//更换资产名称
+@property(nonatomic,weak)UITextField *numField;//更换资产数量
 //@property(nonatomic,assign)NSInteger isChecked;//是否验收(0否1是)
 @end
 
@@ -45,7 +48,7 @@ static NSString* assetCellid = @"table_assetCellid";
 -(void)setModel:(ReplaceApplyDetailModel *)model{
     _model = model;
     [SVProgressHUD show];// 动画开始
-    self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"物品数量",@"申请时间", @"备注说明",nil];
+    self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"旧物名称",@"旧物编码",@"旧物数量",@"申请时间", @"备注说明",@"新物名称",@"新物编码",@"新物数量",nil];
     
     NSString *listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetOldfornewDetail,model.info_id];
     listUrlStr = [listUrlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -92,20 +95,62 @@ static NSString* assetCellid = @"table_assetCellid";
             cell.itemContentLabel.text = self.replaceModel.assetName;
             break;
         case 3:
-            if (self.model.outboundDateString.length > 0) {//已更换
-                cell.itemContentLabel.text = self.replaceModel.num;
-            }else{//未更换，数量可以更改
-                cell.contentField.hidden = false;
-                cell.contentField.text = self.replaceModel.totalNum;
-                self.contentField = cell.contentField;
-                cell.contentField.delegate = self;
-            }
+            cell.itemContentLabel.text = self.replaceModel.num;
             break;
         case 4:
-            cell.itemContentLabel.text = self.replaceModel.gmtCreateString;
+            cell.itemContentLabel.text = self.replaceModel.num;
             break;
         case 5:
             cell.itemContentLabel.text = self.replaceModel.comment;
+            break;
+        case 6:
+            cell.itemContentLabel.text = self.replaceModel.gmtCreateString;
+            break;
+        case 7:
+            if (self.model.outboundDateString.length > 0) {//已更换
+                cell.itemContentLabel.text = self.replaceModel.info_newAssetName;
+            }else{//未更换，新物品名称
+                cell.contentField.hidden = false;
+                self.nameField = cell.contentField;
+                cell.contentField.delegate = self;
+                cell.contentField.enabled = false;
+                //扫一扫按钮
+                UIButton *scanButton = [[UIButton alloc]init];
+                [scanButton setImage:[UIImage imageNamed:@"replace_scan"] forState:UIControlStateNormal];
+                scanButton.backgroundColor = [UIColor colorWithHexString:@"d9d9d9"];
+                scanButton.layer.borderColor = [UIColor colorWithHexString:@"a0a0a0"].CGColor;
+                scanButton.layer.borderWidth = 1;
+                [cell.contentView addSubview:scanButton];
+                [scanButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.equalTo(cell.contentField);
+                    make.right.offset(-31);
+                    make.width.offset(35);
+                }];
+                [scanButton addTarget:self action:@selector(newAssetReplace) forControlEvents:UIControlEventTouchUpInside];
+//                self.listButton = scanButton;
+            }
+            break;
+        case 8:
+            if (self.model.outboundDateString.length > 0) {//已更换
+                cell.itemContentLabel.text = self.replaceModel.num;
+            }else{//未更换，新物品编码
+                cell.contentField.hidden = false;
+//                cell.contentField.text = self.replaceModel.totalNum;
+                self.barCodeField = cell.contentField;
+                cell.contentField.delegate = self;
+                cell.contentField.enabled = false;
+            }
+            break;
+        case 9:
+            if (self.model.outboundDateString.length > 0) {//已更换
+                cell.itemContentLabel.text = self.replaceModel.num;
+            }else{//未更换，新物品数量
+                cell.contentField.hidden = false;
+//                cell.contentField.text = self.replaceModel.totalNum;
+                self.numField = cell.contentField;
+                cell.contentField.delegate = self;
+                cell.contentField.enabled = false;
+            }
             break;
             
         default:
@@ -151,7 +196,21 @@ static NSString* assetCellid = @"table_assetCellid";
     return 40;
     
 }
+
+#pragma mark -barcodeDelegate
+//5.执行代理协议
+-(void)returnBarCode:(NSString *)barCode{
+    self.barCodeField.text = barCode;
+    
+}
 #pragma mark - btnClick
+//扫描获取替换信息
+-(void)newAssetReplace{
+    ReplaceScanVC *vc = [[ReplaceScanVC alloc]init];
+    [self.navigationController pushViewController:vc animated:true];
+    
+}
+
 //是否验收确定按钮点击事件
 -(void)confirmCheckBtnClick:(UIButton*)sender{
 //    出库入库》以旧换新》执行更换接口
@@ -164,14 +223,13 @@ static NSString* assetCellid = @"table_assetCellid";
 //    1=缺少参数：id
 //    2=缺少参数：num
 //    3=对应编号的以旧换新申请不存在！
-    if (self.contentField.text.intValue < 1) {
+    if (self.numField.text.intValue < 1) {
         [SVProgressHUD showInfoWithStatus:@"更换数量不能小于1"];
         return;
     }
     sender.enabled = false;
     [SVProgressHUD show];// 动画开始
-    NSString *reportUrlStr = [NSString stringWithFormat:@"%@&id=%@&num=%@&newAssetId=%@",mfpOutPutAssetRepalceConfirmRequest,self.model.info_id,self.contentField.text,self.replaceModel.info_newAssetId];
-    
+    NSString *reportUrlStr = [NSString stringWithFormat:@"%@&id=%@&num=%@&newAssetId=%@",mfpOutPutAssetRepalceConfirmRequest,self.model.info_id,self.numField.text,self.replaceModel.info_newAssetId];
     reportUrlStr = [reportUrlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     HttpClient *httpManager = [HttpClient defaultClient];
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录

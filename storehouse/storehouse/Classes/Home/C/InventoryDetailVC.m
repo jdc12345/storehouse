@@ -349,7 +349,7 @@ static NSString* inventoryingCell = @"inventorying_Cell";
         make.height.offset(35);
     }];
         //已盘数量label
-    UILabel *hadLabel = [UILabel labelWithText:@"待盘数量" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+    UILabel *hadLabel = [UILabel labelWithText:@"已盘数量" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
     hadLabel.backgroundColor = [UIColor whiteColor];
     hadLabel.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:hadLabel];

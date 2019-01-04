@@ -1,16 +1,15 @@
 //
-//  HomePageScanVC.m
+//  ReplaceScanVC.m
 //  storehouse
 //
-//  Created by 万宇 on 2018/11/16.
-//  Copyright © 2018 wanyu. All rights reserved.
+//  Created by 万宇 on 2019/1/4.
+//  Copyright © 2019 wanyu. All rights reserved.
 //
-
-#import "HomePageScanVC.h"
 #import <AVFoundation/AVFoundation.h>
 #import "HttpClient.h"
-#import "AssetDetailVC.h"
-#import "AddAssetVC.h"
+#import "OutPutReplaceDetailVC.h"
+
+
 /**
  *  屏幕 高 宽 边界
  */
@@ -23,7 +22,9 @@
 
 #define kScanRect CGRectMake(LEFT, TOP, 220, 220)
 
-@interface HomePageScanVC ()<AVCaptureMetadataOutputObjectsDelegate>{
+#import "ReplaceScanVC.h"
+
+@interface ReplaceScanVC ()<AVCaptureMetadataOutputObjectsDelegate>{
     int num;
     BOOL upOrdown;
     NSTimer * timer;
@@ -38,51 +39,23 @@
 
 @end
 
-@implementation HomePageScanVC
+@implementation ReplaceScanVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"扫描设备";
     self.view.backgroundColor = [UIColor whiteColor];
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+    //    self.automaticallyAdjustsScrollViewInsets = NO;
     // 意思就是延伸到边界
     self.extendedLayoutIncludesOpaqueBars = true;//解决视图下移64
     
     [self configView];
     
-    //    UIButton *connectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //    [connectBtn setTitle:@"扫描二维码" forState:UIControlStateNormal];
-    //    connectBtn.backgroundColor = [UIColor colorWithHexString:@"25f368"];
-    //    [connectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //    connectBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    //    [connectBtn addTarget:self action:@selector(action) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //
-    //    UILabel *promptLabel = [[UILabel alloc]init];
-    //    promptLabel.textColor = [UIColor colorWithHexString:@"999999"];
-    //    promptLabel.font = [UIFont systemFontOfSize:15];
-    //    promptLabel.textAlignment = NSTextAlignmentCenter;
-    //    promptLabel.text = @"扫描二维码连接设备";
-    //
-    //    [self.view addSubview:connectBtn];
-    //    [self.view addSubview:promptLabel];
-    //
-    //    WS(ws);
-    //    [connectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.center.equalTo(ws.view);
-    //        make.size.mas_equalTo(CGSizeMake(115 *kiphone6 ,40 *kiphone6));
-    //    }];
-    //    [promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.bottom.equalTo(connectBtn.mas_top).with.offset(-15 *kiphone6);
-    //        make.left.equalTo(ws.view).with.offset(0);
-    //        make.size.mas_equalTo(CGSizeMake(kScreenW  ,15 *kiphone6));
-    //    }];
     // Do any additional setup after loading the view.
 }
 
 - (void)action{
-//    YJConnectWifiVC *addEquipmentVC  = [[YJConnectWifiVC alloc]init];
-//    [self.navigationController pushViewController:addEquipmentVC animated:YES];
+    //    YJConnectWifiVC *addEquipmentVC  = [[YJConnectWifiVC alloc]init];
+    //    [self.navigationController pushViewController:addEquipmentVC animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -115,8 +88,6 @@
         //3.设置摄像头和相关配置
         [self performSelector:@selector(setupCamera) withObject:nil afterDelay:0.3];
     }
-    
-    
 }
 
 -(void)animation1
@@ -224,9 +195,7 @@
         
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         stringValue = metadataObject.stringValue;
-//        NSLog(@"扫描结果：%@",stringValue);
-        //扫描结果处理页面
-//        http://192.168.1.168:8085/webapi/assetQrCode/get.do?barcode=123456
+        
         HttpClient *httpManager = [HttpClient defaultClient];
         [SVProgressHUD show];
         [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
@@ -241,23 +210,30 @@
                     NSNumber *assetId = (NSNumber*)lastDic[@"assetId"];
                     int intIsUse = [isUse intValue];
                     int intAssetId = [assetId intValue];
-
+                    
                     if (intIsUse != 0 && intAssetId != 0) {//已入库
-                        //跳转物品详情页面
-                        NSString *info_id = lastDic[@"assetId"];
                         
-                        AssetDetailVC *vc = [[AssetDetailVC alloc] init];
-                        vc.info_id = info_id;
-                        [self.navigationController pushViewController:vc animated:YES];
+                        for (UIViewController* vc in self.navigationController.childViewControllers) {
+                            if ([vc isKindOfClass:[OutPutReplaceDetailVC class]]) {
+                                //3.设置代理
+                                self.delegate = vc;
+                                if ([self.delegate respondsToSelector:@selector(returnBarCode:)]) {
+                                    [self.delegate returnBarCode:stringValue];
+                                    [self.navigationController popViewControllerAnimated:true];
+                                }
+                            }
+                        };
+                        
                     }else if (intIsUse == 0){//未入库
                         //跳转入库页面
-                        AddAssetVC *vc = [[AddAssetVC alloc] init];
-                        [self.navigationController pushViewController:vc animated:YES];
-                        vc.barCode = stringValue;
-
+                        [SVProgressHUD showInfoWithStatus:@"该二维码未绑定资产"];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [self.navigationController popViewControllerAnimated:true];
+                        });
+                        
                     }
                     
-                //    ----------------------------------------------
+                    //    ----------------------------------------------
                 }else{//未知二维码结果
                     [SVProgressHUD showInfoWithStatus:@"你扫描的二维码无效"];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -274,9 +250,12 @@
             [self.navigationController popViewControllerAnimated:true];
             return ;
         }];
-//        YJBindingEquipmentVC *addEquipmentVC  = [[YJBindingEquipmentVC alloc]init];
-//        addEquipmentVC.scanStr = stringValue;
-//        [self.navigationController pushViewController:addEquipmentVC animated:YES];
+        
+        
+        
+        //        YJBindingEquipmentVC *addEquipmentVC  = [[YJBindingEquipmentVC alloc]init];
+        //        addEquipmentVC.scanStr = stringValue;
+        //        [self.navigationController pushViewController:addEquipmentVC animated:YES];
         NSArray *arry = metadataObject.corners;
         for (id temp in arry) {
             NSLog(@"%@",temp);
@@ -318,4 +297,3 @@
  */
 
 @end
-

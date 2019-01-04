@@ -61,32 +61,32 @@ static NSString* assetCellid = @"table_assetCellid";
     switch ([model.msgType intValue]) {
         case 10://采购申请
             self.title = @"采购申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"规格型号",@"计量单位",@"预算价格",@"采购数量",@"生产厂家",@"采购类别",@"采购理由",@"审批备注", @"申请时间",nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"规格型号",@"计量单位",@"预算价格",@"采购数量",@"生产厂家",@"采购类别",@"采购理由",@"驳回备注", @"申请时间",nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mbuyApplyDetail,model.referId];
             break;
         case 30://领用申请
             self.title = @"领用申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"领用备注",@"审批备注",@"申请时间", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"领用备注",@"驳回备注",@"申请时间", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetRecipientsDetail,model.referId];
             break;
         case 35://借用申请
             self.title = @"借用申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"借用备注",@"借用时间",@"预归还时间",@"审批备注",@"申请时间",nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"借用备注",@"借用时间",@"预归还时间",@"驳回备注",@"申请时间",nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetBorrowDetail,model.referId];
             break;
         case 60://维修申请
             self.title = @"维修申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"资产编码",@"维修类型",@"申请时间",@"故障说明",@"审批备注", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"资产编码",@"维修类型",@"申请时间",@"故障说明",@"驳回备注", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetmaintenanceLogDetail,model.referId];
             break;
         case 50://以旧换新申请
             self.title = @"以旧换新申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"物品数量",@"申请时间", @"备注说明",nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"物品数量",@"申请时间", @"驳回备注",nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetOldfornewDetail,model.referId];
             break;
         case 65://报废申请
             self.title = @"报废申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"报废类型",@"报废日期",@"报废理由",@"审批备注",@"申请时间", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"申请人",@"物品名称",@"报废类型",@"报废日期",@"报废理由",@"驳回备注",@"申请时间", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetScrapDetail,model.referId];
             break;
             //        case 40:
@@ -95,7 +95,7 @@ static NSString* assetCellid = @"table_assetCellid";
             //            break;
         case 45://退库申请
             self.title = @"退库申请";
-            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"退库理由",@"审批备注",@"申请时间", nil];
+            self.itemTypeArray = [NSArray arrayWithObjects:@"申请部门",@"物品名称",@"退库理由",@"驳回备注",@"申请时间", nil];
             listUrlStr = [NSString stringWithFormat:@"%@id=%@",mAssetReturnDetail,model.referId];
             break;
             

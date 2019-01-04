@@ -72,6 +72,10 @@ static NSString* tableCellid = @"table_cell";
         return;
     }
     LaunchBaseTVCell *cell9 = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:7 inSection:0]];
+    if (cell9.contentField.text.length==0) {
+        [SVProgressHUD showInfoWithStatus:@"请填写采购理由"];
+        return;
+    }
     
 //    NSString *info_id = [CcUserModel defaultClient].info_id;
     NSString *departmentCode = cell1.contentField.text;//申请部门
@@ -137,7 +141,7 @@ static NSString* tableCellid = @"table_cell";
         [cell.listButton addTarget:self action:@selector(listButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         cell.contentField.tag = 50+indexPath.row;
     }
-    if (indexPath.row == 2 || indexPath.row == 5  || indexPath.row == 7) {
+    if (indexPath.row == 2 || indexPath.row == 5) {
         cell.contentField.placeholder = @"选填";
     }
     cell.contentField.delegate = self;

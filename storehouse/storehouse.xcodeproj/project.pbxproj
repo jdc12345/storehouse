@@ -207,6 +207,9 @@
 		162E474820C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */; };
 		162E474920C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */; };
 		162E474A20C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */; };
+		162F80D621DF616C00876C6D /* ReplaceScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162F80D521DF616C00876C6D /* ReplaceScanVC.m */; };
+		162F80D721DF616C00876C6D /* ReplaceScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162F80D521DF616C00876C6D /* ReplaceScanVC.m */; };
+		162F80D821DF616C00876C6D /* ReplaceScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 162F80D521DF616C00876C6D /* ReplaceScanVC.m */; };
 		16450F4E2118333900567BC4 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 16450F4D2118333900567BC4 /* NSString+URL.m */; };
 		16450F4F2118333900567BC4 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 16450F4D2118333900567BC4 /* NSString+URL.m */; };
 		16450F502118333900567BC4 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 16450F4D2118333900567BC4 /* NSString+URL.m */; };
@@ -506,6 +509,8 @@
 		162E473F20C7B60C00DED9B2 /* UILabel+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Addition.h"; sourceTree = "<group>"; };
 		162E474620C7DEA500DED9B2 /* LaunchMainHeaderButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchMainHeaderButtonView.h; sourceTree = "<group>"; };
 		162E474720C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaunchMainHeaderButtonView.m; sourceTree = "<group>"; };
+		162F80D421DF616C00876C6D /* ReplaceScanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplaceScanVC.h; sourceTree = "<group>"; };
+		162F80D521DF616C00876C6D /* ReplaceScanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplaceScanVC.m; sourceTree = "<group>"; };
 		16450F4C2118333900567BC4 /* NSString+URL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+URL.h"; sourceTree = "<group>"; };
 		16450F4D2118333900567BC4 /* NSString+URL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+URL.m"; sourceTree = "<group>"; };
 		16450F5321198C1600567BC4 /* CPXImageAndTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPXImageAndTitleButton.m; sourceTree = "<group>"; };
@@ -847,6 +852,8 @@
 				1674471C21D4B1AA007D5C08 /* OutPutBorrowDetailVC.m */,
 				1674473421D4DEAE007D5C08 /* OutPutReplaceDetailVC.h */,
 				1674473521D4DEAE007D5C08 /* OutPutReplaceDetailVC.m */,
+				162F80D421DF616C00876C6D /* ReplaceScanVC.h */,
+				162F80D521DF616C00876C6D /* ReplaceScanVC.m */,
 				1674473921D4ED82007D5C08 /* OutPutBackStoreDetailVC.h */,
 				1674473A21D4ED82007D5C08 /* OutPutBackStoreDetailVC.m */,
 			);
@@ -1411,6 +1418,7 @@
 				162E471D20C68D5400DED9B2 /* FunctionListFlowLayout.m in Sources */,
 				16450F4E2118333900567BC4 /* NSString+URL.m in Sources */,
 				162E474820C7DEA500DED9B2 /* LaunchMainHeaderButtonView.m in Sources */,
+				162F80D621DF616C00876C6D /* ReplaceScanVC.m in Sources */,
 				161D72DE21CB4AE200F04C21 /* PurchaseOrderDetailVC.m in Sources */,
 				161D6EB121428F4D0040313F /* CalendarDateCell.m in Sources */,
 				161E57D920CF77A6006B57B2 /* CPXCommonLabel.m in Sources */,
@@ -1528,6 +1536,7 @@
 				1674470A21D10B4F007D5C08 /* OutInStoreListVC.m in Sources */,
 				16AD805920BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				1674472321D4CE37007D5C08 /* ReplaceApplyDetailModel.m in Sources */,
+				162F80D721DF616C00876C6D /* ReplaceScanVC.m in Sources */,
 				162DE4AC21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
 				161D6EE32154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				161D6EBD214687180040313F /* willApproveVC.m in Sources */,
@@ -1641,6 +1650,7 @@
 				1674470B21D10B4F007D5C08 /* OutInStoreListVC.m in Sources */,
 				16AD805A20BEC9AC005F99BC /* UIColor+Extension.m in Sources */,
 				1674472421D4CE37007D5C08 /* ReplaceApplyDetailModel.m in Sources */,
+				162F80D821DF616C00876C6D /* ReplaceScanVC.m in Sources */,
 				162DE4AD21A3A94D007E68C2 /* AssetDetailVC.m in Sources */,
 				161D6EE42154F9F40040313F /* BuyApplyDetailModel.m in Sources */,
 				161D6EBE214687180040313F /* willApproveVC.m in Sources */,

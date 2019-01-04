@@ -21,7 +21,7 @@ static NSString* assetCellid = @"table_assetCellid";
 @property (nonatomic, strong) NSMutableArray *assetsArray;//申请相关资产列表
 @property (nonatomic, strong) BuyApplyDetailModel *buyModel;//请求的采购申请数据模型
 @property(nonatomic,weak)UITextField *contentField;//备注意见
-
+@property(nonatomic,assign) CGRect activedTextFieldRect;//2.当前正在编辑的textField的frame相对于tableView的位置
 @end
 
 @implementation PurchaseOrderDetailVC
@@ -39,7 +39,43 @@ static NSString* assetCellid = @"table_assetCellid";
     self.tableView.dataSource = self;
     [self.tableView registerClass:[ApplyDetailTVCell class] forCellReuseIdentifier:tableCellid];
     [self.tableView registerClass:[ApproveDetailAssetTVCell class] forCellReuseIdentifier:assetCellid];
-    
+    //1.设置tableView的键盘退出模式：
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    [self viewForTabfooter];
+}
+//设置Tabfooter
+-(void)viewForTabfooter{
+    switch (self.state) {
+        case 1://待采购
+        {
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, 180)];
+            view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
+            //驳回、同意、失效lebal
+            //同意btn
+            UIButton *agreeBtn = [[UIButton alloc]init];
+            [agreeBtn setBackgroundColor:[UIColor colorWithHexString:@"23b880"]];
+            [agreeBtn setTitle:@"开始采购" forState:UIControlStateNormal];
+            agreeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+            [agreeBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+            agreeBtn.layer.masksToBounds = YES;
+            agreeBtn.layer.cornerRadius = 5;
+            [view addSubview:agreeBtn];
+            [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.centerY.offset(0);
+                make.width.offset(100);
+                make.height.offset(40);
+            }];
+            [agreeBtn addTarget:self action:@selector(agreeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            self.tableView.tableFooterView = view;
+        }
+            break;
+        case 2://采购中
+        case 3://已入库
+        case 4://已退货
+            break;
+        default:
+            break;
+    }
 }
 -(void)setState:(NSInteger)state{
     _state = state;
@@ -145,6 +181,7 @@ static NSString* assetCellid = @"table_assetCellid";
             if (self.state == 1) {
                 cell.contentField.hidden = false;
                 self.contentField = cell.contentField;
+                self.contentField.delegate = self;
             }else{
                 cell.contentField.hidden = true;
                 cell.itemContentLabel.text = self.buyModel.rejectReason;
@@ -176,63 +213,109 @@ static NSString* assetCellid = @"table_assetCellid";
     
         return cell;
 }
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    switch (self.state) {
-        case 1://待采购
-        {
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, 180)];
-            view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
-            //驳回、同意、失效lebal
-            //同意btn
-            UIButton *agreeBtn = [[UIButton alloc]init];
-            [agreeBtn setBackgroundColor:[UIColor colorWithHexString:@"23b880"]];
-            [agreeBtn setTitle:@"开始采购" forState:UIControlStateNormal];
-            agreeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-            [agreeBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
-            agreeBtn.layer.masksToBounds = YES;
-            agreeBtn.layer.cornerRadius = 5;
-            [view addSubview:agreeBtn];
-            [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.centerY.offset(0);
-                make.width.offset(100);
-                make.height.offset(40);
-            }];
-            [agreeBtn addTarget:self action:@selector(agreeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            return view;
-            }
-            break;
-        case 2://采购中
-        case 3://已入库
-        case 4://已退货
-            return nil;
-            break;
-        default:
-            break;
-    }
-    return nil;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    switch (self.state) {
-        case 1:
-            return 180;
-            break;
-        case 2:
-        case 3:
-        case 4:
-            return 0;
-            break;
-            
-        default:
-            break;
-    }
-    return 0;
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    switch (self.state) {
+//        case 1://待采购
+//        {
+//            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, 180)];
+//            view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
+//            //驳回、同意、失效lebal
+//            //同意btn
+//            UIButton *agreeBtn = [[UIButton alloc]init];
+//            [agreeBtn setBackgroundColor:[UIColor colorWithHexString:@"23b880"]];
+//            [agreeBtn setTitle:@"开始采购" forState:UIControlStateNormal];
+//            agreeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+//            [agreeBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+//            agreeBtn.layer.masksToBounds = YES;
+//            agreeBtn.layer.cornerRadius = 5;
+//            [view addSubview:agreeBtn];
+//            [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.centerX.centerY.offset(0);
+//                make.width.offset(100);
+//                make.height.offset(40);
+//            }];
+//            [agreeBtn addTarget:self action:@selector(agreeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//            return view;
+//            }
+//            break;
+//        case 2://采购中
+//        case 3://已入库
+//        case 4://已退货
+//            return nil;
+//            break;
+//        default:
+//            break;
+//    }
+//    return nil;
+//}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    switch (self.state) {
+//        case 1:
+//            return 180;
+//            break;
+//        case 2:
+//        case 3:
+//        case 4:
+//            return 0;
+//            break;
+//
+//        default:
+//            break;
+//    }
+//    return 0;
+//}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 40;
     
 }
 
+//4.第四步是关键一步，将tableView中正在编辑的textFiled的代理设成self.在代理方法中做如下处理：
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.activedTextFieldRect = [textField convertRect:textField.frame toView:self.tableView];
+}
+//5.在keyBoardWillShowWithNotification处理键盘弹出事件
+- (void)keyBoardWillShowWithNotification:(NSNotification *)notification {
+    //取出键盘最终的frame
+    CGRect rect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    //取出键盘弹出需要花费的时间
+    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    //获取最佳位置距离屏幕上方的距离
+    if ((self.activedTextFieldRect.origin.y + self.activedTextFieldRect.size.height) >  ([UIScreen mainScreen].bounds.size.height - rect.size.height-64)) {//键盘的高度 高于textView的高度 需要滚动,减64为了适应自定义键盘
+        NSInteger nvaBarHeight;
+        if (kScreenH > 736) {//iPhone X
+            nvaBarHeight = 88;
+        }else{
+            nvaBarHeight = 64;
+        }
+        [UIView animateWithDuration:duration animations:^{
+            self.tableView.contentOffset = CGPointMake(0, nvaBarHeight + self.activedTextFieldRect.origin.y + self.activedTextFieldRect.size.height - ([UIScreen mainScreen].bounds.size.height - rect.size.height)+20);
+        }];
+    }
+}
+//6.在KeyboardWillHideNotification处理键盘收起事件
+- (void)KeyboardWillHideNotification:(NSNotification *)notification {
+    //取出键盘弹出需要花费的时间
+    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:duration animations:^{
+        self.tableView.contentOffset = CGPointMake(0,0);
+    }];
+}
+#pragma -viewAppear\disappear
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //3.注册键盘通知
+    //.监听键盘弹出、收起事件
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShowWithNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+}
+//7.移除键盘监听
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //移除键盘监听 直接按照通知名字去移除键盘通知, 这是正确方式
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 
 #pragma mark - btnClick
 -(void)agreeBtnClick:(UIButton*)sender{

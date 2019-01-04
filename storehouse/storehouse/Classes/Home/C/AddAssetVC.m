@@ -200,7 +200,7 @@ static NSString* tableCellid = @"table_cell";
         cell.contentField.tag = 50+indexPath.row;
     }
     if ( indexPath.row == 3){
-        cell.contentField.placeholder = @"选填(单位元)";
+        cell.contentField.placeholder = @"选填";
     }if ( indexPath.row == 5){
         cell.contentField.text = self.barCode;
     }
@@ -302,7 +302,7 @@ static NSString* tableCellid = @"table_cell";
             }
         };
     }else if(sender.tag == 109){//计量单位
-        ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:sender titleArray:@[@"台",@"个",@"箱",@"支",@"袋",@"条"]];
+        ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:sender titleArray:@[@"台",@"个",@"箱",@"支",@"袋",@"条",@"把"]];
         menuView.zwPullMenuStyle = PullMenuLightStyle;
         __weak typeof(menuView) weakMenuView = menuView;
         menuView.blockSelectedMenu = ^(NSInteger menuRow) {
@@ -367,6 +367,7 @@ static NSString* tableCellid = @"table_cell";
         self.tableView.contentOffset = CGPointMake(0,0);
     }];
 }
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
 }

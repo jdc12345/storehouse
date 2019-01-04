@@ -21,6 +21,7 @@
 #import "ZWPullMenuView.h"
 #import "InventoryTypeModel.h"
 #import "WMHCalendarView.h"
+#import "HomePageScanVC.h"
 
 static NSString* listCell = @"listCell";
 static NSInteger start = 0;//上拉加载起始位置
@@ -48,7 +49,7 @@ static NSInteger start = 0;//上拉加载起始位置
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //提交按钮
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"增加" style:UIBarButtonItemStylePlain target:self action:@selector(addAssetBtnClick)];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"入库" style:UIBarButtonItemStylePlain target:self action:@selector(addAssetBtnClick)];
     [rightButton setTintColor:[UIColor colorWithHexString:@"30a2d4"]];
     self.navigationItem.rightBarButtonItem = rightButton;
     
@@ -225,9 +226,6 @@ static NSInteger start = 0;//上拉加载起始位置
                 make.top.offset(30);
                 make.height.offset(60);
             }];
-            [btn layoutIfNeeded];
-            [btn.titleLabel setBounds:btn.bounds];
-            btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         }else{
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.offset(kScreenW*0.2*i);
@@ -438,7 +436,7 @@ static NSInteger start = 0;//上拉加载起始位置
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
 //    参数：name=资产名称\departmentCode=部门编码\saveUserId=用户编号\passEntryTimeBegin=开始时间&passEntryTimeEnd=结束时间\addressCode=存放地点编码\categoryCode=类别、分类编码
     NSString *searchString = [self.searchField text];
-    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&departmentCode=%@&saveUserId=%@&passEntryTimeBegin=%@&passEntryTimeEnd=%@&addressCode=%@&categoryCode=%@&start=0&limit=6",mSearchResult,searchString,self.departmentCode,self.saveUserId,self.passEntryTimeBegin,self.passEntryTimeEnd,self.addressCode,self.categoryCode];
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&departmentCode=%@&saveUserId=%@&passEntryTimeBegin=%@&passEntryTimeEnd=%@&addressCode=%@&categoryCode=%@&start=0&limit=10",mSearchResult,searchString,self.departmentCode,self.saveUserId,self.passEntryTimeBegin,self.passEntryTimeEnd,self.addressCode,self.categoryCode];
     //把搜索中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     HttpClient *client = [HttpClient defaultClient];
@@ -462,7 +460,7 @@ static NSInteger start = 0;//上拉加载起始位置
             // UI更新代码
             [self.tableView reloadData];
             [self.tableView.mj_header endRefreshing];
-            if (start < 6) {//没有更多数据了
+            if (start < 10) {//没有更多数据了
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }else{//有更多数据
                 self.tableView.mj_footer.state = MJRefreshStateIdle;//改变footer的状态为初始化
@@ -487,7 +485,7 @@ static NSInteger start = 0;//上拉加载起始位置
 #pragma mark - btnClick
 //增加按钮点击事件
 -(void)addAssetBtnClick{
-    AddAssetVC *vc = [[AddAssetVC alloc] init];
+    HomePageScanVC *vc = [[HomePageScanVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -496,6 +494,7 @@ static NSInteger start = 0;//上拉加载起始位置
     [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
 }
 - (void)searchConditionBtnClick:(UIButton*)sender{
+    [sender setTitle:@"未选择" forState:UIControlStateNormal];
     __weak typeof(self) weakSelf = self;
     switch (sender.tag) {//第一级决定第二级标题数据源
         case 30:
@@ -520,7 +519,8 @@ static NSInteger start = 0;//上拉加载起始位置
             __weak typeof(menuView) weakMenuView = menuView;
             menuView.blockSelectedMenu = ^(NSInteger menuRow) {
                 //            NSLog(@"action----->%ld",(long)menuRow);//menuRow为点击的行号
-                sender.titleLabel.text = weakMenuView.titleArray[menuRow];
+                NSString *title = weakMenuView.titleArray[menuRow];
+                [sender setTitle:title forState:UIControlStateNormal];
                 CcUserModel *infoModel = weakSelf.savePersonArray[menuRow];
                 weakSelf.saveUserId = infoModel.info_id;
                 [weakSelf textFieldShouldReturn:weakSelf.searchField];
@@ -533,7 +533,7 @@ static NSInteger start = 0;//上拉加载起始位置
             [self textFieldShouldReturn:self.searchField];
             WMHCalendarView *caView = [WMHCalendarView initCalendarViewWithShowView:self.view sureBtnTitleStr:@"确认" buttonIndex:^(NSString *dateStr) {
 //                NSLog(@"%@",dateStr);
-                sender.titleLabel.text = dateStr;
+                [sender setTitle:dateStr forState:UIControlStateNormal];
                 weakSelf.passEntryTimeBegin = dateStr;
                 [weakSelf textFieldShouldReturn:weakSelf.searchField];
                 
@@ -547,7 +547,7 @@ static NSInteger start = 0;//上拉加载起始位置
             [self textFieldShouldReturn:self.searchField];
             WMHCalendarView *caView = [WMHCalendarView initCalendarViewWithShowView:self.view sureBtnTitleStr:@"确认" buttonIndex:^(NSString *dateStr) {
 //                NSLog(@"%@",dateStr);
-                sender.titleLabel.text = dateStr;
+                [sender setTitle:dateStr forState:UIControlStateNormal];
                 weakSelf.passEntryTimeEnd = dateStr;
                 [weakSelf textFieldShouldReturn:weakSelf.searchField];
                 
@@ -580,8 +580,8 @@ static NSInteger start = 0;//上拉加载起始位置
     secondMenuView.zwPullMenuStyle = PullMenuLightStyle;
     __weak typeof(secondMenuView) weakSecondMenuView = secondMenuView;
     secondMenuView.blockSelectedMenu = ^(NSInteger menuRow) {//1
-        
-        sender.titleLabel.text = weakSecondMenuView.titleArray[menuRow];
+        NSString *title = weakSecondMenuView.titleArray[menuRow];
+        [sender setTitle:title forState:UIControlStateNormal];
         InventoryTypeModel *secModel = weakSelf.selectedSecLevelArr[menuRow];
         switch (sender.tag) {//根据具体点击按钮对应相应code
             case 30:
@@ -607,8 +607,8 @@ static NSInteger start = 0;//上拉加载起始位置
             thirdMenuView.zwPullMenuStyle = PullMenuLightStyle;
             __weak typeof(thirdMenuView) weakThirdMenuView = thirdMenuView;
             thirdMenuView.blockSelectedMenu = ^(NSInteger menuRow) {//2
-                
-                sender.titleLabel.text = weakThirdMenuView.titleArray[menuRow];
+                NSString *title = weakThirdMenuView.titleArray[menuRow];
+                [sender setTitle:title forState:UIControlStateNormal];
                 NSDictionary *selectedThirdLeveDic = secModel.children[menuRow];
                 InventoryTypeModel *thirdModel = [InventoryTypeModel mj_objectWithKeyValues:selectedThirdLeveDic];
                 switch (sender.tag) {//根据具体点击按钮对应相应code
@@ -636,8 +636,8 @@ static NSInteger start = 0;//上拉加载起始位置
                     fourMenuView.zwPullMenuStyle = PullMenuLightStyle;
                     __weak typeof(fourMenuView) weakFourMenuView = fourMenuView;
                     fourMenuView.blockSelectedMenu = ^(NSInteger menuRow) {//3
-                        
-                        sender.titleLabel.text = weakFourMenuView.titleArray[menuRow];
+                        NSString *title = weakFourMenuView.titleArray[menuRow];
+                        [sender setTitle:title forState:UIControlStateNormal];
                         NSDictionary *selectedFourLeveDic = thirdModel.children[menuRow];
                         InventoryTypeModel *fourthModel = [InventoryTypeModel mj_objectWithKeyValues:selectedFourLeveDic];
                         switch (sender.tag) {//根据具体点击按钮对应相应code
@@ -705,7 +705,7 @@ static NSInteger start = 0;//上拉加载起始位置
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [SVProgressHUD show];
     NSString *searchString = [self.searchField text];
-    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&departmentCode=%@&saveUserId=%@&passEntryTimeBegin=%@&passEntryTimeEnd=%@&addressCode=%@&categoryCode=%@&start=0&limit=6",mSearchResult,searchString,self.departmentCode,self.saveUserId,self.passEntryTimeBegin,self.passEntryTimeEnd,self.addressCode,self.categoryCode];
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&departmentCode=%@&saveUserId=%@&passEntryTimeBegin=%@&passEntryTimeEnd=%@&addressCode=%@&categoryCode=%@&start=0&limit=10",mSearchResult,searchString,self.departmentCode,self.saveUserId,self.passEntryTimeBegin,self.passEntryTimeEnd,self.addressCode,self.categoryCode];
     //把搜索中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -727,7 +727,7 @@ static NSInteger start = 0;//上拉加载起始位置
             [weakSelf.searchField resignFirstResponder];
             [weakSelf.tableView reloadData];
             [weakSelf.tableView.mj_header endRefreshing];
-            if (start < 6) {//没有更多数据了
+            if (start < 10) {//没有更多数据了
                 [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }else{//有更多数据
                 weakSelf.tableView.mj_footer.state = MJRefreshStateIdle;//改变footer的状态为初始化
@@ -750,7 +750,7 @@ static NSInteger start = 0;//上拉加载起始位置
     [httpManager.manager.requestSerializer setValue:[CcUserModel defaultClient].userCookie forHTTPHeaderField:@"Cookie"];//设置之前登录请求返回的cookie并设置到接口请求中，以便服务器确认登录
     [SVProgressHUD show];
    NSString *searchString = [self.searchField text];
-    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&departmentCode=%@&saveUserId=%@&passEntryTimeBegin=%@&passEntryTimeEnd=%@&addressCode=%@&categoryCode=%@&start=%ld&limit=6",mSearchResult,searchString,self.departmentCode,self.saveUserId,self.passEntryTimeBegin,self.passEntryTimeEnd,self.addressCode,self.categoryCode,(long)start];
+    NSString *urlString = [NSString stringWithFormat:@"%@name=%@&departmentCode=%@&saveUserId=%@&passEntryTimeBegin=%@&passEntryTimeEnd=%@&addressCode=%@&categoryCode=%@&start=%ld&limit=10",mSearchResult,searchString,self.departmentCode,self.saveUserId,self.passEntryTimeBegin,self.passEntryTimeEnd,self.addressCode,self.categoryCode,(long)start];
     //把搜索中文转义
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [httpManager requestWithPath:urlString method:HttpRequestGet parameters:nil prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -770,7 +770,7 @@ static NSInteger start = 0;//上拉加载起始位置
                     start = weakSelf.assetsArr.count;
                     
                     [weakSelf.tableView reloadData];
-                    if (start % 6 != 0) {
+                    if (start % 10 != 0) {
                         [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
                     }else{
                         [weakSelf.tableView.mj_footer endRefreshing];

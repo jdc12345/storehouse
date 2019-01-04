@@ -55,7 +55,7 @@
     }];
     self.willLabel = willLabel;
     //已盘数量label
-    UILabel *hadLabel = [UILabel labelWithText:@"待盘数量" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
+    UILabel *hadLabel = [UILabel labelWithText:@"已盘数量" andTextColor:[UIColor colorWithHexString:@"373a41"] andFontSize:12];
     hadLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:hadLabel];
     [hadLabel mas_makeConstraints:^(MASConstraintMaker *make) {

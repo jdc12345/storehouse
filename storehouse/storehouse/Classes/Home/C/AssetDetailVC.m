@@ -201,7 +201,7 @@ static NSString* recordCellid = @"recordCellid";
             cell.itemContentLabel.text = self.assetModel.saveUserName;
             break;
         case 3:
-            cell.itemContentLabel.text = self.assetModel.assetType;
+            cell.itemContentLabel.text = self.assetModel.specTyp;
             break;
         case 4:
             cell.itemContentLabel.text = self.assetModel.addressName;
